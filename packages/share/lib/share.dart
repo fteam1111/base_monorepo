@@ -1,4 +1,4 @@
-library share;
+library;
 
 export 'common/device_info.dart';
 export 'common/file_picker.dart';
