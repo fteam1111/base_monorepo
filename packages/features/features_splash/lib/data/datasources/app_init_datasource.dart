@@ -18,11 +18,10 @@ class AppInitDataSource {
       // Check if user has tokens
       final accessToken = await _tokenStorage.getAccessToken();
 
-      final bool isAuthenticated =
-          accessToken != null && accessToken.isNotEmpty;
+      final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
 
       // Check if onboarding has been completed
-      final bool hasCompletedOnboarding =
+      final hasCompletedOnboarding =
           _sharedPreferences.getBool('onboarding_completed') ?? false;
 
       // You can add additional checks here:

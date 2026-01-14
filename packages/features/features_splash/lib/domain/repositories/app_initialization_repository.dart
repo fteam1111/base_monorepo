@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../entities/app_init_entity.dart';
+import 'package:features_splash/domain/entities/app_init_entity.dart';
 
 /// Repository interface for app initialization
 abstract class AppInitializationRepository {

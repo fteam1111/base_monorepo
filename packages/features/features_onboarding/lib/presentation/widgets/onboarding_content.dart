@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../domain/entities/onboarding_page_entity.dart';
+import 'package:features_onboarding/domain/entities/onboarding_page_entity.dart';
 
 /// Widget to display onboarding page content
 class OnboardingContent extends StatelessWidget {

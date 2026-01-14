@@ -1,11 +1,10 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/usecases/check_auth_status_usecase.dart';
-import '../../domain/usecases/initialize_app_usecase.dart';
-import 'splash_event.dart';
-import 'splash_state.dart';
+import 'package:features_splash/domain/usecases/check_auth_status_usecase.dart';
+import 'package:features_splash/domain/usecases/initialize_app_usecase.dart';
+import 'package:features_splash/presentation/bloc/splash_event.dart';
+import 'package:features_splash/presentation/bloc/splash_state.dart';
 
 /// BLoC for splash screen logic
 class SplashBloc extends Bloc<SplashEvent, SplashState> {

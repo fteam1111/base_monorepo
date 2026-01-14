@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../domain/entities/onboarding_page_entity.dart';
+import 'package:features_onboarding/domain/entities/onboarding_page_entity.dart';
 
 /// Base class for onboarding states
 abstract class OnboardingState extends Equatable {

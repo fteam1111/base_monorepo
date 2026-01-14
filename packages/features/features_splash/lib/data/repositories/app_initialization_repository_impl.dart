@@ -1,9 +1,8 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../../domain/entities/app_init_entity.dart';
-import '../../domain/repositories/app_initialization_repository.dart';
-import '../datasources/app_init_datasource.dart';
+import 'package:features_splash/domain/entities/app_init_entity.dart';
+import 'package:features_splash/domain/repositories/app_initialization_repository.dart';
+import 'package:features_splash/data/datasources/app_init_datasource.dart';
 
 /// Implementation of app initialization repository
 class AppInitializationRepositoryImpl implements AppInitializationRepository {
@@ -22,7 +21,9 @@ class AppInitializationRepositoryImpl implements AppInitializationRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(ApiFailure.other('Failed to initialize app: ${e.toString()}'));
+      return Left(
+        ApiFailure.other('Failed to initialize app: ${e.toString()}'),
+      );
     }
   }
 
@@ -32,7 +33,9 @@ class AppInitializationRepositoryImpl implements AppInitializationRepository {
       final isAuthenticated = await dataSource.checkAuthStatus();
       return Right(isAuthenticated);
     } catch (e) {
-      return Left(ApiFailure.other('Failed to check auth status: ${e.toString()}'));
+      return Left(
+        ApiFailure.other('Failed to check auth status: ${e.toString()}'),
+      );
     }
   }
 }
