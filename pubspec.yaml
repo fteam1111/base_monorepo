@@ -1,0 +1,41 @@
+name: monospace_base
+publish_to: none
+environment:
+  sdk: ^3.9.2
+workspace:
+  - packages/core
+  - packages/design_system
+  - packages/local_storage
+  - packages/localization
+  - packages/network
+  - packages/share
+  - apps/customer_app
+  - packages/features/features_auth
+  - packages/features/features_user
+  - packages/features/features_home
+  - packages/features/features_onboarding
+  - packages/features/features_splash
+
+dependencies:
+  # DI
+  get_it: ^8.2.0
+  injectable: ^2.3.2
+
+dev_dependencies:
+  melos: ^7.3.0
+
+  # Code Generation
+  json_serializable: ^6.11.1
+  injectable_generator: ^2.9.0
+  build_runner: ^2.9.0
+  freezed: ^3.2.3
+  flutter_gen_runner: ^5.12.0
+  flutter_localization: ^0.3.3
+
+melos:
+  scripts:
+    gen:
+      description: Run build_runner for all packages
+      run: >
+        melos exec --depends-on=build_runner --
+        flutter pub run build_runner build --delete-conflicting-outputs
