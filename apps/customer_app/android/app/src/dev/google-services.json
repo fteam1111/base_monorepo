@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "732958581392",
+    "project_id": "monorepo-95bb5",
+    "storage_bucket": "monorepo-95bb5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732958581392:android:4b18dfff426e61680dae15",
+        "android_client_info": {
+          "package_name": "com.example.customer_app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXiyK5a7SvtUwJUU0H1LCXHTDePD-JKGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
