@@ -1,4 +1,4 @@
-import '../../domain/entities/onboarding_page_entity.dart';
+import 'package:features_onboarding/domain/entities/onboarding_page_entity.dart';
 
 /// Model for onboarding page (extends entity)
 class OnboardingPageModel extends OnboardingPageEntity {

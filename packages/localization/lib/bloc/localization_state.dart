@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../domain/entities/app_locale.dart';
+import 'package:localization/domain/entities/app_locale.dart';
 
 /// Base class for localization states
 abstract class LocalizationState extends Equatable {

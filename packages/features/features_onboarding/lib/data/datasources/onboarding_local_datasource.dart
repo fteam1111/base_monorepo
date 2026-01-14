@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../models/onboarding_page_model.dart';
+import 'package:features_onboarding/data/models/onboarding_page_model.dart';
 
 /// Local data source for onboarding
 class OnboardingLocalDataSource {

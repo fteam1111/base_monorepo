@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share/routes/app_routes.dart';
-
-import '../bloc/splash_bloc.dart';
-import '../bloc/splash_event.dart';
-import '../bloc/splash_state.dart';
+import 'package:features_splash/presentation/bloc/splash_bloc.dart';
+import 'package:features_splash/presentation/bloc/splash_event.dart';
+import 'package:features_splash/presentation/bloc/splash_state.dart';
 
 /// Splash screen page with app initialization logic
 class SplashPage extends StatefulWidget {

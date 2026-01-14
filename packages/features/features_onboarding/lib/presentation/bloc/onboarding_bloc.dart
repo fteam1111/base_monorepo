@@ -1,10 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/repositories/onboarding_repository.dart';
-import '../../domain/usecases/complete_onboarding_usecase.dart';
-import 'onboarding_event.dart';
-import 'onboarding_state.dart';
+import 'package:features_onboarding/domain/repositories/onboarding_repository.dart';
+import 'package:features_onboarding/domain/usecases/complete_onboarding_usecase.dart';
+import 'package:features_onboarding/presentation/bloc/onboarding_event.dart';
+import 'package:features_onboarding/presentation/bloc/onboarding_state.dart';
 
 /// BLoC for onboarding logic
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {

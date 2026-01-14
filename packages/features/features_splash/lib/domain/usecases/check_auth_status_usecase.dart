@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../repositories/app_initialization_repository.dart';
+import 'package:features_splash/domain/repositories/app_initialization_repository.dart';
 
 /// Use case for checking authentication status
 class CheckAuthStatusUseCase {

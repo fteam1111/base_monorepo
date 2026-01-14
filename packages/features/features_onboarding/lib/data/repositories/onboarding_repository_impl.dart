@@ -1,10 +1,9 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/entities/onboarding_page_entity.dart';
-import '../../domain/repositories/onboarding_repository.dart';
-import '../datasources/onboarding_local_datasource.dart';
+import 'package:features_onboarding/domain/entities/onboarding_page_entity.dart';
+import 'package:features_onboarding/domain/repositories/onboarding_repository.dart';
+import 'package:features_onboarding/data/datasources/onboarding_local_datasource.dart';
 
 /// Implementation of onboarding repository
 class OnboardingRepositoryImpl implements OnboardingRepository {

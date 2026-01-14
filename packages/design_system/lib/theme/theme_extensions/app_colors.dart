@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../tokens/colors.dart';
+import 'package:design_system/theme/tokens/colors.dart';
 
 /// Theme extension for custom colors
 /// Access via: Theme.of(context).extension`<AppColorsExtension>`()

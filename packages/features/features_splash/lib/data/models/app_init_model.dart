@@ -1,4 +1,4 @@
-import '../../domain/entities/app_init_entity.dart';
+import 'package:features_splash/domain/entities/app_init_entity.dart';
 
 /// Model for app initialization (extends entity)
 class AppInitModel extends AppInitEntity {

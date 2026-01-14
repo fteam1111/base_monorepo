@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../domain/entities/app_init_entity.dart';
+import 'package:features_splash/domain/entities/app_init_entity.dart';
 
 /// Base class for splash states
 abstract class SplashState extends Equatable {

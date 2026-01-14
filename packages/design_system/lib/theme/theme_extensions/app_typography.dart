@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../tokens/typography.dart';
+import 'package:design_system/theme/tokens/typography.dart';
 
 /// Theme extension for typography
 /// Access via: Theme.of(context).extension`<AppTypographyExtension>`()

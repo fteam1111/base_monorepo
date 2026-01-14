@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../tokens/spacing.dart';
+import 'package:design_system/theme/tokens/spacing.dart';
 
 /// Theme extension for spacing
 /// Access via: Theme.of(context).extension`<AppSpacingExtension>`()

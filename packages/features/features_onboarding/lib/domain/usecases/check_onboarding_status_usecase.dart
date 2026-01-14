@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../repositories/onboarding_repository.dart';
+import 'package:features_onboarding/domain/repositories/onboarding_repository.dart';
 
 /// Use case for checking onboarding status
 class CheckOnboardingStatusUseCase {
