@@ -11,10 +11,16 @@ dependencies:
   flutter:
     sdk: flutter
 
+  core:
+    path: ../core
   local_storage:
     path: ../local_storage
+  share:
+    path: ../share
+
   # State Management
   flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:

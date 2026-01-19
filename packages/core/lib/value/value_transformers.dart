@@ -29,18 +29,18 @@ DateTime getJWTExpirationDate(String token) {
   if (token.isEmpty) return DateTime.now();
   final decodedToken = getJWTPayload(token);
 
-  return DateTime.fromMillisecondsSinceEpoch(0).add(
-    Duration(seconds: decodedToken['exp'].toInt()),
-  );
+  return DateTime.fromMillisecondsSinceEpoch(
+    0,
+  ).add(Duration(seconds: decodedToken['exp'].toInt()));
 }
 
 /// Returns token issuing date (iat)
 Duration getJWTTime(String token) {
   if (token.isEmpty) return const Duration();
   final decodedToken = getJWTPayload(token);
-  final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(0).add(
-    Duration(seconds: decodedToken['iat']),
-  );
+  final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(
+    0,
+  ).add(Duration(seconds: decodedToken['iat']));
 
   return DateTime.now().difference(issuedAtDate);
 }
@@ -66,13 +66,6 @@ bool isJWTExpired(String token) {
   final expirationDate = getJWTExpirationDate(token);
 
   return DateTime.now().isAfter(expirationDate);
-}
-
-List getJWTSalesOrg(String token) {
-  if (token.isEmpty) return [];
-  final payload = getJWTPayload(token);
-
-  return payload['salesOrgs'];
 }
 
 /// Viết hoa ký tự đầu, phần còn lại viết thường. Input rỗng trả về chuỗi rỗng.
@@ -156,17 +149,6 @@ bool isAtLeastOneNumericCharacter({required String input}) =>
 /// Có ít nhất 1 ký tự đặc biệt trong nhóm quy định.
 bool isAtLeastOneSpecialCharacter({required String input}) =>
     RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(input);
-
-/// Chuẩn hóa hiển thị số hợp đồng thầu.
-/// Nếu text là 'No contract (Price remains same)' -> 'Tender Contract available'
-/// Ngược lại -> 'Contract: text.
-String getTenderContractNumber(String text) {
-  if (text.isEmpty) return text;
-
-  return isEqualsIgnoreCase(text, 'No contract (Price remains same)')
-      ? 'Tender Contract available'
-      : 'Contract: $text';
-}
 
 /// Format ngày/giờ BỎ timezone (cắt phần +HH:MM ở cuối) theo [format].
 String displayDateTimeStringIgnoringTimezone(String text, String format) {
@@ -386,10 +368,6 @@ String getThreeDaysAfterString(DateTime dateTime) => DateFormat(
   DateTimeFormatString.defaultDateTimeFormat,
 ).format(dateTime.add(const Duration(days: 3)));
 
-/// Số ngày còn lại từ hiện tại đến (date + 3 ngày).
-int paymentAttentionExpiryInDays(DateTime date) =>
-    date.add(const Duration(days: 3)).difference(DateTime.now()).inDays;
-
 /// True nếu chênh lệch từ [date] đến hiện tại < 7 ngày và không âm.
 bool differenceNGTWeek(DateTime date) {
   final diff = DateTime.now().difference(date).inDays;
@@ -448,9 +426,6 @@ String fileTypeFromPath(String source) {
   return path.extension(source);
 }
 
-/// Kiểm tra path có đúng deeplink ví dụ '/example/deeplink'.
-bool isExampleDeepLink(String path) => path == '/example/deeplink';
-
 /// So sánh bằng nhau, trim và không phân biệt hoa thường.
 bool isEqualsIgnoreCase(String value, String matcher) =>
     value.trim().toLowerCase() == matcher.trim().toLowerCase();
@@ -458,5 +433,8 @@ bool isEqualsIgnoreCase(String value, String matcher) =>
 /// Kiểm tra [value] có chứa [containValue], trim và không phân biệt hoa thường.
 bool isContainIgnoreCase(String value, String containValue) =>
     value.trim().toLowerCase().contains(containValue.trim().toLowerCase());
+
+/// Kiểm tra path có đúng deeplink ví dụ '/example/deeplink'.
+bool isExampleDeepLink(String path) => path == '/example';
 
 // Query params từ deep linking (gợi ý: thêm hàm parse query nếu cần)
