@@ -1,3 +1,5 @@
+import 'package:core/core.dart';
+import 'package:design_system/deeplink/bloc/deep_link_bloc.dart';
 import 'package:design_system/theme/theme_extensions/app_colors.dart';
 import 'package:design_system/theme/theme_provider.dart';
 import 'package:features_auth/features_auth.dart';
@@ -29,39 +31,85 @@ class _HomePageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listenWhen: (previous, current) {
-        debugPrint(
-          '🏠 HomePage - Auth state changed: ${previous.runtimeType} -> ${current.runtimeType}',
-        );
-        return true;
-      },
-      listener: (context, state) {
-        debugPrint('🏠 HomePage - Auth listener: ${state.runtimeType}');
+    return MultiBlocListener(
+      listeners: [
+        // Auth Listener
+        BlocListener<AuthBloc, AuthState>(
+          listenWhen: (previous, current) {
+            debugPrint(
+              '🏠 HomePage - Auth state changed: ${previous.runtimeType} -> ${current.runtimeType}',
+            );
+            return true;
+          },
+          listener: (context, state) {
+            debugPrint('🏠 HomePage - Auth listener: ${state.runtimeType}');
 
-        // Handle logout success
-        if (state is AuthUnauthenticated) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("lagout"),
-              backgroundColor: Colors.orange,
-              behavior: SnackBarBehavior.floating,
-            ),
-          );
-          // Navigate to login page
-          AppRoutes.navigateToLogin(context);
-        }
-        // Handle auth errors
-        else if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.red,
-              behavior: SnackBarBehavior.floating,
-            ),
-          );
-        }
-      },
+            // Handle logout success
+            if (state is AuthUnauthenticated) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Đã đăng xuất"),
+                  backgroundColor: Colors.orange,
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+              // Navigate to login page
+              AppRoutes.navigateToLogin(context);
+            }
+            // Handle auth errors
+            else if (state is AuthError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: Colors.red,
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            }
+          },
+        ),
+
+        // DeepLink Listener
+        BlocListener<DeepLinkBloc, DeepLinkState>(
+          listenWhen: (previous, current) {
+            return current is! DeepLinkInitial;
+          },
+          listener: (context, state) {
+            debugPrint('🔗 HomePage - DeepLink listener: ${state.runtimeType}');
+
+            switch (state) {
+              case RedirectExampleDeeplink():
+                // Navigate to example page
+                AppRoutes.navigateToProfile(context);
+
+              case LinkPending(:final link):
+                // Show snackbar nếu có link pending
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Có deep link: ${link.getValue()}'),
+                    backgroundColor: Colors.blue,
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+
+                context.read<DeepLinkBloc>().add(ConsumePendingLinkEvent());
+
+              case DeepLinkingError(:final failure):
+                // Show error
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Deep link error: ${failure.failureMessage}'),
+                    backgroundColor: Colors.red,
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+
+              default:
+                break;
+            }
+          },
+        ),
+      ],
       child: const _HomePageView(),
     );
   }
@@ -75,6 +123,13 @@ class _HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<_HomePageView> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<DeepLinkBloc>().add(InitializeEvent());
+  }
+
   void _onItemTapped(int index) {
     context.read<HomeBloc>().add(NavigationIndexChanged(index));
   }
@@ -271,6 +326,11 @@ class _HomePageViewState extends State<_HomePageView> {
                                   isAuthenticated,
                                   state,
                                 ),
+
+                                const SizedBox(height: 12),
+
+                                // Deeplink Test
+                                _buildDeepLinkTestSection(context),
 
                                 const SizedBox(height: 24),
 
@@ -714,6 +774,49 @@ class _HomePageViewState extends State<_HomePageView> {
           fontWeight: FontWeight.w400,
           fontSize: 11,
           letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeepLinkTestSection(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(color: theme.colorScheme.outline, width: 1),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Deep Link Test',
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w300,
+                letterSpacing: 1.0,
+              ),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: () {
+                context.read<DeepLinkBloc>().add(
+                  AddPendingLinkEvent(AppLink("app://example/example")),
+                );
+              },
+              icon: const Icon(Icons.link, size: 18),
+              label: const Text('Trigger example deeplink'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.all(14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

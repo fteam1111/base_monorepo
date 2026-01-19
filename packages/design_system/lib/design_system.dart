@@ -21,3 +21,7 @@ export 'theme/tokens/typography.dart';
 export 'package:design_system/widgets/upgrade/upgrade_alert_wrapper.dart';
 export 'package:design_system/widgets/upgrade/upgrader_localization_message.dart';
 
+// deeplink
+export 'package:design_system/deeplink/domain/repositories/deep_link_repository.dart';
+export 'package:design_system/deeplink/bloc/deep_link_bloc.dart';
+export 'package:design_system/deeplink/repositories/deep_link_repository_impl.dart';

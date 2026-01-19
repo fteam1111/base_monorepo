@@ -30,16 +30,16 @@ dependencies:
   get_it: ^8.0.2
 
   # Internal packages
+  core:
+    path: ../../core
+  network:
+    path: ../../network
   design_system:
     path: ../../design_system
   share:
     path: ../../share
-  core:
-    path: ../../core
   localization:
     path: ../../localization
-  network:
-    path: ../../network
   local_storage:
     path: ../../local_storage
   features_auth:

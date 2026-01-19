@@ -1,12 +1,10 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../../domain/entities/network_test_entity.dart';
-import '../../domain/repositories/network_test_repository.dart';
+import 'package:features_home/domain/entities/network_test_entity.dart';
+import 'package:features_home/domain/repositories/network_test_repository.dart';
 
 /// Implementation of NetworkTestRepository
 class NetworkTestRepositoryImpl implements NetworkTestRepository {
-
   NetworkTestRepositoryImpl();
 
   @override
@@ -17,9 +15,7 @@ class NetworkTestRepositoryImpl implements NetworkTestRepository {
   }
 
   @override
-  Future<Either<ApiFailure, NetworkTestEntity>> runTest(
-    String testName,
-  ) async {
+  Future<Either<ApiFailure, NetworkTestEntity>> runTest(String testName) async {
     return Left(ApiFailure.noInternet());
   }
 }

@@ -104,8 +104,6 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
   ) async {
     debugPrint('🌍 LocalizationBloc - Resetting to system locale');
 
-    // For now, just use English as system default
-    // You can enhance this to detect actual system locale
     emit(
       const LocalizationLoaded(locale: AppLocale.english, isSystemLocale: true),
     );

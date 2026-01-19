@@ -225,5 +225,16 @@ class DependencyManager {
     locator.registerLazySingleton<ThemeCubit>(
       () => ThemeCubit(locator<ThemeStorage>()),
     );
+
+    // Deep Linking
+    locator.registerLazySingleton(() => DeepLinkingService());
+
+    locator.registerLazySingleton(
+      () => DeepLinkingRepositoryImpl(service: locator<DeepLinkingService>()),
+    );
+
+    locator.registerLazySingleton(
+      () => DeepLinkBloc(repository: locator<DeepLinkingRepositoryImpl>()),
+    );
   }
 }

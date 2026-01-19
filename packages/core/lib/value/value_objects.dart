@@ -72,10 +72,6 @@ class JWT extends ValueObject<String> {
     return isJWTExpired(value.getOrElse(() => ''));
   }
 
-  List get salesOrgs {
-    return getJWTSalesOrg(value.getOrElse(() => ''));
-  }
-
   const JWT._(this.value);
 }
 
@@ -207,8 +203,6 @@ class DateTimeStringValue extends ValueObject<String> {
 
   DateTimeStringValue get threeDaysAfter =>
       DateTimeStringValue(getThreeDaysAfterString(dateTime));
-
-  int get paymentAttentionExpiry => paymentAttentionExpiryInDays(dateTime);
 
   bool get withinAYearFromNow => dateTimeOrNull != null
       ? dateTimeOrNull!.difference(DateTime.now()).inDays <= 365

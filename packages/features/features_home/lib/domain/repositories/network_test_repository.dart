@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-
-import '../entities/network_test_entity.dart';
+import 'package:features_home/domain/entities/network_test_entity.dart';
 
 /// Repository interface for network testing operations
 abstract class NetworkTestRepository {

@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:localization/domain/entities/app_locale.dart';
 
-/// Base class for localization events
 abstract class LocalizationEvent extends Equatable {
   const LocalizationEvent();
 
