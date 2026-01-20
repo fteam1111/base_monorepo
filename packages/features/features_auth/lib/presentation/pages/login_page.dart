@@ -29,6 +29,7 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: theme.colorScheme.error,
               ),
             );
+            AppRoutes.navigateToHome(context);
           } else if (state is AuthAuthenticated) {
             debugPrint('LoginPage - User authenticated: ${state.user.name}');
 
@@ -47,9 +48,7 @@ class LoginPage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          debugPrint(
-            'LoginPage - Building with state: ${state.runtimeType}',
-          );
+          debugPrint('LoginPage - Building with state: ${state.runtimeType}');
 
           if (state is AuthLoading) {
             return const Center(child: CircularProgressIndicator());

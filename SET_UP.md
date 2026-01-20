@@ -14,6 +14,13 @@
 git clone https://git.its-global.vn/diemnk/base_monorepo.git
 ```
 
+```bash
+fvm flutter clean
+fvm use 3.35.7
+fvm flutter pub get
+fvm dart pub global activate flutterfire_cli
+```
+
 2. **Install Melos (recommended):**
 
 ```bash
