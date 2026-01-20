@@ -1,3 +1,4 @@
+import 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -124,60 +125,64 @@ class _LoginFormState extends State<LoginForm> {
           ),
           const SizedBox(height: 16),
 
+          LoadingShimmer.logo(),
+
           // Demo credentials info card
-          Card(
-            color: Colors.blue[50],
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        color: Colors.blue[700],
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Demo Credentials',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.blue[900],
+          LoadingShimmer.withChild(
+            child: Card(
+              color: Colors.blue[50],
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: Colors.blue[700],
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  _buildDemoCredentialRow(
-                    'Demo User',
-                    'demo@test.com',
-                    'password123',
-                  ),
-                  const Divider(height: 16),
-                  _buildDemoCredentialRow(
-                    'Admin User',
-                    'admin@test.com',
-                    'admin123',
-                  ),
-                  const Divider(height: 16),
-                  _buildDemoCredentialRow(
-                    'Test User',
-                    'test@test.com',
-                    'test123',
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Tap any credential to auto-fill the form',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.blue[700],
-                      fontStyle: FontStyle.italic,
+                        const SizedBox(width: 8),
+                        Text(
+                          'Demo Credentials',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+                    _buildDemoCredentialRow(
+                      'Demo User',
+                      'demo@test.com',
+                      'password123',
+                    ),
+                    const Divider(height: 16),
+                    _buildDemoCredentialRow(
+                      'Admin User',
+                      'admin@test.com',
+                      'admin123',
+                    ),
+                    const Divider(height: 16),
+                    _buildDemoCredentialRow(
+                      'Test User',
+                      'test@test.com',
+                      'test123',
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Tap any credential to auto-fill the form',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.blue[700],
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
