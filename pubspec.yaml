@@ -34,7 +34,39 @@ dev_dependencies:
 
 melos:
   scripts:
+    gen:user:
+      description: Run build_runner for features_user first (dependency base)
+      run: >
+        melos exec --scope=features_user --depends-on=build_runner --
+        flutter pub run build_runner build --delete-conflicting-outputs
+
+    gen:auth:
+      description: Run build_runner for features_auth after features_user
+      run: >
+        melos exec --scope=features_auth --depends-on=build_runner --
+        flutter pub run build_runner build --delete-conflicting-outputs
+
+    gen:home:
+      description: Run build_runner for features_home after its dependencies
+      run: >
+        melos exec --scope=features_home --depends-on=build_runner --
+        flutter pub run build_runner build --delete-conflicting-outputs
+
+    gen:customer_app:
+      description: Run build_runner for customer_app last
+      run: >
+        melos exec --scope=customer_app --depends-on=build_runner --
+        flutter pub run build_runner build --delete-conflicting-outputs
+
     gen:
+      description: Run build_runner in order to avoid parallel generation races
+      run: >
+        melos run gen:user &&
+        melos run gen:auth &&
+        melos run gen:home &&
+        melos run gen:customer_app
+
+    gen_all:
       description: Run build_runner for all packages
       run: >
         melos exec --depends-on=build_runner --
