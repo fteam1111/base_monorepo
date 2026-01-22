@@ -21,9 +21,7 @@ class BaseConfig {
 
   String get baseUrl => dotenv.env['BASE_URL'] ?? '';
 
-  String get appName => dotenv.env['APP_NAME'] ?? '';
-
-  String get packageName => dotenv.env['PACKAGE_NAME'] ?? '';
+  String get loginUrl => dotenv.env['LOGIN_URL'] ?? '';
 
   const BaseConfig({
     required this.flavor,

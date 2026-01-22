@@ -5,7 +5,6 @@ class AppInitModel extends AppInitEntity {
   const AppInitModel({
     required super.isInitialized,
     required super.isAuthenticated,
-    required super.hasCompletedOnboarding,
     super.userId,
     super.errorMessage,
   });
@@ -15,7 +14,6 @@ class AppInitModel extends AppInitEntity {
     return AppInitModel(
       isInitialized: entity.isInitialized,
       isAuthenticated: entity.isAuthenticated,
-      hasCompletedOnboarding: entity.hasCompletedOnboarding,
       userId: entity.userId,
       errorMessage: entity.errorMessage,
     );
@@ -26,7 +24,6 @@ class AppInitModel extends AppInitEntity {
     return AppInitModel(
       isInitialized: json['isInitialized'] as bool? ?? false,
       isAuthenticated: json['isAuthenticated'] as bool? ?? false,
-      hasCompletedOnboarding: json['hasCompletedOnboarding'] as bool? ?? false,
       userId: json['userId'] as String?,
       errorMessage: json['errorMessage'] as String?,
     );
@@ -37,7 +34,6 @@ class AppInitModel extends AppInitEntity {
     return {
       'isInitialized': isInitialized,
       'isAuthenticated': isAuthenticated,
-      'hasCompletedOnboarding': hasCompletedOnboarding,
       'userId': userId,
       'errorMessage': errorMessage,
     };
@@ -54,8 +50,6 @@ class AppInitModel extends AppInitEntity {
     return AppInitModel(
       isInitialized: isInitialized ?? this.isInitialized,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
-      hasCompletedOnboarding:
-          hasCompletedOnboarding ?? this.hasCompletedOnboarding,
       userId: userId ?? this.userId,
       errorMessage: errorMessage ?? this.errorMessage,
     );

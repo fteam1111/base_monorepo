@@ -14,7 +14,6 @@ class AuthRepositoryImpl implements AuthRepository {
     AuthRemoteDataSource? remoteDataSource,
     required TokenStorage tokenStorage,
   }) : _remoteDataSource = remoteDataSource,
-
        _tokenStorage = tokenStorage {
     // Ensure at least one data source is provided
     assert(

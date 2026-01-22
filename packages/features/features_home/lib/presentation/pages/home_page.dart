@@ -3,16 +3,15 @@ import 'package:design_system/deeplink/bloc/deep_link_bloc.dart';
 import 'package:design_system/theme/theme_extensions/app_colors.dart';
 import 'package:design_system/theme/theme_provider.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:features_home/presentation/bloc/home_bloc.dart';
+import 'package:features_home/presentation/bloc/home_event.dart';
+import 'package:features_home/presentation/bloc/home_state.dart';
+import 'package:features_home/presentation/widgets/floating_bottom_navigation.dart';
+import 'package:features_home/presentation/widgets/glass_navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/generated/app_localizations.dart';
 import 'package:share/routes/app_routes.dart';
-
-import '../bloc/home_bloc.dart';
-import '../bloc/home_event.dart';
-import '../bloc/home_state.dart';
-import '../widgets/floating_bottom_navigation.dart';
-import '../widgets/glass_navigation_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -48,7 +47,7 @@ class _HomePageContent extends StatelessWidget {
             if (state is AuthUnauthenticated) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text("Đã đăng xuất"),
+                  content: Text('Đã đăng xuất'),
                   backgroundColor: Colors.orange,
                   behavior: SnackBarBehavior.floating,
                 ),
@@ -92,7 +91,7 @@ class _HomePageContent extends StatelessWidget {
                   ),
                 );
 
-                context.read<DeepLinkBloc>().add(ConsumePendingLinkEvent());
+                context.read<DeepLinkBloc>().add(const ConsumePendingLinkEvent());
 
               case DeepLinkingError(:final failure):
                 // Show error
@@ -127,7 +126,7 @@ class _HomePageViewState extends State<_HomePageView> {
   void initState() {
     super.initState();
 
-    context.read<DeepLinkBloc>().add(InitializeEvent());
+    context.read<DeepLinkBloc>().add(const InitializeEvent());
   }
 
   void _onItemTapped(int index) {
@@ -588,7 +587,7 @@ class _HomePageViewState extends State<_HomePageView> {
             children: [
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: () => AppRoutes.navigateToNetworkTest(context),
+                  onPressed: () {},
                   icon: const Icon(Icons.network_check),
                   label: const Text('Network Tests'),
                   style: OutlinedButton.styleFrom(
@@ -606,7 +605,7 @@ class _HomePageViewState extends State<_HomePageView> {
                     context.read<AuthBloc>().add(const AuthLogoutRequested());
                   },
                   icon: const Icon(Icons.logout, size: 18),
-                  label: Text("AppLocalizations.of(context).logout"),
+                  label: const Text('AppLocalizations.of(context).logout'),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(14),
                     foregroundColor: theme.colorScheme.error,
@@ -697,11 +696,11 @@ class _HomePageViewState extends State<_HomePageView> {
         ),
         title: Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
         ),
         subtitle: Text(
           description,
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
+          style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
         ),
       ),
     );
@@ -804,7 +803,7 @@ class _HomePageViewState extends State<_HomePageView> {
             OutlinedButton.icon(
               onPressed: () {
                 context.read<DeepLinkBloc>().add(
-                  AddPendingLinkEvent(AppLink("app://example/example")),
+                  AddPendingLinkEvent(AppLink('app://example/example')),
                 );
               },
               icon: const Icon(Icons.link, size: 18),
@@ -889,10 +888,10 @@ class _HomePageViewState extends State<_HomePageView> {
                 // Theme mode selector
                 SegmentedButton<ThemeMode>(
                   segments: [
-                    ButtonSegment(
+                    const ButtonSegment(
                       value: ThemeMode.light,
-                      icon: const Icon(Icons.light_mode),
-                      label: Text("AppLocalizations.of(context).lightMode"),
+                      icon: Icon(Icons.light_mode),
+                      label: Text('AppLocalizations.of(context).lightMode'),
                     ),
                     ButtonSegment(
                       value: ThemeMode.dark,

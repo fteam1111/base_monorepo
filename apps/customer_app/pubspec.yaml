@@ -37,8 +37,6 @@ dependencies:
     path: ../../packages/features/features_user
   features_home:
     path: ../../packages/features/features_home
-  features_onboarding:
-    path: ../../packages/features/features_onboarding
   features_splash:
     path: ../../packages/features/features_splash
 

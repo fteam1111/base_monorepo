@@ -10,6 +10,7 @@ class AppSpacing {
   static const double xxxs = base * 0.5; // 4px
   static const double xxs = base * 1; // 8px
   static const double xs = base * 1.5; // 12px
+  static const double smd = base * 2.5; // 16px
   static const double sm = base * 2; // 16px
   static const double md = base * 3; // 24px
   static const double lg = base * 4; // 32px
@@ -22,6 +23,7 @@ class AppSpacing {
   static const double tiny = xxxs; // 4px
   static const double small = xxs; // 8px
   static const double medium = sm; // 16px
+  static const double mediumLarge = smd; // 20px
   static const double large = md; // 24px
   static const double extraLarge = lg; // 32px
   static const double huge = xl; // 40px

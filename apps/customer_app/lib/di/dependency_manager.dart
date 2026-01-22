@@ -3,7 +3,6 @@ import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_home/features_home.dart';
-import 'package:features_onboarding/features_onboarding.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_user/features_user.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -157,27 +156,6 @@ class DependencyManager {
       () => CheckAuthStatusUseCase(locator<AppInitializationRepository>()),
     );
 
-    // ==================== Features Onboarding ====================
-
-    // // Onboarding Local Data Source
-    locator.registerLazySingleton<OnboardingLocalDataSource>(
-      () => OnboardingLocalDataSource(locator<SharedPreferences>()),
-    );
-
-    // Onboarding Repository
-    locator.registerLazySingleton<OnboardingRepository>(
-      () => OnboardingRepositoryImpl(locator<OnboardingLocalDataSource>()),
-    );
-
-    // Onboarding Use Cases
-    locator.registerLazySingleton<CompleteOnboardingUseCase>(
-      () => CompleteOnboardingUseCase(locator<OnboardingRepository>()),
-    );
-
-    locator.registerLazySingleton<CheckOnboardingStatusUseCase>(
-      () => CheckOnboardingStatusUseCase(locator<OnboardingRepository>()),
-    );
-
     // ==================== Presentation Layer ====================
 
     // Auth BLoC - Singleton (same instance throughout app lifecycle)
@@ -202,14 +180,6 @@ class DependencyManager {
       () => SplashBloc(
         initializeAppUseCase: locator<InitializeAppUseCase>(),
         checkAuthStatusUseCase: locator<CheckAuthStatusUseCase>(),
-      ),
-    );
-
-    // Onboarding BLoC - Factory
-    locator.registerFactory<OnboardingBloc>(
-      () => OnboardingBloc(
-        repository: locator<OnboardingRepository>(),
-        completeOnboardingUseCase: locator<CompleteOnboardingUseCase>(),
       ),
     );
 

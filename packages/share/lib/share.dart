@@ -25,4 +25,7 @@ export 'firebase/remote_config_constants.dart';
 export 'routes/api_routes.dart';
 export 'routes/app_routes.dart';
 
+export 'package:share/extensions/context_ext.dart';
+export 'package:share/extensions/enum_ext.dart';
+
 export 'package:share/deeplink/deep_linking_service.dart';

@@ -1,16 +1,15 @@
 import 'dart:async';
 
+import 'package:core/config/base_config.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_home/features_home.dart';
-import 'package:features_onboarding/features_onboarding.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share/routes/app_routes.dart';
 import 'package:upgrader/upgrader.dart';
-import 'package:design_system/design_system.dart';
 
 /// GoRouter configuration for the entire app
 /// Provides type-safe navigation, deep linking, and URL support
@@ -39,9 +38,8 @@ class AppRouter {
         }
 
         // Allow splash and onboarding pages always
-        if (currentLocation == AppRoutes.splashPath ||
-            currentLocation == AppRoutes.onboardingPath) {
-          return null;
+        if (currentLocation == AppRoutes.splashPath) {
+          return AppRoutes.homePath;
         }
 
         // Allow login page for unauthenticated users
@@ -101,53 +99,18 @@ class AppRouter {
           ),
         ),
 
-        // ==================== Onboarding Route ====================
-        GoRoute(
-          path: AppRoutes.onboardingPath,
-          name: AppRoutes.onboarding,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: BlocProvider(
-              create: (_) => locator<OnboardingBloc>(),
-              child: const OnboardingPage(),
-            ),
-          ),
-        ),
-
         // ==================== Auth Routes ====================
         GoRoute(
           path: AppRoutes.loginPath,
           name: AppRoutes.login,
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
-            child: UpgradeAlertWrapper(
-              upgrader: upgrader,
-              child: BlocProvider(
-                create: (_) => locator<AuthBloc>(),
-                child: const LoginPage(),
+            child: BlocProvider(
+              create: (_) => locator<AuthBloc>(),
+              child: LoginPage(
+                baseUrl: locator<BaseConfig>().baseUrl,
+                loginUrl: locator<BaseConfig>().loginUrl,
               ),
-            ),
-          ),
-        ),
-
-        GoRoute(
-          path: AppRoutes.registerPath,
-          name: AppRoutes.register,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: const Scaffold(
-              body: Center(child: Text('Register Page - Coming Soon')),
-            ),
-          ),
-        ),
-
-        GoRoute(
-          path: AppRoutes.forgotPasswordPath,
-          name: AppRoutes.forgotPassword,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: const Scaffold(
-              body: Center(child: Text('Forgot Password Page - Coming Soon')),
             ),
           ),
         ),
@@ -159,18 +122,6 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             child: const HomePage(),
-          ),
-        ),
-
-        GoRoute(
-          path: AppRoutes.networkTestPath,
-          name: AppRoutes.networkTest,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: BlocProvider(
-              create: (_) => locator<NetworkTestBloc>(),
-              child: const NetworkTestPage(),
-            ),
           ),
         ),
 

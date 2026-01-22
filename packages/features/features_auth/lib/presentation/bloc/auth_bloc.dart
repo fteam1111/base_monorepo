@@ -21,6 +21,37 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLoginRequested>(_onAuthLoginRequested);
     on<AuthLogoutRequested>(_onAuthLogoutRequested);
     on<AuthTokenRefreshRequested>(_onAuthTokenRefreshRequested);
+    on<AuthWebViewBackAvailabilityChanged>(_onWebViewBackAvailabilityChanged);
+    on<AuthWebViewTokenExtracted>(_onWebViewTokenExtracted);
+  }
+
+  void _onWebViewBackAvailabilityChanged(
+    AuthWebViewBackAvailabilityChanged event,
+    Emitter<AuthState> emit,
+  ) {
+    final current = state;
+    if (current is AuthWebViewState) {
+      if (current.canGoBack == event.canGoBack) return;
+
+      if (current is AuthInitial) {
+        emit(AuthInitial(canGoBack: event.canGoBack));
+      } else if (current is AuthLoading) {
+        emit(AuthLoading(canGoBack: event.canGoBack));
+      } else if (current is AuthUnauthenticated) {
+        emit(AuthUnauthenticated(canGoBack: event.canGoBack));
+      } else if (current is AuthError) {
+        emit(AuthError(current.message, canGoBack: event.canGoBack));
+      } else if (current is AuthAuthenticated) {
+        emit(AuthAuthenticated(current.user, canGoBack: event.canGoBack));
+      }
+    }
+  }
+
+  void _onWebViewTokenExtracted(
+    AuthWebViewTokenExtracted event,
+    Emitter<AuthState> emit,
+  ) {
+    add(AuthLoginRequested(email: event.rawToken, password: ''));
   }
 
   /// Check authentication status on app start

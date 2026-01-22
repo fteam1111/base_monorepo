@@ -11,7 +11,7 @@
 1. **Clone the repository:**
 
 ```bash
-git clone https://git.its-global.vn/diemnk/base_monorepo.git
+git clone https://git.its-global.vn/diemnk/bike_tracker.git
 ```
 
 ```bash
