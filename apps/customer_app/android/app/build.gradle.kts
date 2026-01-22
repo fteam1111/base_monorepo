@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.customer_app"
+    namespace = "com.example.bikeTracker"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
@@ -24,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.customer_app"
+        applicationId = "com.example.bikeTracker"
         minSdk = flutter.minSdkVersion
         targetSdk = 36  // Match with compileSdk
         versionCode = flutter.versionCode
@@ -56,20 +56,20 @@ android {
         create("dev") {
             dimension = "env"
             applicationIdSuffix = ".dev"
-            resValue("string", "app_name", "Name Dev")
+            resValue("string", "app_name", "BikeTracker Dev")
             manifestPlaceholders["mapKey"] = "key_dev"
         }
 
         create("uat") {
             dimension = "env"
             applicationIdSuffix = ".uat"
-            resValue("string", "app_name", "Name Uat")
+            resValue("string", "app_name", "BikeTracker Uat")
             manifestPlaceholders["mapKey"] = "key_uat"
         }
 
         create("prd") {
             dimension = "env"
-            resValue("string", "app_name", "Name PRD")
+            resValue("string", "app_name", "BikeTracker")
             manifestPlaceholders["mapKey"] = "key_prd"
         }
     }

@@ -13,6 +13,8 @@ dependencies:
 
   core:
     path: ../core
+  design_system:
+    path: ../design_system
 
   go_router: ^17.0.1
   device_info_plus: ^12.3.0

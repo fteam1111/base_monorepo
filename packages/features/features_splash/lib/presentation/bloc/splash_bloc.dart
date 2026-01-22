@@ -30,17 +30,11 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
     result.fold(
       (failure) {
-        debugPrint(
-          '❌ Splash - Initialization failed: ${failure.failureMessage}',
-        );
         emit(SplashError(failure.failureMessage.message));
       },
       (appInit) {
         debugPrint('✅ Splash - Initialized: ${appInit.toString()}');
         debugPrint('   isAuthenticated: ${appInit.isAuthenticated}');
-        debugPrint(
-          '   hasCompletedOnboarding: ${appInit.hasCompletedOnboarding}',
-        );
 
         if (appInit.isAuthenticated) {
           debugPrint('➡️  Splash - Emitting SplashAuthenticated');
@@ -60,7 +54,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   ) async {
     emit(const SplashLoading());
 
-    // Get app initialization data which includes onboarding status
     final initResult = await initializeAppUseCase();
 
     initResult.fold(

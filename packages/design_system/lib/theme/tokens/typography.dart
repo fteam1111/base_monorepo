@@ -59,6 +59,14 @@ class AppTypography {
     letterSpacing: 0,
   );
 
+  static const TextStyle sectionHeader = TextStyle(
+    fontFamily: primaryFontFamily,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    height: 1.3,
+    letterSpacing: 0.15,
+  );
+
   // Title styles
   static const TextStyle titleLarge = TextStyle(
     fontFamily: primaryFontFamily,

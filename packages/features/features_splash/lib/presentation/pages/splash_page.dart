@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:share/routes/app_routes.dart';
 import 'package:features_splash/presentation/bloc/splash_bloc.dart';
 import 'package:features_splash/presentation/bloc/splash_event.dart';
 import 'package:features_splash/presentation/bloc/splash_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share/routes/app_routes.dart';
 
 /// Splash screen page with app initialization logic
 class SplashPage extends StatefulWidget {
@@ -51,68 +51,28 @@ class _SplashPageState extends State<SplashPage>
       backgroundColor: theme.colorScheme.surface,
       body: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) {
-          debugPrint('🚀 Splash - State changed: ${state.runtimeType}');
-
           if (state is SplashAuthenticated) {
-            debugPrint('✅ Splash - User authenticated');
-            debugPrint(
-              '   hasCompletedOnboarding: ${state.appInit.hasCompletedOnboarding}',
-            );
-
-            // Check if onboarding is completed
-            if (!state.appInit.hasCompletedOnboarding) {
-              // Navigate to onboarding
-              debugPrint('➡️  Splash - Navigating to Onboarding (first time)');
-              Future.delayed(const Duration(milliseconds: 500), () {
-                if (mounted && context.mounted) {
-                  AppRoutes.navigateToOnboarding(context);
-                }
-              });
-            } else {
-              // Navigate to home
-              debugPrint('➡️  Splash - Navigating to Home');
-              Future.delayed(const Duration(milliseconds: 500), () {
-                if (mounted && context.mounted) {
-                  AppRoutes.navigateToHome(context);
-                }
-              });
-            }
+            Future.delayed(const Duration(milliseconds: 500), () {
+              if (mounted && context.mounted) {
+                AppRoutes.navigateToHome(context);
+              }
+            });
           } else if (state is SplashUnauthenticated) {
-            debugPrint('❌ Splash - User not authenticated');
-            debugPrint(
-              '   hasCompletedOnboarding: ${state.appInit.hasCompletedOnboarding}',
-            );
-
-            // Check if onboarding is completed
-            if (!state.appInit.hasCompletedOnboarding) {
-              // Navigate to onboarding
-              debugPrint('➡️  Splash - Navigating to Onboarding (first time)');
-              Future.delayed(const Duration(milliseconds: 500), () {
-                if (mounted && context.mounted) {
-                  AppRoutes.navigateToOnboarding(context);
-                }
-              });
-            } else {
-              // Navigate to login
-              debugPrint('➡️  Splash - Navigating to Login');
-              Future.delayed(const Duration(milliseconds: 500), () {
-                if (mounted && context.mounted) {
-                  AppRoutes.navigateToLogin(context);
-                }
-              });
-            }
+            Future.delayed(const Duration(milliseconds: 2), () {
+              if (mounted && context.mounted) {
+                AppRoutes.navigateToLogin(context);
+              }
+            });
           } else if (state is SplashError) {
-            debugPrint('❌ Splash - Error: ${state.message}');
-            // Show error and navigate to onboarding/login
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
                 backgroundColor: Colors.red,
               ),
             );
-            Future.delayed(const Duration(seconds: 2), () {
+            Future.delayed(const Duration(milliseconds: 2), () {
               if (mounted && context.mounted) {
-                AppRoutes.navigateToOnboarding(context);
+                AppRoutes.navigateToLogin(context);
               }
             });
           }
@@ -147,7 +107,7 @@ class _SplashPageState extends State<SplashPage>
 
                     // App Name
                     Text(
-                      'Clean Architecture',
+                      'E-Moto 0ps',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w300,
@@ -156,10 +116,8 @@ class _SplashPageState extends State<SplashPage>
                       ),
                     ),
                     const SizedBox(height: 8),
-
-                    // Tagline
                     Text(
-                      'Minimalistic Design',
+                      'Bike Tracker',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w300,

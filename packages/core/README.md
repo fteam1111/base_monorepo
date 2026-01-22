@@ -15,9 +15,6 @@ lib/
 │   ├── exception.dart          # Base exceptions
 │   ├── failure_handler.dart    # Failure handler utilities
 │   └── tr_object.dart          # Translation object
-├── extensions/                  # Dart extensions
-│   ├── context_ext.dart        # BuildContext extensions
-│   └── enum_ext.dart           # Enum extensions
 ├── utils/                       # Utility classes
 │   ├── debounce.dart           # Debounce utility
 │   ├── throttle.dart           # Throttle utility
@@ -93,68 +90,7 @@ final apiFailure = ErrorMapper.mapServerError(
 );
 ```
 
-### 2. Extensions
-
-#### Context Extensions
-
-Truy cập nhanh các thuộc tính từ BuildContext:
-
-```dart
-import 'package:core/core.dart';
-
-// Media Query
-final width = context.screenWidth;
-final height = context.screenHeight;
-final isSmall = context.isSmallScreen;
-final isPortrait = context.isPortrait;
-
-// Theme
-final theme = context.theme;
-final textStyle = context.textTheme.headlineLarge;
-final primaryColor = context.colorScheme.primary;
-
-// Focus
-context.unfocus(); // Đóng keyboard
-context.requestFocus(focusNode);
-
-// Localization
-final locale = context.locale;
-final langCode = context.languageCode;
-```
-
-#### Enum Extensions
-
-Các tiện ích cho Enum:
-
-```dart
-import 'package:core/core.dart';
-
-enum UserRole { admin, customer, guest }
-
-final role = UserRole.admin;
-
-// Lấy tên enum
-print(role.name); // "admin"
-print(role.fullName); // "UserRole.admin"
-
-// Format
-print(role.displayName); // "Admin"
-print(role.camelCase); // "admin"
-print(role.snakeCase); // "admin"
-print(role.kebabCase); // "admin"
-
-// So sánh
-if (role.isEqual('admin')) {
-  // ...
-}
-
-// Tìm enum từ string
-final roles = [UserRole.admin, UserRole.customer];
-final found = roles.findByName('admin'); // UserRole.admin
-final fromString = 'admin'.toEnum(roles); // UserRole.admin
-```
-
-### 3. Utils
+### 2. Utils
 
 #### Debounce
 
@@ -263,7 +199,7 @@ if (widgetSize.width > screenWidth) {
 }
 ```
 
-### 4. Value Objects
+### 3. Value Objects
 
 Value objects với validation sử dụng Either từ dartz:
 
@@ -326,7 +262,6 @@ import 'package:core/core.dart';
 
 // Bây giờ bạn có thể sử dụng tất cả:
 // - Error handling (ApiFailure, ValueFailure, ErrorMapper)
-// - Extensions (ContextExtension, EnumExtension)
 // - Utils (Debounce, Throttle, logger, measureWidget)
 // - Value objects (ValueObject, validators)
 ```
@@ -335,7 +270,6 @@ import 'package:core/core.dart';
 
 ```dart
 import 'package:core/error/api_failures.dart';
-import 'package:core/extensions/context_ext.dart';
 import 'package:core/utils/logger.dart';
 ```
 

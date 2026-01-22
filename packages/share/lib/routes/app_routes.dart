@@ -13,7 +13,6 @@ class AppRoutes {
 
   // Splash & Onboarding Routes
   static const String splash = 'splash';
-  static const String onboarding = 'onboarding';
 
   // Home Routes
   static const String home = 'home';
@@ -32,12 +31,8 @@ class AppRoutes {
 
   // Root paths
   static const String splashPath = '/';
-  static const String onboardingPath = '/onboarding';
   static const String homePath = '/home';
-  static const String networkTestPath = '/network-test';
   static const String loginPath = '/login';
-  static const String registerPath = '/register';
-  static const String forgotPasswordPath = '/forgot-password';
   static const String profilePath = '/profile';
   static const String profileWithIdPath = '/profile/:userId';
   static const String settingsPath = '/settings';
@@ -56,11 +51,6 @@ class AppRoutes {
     context.go(splashPath);
   }
 
-  /// Navigate to onboarding page (replace all)
-  static void navigateToOnboarding(BuildContext context) {
-    context.go(onboardingPath);
-  }
-
   /// Navigate to home page (replace all)
   static void navigateToHome(BuildContext context) {
     context.go(homePath);
@@ -71,11 +61,6 @@ class AppRoutes {
     context.go(loginPath);
   }
 
-  /// Navigate to network test page (push)
-  static void navigateToNetworkTest(BuildContext context) {
-    context.push(networkTestPath);
-  }
-
   /// Navigate to profile page
   static void navigateToProfile(BuildContext context, {String? userId}) {
     if (userId != null) {
@@ -83,16 +68,6 @@ class AppRoutes {
     } else {
       context.push(profilePath);
     }
-  }
-
-  /// Navigate to register page
-  static void navigateToRegister(BuildContext context) {
-    context.push(registerPath);
-  }
-
-  /// Navigate to forgot password page
-  static void navigateToForgotPassword(BuildContext context) {
-    context.push(forgotPasswordPath);
   }
 
   /// Navigate to settings page

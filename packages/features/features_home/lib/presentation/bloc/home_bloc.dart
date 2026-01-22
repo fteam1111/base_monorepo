@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home_event.dart';
-import 'home_state.dart';
+import 'package:features_home/presentation/bloc/home_event.dart';
+import 'package:features_home/presentation/bloc/home_state.dart';
 
 /// BLoC for managing home page state
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

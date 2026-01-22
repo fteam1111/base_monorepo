@@ -33,3 +33,21 @@ class AuthLogoutRequested extends AuthEvent {
 class AuthTokenRefreshRequested extends AuthEvent {
   const AuthTokenRefreshRequested();
 }
+
+class AuthWebViewBackAvailabilityChanged extends AuthEvent {
+  const AuthWebViewBackAvailabilityChanged({required this.canGoBack});
+
+  final bool canGoBack;
+
+  @override
+  List<Object?> get props => [canGoBack];
+}
+
+class AuthWebViewTokenExtracted extends AuthEvent {
+  const AuthWebViewTokenExtracted({required this.rawToken});
+
+  final String rawToken;
+
+  @override
+  List<Object?> get props => [rawToken];
+}

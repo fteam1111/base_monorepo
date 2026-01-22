@@ -6,18 +6,15 @@ import 'package:share/routes/app_routes.dart';
 
 /// Login page with BLoC pattern
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.baseUrl, required this.loginUrl});
+
+  final String baseUrl;
+  final String loginUrl;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        elevation: 0,
-        backgroundColor: theme.colorScheme.surface,
-        foregroundColor: theme.colorScheme.onSurface,
-      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           debugPrint('LoginPage - State changed: ${state.runtimeType}');
@@ -54,10 +51,7 @@ class LoginPage extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return const SingleChildScrollView(
-            padding: EdgeInsets.all(24.0),
-            child: LoginForm(),
-          );
+          return LoginForm(baseUrl: baseUrl, loginUrl: loginUrl);
         },
       ),
     );

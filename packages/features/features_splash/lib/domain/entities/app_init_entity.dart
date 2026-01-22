@@ -4,14 +4,12 @@ import 'package:equatable/equatable.dart';
 class AppInitEntity extends Equatable {
   final bool isInitialized;
   final bool isAuthenticated;
-  final bool hasCompletedOnboarding;
   final String? userId;
   final String? errorMessage;
 
   const AppInitEntity({
     required this.isInitialized,
     required this.isAuthenticated,
-    required this.hasCompletedOnboarding,
     this.userId,
     this.errorMessage,
   });
@@ -20,13 +18,12 @@ class AppInitEntity extends Equatable {
   List<Object?> get props => [
     isInitialized,
     isAuthenticated,
-    hasCompletedOnboarding,
     userId,
     errorMessage,
   ];
 
   @override
   String toString() {
-    return 'AppInitEntity(isInitialized: $isInitialized, isAuthenticated: $isAuthenticated, hasCompletedOnboarding: $hasCompletedOnboarding, userId: $userId)';
+    return 'AppInitEntity(isInitialized: $isInitialized, isAuthenticated: $isAuthenticated, userId: $userId)';
   }
 }

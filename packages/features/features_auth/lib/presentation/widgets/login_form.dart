@@ -1,245 +1,173 @@
-import 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:features_auth/presentation/widgets/login_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share/share.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 /// Login form widget
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({super.key, required this.baseUrl, required this.loginUrl});
+
+  final String baseUrl;
+  final String loginUrl;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
+  late final WebViewController _controller;
+  final String queryGetTokenFromHTML = 'window.document.body.innerText';
+  bool _isWebViewLoading = true;
 
   @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _onLoginPressed() {
-    if (_formKey.currentState!.validate()) {
-      context.read<AuthBloc>().add(
-        AuthLoginRequested(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        ),
-      );
-    }
+  void initState() {
+    super.initState();
+    _createWebController();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 40),
-          // Logo or Title
-          const Icon(Icons.lock_outline, size: 80, color: Colors.blue),
-          const SizedBox(height: 24),
-          const Text(
-            'Welcome Back',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-
-          Text(
-            'Sign in to continue',
-            style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 40),
-
-          // Email field
-          TextFormField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Email',
-              prefixIcon: Icon(Icons.email_outlined),
-              border: OutlineInputBorder(),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              if (!value.contains('@')) {
-                return 'Please enter a valid email';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 16),
-
-          // Password field
-          TextFormField(
-            controller: _passwordController,
-            obscureText: _obscurePassword,
-            decoration: InputDecoration(
-              labelText: 'Password',
-              prefixIcon: const Icon(Icons.lock_outlined),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscurePassword = !_obscurePassword;
-                  });
-                },
-              ),
-              border: const OutlineInputBorder(),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              if (value.length < 6) {
-                return 'Password must be at least 6 characters';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 24),
-
-          // Login button
-          ElevatedButton(
-            onPressed: _onLoginPressed,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: const Text('Login', style: TextStyle(fontSize: 16)),
-          ),
-          const SizedBox(height: 16),
-
-          LoadingShimmer.logo(),
-
-          // Demo credentials info card
-          LoadingShimmer.withChild(
-            child: Card(
-              color: Colors.blue[50],
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.info_outline,
-                          color: Colors.blue[700],
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Demo Credentials',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.blue[900],
+    return Stack(
+      children: [
+        Scaffold(
+          body: LayoutBuilder(
+            builder: (context, constraint) {
+              return RefreshIndicator(
+                onRefresh: _onRefresh,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraint.maxHeight,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: context.statusBarHeight,
+                            color: Colors.white,
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    _buildDemoCredentialRow(
-                      'Demo User',
-                      'demo@test.com',
-                      'password123',
-                    ),
-                    const Divider(height: 16),
-                    _buildDemoCredentialRow(
-                      'Admin User',
-                      'admin@test.com',
-                      'admin123',
-                    ),
-                    const Divider(height: 16),
-                    _buildDemoCredentialRow(
-                      'Test User',
-                      'test@test.com',
-                      'test123',
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Tap any credential to auto-fill the form',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.blue[700],
-                        fontStyle: FontStyle.italic,
+                          LoginAppBar(
+                            onBack: () async {
+                              final goBack = await _controller.canGoBack();
+                              if (goBack == true) {
+                                await _controller.goBack();
+                              }
+                            },
+                            canBack: context.select(
+                              (AuthBloc bloc) => bloc.state is AuthWebViewState
+                                  ? (bloc.state as AuthWebViewState).canGoBack
+                                  : false,
+                            ),
+                          ),
+                          Expanded(
+                            child: Stack(
+                              children: [
+                                WebViewWidget(controller: _controller),
+                                if (_isWebViewLoading)
+                                  const ColoredBox(
+                                    color: Colors.white,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  Widget _buildDemoCredentialRow(String name, String email, String password) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          _emailController.text = email;
-          _passwordController.text = password;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Filled credentials for $name'),
-            duration: const Duration(seconds: 1),
-            backgroundColor: Colors.green,
-          ),
-        );
-      },
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.blue[900],
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    email,
-                    style: TextStyle(color: Colors.blue[700], fontSize: 13),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Password: $password',
-                    style: TextStyle(color: Colors.blue[600], fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
-            Icon(Icons.touch_app, color: Colors.blue[400], size: 20),
-          ],
-        ),
-      ),
+  Future<void> _onCheckCanBack(String url) async {
+    final canBack = await _controller.canGoBack();
+    if (!mounted) return;
+    context.read<AuthBloc>().add(
+      AuthWebViewBackAvailabilityChanged(canGoBack: canBack),
     );
+  }
+
+  void _createWebController() {
+    late final PlatformWebViewControllerCreationParams params;
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      params = WebKitWebViewControllerCreationParams();
+    } else {
+      params = const PlatformWebViewControllerCreationParams();
+    }
+
+    final controller = WebViewController.fromPlatformCreationParams(params)
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Colors.white)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onUrlChange: (UrlChange urlChange) async {
+            final url = urlChange.url ?? '';
+
+            final isOnLogin = url == widget.loginUrl;
+            final canGoBack = !isOnLogin;
+
+            if (!mounted) return;
+            context.read<AuthBloc>().add(
+              AuthWebViewBackAvailabilityChanged(canGoBack: canGoBack),
+            );
+          },
+          onPageStarted: (_) {
+            if (!mounted) return;
+            setState(() {
+              _isWebViewLoading = true;
+            });
+          },
+          onPageFinished: (String url) async {
+            debugPrint('Page finished loading: $url');
+
+            if (mounted) {
+              setState(() {
+                _isWebViewLoading = false;
+              });
+            }
+
+            if (url.startsWith(widget.baseUrl)) {
+              debugPrint('blocking navigation to $url');
+              final token =
+                  await _controller.runJavaScriptReturningResult(
+                        queryGetTokenFromHTML,
+                      )
+                      as String?;
+
+              if (!mounted) return;
+              context.read<AuthBloc>().add(
+                AuthWebViewTokenExtracted(rawToken: token ?? ''),
+              );
+            }
+
+            await _onCheckCanBack(url);
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.loginUrl));
+
+    _controller = controller;
+  }
+
+  Future<void> _onRefresh() async {
+    await _controller.reload();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

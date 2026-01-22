@@ -13,7 +13,6 @@ workspace:
   - packages/features/features_auth
   - packages/features/features_user
   - packages/features/features_home
-  - packages/features/features_onboarding
   - packages/features/features_splash
 
 dependencies:

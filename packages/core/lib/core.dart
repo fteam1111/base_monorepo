@@ -19,9 +19,5 @@ export 'package:core/value/value_objects.dart';
 export 'package:core/value/value_transformers.dart';
 export 'package:core/value/value_validators.dart';
 
-// Extensions
-export 'package:core/extensions/context_ext.dart';
-export 'package:core/extensions/enum_ext.dart';
-
 // config
 export 'package:core/config/base_config.dart';

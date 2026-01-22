@@ -1,9 +1,9 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/user/fvm/versions/3.35.7"
-export "FLUTTER_APPLICATION_PATH=/Users/user/StudioProjects/base_monorepo/apps/customer_app"
+export "FLUTTER_APPLICATION_PATH=/Users/user/StudioProjects/bike_tracker/apps/customer_app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=/Users/user/StudioProjects/base_monorepo/apps/customer_app/lib/main_dev.dart"
+export "FLUTTER_TARGET=/Users/user/StudioProjects/bike_tracker/apps/customer_app/lib/main_dev.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
@@ -11,5 +11,5 @@ export "DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz10cnVl,RkxVVF
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"
-export "PACKAGE_CONFIG=/Users/user/StudioProjects/base_monorepo/.dart_tool/package_config.json"
+export "PACKAGE_CONFIG=/Users/user/StudioProjects/bike_tracker/.dart_tool/package_config.json"
 export "FLAVOR=dev"

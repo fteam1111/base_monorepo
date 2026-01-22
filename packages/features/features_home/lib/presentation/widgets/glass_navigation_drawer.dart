@@ -62,7 +62,6 @@ class GlassNavigationDrawer extends StatelessWidget {
                           'Network Tests',
                           () {
                             Navigator.pop(context);
-                            AppRoutes.navigateToNetworkTest(context);
                           },
                         ),
                       _buildDrawerItem(
@@ -79,7 +78,7 @@ class GlassNavigationDrawer extends StatelessWidget {
                         Icons.settings_outlined,
                         'Settings',
                         () {
-                          Navigator.pop(context);
+                          // Navigator.pop(context);
                           AppRoutes.navigateToSettings(context);
                         },
                       ),

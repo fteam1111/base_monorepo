@@ -38,6 +38,9 @@ dependencies:
   retrofit_generator: ^10.0.6
   json_annotation: ^4.9.0
 
+  webview_flutter: ^4.13.1
+  webview_flutter_wkwebview: ^3.23.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

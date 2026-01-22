@@ -20,10 +20,6 @@ class AppInitDataSource {
 
       final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
 
-      // Check if onboarding has been completed
-      final hasCompletedOnboarding =
-          _sharedPreferences.getBool('onboarding_completed') ?? false;
-
       // You can add additional checks here:
       // - Validate token expiry
       // - Check token format
@@ -32,7 +28,6 @@ class AppInitDataSource {
       return AppInitModel(
         isInitialized: true,
         isAuthenticated: isAuthenticated,
-        hasCompletedOnboarding: hasCompletedOnboarding,
         userId: isAuthenticated ? 'user_id_from_token' : null,
         errorMessage: null,
       );
@@ -40,7 +35,6 @@ class AppInitDataSource {
       return const AppInitModel(
         isInitialized: false,
         isAuthenticated: false,
-        hasCompletedOnboarding: false,
         userId: null,
         errorMessage: 'Failed to initialize app',
       );
