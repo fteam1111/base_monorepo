@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
-import 'package:features_home/features_home.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_user/features_user.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -165,13 +164,6 @@ class DependencyManager {
         loginUseCase: locator<LoginUseCase>(),
         logoutUseCase: locator<LogoutUseCase>(),
         getCurrentUserUseCase: locator<GetCurrentUserUseCase>(),
-      ),
-    );
-
-    // Network Test BLoC - Factory
-    locator.registerFactory<NetworkTestBloc>(
-      () => NetworkTestBloc(
-        runNetworkTestsUseCase: locator<RunNetworkTestsUseCase>(),
       ),
     );
 
