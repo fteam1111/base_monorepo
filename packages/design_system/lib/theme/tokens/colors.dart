@@ -135,4 +135,7 @@ class AppColors {
   // Card colors
   static const Color cardLight = Color(0xFFFFFFFF);
   static const Color cardDark = Color(0xFF1E1E1E);
+
+  // brand
+  static const Color brandPrimary = Color(0xFF2C72C6);
 }

@@ -33,12 +33,14 @@ dependencies:
   # Feature packages
   features_auth:
     path: ../../packages/features/features_auth
-  features_user:
-    path: ../../packages/features/features_user
-  features_home:
-    path: ../../packages/features/features_home
   features_splash:
     path: ../../packages/features/features_splash
+  features_dashboard:
+    path: ../../packages/features/features_dashboard
+  features_home:
+    path: ../../packages/features/features_home
+  features_find_bike:
+    path: ../../packages/features/features_find_bike
 
   # Storage dependencies
   shared_preferences: ^2.5.3

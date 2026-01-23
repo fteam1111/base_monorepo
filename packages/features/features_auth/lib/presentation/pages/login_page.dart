@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: theme.colorScheme.error,
               ),
             );
-            AppRoutes.navigateToHome(context);
+            AppRoutes.navigateToDashboard(context);
           } else if (state is AuthAuthenticated) {
             debugPrint('LoginPage - User authenticated: ${state.user.name}');
 

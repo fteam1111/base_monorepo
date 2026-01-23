@@ -14,28 +14,24 @@ class AppRoutes {
   // Splash & Onboarding Routes
   static const String splash = 'splash';
 
+  // Dashboard Routes
+  static const String dashboard = 'dashboard';
+
   // Home Routes
   static const String home = 'home';
-  static const String networkTest = 'network-test';
+  static const String findBike = 'find-bike';
 
   // Auth Routes
   static const String login = 'login';
-  static const String register = 'register';
-  static const String forgotPassword = 'forgot-password';
-
-  // User Routes
-  static const String profile = 'profile';
-  static const String settings = 'settings';
 
   // ==================== Route Paths ====================
 
   // Root paths
   static const String splashPath = '/';
+  static const String dashboardPath = '/dashboard';
   static const String homePath = '/home';
+  static const String findBikePath = '/find-bike';
   static const String loginPath = '/login';
-  static const String profilePath = '/profile';
-  static const String profileWithIdPath = '/profile/:userId';
-  static const String settingsPath = '/settings';
 
   // ==================== Route Parameters ====================
 
@@ -51,7 +47,12 @@ class AppRoutes {
     context.go(splashPath);
   }
 
-  /// Navigate to home page (replace all)
+  /// Navigate to dashboard (replace all)
+  static void navigateToDashboard(BuildContext context) {
+    context.go(dashboardPath);
+  }
+
+  /// Navigate to home tab (replace all)
   static void navigateToHome(BuildContext context) {
     context.go(homePath);
   }
@@ -59,20 +60,6 @@ class AppRoutes {
   /// Navigate to login page (replace all)
   static void navigateToLogin(BuildContext context) {
     context.go(loginPath);
-  }
-
-  /// Navigate to profile page
-  static void navigateToProfile(BuildContext context, {String? userId}) {
-    if (userId != null) {
-      context.push('/profile/$userId');
-    } else {
-      context.push(profilePath);
-    }
-  }
-
-  /// Navigate to settings page
-  static void navigateToSettings(BuildContext context) {
-    context.push(settingsPath);
   }
 
   /// Navigate back

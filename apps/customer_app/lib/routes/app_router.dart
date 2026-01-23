@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:core/config/base_config.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:features_dashboard/features_dashboard.dart';
 import 'package:features_home/features_home.dart';
+import 'package:features_find_bike/features_find_bike.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,16 +39,16 @@ class AppRouter {
           return null;
         }
 
-        // Allow splash and onboarding pages always
+        // Allow splash
         if (currentLocation == AppRoutes.splashPath) {
-          return AppRoutes.homePath;
+          return AppRoutes.dashboardPath;
+          // return null;
         }
 
         // Allow login page for unauthenticated users
         if (currentLocation == AppRoutes.loginPath) {
-          // Only redirect away from login if authenticated
           if (isAuthenticated) {
-            return AppRoutes.homePath;
+            return AppRoutes.dashboardPath;
           }
           return null;
         }
@@ -86,6 +88,40 @@ class AppRouter {
 
       // Route definitions
       routes: [
+        // ==================== Dashboard Shell ====================
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return DashboardShellPage(navigationShell: navigationShell);
+          },
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: AppRoutes.dashboardPath,
+                  name: AppRoutes.dashboard,
+                  redirect: (context, state) => AppRoutes.homePath,
+                ),
+                GoRoute(
+                  path: AppRoutes.homePath,
+                  name: AppRoutes.home,
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: HomePage()),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: AppRoutes.findBikePath,
+                  name: AppRoutes.findBike,
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: FindBikePage()),
+                ),
+              ],
+            ),
+          ],
+        ),
+
         // ==================== Splash Route ====================
         GoRoute(
           path: AppRoutes.splashPath,
@@ -111,55 +147,6 @@ class AppRouter {
                 baseUrl: locator<BaseConfig>().baseUrl,
                 loginUrl: locator<BaseConfig>().loginUrl,
               ),
-            ),
-          ),
-        ),
-
-        // ==================== Home Routes ====================
-        GoRoute(
-          path: AppRoutes.homePath,
-          name: AppRoutes.home,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: const HomePage(),
-          ),
-        ),
-
-        // ==================== User Routes ====================
-        GoRoute(
-          path: AppRoutes.profilePath,
-          name: AppRoutes.profile,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: const Scaffold(
-              body: Center(child: Text('Profile Page - Coming Soon')),
-            ),
-          ),
-        ),
-
-        // Profile with user ID parameter
-        GoRoute(
-          path: AppRoutes.profileWithIdPath,
-          name: '${AppRoutes.profile}-with-id',
-          pageBuilder: (context, state) {
-            final userId = state.pathParameters[AppRoutes.userIdParam];
-            return _buildPageWithTransition(
-              key: state.pageKey,
-              child: Scaffold(
-                appBar: AppBar(title: Text('Profile: $userId')),
-                body: Center(child: Text('User Profile: $userId')),
-              ),
-            );
-          },
-        ),
-
-        GoRoute(
-          path: AppRoutes.settingsPath,
-          name: AppRoutes.settings,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            child: const Scaffold(
-              body: Center(child: Text('Settings Page - Coming Soon')),
             ),
           ),
         ),

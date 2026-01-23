@@ -3,7 +3,6 @@ import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_splash/features_splash.dart';
-import 'package:features_user/features_user.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:local_storage/local_storage.dart';
@@ -78,22 +77,13 @@ class DependencyManager {
       () => AuthRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
-    locator.registerLazySingleton<UserRemoteDataSource>(
-      () => UserRemoteDataSource(locator<DioHttpClientBuilder>().dio),
-    );
-
     // Repositories
-    // Using mock auth in development - switch to remote when you have real API
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
         remoteDataSource: locator<AuthRemoteDataSource>(),
         // Uncomment when using real API/ Comment out when using real API
         tokenStorage: locator<TokenStorage>(),
       ),
-    );
-
-    locator.registerLazySingleton<UserRepository>(
-      () => UserRepositoryImpl(locator<UserRemoteDataSource>()),
     );
 
     // Locale Repository
@@ -116,10 +106,6 @@ class DependencyManager {
       () => GetCurrentUserUseCase(locator<AuthRepository>()),
     );
 
-    locator.registerLazySingleton<GetUserByIdUseCase>(
-      () => GetUserByIdUseCase(locator<UserRepository>()),
-    );
-
     // Localization Use Cases
     locator.registerLazySingleton<GetSavedLocaleUseCase>(
       () => GetSavedLocaleUseCase(locator<LocaleRepository>()),
@@ -129,10 +115,7 @@ class DependencyManager {
       () => SaveLocaleUseCase(locator<LocaleRepository>()),
     );
 
-    // ==================== Features Home ====================
-
     // ==================== Features Splash ====================
-
     // // App Init Data Source
     locator.registerLazySingleton<AppInitDataSource>(
       () => AppInitDataSource(
