@@ -11,9 +11,10 @@ workspace:
   - packages/share
   - apps/customer_app
   - packages/features/features_auth
-  - packages/features/features_user
-  - packages/features/features_home
   - packages/features/features_splash
+  - packages/features/features_dashboard
+  - packages/features/features_home
+  - packages/features/features_find_bike
 
 dependencies:
   # DI
@@ -70,3 +71,8 @@ melos:
       run: >
         melos exec --depends-on=build_runner --
         flutter pub run build_runner build --delete-conflicting-outputs
+    gen_watch:
+      description: Run build_runner watch for all packages
+      run: >
+        melos exec --depends-on=build_runner --
+        flutter pub run build_runner watch

@@ -1,3 +1,4 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 /// Design token: Typography styles for the application
@@ -193,6 +194,31 @@ class AppTypography {
     height: 1.5,
     letterSpacing: 0.5,
   );
+
+  static TextStyle captionTextBold({Color color = AppColors.secondaryLight}) {
+    return TextStyle(
+      fontFamily: primaryFontFamily,
+      color: color,
+      fontSize: 10,
+      fontWeight: FontWeight.w700,
+      fontStyle: FontStyle.normal,
+      decoration: TextDecoration.none,
+    );
+  }
+
+  static TextStyle captionTextRegular({
+    Color color = AppColors.secondaryLight,
+    TextDecoration textDecoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontFamily: primaryFontFamily,
+      color: color,
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.normal,
+      decoration: textDecoration,
+    );
+  }
 
   /// Create a TextTheme with all styles
   static TextTheme createTextTheme() {

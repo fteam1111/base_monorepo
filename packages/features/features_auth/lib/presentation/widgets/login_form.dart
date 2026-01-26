@@ -21,6 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   late final WebViewController _controller;
   final String queryGetTokenFromHTML = 'window.document.body.innerText';
   bool _isWebViewLoading = true;
+  bool uiForTest = true;
 
   @override
   void initState() {
@@ -33,60 +34,74 @@ class _LoginFormState extends State<LoginForm> {
     return Stack(
       children: [
         Scaffold(
-          body: LayoutBuilder(
-            builder: (context, constraint) {
-              return RefreshIndicator(
-                onRefresh: _onRefresh,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraint.maxHeight,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: context.statusBarHeight,
-                            color: Colors.white,
+          body: uiForTest
+              ? Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                        const AuthLoginRequested(email: '', password: ''),
+                      );
+                    },
+                    child: const Text('Login For test'),
+                  ),
+                )
+              : LayoutBuilder(
+                  builder: (context, constraint) {
+                    return RefreshIndicator(
+                      onRefresh: _onRefresh,
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: constraint.maxHeight,
                           ),
-                          LoginAppBar(
-                            onBack: () async {
-                              final goBack = await _controller.canGoBack();
-                              if (goBack == true) {
-                                await _controller.goBack();
-                              }
-                            },
-                            canBack: context.select(
-                              (AuthBloc bloc) => bloc.state is AuthWebViewState
-                                  ? (bloc.state as AuthWebViewState).canGoBack
-                                  : false,
-                            ),
-                          ),
-                          Expanded(
-                            child: Stack(
+                          child: IntrinsicHeight(
+                            child: Column(
                               children: [
-                                WebViewWidget(controller: _controller),
-                                if (_isWebViewLoading)
-                                  const ColoredBox(
-                                    color: Colors.white,
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.blue,
-                                      ),
-                                    ),
+                                Container(
+                                  height: context.statusBarHeight,
+                                  color: Colors.white,
+                                ),
+                                LoginAppBar(
+                                  onBack: () async {
+                                    final goBack = await _controller
+                                        .canGoBack();
+                                    if (goBack == true) {
+                                      await _controller.goBack();
+                                    }
+                                  },
+                                  canBack: context.select(
+                                    (AuthBloc bloc) =>
+                                        bloc.state is AuthWebViewState
+                                        ? (bloc.state as AuthWebViewState)
+                                              .canGoBack
+                                        : false,
                                   ),
+                                ),
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      WebViewWidget(controller: _controller),
+                                      if (_isWebViewLoading)
+                                        const ColoredBox(
+                                          color: Colors.white,
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
       ],
     );

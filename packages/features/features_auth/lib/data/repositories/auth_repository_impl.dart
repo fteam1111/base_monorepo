@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
+import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
-import 'package:features_user/features_user.dart';
 import 'package:local_storage/storage/token_storage.dart';
 
 /// Implementation of AuthRepository
@@ -33,37 +35,67 @@ class AuthRepositoryImpl implements AuthRepository {
         'password': password,
       });
 
-      // Save tokens to storage
-      await _tokenStorage.saveAccessToken(tokenModel.accessToken);
-      await _tokenStorage.saveRefreshToken(tokenModel.refreshToken);
+      final entity = tokenModel.toEntity();
 
-      return Right(tokenModel.toEntity());
+      // Save tokens to storage
+      await _tokenStorage.saveAccessToken(entity.accessToken.getValue());
+      await _tokenStorage.saveRefreshToken(entity.refreshToken.getValue());
+
+      return Right(entity);
     } on Exception catch (e) {
       return Left(e.toApiFailure());
     }
   }
 
   @override
-  Future<Either<ApiFailure, AuthTokenEntity>> register({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
+  Future<Either<ApiFailure, AuthTokenEntity>> loginForTest() async {
     try {
-      final tokenModel = await _remoteDataSource!.register({
-        'name': name,
-        'email': email,
-        'password': password,
-      });
+      final html = await _remoteDataSource!.loginForTest();
 
-      // Save tokens to storage
-      await _tokenStorage.saveAccessToken(tokenModel.accessToken);
-      await _tokenStorage.saveRefreshToken(tokenModel.refreshToken);
+      final jsonString = _extractJsonFromHtml(html);
+      final map = jsonDecode(jsonString) as Map<String, dynamic>;
 
-      return Right(tokenModel.toEntity());
-    } on Exception catch (e) {
+      final accessToken = map['accessToken'] as String;
+      final expiresIn = map['expiresInSeconds'] as int;
+
+      final entity = AuthTokenEntity(
+        accessToken: JWT(accessToken),
+        refreshToken: JWT(accessToken),
+        expiresIn: expiresIn,
+      );
+
+      await _tokenStorage.saveAccessToken(
+        entity.accessToken.getOrDefaultValue(''),
+      );
+      await _tokenStorage.saveRefreshToken(
+        entity.refreshToken.getOrDefaultValue(''),
+      );
+
+      return Right(entity);
+    } catch (e) {
       return Left(e.toApiFailure());
     }
+  }
+
+  String _extractJsonFromHtml(String html) {
+    final preMatch = RegExp(
+      r'<pre>([\s\S]*?)<\/pre>',
+      caseSensitive: false,
+    ).firstMatch(html);
+
+    final candidate = preMatch?.group(1) ?? html;
+
+    // Fallback: find the first JSON object in the candidate.
+    final jsonMatch = RegExp(
+      r'\{[\s\S]*?\}',
+      multiLine: true,
+    ).firstMatch(candidate);
+
+    if (jsonMatch == null) {
+      throw Exception('Invalid token html response');
+    }
+
+    return jsonMatch.group(0)!;
   }
 
   @override
@@ -75,11 +107,13 @@ class AuthRepositoryImpl implements AuthRepository {
         'refresh_token': refreshToken,
       });
 
-      // Save new tokens
-      await _tokenStorage.saveAccessToken(tokenModel.accessToken);
-      await _tokenStorage.saveRefreshToken(tokenModel.refreshToken);
+      final entity = tokenModel.toEntity();
 
-      return Right(tokenModel.toEntity());
+      // Save new tokens
+      await _tokenStorage.saveAccessToken(entity.accessToken.getValue());
+      await _tokenStorage.saveRefreshToken(entity.refreshToken.getValue());
+
+      return Right(entity);
     } on Exception catch (e) {
       return Left(e.toApiFailure());
     }

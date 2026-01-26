@@ -11,14 +11,12 @@ dependencies:
     sdk: flutter
 
   # User feature (for UserEntity in auth flows)
-  features_user:
-    path: ../features_user
+  core:
+    path: ../../core
   design_system:
     path: ../../design_system
   share:
     path: ../../share
-  core:
-    path: ../../core
   network:
     path: ../../network
   local_storage:

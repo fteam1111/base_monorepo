@@ -1,0 +1,37 @@
+name: features_dashboard
+description: "A new Flutter package project."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Shared packages (if needed)
+  design_system:
+    path: ../../design_system
+  share:
+    path: ../../share
+
+  # Feature dependencies
+  features_home:
+    path: ../features_home
+  features_find_bike:
+    path: ../features_find_bike
+
+  # State Management
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+  animated_bottom_navigation_bar: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+resolution: workspace

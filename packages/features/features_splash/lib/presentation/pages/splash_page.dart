@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage>
           if (state is SplashAuthenticated) {
             Future.delayed(const Duration(milliseconds: 500), () {
               if (mounted && context.mounted) {
-                AppRoutes.navigateToHome(context);
+                AppRoutes.navigateToDashboard(context);
               }
             });
           } else if (state is SplashUnauthenticated) {

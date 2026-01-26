@@ -1,7 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
+import 'package:dartz/dartz.dart';
+import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
-import 'package:features_user/features_user.dart';
 
 /// Repository interface for authentication operations
 /// Domain layer defines the contract, Data layer implements it
@@ -12,12 +12,7 @@ abstract class AuthRepository {
     required String password,
   });
 
-  /// Register new user
-  Future<Either<ApiFailure, AuthTokenEntity>> register({
-    required String name,
-    required String email,
-    required String password,
-  });
+  Future<Either<ApiFailure, AuthTokenEntity>> loginForTest();
 
   /// Refresh access token
   Future<Either<ApiFailure, AuthTokenEntity>> refreshToken({

@@ -93,7 +93,9 @@ class FailureHandler {
       case 502:
       case 503:
       case 504:
-        return const ApiFailure.serverError('Server error. Please try again later.');
+        return const ApiFailure.serverError(
+          'Server error. Please try again later.',
+        );
       default:
         return ApiFailure.serverError(
           'Request failed with status $statusCode: $message',
@@ -190,10 +192,7 @@ class FailureHandler {
   /// Extract error message từ response data
   static String _extractErrorMessage(dynamic responseData) {
     if (responseData is Map<String, dynamic>) {
-      return responseData['message'] as String? ??
-          responseData['error'] as String? ??
-          responseData['detail'] as String? ??
-          'Unknown error';
+      return responseData['message'] as String? ?? 'Unknown error';
     }
 
     if (responseData is String) {
