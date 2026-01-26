@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:local_storage/storage/token_storage.dart';
 
@@ -134,9 +133,14 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<ApiFailure, UserEntity>> getCurrentUser() async {
     try {
-      final userModel = await _remoteDataSource!.getCurrentUser();
+      final result = await _remoteDataSource!.getCurrentUser();
 
-      return Right(userModel.toEntity());
+      final data = result.data;
+      if (data == null) {
+        return const Left(ApiFailure.userNotFound());
+      }
+
+      return Right(data.toEntity());
     } on Exception catch (e) {
       return Left(e.toApiFailure());
     }

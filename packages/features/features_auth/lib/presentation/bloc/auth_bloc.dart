@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -81,17 +80,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     await result.fold(
       (error) async => emit(AuthError(error.failureMessage.message)),
-      (token) async => emit(
-        const AuthAuthenticated(UserEntity(id: '', name: '', email: '')),
-      ),
-      // (token) async {
-      //   final userResult = await _getCurrentUserUseCase();
-      //
-      //   userResult.fold(
-      //     (error) => emit(AuthError(error.failureMessage.message)),
-      //     (user) => emit(AuthAuthenticated(user)),
-      //   );
-      // },
+      (token) async {
+        final userResult = await _getCurrentUserUseCase();
+        userResult.fold(
+          (error) => emit(AuthError(error.failureMessage.message)),
+          (user) => emit(AuthAuthenticated(user)),
+        );
+      },
     );
   }
 

@@ -103,25 +103,28 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> getCurrentUser() async {
+  Future<BaseResponse<UserModelDto>> getCurrentUser() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<UserModel>(
+    final _options = _setStreamType<BaseResponse<UserModelDto>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/user',
+            '/api/v1/users/me',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late UserModel _value;
+    late BaseResponse<UserModelDto> _value;
     try {
-      _value = UserModel.fromJson(_result.data!);
+      _value = BaseResponse<UserModelDto>.fromJson(
+        _result.data!,
+        (json) => UserModelDto.fromJson(json as Map<String, dynamic>),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

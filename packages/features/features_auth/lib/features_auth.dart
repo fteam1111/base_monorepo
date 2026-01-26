@@ -4,12 +4,15 @@ library;
 export 'data/datasources/remote/auth_remote_datasource.dart';
 // Data Layer - Models
 export 'data/models/auth_token_dto.dart';
+export 'data/models/user_model_dto.dart';
 // Data Layer - Mappers
 export 'data/mappers/auth_token_mapper.dart';
+export 'data/mappers/user_mapper.dart';
 // Data Layer - Repository Implementations
 export 'data/repositories/auth_repository_impl.dart';
 // Domain Layer - Entities
 export 'domain/entities/auth_token_entity.dart';
+export 'domain/entities/user_entity.dart';
 // Domain Layer - Repositories
 export 'domain/repositories/auth_repository.dart';
 export 'domain/usecases/get_current_user_usecase.dart';
