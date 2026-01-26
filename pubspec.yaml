@@ -71,3 +71,8 @@ melos:
       run: >
         melos exec --depends-on=build_runner --
         flutter pub run build_runner build --delete-conflicting-outputs
+    gen_watch:
+      description: Run build_runner watch for all packages
+      run: >
+        melos exec --depends-on=build_runner --
+        flutter pub run build_runner watch

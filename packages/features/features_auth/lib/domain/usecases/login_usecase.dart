@@ -15,4 +15,8 @@ class LoginUseCase {
   }) {
     return repository.login(email: email, password: password);
   }
+
+  Future<Either<ApiFailure, AuthTokenEntity>> loginForTest() {
+    return repository.loginForTest();
+  }
 }

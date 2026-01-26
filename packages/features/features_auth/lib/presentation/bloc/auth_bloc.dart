@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -76,22 +77,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(const AuthLoading());
 
-    final result = await _loginUseCase(
-      email: event.email,
-      password: event.password,
-    );
+    final result = await _loginUseCase.loginForTest();
 
     await result.fold(
       (error) async => emit(AuthError(error.failureMessage.message)),
-      (token) async {
-        // After successful login, fetch user data
-        final userResult = await _getCurrentUserUseCase();
-
-        userResult.fold(
-          (error) => emit(AuthError(error.failureMessage.message)),
-          (user) => emit(AuthAuthenticated(user)),
-        );
-      },
+      (token) async => emit(
+        const AuthAuthenticated(UserEntity(id: '', name: '', email: '')),
+      ),
+      // (token) async {
+      //   final userResult = await _getCurrentUserUseCase();
+      //
+      //   userResult.fold(
+      //     (error) => emit(AuthError(error.failureMessage.message)),
+      //     (user) => emit(AuthAuthenticated(user)),
+      //   );
+      // },
     );
   }
 

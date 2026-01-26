@@ -20,6 +20,9 @@ lib/
 │   ├── throttle.dart           # Throttle utility
 │   ├── logger.dart             # Global logger instance
 │   └── measure_widget.dart     # Measure widget size
+├── model/                       # Base API response models
+│   ├── base_response.dart       # BaseResponse<T>
+│   └── base_pagination_response.dart # BasePaginationResponse<T>, Pagination<T>
 └── value/                       # Value objects & validators
     ├── constants.dart          # App constants
     ├── value_objects.dart      # Value object base classes
@@ -90,7 +93,56 @@ final apiFailure = ErrorMapper.mapServerError(
 );
 ```
 
-### 2. Utils
+### 2. API Models
+
+#### BaseResponse<T>
+Dùng cho các API trả về dạng:
+
+```json
+{ "errorCode": 200, "success": true, "message": "...", "data": { } }
+```
+
+Ví dụ parse:
+
+```dart
+import 'package:core/core.dart';
+
+final res = BaseResponse<UserModel>.fromJson(
+  json,
+  (obj) => UserModel.fromJson(obj as Map<String, dynamic>),
+);
+
+if (res.isSuccess) {
+  final user = res.data;
+}
+```
+
+#### BasePaginationResponse<T>
+Dùng cho API trả về phân trang dạng:
+
+```json
+{ "success": true, "message": "...", "data": { "total": 0, "page": 1, "totalPages": 1, "size": 10, "data": [] }, "errorCode": null }
+```
+
+Ví dụ parse:
+
+```dart
+import 'package:core/core.dart';
+
+final res = BasePaginationResponse<List<UserModel>>.fromJson(
+  json,
+  (obj) => (obj as List<dynamic>)
+      .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
+
+if (res.isSuccess) {
+  final items = res.data?.data ?? [];
+  final total = res.data?.total ?? 0;
+}
+```
+
+### 3. Utils
 
 #### Debounce
 

@@ -3,7 +3,9 @@ library;
 // Data Layer - Data Sources
 export 'data/datasources/remote/auth_remote_datasource.dart';
 // Data Layer - Models
-export 'data/models/auth_token_model.dart';
+export 'data/models/auth_token_dto.dart';
+// Data Layer - Mappers
+export 'data/mappers/auth_token_mapper.dart';
 // Data Layer - Repository Implementations
 export 'data/repositories/auth_repository_impl.dart';
 // Domain Layer - Entities

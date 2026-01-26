@@ -41,8 +41,7 @@ class AppRouter {
 
         // Allow splash
         if (currentLocation == AppRoutes.splashPath) {
-          return AppRoutes.dashboardPath;
-          // return null;
+          return null;
         }
 
         // Allow login page for unauthenticated users
