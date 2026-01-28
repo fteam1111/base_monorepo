@@ -55,12 +55,73 @@ final connectivityService = locator<ConnectivityService>();
 
 // Sử dụng
 connectivityService.onConnectivityChanged.listen((isConnected) {
-  if (isConnected) {
-    print('Thiết bị đã kết nối mạng.');
-  } else {
-    print('Mất kết nối mạng.');
-  }
+if (isConnected) {
+print('Thiết bị đã kết nối mạng.');
+} else {
+print('Mất kết nối mạng.');
+}
 });
+```
+
+### 4. Extensions
+
+#### Context Extensions
+
+Truy cập nhanh các thuộc tính từ BuildContext:
+
+```dart
+import 'package:core/core.dart';
+
+// Media Query
+final width = context.screenWidth;
+final height = context.screenHeight;
+final isSmall = context.isSmallScreen;
+final isPortrait = context.isPortrait;
+
+// Theme
+final theme = context.theme;
+final textStyle = context.textTheme.headlineLarge;
+final primaryColor = context.colorScheme.primary;
+
+// Focus
+context.unfocus(); // Đóng keyboard
+context.requestFocus(focusNode);
+
+// Localization
+final locale = context.locale;
+final langCode = context.languageCode;
+```
+
+#### Enum Extensions
+
+Các tiện ích cho Enum:
+
+```dart
+import 'package:core/core.dart';
+
+enum UserRole { admin, customer, guest }
+
+final role = UserRole.admin;
+
+// Lấy tên enum
+print(role.name); // "admin"
+print(role.fullName); // "UserRole.admin"
+
+// Format
+print(role.displayName); // "Admin"
+print(role.camelCase); // "admin"
+print(role.snakeCase); // "admin"
+print(role.kebabCase); // "admin"
+
+// So sánh
+if (role.isEqual('admin')) {
+  // ...
+}
+
+// Tìm enum từ string
+final roles = [UserRole.admin, UserRole.customer];
+final found = roles.findByName('admin'); // UserRole.admin
+final fromString = 'admin'.toEnum(roles); // UserRole.admin
 ```
 
 ## Cấu trúc thư mục
@@ -70,4 +131,5 @@ connectivityService.onConnectivityChanged.listen((isConnected) {
 -   `lib/constants`: Các file chứa hằng số.
 -   `lib/firebase`: Các service tương tác với Firebase.
 -   `lib/routes`: Định nghĩa routes cho API và app navigation.
+-   `lib/extensions`: extensions chung của dự án.
 -   `lib/share.dart`: File export chính của package.

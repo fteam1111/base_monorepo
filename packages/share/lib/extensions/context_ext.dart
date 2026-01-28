@@ -1,7 +1,52 @@
+import 'package:design_system/theme/theme_extensions/app_colors.dart';
+import 'package:design_system/theme/theme_extensions/app_radius.dart';
+import 'package:design_system/theme/theme_extensions/app_spacing.dart';
+import 'package:design_system/theme/theme_extensions/app_typography.dart';
 import 'package:flutter/material.dart';
 
 /// Extension cho BuildContext để truy cập nhanh các thuộc tính phổ biến
 extension ContextExtension on BuildContext {
+  // ========== Theme ==========
+  /// Nhóm getter liên quan đến Theme và các ThemeExtension của design system.
+  ///
+  /// Mục tiêu:
+  /// - Truy cập nhanh `ThemeData`, `TextTheme`, `ColorScheme`
+  /// - Truy cập nhanh các design tokens (spacing/colors/radius/typography)
+  ///
+  /// Lưu ý:
+  /// - Các getter `appSpacing/appColors/appRadius/appTypography` sẽ fallback về
+  ///   giá trị mặc định nếu Theme chưa đăng ký extension tương ứng.
+  ///
+  /// Ví dụ:
+  /// ```dart
+  /// final spacing = context.appSpacing;
+  /// final colors = context.appColors;
+  /// final radius = context.appRadius;
+  /// final typography = context.appTypography;
+  ///
+  /// Container(
+  ///   padding: EdgeInsets.all(spacing.s16),
+  ///   decoration: BoxDecoration(
+  ///     color: colors.primary,
+  ///     borderRadius: BorderRadius.circular(radius.r12),
+  ///   ),
+  ///   child: Text('Hello', style: typography.bodyMedium),
+  /// );
+  /// ```
+
+  AppSpacingExtension get appSpacing =>
+      theme.extension<AppSpacingExtension>() ?? AppSpacingExtension.standard();
+
+  AppColorsExtension get appColors =>
+      theme.extension<AppColorsExtension>() ?? AppColorsExtension.light();
+
+  AppRadiusExtension get appRadius =>
+      theme.extension<AppRadiusExtension>() ?? AppRadiusExtension.standard();
+
+  AppTypographyExtension get appTypography =>
+      theme.extension<AppTypographyExtension>() ??
+      AppTypographyExtension.standard();
+
   // ========== Media Query ==========
 
   /// Chiều rộng màn hình
@@ -152,7 +197,7 @@ extension ContextExtension on BuildContext {
   bool get isLandscape =>
       MediaQuery.of(this).orientation == Orientation.landscape;
 
-  // ========== Theme ==========
+  // ========== Theme (Flutter ThemeData) ==========
 
   /// Theme data
   ///

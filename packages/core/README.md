@@ -15,14 +15,14 @@ lib/
 │   ├── exception.dart          # Base exceptions
 │   ├── failure_handler.dart    # Failure handler utilities
 │   └── tr_object.dart          # Translation object
-├── extensions/                  # Dart extensions
-│   ├── context_ext.dart        # BuildContext extensions
-│   └── enum_ext.dart           # Enum extensions
 ├── utils/                       # Utility classes
 │   ├── debounce.dart           # Debounce utility
 │   ├── throttle.dart           # Throttle utility
 │   ├── logger.dart             # Global logger instance
 │   └── measure_widget.dart     # Measure widget size
+├── model/                       # Base API response models
+│   ├── base_response.dart       # BaseResponse<T>
+│   └── base_pagination_response.dart # BasePaginationResponse<T>, Pagination<T>
 └── value/                       # Value objects & validators
     ├── constants.dart          # App constants
     ├── value_objects.dart      # Value object base classes
@@ -93,65 +93,53 @@ final apiFailure = ErrorMapper.mapServerError(
 );
 ```
 
-### 2. Extensions
+### 2. API Models
 
-#### Context Extensions
+#### BaseResponse<T>
+Dùng cho các API trả về dạng:
 
-Truy cập nhanh các thuộc tính từ BuildContext:
-
-```dart
-import 'package:core/core.dart';
-
-// Media Query
-final width = context.screenWidth;
-final height = context.screenHeight;
-final isSmall = context.isSmallScreen;
-final isPortrait = context.isPortrait;
-
-// Theme
-final theme = context.theme;
-final textStyle = context.textTheme.headlineLarge;
-final primaryColor = context.colorScheme.primary;
-
-// Focus
-context.unfocus(); // Đóng keyboard
-context.requestFocus(focusNode);
-
-// Localization
-final locale = context.locale;
-final langCode = context.languageCode;
+```json
+{ "errorCode": 200, "success": true, "message": "...", "data": { } }
 ```
 
-#### Enum Extensions
-
-Các tiện ích cho Enum:
+Ví dụ parse:
 
 ```dart
 import 'package:core/core.dart';
 
-enum UserRole { admin, customer, guest }
+final res = BaseResponse<UserModel>.fromJson(
+  json,
+  (obj) => UserModel.fromJson(obj as Map<String, dynamic>),
+);
 
-final role = UserRole.admin;
-
-// Lấy tên enum
-print(role.name); // "admin"
-print(role.fullName); // "UserRole.admin"
-
-// Format
-print(role.displayName); // "Admin"
-print(role.camelCase); // "admin"
-print(role.snakeCase); // "admin"
-print(role.kebabCase); // "admin"
-
-// So sánh
-if (role.isEqual('admin')) {
-  // ...
+if (res.isSuccess) {
+  final user = res.data;
 }
+```
 
-// Tìm enum từ string
-final roles = [UserRole.admin, UserRole.customer];
-final found = roles.findByName('admin'); // UserRole.admin
-final fromString = 'admin'.toEnum(roles); // UserRole.admin
+#### BasePaginationResponse<T>
+Dùng cho API trả về phân trang dạng:
+
+```json
+{ "success": true, "message": "...", "data": { "total": 0, "page": 1, "totalPages": 1, "size": 10, "data": [] }, "errorCode": null }
+```
+
+Ví dụ parse:
+
+```dart
+import 'package:core/core.dart';
+
+final res = BasePaginationResponse<List<UserModel>>.fromJson(
+  json,
+  (obj) => (obj as List<dynamic>)
+      .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
+
+if (res.isSuccess) {
+  final items = res.data?.data ?? [];
+  final total = res.data?.total ?? 0;
+}
 ```
 
 ### 3. Utils
@@ -263,7 +251,7 @@ if (widgetSize.width > screenWidth) {
 }
 ```
 
-### 4. Value Objects
+### 3. Value Objects
 
 Value objects với validation sử dụng Either từ dartz:
 
@@ -326,7 +314,6 @@ import 'package:core/core.dart';
 
 // Bây giờ bạn có thể sử dụng tất cả:
 // - Error handling (ApiFailure, ValueFailure, ErrorMapper)
-// - Extensions (ContextExtension, EnumExtension)
 // - Utils (Debounce, Throttle, logger, measureWidget)
 // - Value objects (ValueObject, validators)
 ```
@@ -335,7 +322,6 @@ import 'package:core/core.dart';
 
 ```dart
 import 'package:core/error/api_failures.dart';
-import 'package:core/extensions/context_ext.dart';
 import 'package:core/utils/logger.dart';
 ```
 
