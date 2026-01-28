@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:features_user/data/models/user_model.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:features_user/features_user.dart';
 import 'package:share/routes/api_routes.dart';
 
 part 'network_test_datasource.g.dart';
