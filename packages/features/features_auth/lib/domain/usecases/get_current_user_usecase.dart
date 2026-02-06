@@ -1,6 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:features_auth/domain/entities/user_entity.dart';
+import 'package:dartz/dartz.dart';
 import 'package:features_auth/features_auth.dart';
 
 /// Use case to get current authenticated user
