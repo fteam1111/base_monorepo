@@ -16,7 +16,6 @@ class AuthRepositoryImpl implements AuthRepository {
     required TokenStorage tokenStorage,
   }) : _remoteDataSource = remoteDataSource,
        _tokenStorage = tokenStorage {
-    // Ensure at least one data source is provided
     assert(
       remoteDataSource != null,
       'Either remoteDataSource or mockDataSource must be provided',
@@ -55,11 +54,12 @@ class AuthRepositoryImpl implements AuthRepository {
       final map = jsonDecode(jsonString) as Map<String, dynamic>;
 
       final accessToken = map['accessToken'] as String;
+      final refreshToken = map['refreshToken'] as String;
       final expiresIn = map['expiresInSeconds'] as int;
 
       final entity = AuthTokenEntity(
         accessToken: JWT(accessToken),
-        refreshToken: JWT(accessToken),
+        refreshToken: JWT(refreshToken),
         expiresIn: expiresIn,
       );
 
@@ -98,32 +98,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ApiFailure, AuthTokenEntity>> refreshToken({
-    required String refreshToken,
-  }) async {
-    try {
-      final tokenModel = await _remoteDataSource!.refreshToken({
-        'refresh_token': refreshToken,
-      });
-
-      final entity = tokenModel.toEntity();
-
-      // Save new tokens
-      await _tokenStorage.saveAccessToken(entity.accessToken.getValue());
-      await _tokenStorage.saveRefreshToken(entity.refreshToken.getValue());
-
-      return Right(entity);
-    } on Exception catch (e) {
-      return Left(e.toApiFailure());
-    }
-  }
-
-  @override
   Future<Either<ApiFailure, void>> logout() async {
     try {
-      // Clear tokens from storage
+      await _remoteDataSource!.logOut();
       await _tokenStorage.clearTokens();
-
       return const Right(null);
     } on Exception catch (e) {
       return Left(e.toApiFailure());

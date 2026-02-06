@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model_dto.freezed.dart';
 part 'user_model_dto.g.dart';
 
-
 @freezed
 abstract class UserModelDto with _$UserModelDto {
   const factory UserModelDto({
@@ -29,4 +28,3 @@ abstract class UserRoleModelDto with _$UserRoleModelDto {
   factory UserRoleModelDto.fromJson(Map<String, Object?> json) =>
       _$UserRoleModelDtoFromJson(json);
 }
-

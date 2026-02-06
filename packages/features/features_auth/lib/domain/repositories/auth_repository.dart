@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:features_auth/domain/entities/user_entity.dart';
 import 'package:features_auth/features_auth.dart';
 
 /// Repository interface for authentication operations
@@ -13,11 +12,6 @@ abstract class AuthRepository {
   });
 
   Future<Either<ApiFailure, AuthTokenEntity>> loginForTest();
-
-  /// Refresh access token
-  Future<Either<ApiFailure, AuthTokenEntity>> refreshToken({
-    required String refreshToken,
-  });
 
   /// Logout and clear tokens
   Future<Either<ApiFailure, void>> logout();

@@ -4,13 +4,13 @@ import 'package:core/config/base_config.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_dashboard/features_dashboard.dart';
-import 'package:features_home/features_home.dart';
 import 'package:features_find_bike/features_find_bike.dart';
+import 'package:features_home/features_home.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share/routes/app_routes.dart';
+import 'package:share/share.dart';
 import 'package:upgrader/upgrader.dart';
 
 /// GoRouter configuration for the entire app
@@ -24,6 +24,7 @@ class AppRouter {
   }) {
     return GoRouter(
       debugLogDiagnostics: true,
+      observers: [MyNavigatorObserver()],
       initialLocation: initialLocation ?? AppRoutes.splashPath,
       refreshListenable: GoRouterRefreshStream(authBloc.stream),
 
@@ -103,8 +104,10 @@ class AppRouter {
                 GoRoute(
                   path: AppRoutes.homePath,
                   name: AppRoutes.home,
-                  pageBuilder: (context, state) =>
-                      const NoTransitionPage(child: HomePage()),
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: HomePage(),
+                    name: AppRoutes.home,
+                  ),
                 ),
               ],
             ),
@@ -113,8 +116,10 @@ class AppRouter {
                 GoRoute(
                   path: AppRoutes.findBikePath,
                   name: AppRoutes.findBike,
-                  pageBuilder: (context, state) =>
-                      const NoTransitionPage(child: FindBikePage()),
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: FindBikePage(),
+                    name: AppRoutes.findBike,
+                  ),
                 ),
               ],
             ),
@@ -127,6 +132,7 @@ class AppRouter {
           name: AppRoutes.splash,
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
+            name: AppRoutes.splash,
             child: BlocProvider(
               create: (_) => locator<SplashBloc>(),
               child: const SplashPage(),
@@ -140,6 +146,7 @@ class AppRouter {
           name: AppRoutes.login,
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
+            name: AppRoutes.login,
             child: BlocProvider(
               create: (_) => locator<AuthBloc>(),
               child: LoginPage(
@@ -157,12 +164,14 @@ class AppRouter {
   static Page<dynamic> _buildPageWithTransition({
     required LocalKey key,
     required Widget child,
+    required String name,
     Duration duration = const Duration(milliseconds: 300),
   }) {
     return CustomTransitionPage(
       key: key,
       child: child,
       transitionDuration: duration,
+      name: name,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         // Fade transition
         return FadeTransition(
@@ -178,11 +187,13 @@ class AppRouter {
   static Page<dynamic> _buildPageWithSlideTransition({
     required LocalKey key,
     required Widget child,
+    required String name,
     bool fromRight = true,
   }) {
     return CustomTransitionPage(
       key: key,
       child: child,
+      name: name,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         final begin = fromRight
             ? const Offset(1.0, 0.0)
@@ -205,8 +216,9 @@ class AppRouter {
   static Page<dynamic> _buildPageWithNoTransition({
     required LocalKey key,
     required Widget child,
+    required String name,
   }) {
-    return NoTransitionPage(key: key, child: child);
+    return NoTransitionPage(key: key, child: child, name: name);
   }
 }
 

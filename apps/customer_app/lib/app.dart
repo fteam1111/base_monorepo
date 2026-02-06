@@ -33,6 +33,8 @@ Future<void> initialSetup(
   await locator<LocalNotificationService>().initFirebaseMessaging();
   await locator<RemoteConfigService>().init();
 
+  Bloc.observer = MyBlocObserver();
+
   if (kDebugMode) {
     await Upgrader.clearSavedSettings();
   } else {
@@ -61,15 +63,11 @@ Future<void> initialSetup(
 void _initializeNetworkLayer() {
   final dioClient = locator<DioHttpClientBuilder>();
 
-  // Configure token refresh interceptor
   dioClient.addRefreshTokenInterceptor(
     onRefresh: (refreshToken) async {
       debugPrint('Refreshing token...');
-
-      // Get token storage
       final tokenStorage = locator<TokenStorage>();
 
-      // Create a temporary Dio instance to avoid interceptor recursion
       final refreshDio = DioHttpClientBuilder(
         config: locator<BaseConfig>(),
       ).dio;
@@ -77,19 +75,21 @@ void _initializeNetworkLayer() {
       try {
         final response = await refreshDio.post(
           ApiRoutes.refreshToken,
-          data: {'refresh_token': refreshToken},
+          data: {'refreshToken': refreshToken},
         );
 
-        final newAccessToken = response.data['access_token'] as String;
-        final newRefreshToken = response.data['refresh_token'] as String?;
+        final body = response.data as Map<String, dynamic>;
+        final tokenJson = body['data'] as Map<String, dynamic>;
 
-        // Save new tokens
+        final newAccessToken = tokenJson['accessToken'] as String;
+        final newRefreshToken = tokenJson['refreshToken'] as String?;
+
         await tokenStorage.saveAccessToken(newAccessToken);
         if (newRefreshToken != null) {
           await tokenStorage.saveRefreshToken(newRefreshToken);
         }
 
-        debugPrint('✅ Token refreshed successfully');
+        debugPrint('Token refreshed successfully');
 
         return {
           'accessToken': newAccessToken,

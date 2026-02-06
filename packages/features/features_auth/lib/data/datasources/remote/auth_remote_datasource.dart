@@ -18,9 +18,9 @@ abstract class AuthRemoteDataSource {
   @GET(ApiRoutes.loginForTest)
   Future<String> loginForTest();
 
-  @POST(ApiRoutes.refreshToken)
-  Future<AuthTokenDto> refreshToken(@Body() Map<String, dynamic> body);
-
   @GET(ApiRoutes.getUser)
   Future<BaseResponse<UserModelDto>> getCurrentUser();
+
+  @GET(ApiRoutes.logout)
+  Future<BaseResponse> logOut();
 }
