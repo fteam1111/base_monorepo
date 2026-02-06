@@ -1,26 +1,43 @@
+import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
+import 'package:features_auth/domain/value/value_object.dart';
 
 /// Domain layer user entity
 /// Pure business logic, no dependencies on external frameworks
 class UserEntity extends Equatable {
-  final String id;
-  final String name;
-  final String email;
-  final String? avatar;
-  final DateTime? createdAt;
+  final IntegerValue id;
+  final EmailAddress email;
+  final StringValue fullName;
+  final bool isActive;
+  final UserRoleEntity role;
+  final String? factory;
 
   const UserEntity({
     required this.id,
-    required this.name,
     required this.email,
-    this.avatar,
-    this.createdAt,
+    required this.fullName,
+    required this.isActive,
+    required this.role,
+    this.factory,
   });
 
   @override
-  List<Object?> get props => [id, name, email, avatar, createdAt];
+  List<Object?> get props => [id, fullName, email, isActive, role, factory];
 
   @override
   String toString() =>
-      'UserEntity(id: $id, name: $name, email: $email, avatar: $avatar)';
+      'UserEntity(id: $id, fullName: $fullName, email: $email, isActive: $isActive, role: $role, factory: $factory)';
+}
+
+class UserRoleEntity extends Equatable {
+  final int id;
+  final String name;
+
+  const UserRoleEntity({required this.id, required this.name});
+
+  @override
+  List<Object?> get props => [id, name];
+
+  @override
+  String toString() => 'UserRoleEntity(id: $id, name: $name)';
 }

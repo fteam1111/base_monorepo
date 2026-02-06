@@ -28,7 +28,9 @@ class LoginPage extends StatelessWidget {
             );
             AppRoutes.navigateToDashboard(context);
           } else if (state is AuthAuthenticated) {
-            debugPrint('LoginPage - User authenticated: ${state.user.name}');
+            debugPrint(
+              'LoginPage - User authenticated: ${state.user.fullName}',
+            );
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

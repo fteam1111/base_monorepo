@@ -1,6 +1,5 @@
 import 'package:core/model/base_response.dart';
 import 'package:dio/dio.dart';
-import 'package:features_auth/data/models/user_model.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:share/routes/api_routes.dart';
@@ -20,7 +19,7 @@ abstract class AuthRemoteDataSource {
   Future<String> loginForTest();
 
   @GET(ApiRoutes.getUser)
-  Future<UserModel> getCurrentUser();
+  Future<BaseResponse<UserModelDto>> getCurrentUser();
 
   @GET(ApiRoutes.logout)
   Future<BaseResponse> logOut();

@@ -113,12 +113,12 @@ context.pushNamed(
 // Truyền object phức tạp
 context.push(
   AppRoutes.profilePath,
-  extra: UserModel(id: '123', name: 'John'),
+  extra: UserModelDto(id: 1, fullName: 'John'),
 );
 
 // Lấy ra trong route builder
 pageBuilder: (context, state) {
-  final user = state.extra as UserModel?;
+  final user = state.extra as UserModelDto?;
   return ProfilePage(user: user);
 }
 ```

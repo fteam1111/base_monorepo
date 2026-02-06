@@ -6,13 +6,13 @@ class AppColors {
   AppColors._();
 
   // Primary colors - Minimalistic Black/Gray
-  static const Color primaryLight = Color(0xFF000000); // Pure Black
-  static const Color primaryDark = Color(0xFFFFFFFF); // Pure White
-  static const Color primaryContainerLight = Color(0xFFF5F5F5); // Light Gray
-  static const Color primaryContainerDark = Color(0xFF2A2A2A); // Dark Gray
+  static const Color primaryLight = Color(0xFF2C72C6);
+  static const Color primaryDark = Color(0xFFFFFFFF);
+  static const Color primaryContainerLight = Color(0xFFF5F5F5);
+  static const Color primaryContainerDark = Color(0xFF2A2A2A);
 
-  // Secondary colors - Subtle Gray
-  static const Color secondaryLight = Color(0xFF424242); // Medium Gray
+  // Secondary colors
+  static const Color secondaryLight = Color(0xFF424242);
   static const Color secondaryDark = Color(0xFFE0E0E0); // Light Gray
   static const Color secondaryContainerLight = Color(
     0xFFFAFAFA,
