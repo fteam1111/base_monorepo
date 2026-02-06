@@ -107,9 +107,9 @@ Ví dụ parse:
 ```dart
 import 'package:core/core.dart';
 
-final res = BaseResponse<UserModel>.fromJson(
+final res = BaseResponse<UserModelDto>.fromJson(
   json,
-  (obj) => UserModel.fromJson(obj as Map<String, dynamic>),
+  (obj) => UserModelDto.fromJson(obj as Map<String, dynamic>),
 );
 
 if (res.isSuccess) {
@@ -129,10 +129,10 @@ Ví dụ parse:
 ```dart
 import 'package:core/core.dart';
 
-final res = BasePaginationResponse<List<UserModel>>.fromJson(
+final res = BasePaginationResponse<List<UserModelDto>>.fromJson(
   json,
   (obj) => (obj as List<dynamic>)
-      .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+      .map((e) => UserModelDto.fromJson(e as Map<String, dynamic>))
       .toList(),
 );
 

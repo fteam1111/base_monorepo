@@ -10,7 +10,8 @@ class ApiRoutes {
   static const String refreshToken = '$v1/auth/refresh';
 
   // User endpoints
-  static const String getUser = '$v1/user';
+  static const String getUser = '$v1/users/me';
   static const String getUsers = '$v1/users';
+
   static String userById(String id) => '$v1/user/$id';
 }
