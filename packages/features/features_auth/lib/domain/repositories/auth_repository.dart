@@ -14,11 +14,6 @@ abstract class AuthRepository {
 
   Future<Either<ApiFailure, AuthTokenEntity>> loginForTest();
 
-  /// Refresh access token
-  Future<Either<ApiFailure, AuthTokenEntity>> refreshToken({
-    required String refreshToken,
-  });
-
   /// Logout and clear tokens
   Future<Either<ApiFailure, void>> logout();
 

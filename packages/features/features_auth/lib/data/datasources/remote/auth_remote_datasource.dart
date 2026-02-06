@@ -1,3 +1,4 @@
+import 'package:core/model/base_response.dart';
 import 'package:dio/dio.dart';
 import 'package:features_auth/data/models/user_model.dart';
 import 'package:features_auth/features_auth.dart';
@@ -18,9 +19,9 @@ abstract class AuthRemoteDataSource {
   @GET(ApiRoutes.loginForTest)
   Future<String> loginForTest();
 
-  @POST(ApiRoutes.refreshToken)
-  Future<AuthTokenDto> refreshToken(@Body() Map<String, dynamic> body);
-
   @GET(ApiRoutes.getUser)
   Future<UserModel> getCurrentUser();
+
+  @GET(ApiRoutes.logout)
+  Future<BaseResponse> logOut();
 }
