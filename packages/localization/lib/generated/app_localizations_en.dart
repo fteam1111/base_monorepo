@@ -9,68 +9,104 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get welcome => 'Chào mừng';
+  String get welcome => 'Welcome';
 
   @override
-  String get login => 'Đăng nhập';
+  String get login => 'Login';
 
   @override
-  String get logout => 'Đăng xuất';
+  String get logout => 'Logout';
 
   @override
   String get email => 'Email';
 
   @override
-  String get password => 'Mật khẩu';
+  String get password => 'Password';
 
   @override
-  String get enterEmail => 'Nhập email của bạn';
+  String get enterEmail => 'Enter your email';
 
   @override
-  String get home => 'Trang chủ';
+  String get home => 'Home';
 
   @override
-  String get settings => 'Cài đặt';
+  String get settings => 'Settings';
 
   @override
-  String get language => 'Ngôn ngữ';
+  String get language => 'Language';
 
   @override
-  String get loading => 'Đang tải...';
+  String get loading => 'Loading...';
 
   @override
-  String get error => 'Lỗi';
+  String get error => 'Error';
 
   @override
-  String get retry => 'Thử lại';
+  String get retry => 'Retry';
 
   @override
-  String get cancel => 'Hủy';
+  String get cancel => 'Cancel';
 
   @override
-  String get save => 'Lưu';
+  String get save => 'Save';
 
   @override
-  String get next => 'Tiếp theo';
+  String get next => 'Next';
 
   @override
-  String get skip => 'Bỏ qua';
+  String get skip => 'Skip';
 
   @override
-  String get getStarted => 'Bắt đầu';
+  String get getStarted => 'Get Started';
 
   @override
-  String get parkingHistoryTitle => 'Lịch sử';
+  String get parkingHistoryTitle => 'History';
 
   @override
-  String get enterVinToViewHistory => 'Nhập mã VIN để xem lịch sử thao tác';
+  String get enterVinToViewHistory => 'Enter VIN to view history';
 
   @override
-  String get map => 'Bản đồ';
+  String get map => 'Map';
 
   @override
-  String get doList => 'Danh sách DO';
+  String get doList => 'DO List';
 
   @override
-  String get charging => 'Sạc xe';
+  String get charging => 'Charging';
+
+  @override
+  String get vehicleDetailTitle => 'Vehicle Details';
+
+  @override
+  String get vinIdentifier => 'VIN IDENTIFIER';
+
+  @override
+  String get vehicleModel => 'VEHICLE MODEL';
+
+  @override
+  String get vehicleColor => 'COLOR';
+
+  @override
+  String get batteryCapacity => 'BATTERY CAPACITY';
+
+  @override
+  String get aging => 'AGING';
+
+  @override
+  String get currentLocation => 'CURRENT LOCATION';
+
+  @override
+  String get availableActions => 'AVAILABLE ACTIONS';
+
+  @override
+  String get moveToExportArea => 'MOVE TO EXPORT WAITING AREA';
+
+  @override
+  String get prepareForDelivery => 'PREPARE FOR DELIVERY TRANSPORT';
+
+  @override
+  String get moveToQCArea => 'MOVE TO QC AREA';
+
+  @override
+  String get recheckQuality => 'RECHECK QUALITY';
 }

@@ -21,6 +21,17 @@
   "enterVinToViewHistory": "Nhập mã VIN để xem lịch sử thao tác",
   "map": "Bản đồ",
   "doList": "Danh sách DO",
-  "charging": "Sạc xe"
+  "charging": "Sạc xe",
+  "vehicleDetailTitle": "Chi tiết phương tiện",
+  "vinIdentifier": "MÃ ĐỊNH DANH VIN",
+  "vehicleModel": "DÒNG XE",
+  "vehicleColor": "MÀU SẮC",
+  "batteryCapacity": "DUNG LƯỢNG PIN",
+  "aging": "AGING",
+  "currentLocation": "VỊ TRÍ HIỆN TẠI",
+  "availableActions": "THAO TÁC KHẢ DỤNG",
+  "moveToExportArea": "DI CHUYỂN SANG KHU CHỜ XUẤT",
+  "prepareForDelivery": "CHUẨN BỊ BÀN GIAO VẬN CHUYỂN",
+  "moveToQCArea": "DI CHUYỂN SANG KHU QC",
+  "recheckQuality": "KIỂM TRA CHẤT LƯỢNG LẠI"
 }
-

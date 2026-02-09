@@ -2,6 +2,7 @@ import 'package:features_dashboard/presentation/pages/custom_floating_action_but
 import 'package:features_dashboard/presentation/pages/custom_navigator_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share/share.dart';
 
 class DashboardShellPage extends StatelessWidget {
   const DashboardShellPage({super.key, required this.navigationShell});
@@ -23,7 +24,7 @@ class DashboardShellPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       floatingActionButton: CustomFloatingActionButton(
         onPressed: () {
-          //todo(dimenk): onPressed
+          AppRoutes.navigateToVehicleDetail(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

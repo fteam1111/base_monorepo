@@ -73,4 +73,40 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get charging => 'Sạc xe';
+
+  @override
+  String get vehicleDetailTitle => 'Chi tiết phương tiện';
+
+  @override
+  String get vinIdentifier => 'MÃ ĐỊNH DANH VIN';
+
+  @override
+  String get vehicleModel => 'DÒNG XE';
+
+  @override
+  String get vehicleColor => 'MÀU SẮC';
+
+  @override
+  String get batteryCapacity => 'DUNG LƯỢNG PIN';
+
+  @override
+  String get aging => 'AGING';
+
+  @override
+  String get currentLocation => 'VỊ TRÍ HIỆN TẠI';
+
+  @override
+  String get availableActions => 'THAO TÁC KHẢ DỤNG';
+
+  @override
+  String get moveToExportArea => 'DI CHUYỂN SANG KHU CHỜ XUẤT';
+
+  @override
+  String get prepareForDelivery => 'CHUẨN BỊ BÀN GIAO VẬN CHUYỂN';
+
+  @override
+  String get moveToQCArea => 'DI CHUYỂN SANG KHU QC';
+
+  @override
+  String get recheckQuality => 'KIỂM TRA CHẤT LƯỢNG LẠI';
 }
