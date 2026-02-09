@@ -3,9 +3,13 @@ import 'package:design_system/theme/theme_extensions/app_radius.dart';
 import 'package:design_system/theme/theme_extensions/app_spacing.dart';
 import 'package:design_system/theme/theme_extensions/app_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 /// Extension cho BuildContext để truy cập nhanh các thuộc tính phổ biến
 extension ContextExtension on BuildContext {
+  // ========== l10n ==========
+  AppLocalizations get l10n => AppLocalizations.of(this);
+
   // ========== Theme ==========
   /// Nhóm getter liên quan đến Theme và các ThemeExtension của design system.
   ///

@@ -49,3 +49,12 @@ class AppIcons {
   static const String logoVinfast = '$_base/logo_vinfast.png';
   static const String warningFillRed = '$_base/warning_fill_red.png';
 }
+
+class AppImages {
+  const AppImages._();
+
+  static const String _base = 'assets/images';
+
+  static const String imgLightLeft = '$_base/img_light_left.png';
+  static const String imgLightRight = '$_base/img_light_right.png';
+}

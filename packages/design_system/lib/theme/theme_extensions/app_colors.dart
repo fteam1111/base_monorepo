@@ -5,6 +5,8 @@ import 'package:design_system/theme/tokens/colors.dart';
 /// Access via: Theme.of(context).extension`<AppColorsExtension>`()
 @immutable
 class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
+  final Color background;
+
   final Color success;
   final Color successContainer;
   final Color onSuccess;
@@ -31,6 +33,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color border;
 
   const AppColorsExtension({
+    required this.background,
     required this.success,
     required this.successContainer,
     required this.onSuccess,
@@ -55,6 +58,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   /// Light theme colors
   static AppColorsExtension light() {
     return const AppColorsExtension(
+      background: AppColors.backgroundLight,
       success: AppColors.successLight,
       successContainer: AppColors.successContainerLight,
       onSuccess: AppColors.onPrimaryLight,
@@ -80,6 +84,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   /// Dark theme colors
   static AppColorsExtension dark() {
     return const AppColorsExtension(
+      background: AppColors.backgroundDark,
       success: AppColors.successDark,
       successContainer: AppColors.successContainerDark,
       onSuccess: AppColors.onPrimaryDark,
@@ -104,6 +109,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
 
   @override
   AppColorsExtension copyWith({
+    Color? background,
     Color? success,
     Color? successContainer,
     Color? onSuccess,
@@ -125,6 +131,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? border,
   }) {
     return AppColorsExtension(
+      background: background ?? this.background,
       success: success ?? this.success,
       successContainer: successContainer ?? this.successContainer,
       onSuccess: onSuccess ?? this.onSuccess,
@@ -153,6 +160,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     if (other is! AppColorsExtension) return this;
 
     return AppColorsExtension(
+      background: Color.lerp(background, other.background, t)!,
       success: Color.lerp(success, other.success, t)!,
       successContainer: Color.lerp(
         successContainer,
