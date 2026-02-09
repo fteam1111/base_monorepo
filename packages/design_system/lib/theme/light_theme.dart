@@ -59,8 +59,8 @@ class AppLightTheme {
       appBarTheme: AppBarTheme(
         centerTitle: false,
         elevation: 0,
-        scrolledUnderElevation: 2,
-        backgroundColor: colorScheme.surface,
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.backgroundLight,
         foregroundColor: colorScheme.onSurface,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: AppTypography.titleLarge.copyWith(

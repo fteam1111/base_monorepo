@@ -20,8 +20,6 @@ dependencies:
   # Feature dependencies
   features_home:
     path: ../features_home
-  features_find_bike:
-    path: ../features_find_bike
 
   # State Management
   flutter_bloc: ^9.1.1
