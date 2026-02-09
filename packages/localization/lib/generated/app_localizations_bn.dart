@@ -119,4 +119,10 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get onboardingDesc4 =>
       'বিল্ট-ইন ত্রুটি পরিচালনা, পুনরায় চেষ্টা যুক্তি, টোকেন রিফ্রেশ এবং নিরবচ্ছিন্ন API যোগাযোগের জন্য ইন্টারসেপ্টর।';
+
+  @override
+  String get parkingHistoryTitle => 'ইতিহাস';
+
+  @override
+  String get enterVinToViewHistory => 'ইতিহাস দেখতে ভিআইএন লিখুন';
 }

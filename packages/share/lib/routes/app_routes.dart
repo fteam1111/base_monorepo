@@ -19,7 +19,7 @@ class AppRoutes {
 
   // Home Routes
   static const String home = 'home';
-  static const String findBike = 'find-bike';
+  static const String parkingHistory = 'parking-history';
 
   // Auth Routes
   static const String login = 'login';
@@ -30,7 +30,7 @@ class AppRoutes {
   static const String splashPath = '/';
   static const String dashboardPath = '/dashboard';
   static const String homePath = '/home';
-  static const String findBikePath = '/find-bike';
+  static const String parkingHistoryPath = '/parking-history';
   static const String loginPath = '/login';
 
   // ==================== Route Parameters ====================

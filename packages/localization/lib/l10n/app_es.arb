@@ -35,5 +35,8 @@
   "onboardingTitle3": "Gestión de Estado BLoC",
   "onboardingDesc3": "Administre el estado de su aplicación de manera reactiva con el patrón BLoC, garantizando código predecible y comprobable.",
   "onboardingTitle4": "Capa de Red Robusta",
-  "onboardingDesc4": "Manejo de errores integrado, lógica de reintento, actualización de tokens e interceptores para una comunicación API perfecta."
+  "onboardingDesc4": "Manejo de errores integrado, lógica de reintento, actualización de tokens e interceptores para una comunicación API perfecta.",
+
+  "parkingHistoryTitle": "Historial",
+  "enterVinToViewHistory": "Ingrese el VIN para ver el historial de actividades"
 }

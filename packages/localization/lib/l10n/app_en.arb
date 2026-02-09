@@ -178,5 +178,14 @@
   "onboardingDesc4": "Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.",
   "@onboardingDesc4": {
     "description": "Fourth onboarding page description"
+  },
+
+  "parkingHistoryTitle": "History",
+  "@parkingHistoryTitle": {
+    "description": "Title for parking history screen"
+  },
+  "enterVinToViewHistory": "Enter VIN to view activity history",
+  "@enterVinToViewHistory": {
+    "description": "Placeholder guiding user to enter VIN to see history"
   }
 }

@@ -39,8 +39,6 @@ dependencies:
     path: ../../packages/features/features_dashboard
   features_home:
     path: ../../packages/features/features_home
-  features_find_bike:
-    path: ../../packages/features/features_find_bike
 
   # Storage dependencies
   shared_preferences: ^2.5.3
