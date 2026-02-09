@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_bn.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+import 'app_localizations_vi.dart';
 
 // ignore_for_file: type=lint
 
@@ -68,8 +69,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+  static AppLocalizations? of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
@@ -98,6 +99,7 @@ abstract class AppLocalizations {
     Locale('bn'),
     Locale('en'),
     Locale('es'),
+    Locale('vi'),
   ];
 
   /// The application title
@@ -315,6 +317,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.'**
   String get onboardingDesc4;
+
+  /// Title for parking history screen
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get parkingHistoryTitle;
+
+  /// Placeholder guiding user to enter VIN to see history
+  ///
+  /// In en, this message translates to:
+  /// **'Enter VIN to view activity history'**
+  String get enterVinToViewHistory;
 }
 
 class _AppLocalizationsDelegate
@@ -328,7 +342,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['bn', 'en', 'es'].contains(locale.languageCode);
+      <String>['bn', 'en', 'es', 'vi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -343,6 +357,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'es':
       return AppLocalizationsEs();
+    case 'vi':
+      return AppLocalizationsVi();
   }
 
   throw FlutterError(

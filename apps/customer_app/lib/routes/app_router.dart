@@ -4,9 +4,9 @@ import 'package:core/config/base_config.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_dashboard/features_dashboard.dart';
-import 'package:features_find_bike/features_find_bike.dart';
 import 'package:features_home/features_home.dart';
 import 'package:features_splash/features_splash.dart';
+import 'package:features_parking_history/features_parking_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -114,11 +114,11 @@ class AppRouter {
             StatefulShellBranch(
               routes: [
                 GoRoute(
-                  path: AppRoutes.findBikePath,
-                  name: AppRoutes.findBike,
+                  path: AppRoutes.parkingHistoryPath,
+                  name: AppRoutes.parkingHistory,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    child: FindBikePage(),
-                    name: AppRoutes.findBike,
+                    child: ParkingHistoryPage(),
+                    name: AppRoutes.parkingHistory,
                   ),
                 ),
               ],

@@ -66,7 +66,7 @@ class AppColors {
   ); // Very Dark Gray Blue
 
   // Surface colors - Pure Minimalistic
-  static const Color surfaceLight = Color(0xFFFFFFFF); // Pure White
+  static const Color surfaceLight = Color(0xFFF2F4F7); // grey light
   static const Color surfaceDark = Color(0xFF0F0F0F); // Almost Black
   static const Color surfaceVariantLight = Color(0xFFFAFAFA); // Very Light Gray
   static const Color surfaceVariantDark = Color(0xFF1A1A1A); // Very Dark Gray

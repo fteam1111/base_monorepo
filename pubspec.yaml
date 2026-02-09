@@ -14,7 +14,7 @@ workspace:
   - packages/features/features_splash
   - packages/features/features_dashboard
   - packages/features/features_home
-  - packages/features/features_find_bike
+  - packages/features/features_parking_history
 
 dependencies:
   # DI

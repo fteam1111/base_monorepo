@@ -119,4 +119,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingDesc4 =>
       'Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.';
+
+  @override
+  String get parkingHistoryTitle => 'History';
+
+  @override
+  String get enterVinToViewHistory => 'Enter VIN to view activity history';
 }
