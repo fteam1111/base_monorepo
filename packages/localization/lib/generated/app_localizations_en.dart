@@ -9,120 +9,68 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Clean Architecture App';
+  String get welcome => 'Chào mừng';
 
   @override
-  String get welcome => 'Welcome';
+  String get login => 'Đăng nhập';
 
   @override
-  String get login => 'Login';
-
-  @override
-  String get logout => 'Logout';
+  String get logout => 'Đăng xuất';
 
   @override
   String get email => 'Email';
 
   @override
-  String get password => 'Password';
+  String get password => 'Mật khẩu';
 
   @override
-  String get enterEmail => 'Enter your email';
+  String get enterEmail => 'Nhập email của bạn';
 
   @override
-  String get enterPassword => 'Enter your password';
+  String get home => 'Trang chủ';
 
   @override
-  String get forgotPassword => 'Forgot Password?';
+  String get settings => 'Cài đặt';
 
   @override
-  String get dontHaveAccount => 'Don\'t have an account?';
+  String get language => 'Ngôn ngữ';
 
   @override
-  String get signUp => 'Sign Up';
+  String get loading => 'Đang tải...';
 
   @override
-  String get home => 'Home';
+  String get error => 'Lỗi';
 
   @override
-  String get settings => 'Settings';
+  String get retry => 'Thử lại';
 
   @override
-  String get language => 'Language';
+  String get cancel => 'Hủy';
 
   @override
-  String get theme => 'Theme';
+  String get save => 'Lưu';
 
   @override
-  String get lightMode => 'Light Mode';
+  String get next => 'Tiếp theo';
 
   @override
-  String get darkMode => 'Dark Mode';
+  String get skip => 'Bỏ qua';
 
   @override
-  String get systemDefault => 'System Default';
+  String get getStarted => 'Bắt đầu';
 
   @override
-  String get authenticated => 'Authenticated';
+  String get parkingHistoryTitle => 'Lịch sử';
 
   @override
-  String get notAuthenticated => 'Not Authenticated';
+  String get enterVinToViewHistory => 'Nhập mã VIN để xem lịch sử thao tác';
 
   @override
-  String get loading => 'Loading...';
+  String get map => 'Bản đồ';
 
   @override
-  String get error => 'Error';
+  String get doList => 'Danh sách DO';
 
   @override
-  String get retry => 'Retry';
-
-  @override
-  String get cancel => 'Cancel';
-
-  @override
-  String get save => 'Save';
-
-  @override
-  String get next => 'Next';
-
-  @override
-  String get skip => 'Skip';
-
-  @override
-  String get getStarted => 'Get Started';
-
-  @override
-  String get onboardingTitle1 => 'Welcome to Clean Architecture';
-
-  @override
-  String get onboardingDesc1 =>
-      'Build scalable and maintainable Flutter apps with proper architecture patterns and separation of concerns.';
-
-  @override
-  String get onboardingTitle2 => 'Modular Package Structure';
-
-  @override
-  String get onboardingDesc2 =>
-      'Each feature is isolated in its own package with domain, data, and presentation layers using Melos.';
-
-  @override
-  String get onboardingTitle3 => 'BLoC State Management';
-
-  @override
-  String get onboardingDesc3 =>
-      'Manage your app state reactively with BLoC pattern, ensuring predictable and testable code.';
-
-  @override
-  String get onboardingTitle4 => 'Robust Network Layer';
-
-  @override
-  String get onboardingDesc4 =>
-      'Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.';
-
-  @override
-  String get parkingHistoryTitle => 'History';
-
-  @override
-  String get enterVinToViewHistory => 'Enter VIN to view activity history';
+  String get charging => 'Sạc xe';
 }

@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             color: context.theme.appBarTheme.backgroundColor,
           ),
           AppBarHomeSection(
-            title: "Trang chủ",
+            title: context.l10n.home,
             showLogout: true,
             onLogoutPressed: () {
               context.read<AuthBloc>().add(AuthLogoutRequested());
@@ -32,20 +32,16 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: context.appSpacing.pageHorizontal,
-                    ),
-                    child: HomeUserSection(
-                      userName: 'Nguyen Van B',
-                      location: 'Nhà máy Hà Tĩnh',
-                    ),
+                HomeUserSection(
+                  userName: 'Nguyen Van B',
+                  location: 'Nhà máy Hà Tĩnh',
+                ).toSliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.appSpacing.pageHorizontal,
                   ),
                 ),
-                SliverToBoxAdapter(child: Gap(AppSpacing.sectionSpacing)),
                 const HomeMenuGridSliverSection(),
-                SliverToBoxAdapter(child: Gap(AppSpacing.sectionSpacing)),
+                Gap(AppSpacing.sectionSpacing).toSliverNoPadding(),
               ],
             ),
           ),

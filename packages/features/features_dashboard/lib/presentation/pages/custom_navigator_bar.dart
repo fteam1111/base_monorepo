@@ -22,29 +22,34 @@ class _CustomBottomNavigatorBarState extends State<CustomBottomNavigatorBar> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar.builder(
-      itemCount: 2,
+      itemCount: iconList.length,
       tabBuilder: (index, isActive) {
         final color = isActive
             ? AppColors.brandPrimary
-            : context.appColors.cardBackground;
+            : context.theme.colorScheme.secondary.withValues(alpha: 0.6);
         final textStyle = isActive
             ? AppTypography.captionTextBold(color: color)
             : AppTypography.captionTextRegular(color: color);
+        final iconUrl = iconList[index].iconUrl;
+        final navigatorTitle = iconList[index].index == NavigatorIndex.home
+            ? context.l10n.home
+            : context.l10n.parkingHistoryTitle;
+
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              AppIcons.icHome,
+              iconUrl,
               package: AppAssets.package,
               color: color,
-              width: 24,
-              height: 23,
+              width: AppSpacing.iconDefault,
+              height: AppSpacing.iconDefault,
             ),
             const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text('home', maxLines: 1, style: textStyle),
+              child: Text(navigatorTitle, maxLines: 1, style: textStyle),
             ),
           ],
         );
@@ -55,7 +60,6 @@ class _CustomBottomNavigatorBarState extends State<CustomBottomNavigatorBar> {
       borderWidth: 0,
       notchMargin: 3,
       leftCornerRadius: 0,
-      backgroundColor: AppColors.neutral80,
       rightCornerRadius: 0,
       onTap: widget.onChange,
     );
@@ -63,13 +67,15 @@ class _CustomBottomNavigatorBarState extends State<CustomBottomNavigatorBar> {
 }
 
 class NavigatorItem {
-  String title;
+  NavigatorIndex index;
   String iconUrl;
 
-  NavigatorItem(this.title, this.iconUrl);
+  NavigatorItem(this.index, this.iconUrl);
 }
 
-// List<NavigatorItem> iconList = [
-//   NavigatorItem(L.current.lbl_home_page, kIconHome),
-//   NavigatorItem(L.current.lbl_history, kIconHistory),
-// ];
+enum NavigatorIndex { home, history }
+
+List<NavigatorItem> iconList = [
+  NavigatorItem(NavigatorIndex.home, AppIcons.icHome),
+  NavigatorItem(NavigatorIndex.history, AppIcons.icHistory),
+];

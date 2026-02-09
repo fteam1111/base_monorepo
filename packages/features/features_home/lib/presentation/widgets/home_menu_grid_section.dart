@@ -23,35 +23,40 @@ class HomeMenuGridSliverSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: context.appSpacing.pageHorizontal,
       ),
-      sliver: SliverGrid(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: AppSpacing.gridSpacing,
-          crossAxisSpacing: AppSpacing.gridSpacing,
-          childAspectRatio: 1,
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: _HomeMenuItem(
+                iconAsset: AppIcons.icLocation,
+                label: context.l10n.map,
+                onPressed: onMapPressed,
+                isFullWidth: true,
+              ),
+            ),
+            const Gap(AppSpacing.gridSpacing),
+            Row(
+              children: [
+                Expanded(
+                  child: _HomeMenuItem(
+                    iconAsset: AppIcons.icLotFind,
+                    label: context.l10n.doList,
+                    onPressed: onDoListPressed,
+                  ),
+                ),
+                const Gap(AppSpacing.gridSpacing),
+                Expanded(
+                  child: _HomeMenuItem(
+                    iconAsset: AppIcons.icLightning,
+                    label: context.l10n.charging,
+                    onPressed: onChargingPressed,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        delegate: SliverChildListDelegate([
-          _HomeMenuItem(
-            iconAsset: AppIcons.icHistory,
-            label: 'Lịch sử',
-            onPressed: onHistoryPressed,
-          ),
-          _HomeMenuItem(
-            iconAsset: AppIcons.icLocation,
-            label: 'Bản đồ',
-            onPressed: onMapPressed,
-          ),
-          _HomeMenuItem(
-            iconAsset: AppIcons.icLotFind,
-            label: 'Danh sách DO',
-            onPressed: onDoListPressed,
-          ),
-          _HomeMenuItem(
-            iconAsset: AppIcons.icWarningFill,
-            label: 'Sạc xe',
-            onPressed: onChargingPressed,
-          ),
-        ]),
       ),
     );
   }
@@ -62,11 +67,13 @@ class _HomeMenuItem extends StatelessWidget {
     required this.iconAsset,
     required this.label,
     this.onPressed,
+    this.isFullWidth = false,
   });
 
   final String iconAsset;
   final String label;
   final VoidCallback? onPressed;
+  final bool isFullWidth;
 
   @override
   Widget build(BuildContext context) {

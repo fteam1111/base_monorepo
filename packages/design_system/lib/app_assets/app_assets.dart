@@ -48,6 +48,7 @@ class AppIcons {
   static const String icWorkshop = '$_base/ic_workshop.png';
   static const String logoVinfast = '$_base/logo_vinfast.png';
   static const String warningFillRed = '$_base/warning_fill_red.png';
+  static const String icLightning = '$_base/ic_lightning.png';
 }
 
 class AppImages {

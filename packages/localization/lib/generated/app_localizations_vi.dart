@@ -9,9 +9,6 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get appTitle => 'Ứng dụng Clean Architecture';
-
-  @override
   String get welcome => 'Chào mừng';
 
   @override
@@ -30,18 +27,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get enterEmail => 'Nhập email của bạn';
 
   @override
-  String get enterPassword => 'Nhập mật khẩu của bạn';
-
-  @override
-  String get forgotPassword => 'Quên mật khẩu?';
-
-  @override
-  String get dontHaveAccount => 'Chưa có tài khoản?';
-
-  @override
-  String get signUp => 'Đăng ký';
-
-  @override
   String get home => 'Trang chủ';
 
   @override
@@ -49,24 +34,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get language => 'Ngôn ngữ';
-
-  @override
-  String get theme => 'Giao diện';
-
-  @override
-  String get lightMode => 'Chế độ sáng';
-
-  @override
-  String get darkMode => 'Chế độ tối';
-
-  @override
-  String get systemDefault => 'Theo hệ thống';
-
-  @override
-  String get authenticated => 'Đã đăng nhập';
-
-  @override
-  String get notAuthenticated => 'Chưa đăng nhập';
 
   @override
   String get loading => 'Đang tải...';
@@ -93,36 +60,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get getStarted => 'Bắt đầu';
 
   @override
-  String get onboardingTitle1 => 'Chào mừng đến với Clean Architecture';
-
-  @override
-  String get onboardingDesc1 =>
-      'Xây dựng ứng dụng Flutter có thể mở rộng và dễ bảo trì với kiến trúc chuẩn và tách biệt rõ ràng các lớp.';
-
-  @override
-  String get onboardingTitle2 => 'Cấu trúc package theo module';
-
-  @override
-  String get onboardingDesc2 =>
-      'Mỗi tính năng được tách riêng trong package với đầy đủ domain, data và presentation, sử dụng Melos.';
-
-  @override
-  String get onboardingTitle3 => 'Quản lý state với BLoC';
-
-  @override
-  String get onboardingDesc3 =>
-      'Quản lý state một cách phản ứng với pattern BLoC, đảm bảo code dễ đoán và dễ test.';
-
-  @override
-  String get onboardingTitle4 => 'Tầng network vững chắc';
-
-  @override
-  String get onboardingDesc4 =>
-      'Tích hợp sẵn xử lý lỗi, retry, refresh token và interceptor cho việc gọi API mượt mà.';
-
-  @override
   String get parkingHistoryTitle => 'Lịch sử';
 
   @override
   String get enterVinToViewHistory => 'Nhập mã VIN để xem lịch sử thao tác';
+
+  @override
+  String get map => 'Bản đồ';
+
+  @override
+  String get doList => 'Danh sách DO';
+
+  @override
+  String get charging => 'Sạc xe';
 }

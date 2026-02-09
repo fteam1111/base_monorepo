@@ -162,7 +162,7 @@ class _LanguageSwitchSection extends StatelessWidget {
           child: SegmentedButton<AppLocale>(
             segments: const [
               ButtonSegment(value: AppLocale.english, label: Text('EN')),
-              ButtonSegment(value: AppLocale.spanish, label: Text('ES')),
+              ButtonSegment(value: AppLocale.vietnamese, label: Text('VI')),
             ],
             selected: {currentLocale},
             onSelectionChanged: (selected) {

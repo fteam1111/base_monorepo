@@ -19,11 +19,11 @@ class HomeUserSection extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: AppSpacing.cardMargin),
       padding: EdgeInsets.all(context.appSpacing.cardPadding),
       decoration: BoxDecoration(
-        color: context.theme.colorScheme.primaryContainer,
+        color: context.appColors.cardBackground,
         borderRadius: BorderRadius.circular(AppRadius.extraLarge),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
