@@ -1,59 +1,59 @@
-# Cursor Project Rules — bike_tracker (Flutter Monorepo)
+# Quy tắc dự án Cursor — bike_tracker (Flutter Monorepo)
 
-## Project Context
+## Bối cảnh dự án
 
-- This repository is a **Flutter monorepo** (Dart/Flutter workspace + Melos).
-- Main app:
+- Repository này là một **Flutter monorepo** (Dart/Flutter workspace + Melos).
+- Ứng dụng chính:
   - `apps/customer_app`
-- Shared packages:
+- Các package dùng chung:
   - `packages/core`
   - `packages/network`
   - `packages/local_storage`
   - `packages/localization`
   - `packages/design_system`
   - `packages/share`
-- Feature packages:
-  - `packages/features/*` (e.g. `features_auth`, `features_dashboard`, `features_home`, `features_find_bike`, ...)
-- Routing:
+- Các package theo feature:
+  - `packages/features/*` (ví dụ: `features_auth`, `features_dashboard`, `features_home`, `features_find_bike`, ...)
+- Điều hướng (routing):
   - `go_router`
-  - Tabs use `StatefulShellRoute.indexedStack`
-- State management:
+  - Tabs dùng `StatefulShellRoute.indexedStack`
+- Quản lý state:
   - `flutter_bloc`
 - DI:
   - `get_it` + `injectable`
-  - Dependency registration is centralized in `apps/customer_app/lib/di/dependency_manager.dart`.
+  - Khai báo/đăng ký dependency được tập trung tại `apps/customer_app/lib/di/dependency_manager.dart`.
 
 ---
 
-## 1) Architecture & SOLID
+## 1) Kiến trúc & SOLID
 
-- **Layer boundaries (Clean Architecture)**
-  - `presentation` must **not** import `data` directly.
-  - `domain` must **not** import Flutter/UI (`material.dart`, widgets, `flutter_bloc`, `go_router`).
-  - `data` may depend on `domain` and shared packages.
+- **Ranh giới tầng (Clean Architecture)**
+  - `presentation` **không được** import trực tiếp `data`.
+  - `domain` **không được** import Flutter/UI (`material.dart`, widgets, `flutter_bloc`, `go_router`).
+  - `data` có thể phụ thuộc vào `domain` và các package dùng chung.
 
 - **DIP (Dependency Inversion)**
-  - `domain` depends on abstractions (repository interfaces).
-  - `data` implements those interfaces.
+  - `domain` phụ thuộc vào abstraction (các interface của repository).
+  - `data` implement các interface đó.
 
-- **Feature isolation**
-  - Feature packages must **not** import other feature packages.
-  - Shared entities/value objects go to `packages/core`.
-  - Shared helpers/constants/routes/extensions go to `packages/share`.
+- **Cô lập theo feature**
+  - Các package feature **không được** import lẫn nhau.
+  - Entity/value object dùng chung đưa vào `packages/core`.
+  - Helper/constant/routes/extensions dùng chung đưa vào `packages/share`.
 
-- **DTO vs Entity separation**
-  - DTO/model (`*Dto`, `*Model`) lives in `data/models`.
-  - Entity lives in `domain/entities`.
-  - Mapping between DTO ↔ Entity must live in `data/mappers`.
+- **Tách biệt DTO và Entity**
+  - DTO/model (`*Dto`, `*Model`) nằm trong `data/models`.
+  - Entity nằm trong `domain/entities`.
+  - Mapping giữa DTO ↔ Entity phải nằm trong `data/mappers`.
 
 ---
 
-## 2) File Placement Conventions (match this repo)
+## 2) Quy ước vị trí file (theo repo này)
 
 - **Presentation**
   - Pages: `packages/features/<feature>/lib/presentation/pages/`
   - Widgets: `packages/features/<feature>/lib/presentation/widgets/`
-  - Bloc/Cubit: `packages/features/<feature>/lib/presentation/bloc/` or `.../presentation/cubit/`
+  - Bloc/Cubit: `packages/features/<feature>/lib/presentation/bloc/` hoặc `.../presentation/cubit/`
 
 - **Domain**
   - Entities: `.../domain/entities/`
@@ -69,75 +69,154 @@
 
 ---
 
-## 3) Routing Rules (go_router)
+## 3) Quy tắc Routing (go_router)
 
-- **Single source of truth** for route names/paths/params:
+- **Một nguồn sự thật duy nhất** cho route names/paths/params:
   - `packages/share/lib/routes/app_routes.dart`
 
-- **Router config location**:
+- **Vị trí cấu hình router**:
   - `apps/customer_app/lib/routes/app_router.dart`
 
 - **Tabs**:
-  - Use `StatefulShellRoute.indexedStack`.
-  - The shell widget lives in a feature package, but route wiring and guards stay in the app router.
+  - Dùng `StatefulShellRoute.indexedStack`.
+  - Widget “shell” nằm trong package feature, nhưng phần wiring route và guards giữ ở app router.
 
-- **No navigation in Domain**:
-  - Domain code must never call `context.go`, `GoRouter`, or `AppRoutes`.
+- **Không điều hướng trong Domain**:
+  - Code trong domain tuyệt đối không được gọi `context.go`, `GoRouter`, hoặc `AppRoutes`.
 
 ---
 
-## 4) DI Rules (get_it + injectable)
+## 4) Quy tắc DI (get_it + injectable)
 
-- **Dependency registration** happens in:
+- **Đăng ký dependency** thực hiện tại:
   - `apps/customer_app/lib/di/dependency_manager.dart`
 
-- **Presentation injection**:
-  - Bloc/Cubit should be provided from the app layer (router/builders), not created ad-hoc inside pages (except very local widgets).
+- **Inject ở presentation**:
+  - Bloc/Cubit nên được provide từ app layer (router/builders), không tạo tuỳ tiện bên trong pages (trừ các widget rất cục bộ).
 
-- **No service locator in Domain**:
-  - Domain layer must not call `locator<T>()`.
+- **Không dùng service locator trong Domain**:
+  - Domain layer không được gọi `locator<T>()`.
 
 ---
 
-## 5) Codegen / Generated Files
+## 5) Codegen / File sinh tự động
 
-- Never manually edit generated files:
+- Không bao giờ sửa thủ công các file sinh tự động:
   - `*.g.dart`, `*.freezed.dart`, `injector.config.dart`
-- If codegen output is wrong, update the source files and rerun build_runner (ask user before running commands).
+- Nếu output codegen sai, hãy cập nhật file nguồn rồi chạy lại build_runner (hỏi user trước khi chạy lệnh).
 
 ---
 
-## 6) Safety & Scope
+## 6) An toàn & phạm vi thay đổi
 
-- No mass refactors (rename/move lots of files) unless explicitly requested.
-- Do not run potentially destructive or stateful commands (Melos bootstrap, build_runner, pod install, etc.) without user approval.
-- Keep changes minimal and within the requested scope.
+- Không refactor diện rộng (đổi tên/di chuyển nhiều file) trừ khi được yêu cầu rõ ràng.
+- Không chạy các lệnh có thể phá huỷ hoặc làm thay đổi trạng thái (Melos bootstrap, build_runner, pod install, v.v.) khi chưa được user đồng ý.
+- Giữ thay đổi tối thiểu và đúng phạm vi yêu cầu.
 
 ---
 
-## 7) Coding Conventions
+## 7) Quy ước coding
 
-- **Naming**
+- **Đặt tên**
   - Entity: `*Entity`
   - DTO: `*Dto`
-  - Repository: `*Repository` (domain) and `*RepositoryImpl` (data)
-  - Mapper: `*Mapper` or `extension ... { toEntity() }`
+  - Repository: `*Repository` (domain) và `*RepositoryImpl` (data)
+  - Mapper: `*Mapper` hoặc `extension ... { toEntity() }`
 
-- **Error handling**
-  - Data layer returns `Either<ApiFailure, T>` (as used in this repo).
+- **Xử lý lỗi**
+  - Data layer trả về `Either<ApiFailure, T>` (đang dùng trong repo này).
 
-- **Tokens**
-  - Domain uses `JWT` (ValueObject) once parsed/wrapped.
-  - Infrastructure/storage persists `String` (`jwt.getValue()` when saving).
+- **Token**
+  - Domain dùng `JWT` (ValueObject) sau khi parse/wrap.
+  - Infrastructure/storage lưu `String` (`jwt.getValue()` khi lưu).
 
 ---
 
-## Assistant Behavior (Workflow)
+## 8) Quy ước UI / Presentation (Design System-first)
 
-When implementing a new screen/feature:
+- **Ưu tiên Theme/Design System trong `packages/design_system`**
+  - Button **tận dụng** `ElevatedButtonTheme` và `OutlinedButtonTheme` đã được thiết kế trong theme.
+  - Input **tận dụng** `TextField` mặc định theo theme (không tự set `InputDecoration` rải rác nếu không thật sự cần).
 
-- Confirm which **feature package** it belongs to.
-- Confirm which **route name/path** needs to be added in `AppRoutes`.
-- List files that will be modified before making wide changes.
-- Prefer editing existing code over introducing new files.
-- Do not dump large code blocks in chat unless explicitly requested.
+- **Không hardcode style khi không cần**
+  - Tránh hardcode màu (`Color(...)`), radius, elevation, padding, text style… nếu theme/token đã có.
+  - Nếu cần thay đổi diện rộng (ví dụ radius/padding chuẩn cho button), ưu tiên chỉnh trong design system/theme thay vì sửa từng screen.
+
+---
+
+## 9) Button rules (theo repo hiện có)
+
+- **Mặc định: dùng theme**
+  - Dùng `ElevatedButton(...)` / `OutlinedButton(...)` với style từ theme là chính.
+
+- **Khi cần style theo ngữ cảnh màn hình**
+  - Có thể dùng extension có sẵn: `packages/share/lib/extensions/button_styles.dart`
+    - `context.primaryButtonStyle`
+    - `context.secondaryButtonStyle`
+  - Không tạo các `styleFrom(...)` mới rải rác nếu style đó có thể đưa vào theme hoặc extension dùng chung.
+
+- **Quy ước dùng extension**
+  - Chỉ dùng `context.primaryButtonStyle` / `context.secondaryButtonStyle` khi thật sự cần override so với theme.
+  - Nếu một style được dùng ở nhiều nơi → nâng cấp thành theme/design system (không để extension “phình to” không kiểm soát).
+
+---
+
+## 10) Input / Form rules
+
+- **TextField / TextFormField**
+  - Dùng `TextField`/`TextFormField` theo theme mặc định.
+  - Tránh custom `decoration:` (labelStyle, border, fillColor, errorStyle…) ở từng màn hình nếu theme đã cover.
+
+- **Validation & lỗi**
+  - Hiển thị lỗi theo cơ chế chuẩn của Flutter form + theme.
+  - Message dùng lại nhiều → đưa vào localization/constant (không hardcode trùng lặp).
+
+---
+
+## 11) Quy ước layout: chia section rõ ràng
+
+- Trong `build()` của Page:
+  - Bố cục phải chia thành các **section** rõ ràng (header/content/actions/state…).
+  - Hạn chế nhồi quá nhiều widget lồng nhau trong 1 `build()`.
+
+- **Tách section ra widget**
+  - Mỗi section tương đối độc lập → tách thành widget trong:
+    - `packages/features/<feature>/lib/presentation/widgets/`
+  - Page chỉ nên làm nhiệm vụ:
+    - wire state (Bloc/Cubit)
+    - compose các section widgets
+    - xử lý UI-level navigation (nếu có)
+
+- **Đặt tên section theo vai trò UI**
+  - Ví dụ: `LoginHeaderSection`, `LoginFormSection`, `LoginActionsSection`, ...
+
+---
+
+## 12) State-driven UI (Loading / Empty / Error)
+
+- UI phải thể hiện rõ các trạng thái:
+  - `loading`: hiển thị loading theo pattern chung
+  - `empty`: có empty state rõ ràng
+  - `error`: có error state + retry action (nếu hợp lý)
+- Tránh trộn logic nghiệp vụ vào UI; UI chỉ phản ánh state từ Bloc/Cubit.
+
+---
+
+## 13) Những điều tránh (UI anti-patterns)
+
+- Không hardcode style trái với theme (màu, radius, text style) nếu theme/design system đã có.
+- Không copy-paste nguyên một cụm UI giữa nhiều feature:
+  - Nếu dùng chung → đưa về `design_system` hoặc widget dùng chung phù hợp.
+- Không tạo Bloc/Cubit tuỳ tiện sâu bên trong widget tree nếu không phải widget cực cục bộ (theo rule DI hiện có).
+
+---
+
+## Hành vi của Assistant (Quy trình làm việc)
+
+Khi implement một màn hình/feature mới:
+
+- Xác nhận nó thuộc **package feature** nào.
+- Xác nhận **route name/path** cần thêm trong `AppRoutes`.
+- Liệt kê các file sẽ sửa trước khi thực hiện thay đổi diện rộng.
+- Ưu tiên sửa code hiện có thay vì tạo file mới.
+- Không dán các khối code quá lớn trong chat trừ khi được yêu cầu rõ ràng.

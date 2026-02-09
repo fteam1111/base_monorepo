@@ -100,7 +100,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final result = await _logoutUseCase();
 
-    if (isClosed) return;
     result.fold(
       (error) => emit(AuthError(error.failureMessage.message)),
       (_) => emit(const AuthUnauthenticated()),

@@ -1,25 +1,14 @@
 {
   "@@locale": "vi",
-  "appTitle": "Ứng dụng Clean Architecture",
   "welcome": "Chào mừng",
   "login": "Đăng nhập",
   "logout": "Đăng xuất",
   "email": "Email",
   "password": "Mật khẩu",
   "enterEmail": "Nhập email của bạn",
-  "enterPassword": "Nhập mật khẩu của bạn",
-  "forgotPassword": "Quên mật khẩu?",
-  "dontHaveAccount": "Chưa có tài khoản?",
-  "signUp": "Đăng ký",
   "home": "Trang chủ",
   "settings": "Cài đặt",
   "language": "Ngôn ngữ",
-  "theme": "Giao diện",
-  "lightMode": "Chế độ sáng",
-  "darkMode": "Chế độ tối",
-  "systemDefault": "Theo hệ thống",
-  "authenticated": "Đã đăng nhập",
-  "notAuthenticated": "Chưa đăng nhập",
   "loading": "Đang tải...",
   "error": "Lỗi",
   "retry": "Thử lại",
@@ -28,22 +17,10 @@
   "next": "Tiếp theo",
   "skip": "Bỏ qua",
   "getStarted": "Bắt đầu",
-  "onboardingTitle1": "Chào mừng đến với Clean Architecture",
-  "onboardingDesc1": "Xây dựng ứng dụng Flutter có thể mở rộng và dễ bảo trì với kiến trúc chuẩn và tách biệt rõ ràng các lớp.",
-  "onboardingTitle2": "Cấu trúc package theo module",
-  "onboardingDesc2": "Mỗi tính năng được tách riêng trong package với đầy đủ domain, data và presentation, sử dụng Melos.",
-  "onboardingTitle3": "Quản lý state với BLoC",
-  "onboardingDesc3": "Quản lý state một cách phản ứng với pattern BLoC, đảm bảo code dễ đoán và dễ test.",
-  "onboardingTitle4": "Tầng network vững chắc",
-  "onboardingDesc4": "Tích hợp sẵn xử lý lỗi, retry, refresh token và interceptor cho việc gọi API mượt mà.",
-
   "parkingHistoryTitle": "Lịch sử",
-  "@parkingHistoryTitle": {
-    "description": "Tiêu đề màn hình lịch sử gửi xe"
-  },
   "enterVinToViewHistory": "Nhập mã VIN để xem lịch sử thao tác",
-  "@enterVinToViewHistory": {
-    "description": "Placeholder hướng dẫn người dùng nhập VIN để xem lịch sử"
-  }
+  "map": "Bản đồ",
+  "doList": "Danh sách DO",
+  "charging": "Sạc xe"
 }
 

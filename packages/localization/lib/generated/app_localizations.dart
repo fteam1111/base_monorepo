@@ -5,9 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'app_localizations_bn.dart';
 import 'app_localizations_en.dart';
-import 'app_localizations_es.dart';
 import 'app_localizations_vi.dart';
 
 // ignore_for_file: type=lint
@@ -96,239 +94,141 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('bn'),
     Locale('en'),
-    Locale('es'),
     Locale('vi'),
   ];
 
-  /// The application title
+  /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
-  /// **'Clean Architecture App'**
-  String get appTitle;
-
-  /// Welcome message
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome'**
+  /// **'Chào mừng'**
   String get welcome;
 
-  /// Login button text
+  /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'Đăng nhập'**
   String get login;
 
-  /// Logout button text
+  /// No description provided for @logout.
   ///
   /// In en, this message translates to:
-  /// **'Logout'**
+  /// **'Đăng xuất'**
   String get logout;
 
-  /// Email field label
+  /// No description provided for @email.
   ///
   /// In en, this message translates to:
   /// **'Email'**
   String get email;
 
-  /// Password field label
+  /// No description provided for @password.
   ///
   /// In en, this message translates to:
-  /// **'Password'**
+  /// **'Mật khẩu'**
   String get password;
 
-  /// Email field hint
+  /// No description provided for @enterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email'**
+  /// **'Nhập email của bạn'**
   String get enterEmail;
 
-  /// Password field hint
+  /// No description provided for @home.
   ///
   /// In en, this message translates to:
-  /// **'Enter your password'**
-  String get enterPassword;
-
-  /// Forgot password link
-  ///
-  /// In en, this message translates to:
-  /// **'Forgot Password?'**
-  String get forgotPassword;
-
-  /// Sign up prompt
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t have an account?'**
-  String get dontHaveAccount;
-
-  /// Sign up button text
-  ///
-  /// In en, this message translates to:
-  /// **'Sign Up'**
-  String get signUp;
-
-  /// Home page title
-  ///
-  /// In en, this message translates to:
-  /// **'Home'**
+  /// **'Trang chủ'**
   String get home;
 
-  /// Settings page title
+  /// No description provided for @settings.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'Cài đặt'**
   String get settings;
 
-  /// Language settings
+  /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
+  /// **'Ngôn ngữ'**
   String get language;
 
-  /// Theme settings
+  /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
-
-  /// Light theme option
-  ///
-  /// In en, this message translates to:
-  /// **'Light Mode'**
-  String get lightMode;
-
-  /// Dark theme option
-  ///
-  /// In en, this message translates to:
-  /// **'Dark Mode'**
-  String get darkMode;
-
-  /// System default option
-  ///
-  /// In en, this message translates to:
-  /// **'System Default'**
-  String get systemDefault;
-
-  /// Authentication status - authenticated
-  ///
-  /// In en, this message translates to:
-  /// **'Authenticated'**
-  String get authenticated;
-
-  /// Authentication status - not authenticated
-  ///
-  /// In en, this message translates to:
-  /// **'Not Authenticated'**
-  String get notAuthenticated;
-
-  /// Loading indicator text
-  ///
-  /// In en, this message translates to:
-  /// **'Loading...'**
+  /// **'Đang tải...'**
   String get loading;
 
-  /// Generic error text
+  /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
+  /// **'Lỗi'**
   String get error;
 
-  /// Retry button text
+  /// No description provided for @retry.
   ///
   /// In en, this message translates to:
-  /// **'Retry'**
+  /// **'Thử lại'**
   String get retry;
 
-  /// Cancel button text
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
+  /// **'Hủy'**
   String get cancel;
 
-  /// Save button text
+  /// No description provided for @save.
   ///
   /// In en, this message translates to:
-  /// **'Save'**
+  /// **'Lưu'**
   String get save;
 
-  /// Next button text
+  /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'Next'**
+  /// **'Tiếp theo'**
   String get next;
 
-  /// Skip button text
+  /// No description provided for @skip.
   ///
   /// In en, this message translates to:
-  /// **'Skip'**
+  /// **'Bỏ qua'**
   String get skip;
 
-  /// Get started button text
+  /// No description provided for @getStarted.
   ///
   /// In en, this message translates to:
-  /// **'Get Started'**
+  /// **'Bắt đầu'**
   String get getStarted;
 
-  /// First onboarding page title
+  /// No description provided for @parkingHistoryTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Clean Architecture'**
-  String get onboardingTitle1;
-
-  /// First onboarding page description
-  ///
-  /// In en, this message translates to:
-  /// **'Build scalable and maintainable Flutter apps with proper architecture patterns and separation of concerns.'**
-  String get onboardingDesc1;
-
-  /// Second onboarding page title
-  ///
-  /// In en, this message translates to:
-  /// **'Modular Package Structure'**
-  String get onboardingTitle2;
-
-  /// Second onboarding page description
-  ///
-  /// In en, this message translates to:
-  /// **'Each feature is isolated in its own package with domain, data, and presentation layers using Melos.'**
-  String get onboardingDesc2;
-
-  /// Third onboarding page title
-  ///
-  /// In en, this message translates to:
-  /// **'BLoC State Management'**
-  String get onboardingTitle3;
-
-  /// Third onboarding page description
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your app state reactively with BLoC pattern, ensuring predictable and testable code.'**
-  String get onboardingDesc3;
-
-  /// Fourth onboarding page title
-  ///
-  /// In en, this message translates to:
-  /// **'Robust Network Layer'**
-  String get onboardingTitle4;
-
-  /// Fourth onboarding page description
-  ///
-  /// In en, this message translates to:
-  /// **'Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.'**
-  String get onboardingDesc4;
-
-  /// Title for parking history screen
-  ///
-  /// In en, this message translates to:
-  /// **'History'**
+  /// **'Lịch sử'**
   String get parkingHistoryTitle;
 
-  /// Placeholder guiding user to enter VIN to see history
+  /// No description provided for @enterVinToViewHistory.
   ///
   /// In en, this message translates to:
-  /// **'Enter VIN to view activity history'**
+  /// **'Nhập mã VIN để xem lịch sử thao tác'**
   String get enterVinToViewHistory;
+
+  /// No description provided for @map.
+  ///
+  /// In en, this message translates to:
+  /// **'Bản đồ'**
+  String get map;
+
+  /// No description provided for @doList.
+  ///
+  /// In en, this message translates to:
+  /// **'Danh sách DO'**
+  String get doList;
+
+  /// No description provided for @charging.
+  ///
+  /// In en, this message translates to:
+  /// **'Sạc xe'**
+  String get charging;
 }
 
 class _AppLocalizationsDelegate
@@ -342,7 +242,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['bn', 'en', 'es', 'vi'].contains(locale.languageCode);
+      <String>['en', 'vi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -351,12 +251,8 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'bn':
-      return AppLocalizationsBn();
     case 'en':
       return AppLocalizationsEn();
-    case 'es':
-      return AppLocalizationsEs();
     case 'vi':
       return AppLocalizationsVi();
   }

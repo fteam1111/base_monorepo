@@ -18,8 +18,8 @@ class AppLightTheme {
       onPrimaryContainer: AppColors.onBackgroundLight,
       secondary: AppColors.secondaryLight,
       onSecondary: AppColors.onSecondaryLight,
-      secondaryContainer: AppColors.secondaryContainerLight,
-      onSecondaryContainer: AppColors.onBackgroundLight,
+      secondaryContainer: AppColors.primaryLight,
+      onSecondaryContainer: AppColors.primaryDark,
       tertiary: AppColors.tertiaryLight,
       onTertiary: AppColors.onPrimaryLight,
       tertiaryContainer: AppColors.tertiaryContainerLight,
@@ -137,10 +137,7 @@ class AppLightTheme {
           borderRadius: BorderRadius.circular(AppRadius.input),
           borderSide: BorderSide(color: colorScheme.error, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         hintStyle: AppTypography.bodyMedium.copyWith(
           color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
         ),

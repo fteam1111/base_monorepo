@@ -147,8 +147,8 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             name: AppRoutes.login,
-            child: BlocProvider(
-              create: (_) => locator<AuthBloc>(),
+            child: BlocProvider.value(
+              value: context.read<AuthBloc>(),
               child: LoginPage(
                 baseUrl: locator<BaseConfig>().baseUrl,
                 loginUrl: locator<BaseConfig>().loginUrl,
