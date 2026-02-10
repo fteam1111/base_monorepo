@@ -12,32 +12,59 @@ import 'package:flutter/services.dart';
 class AppLightTheme {
   static ThemeData get theme {
     final colorScheme = const ColorScheme.light(
+      // Màu brand chính (CTA chính, trạng thái selected)
       primary: AppColors.primaryLight,
+      // Màu chữ/icon trên nền `primary`
       onPrimary: AppColors.onPrimaryLight,
+      // Nền nhấn nhẹ theo primary (chip, highlight nhẹ)
       primaryContainer: AppColors.primaryContainerLight,
+      // Màu chữ/icon trên nền `primaryContainer`
       onPrimaryContainer: AppColors.onBackgroundLight,
+      // Màu nhấn phụ (CTA phụ, trạng thái phụ)
       secondary: AppColors.secondaryLight,
+      // Màu chữ/icon trên nền `secondary`
       onSecondary: AppColors.onSecondaryLight,
+      // Nền nhấn theo secondary (selected chip, highlight)
       secondaryContainer: AppColors.primaryLight,
+      // Màu chữ/icon trên nền `secondaryContainer`
       onSecondaryContainer: AppColors.primaryDark,
+      // Màu nhấn thứ ba (ít dùng/tuỳ màn)
       tertiary: AppColors.tertiaryLight,
+      // Màu chữ/icon trên nền `tertiary`
       onTertiary: AppColors.onPrimaryLight,
+      // Nền nhấn nhẹ theo tertiary
       tertiaryContainer: AppColors.tertiaryContainerLight,
+      // Màu chữ/icon trên nền `tertiaryContainer`
       onTertiaryContainer: AppColors.onBackgroundLight,
+      // Trạng thái lỗi/nguy hiểm (error text, destructive action)
       error: AppColors.errorLight,
+      // Màu chữ/icon trên nền `error`
       onError: AppColors.onErrorLight,
+      // Nền lỗi nhẹ (banner/thông báo lỗi)
       errorContainer: AppColors.errorContainerLight,
+      // Màu chữ/icon trên nền `errorContainer`
       onErrorContainer: AppColors.onBackgroundLight,
+      // Nền bề mặt mặc định (scaffold, card)
       surface: AppColors.surfaceLight,
+      // Màu chữ/icon trên nền `surface`
       onSurface: AppColors.onSurfaceLight,
+      // Nền bề mặt biến thể/elevated (input, container)
       surfaceContainerHighest: AppColors.surfaceVariantLight,
+      // Màu chữ/icon trên nền `surfaceVariant`
       onSurfaceVariant: AppColors.onSurfaceLight,
+      // Viền/border chính (input, card)
       outline: AppColors.outlineLight,
+      // Viền/divider nhẹ
       outlineVariant: AppColors.outlineVariantLight,
+      // Màu shadow
       shadow: AppColors.shadowLight,
+      // Lớp phủ nền (modal backdrop)
       scrim: AppColors.scrimLight,
+      // Nền đảo màu (snackbar, surface tối trên light theme)
       inverseSurface: AppColors.inverseSurfaceLight,
+      // Màu chữ/icon trên nền `inverseSurface`
       onInverseSurface: AppColors.onBackgroundDark,
+      // Primary khi hiển thị trên nền đảo màu
       inversePrimary: AppColors.inversePrimaryLight,
     );
 
@@ -60,7 +87,7 @@ class AppLightTheme {
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.backgroundLight,
+        backgroundColor: AppColors.surfaceVariantLight,
         foregroundColor: colorScheme.onSurface,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: AppTypography.titleLarge.copyWith(

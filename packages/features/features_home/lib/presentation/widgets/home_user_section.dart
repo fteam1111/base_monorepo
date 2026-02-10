@@ -16,7 +16,7 @@ class HomeUserSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: AppSpacing.cardMargin),
+      margin: const EdgeInsets.symmetric(vertical: AppSpacing.cardMargin),
       padding: EdgeInsets.all(context.appSpacing.cardPadding),
       decoration: BoxDecoration(
         color: context.appColors.cardBackground,

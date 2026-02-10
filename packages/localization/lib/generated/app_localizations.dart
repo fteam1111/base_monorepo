@@ -101,19 +101,19 @@ abstract class AppLocalizations {
   /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
-  /// **'Chào mừng'**
+  /// **'Welcome'**
   String get welcome;
 
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Đăng nhập'**
+  /// **'Login'**
   String get login;
 
   /// No description provided for @logout.
   ///
   /// In en, this message translates to:
-  /// **'Đăng xuất'**
+  /// **'Logout'**
   String get logout;
 
   /// No description provided for @email.
@@ -125,110 +125,248 @@ abstract class AppLocalizations {
   /// No description provided for @password.
   ///
   /// In en, this message translates to:
-  /// **'Mật khẩu'**
+  /// **'Password'**
   String get password;
 
   /// No description provided for @enterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Nhập email của bạn'**
+  /// **'Enter your email'**
   String get enterEmail;
 
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
-  /// **'Trang chủ'**
+  /// **'Home'**
   String get home;
 
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
-  /// **'Cài đặt'**
+  /// **'Settings'**
   String get settings;
 
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'Ngôn ngữ'**
+  /// **'Language'**
   String get language;
 
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Đang tải...'**
+  /// **'Loading...'**
   String get loading;
 
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Lỗi'**
+  /// **'Error'**
   String get error;
 
   /// No description provided for @retry.
   ///
   /// In en, this message translates to:
-  /// **'Thử lại'**
+  /// **'Retry'**
   String get retry;
 
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Hủy'**
+  /// **'Cancel'**
   String get cancel;
 
   /// No description provided for @save.
   ///
   /// In en, this message translates to:
-  /// **'Lưu'**
+  /// **'Save'**
   String get save;
 
   /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'Tiếp theo'**
+  /// **'Next'**
   String get next;
 
   /// No description provided for @skip.
   ///
   /// In en, this message translates to:
-  /// **'Bỏ qua'**
+  /// **'Skip'**
   String get skip;
 
   /// No description provided for @getStarted.
   ///
   /// In en, this message translates to:
-  /// **'Bắt đầu'**
+  /// **'Get Started'**
   String get getStarted;
 
   /// No description provided for @parkingHistoryTitle.
   ///
   /// In en, this message translates to:
-  /// **'Lịch sử'**
+  /// **'History'**
   String get parkingHistoryTitle;
 
   /// No description provided for @enterVinToViewHistory.
   ///
   /// In en, this message translates to:
-  /// **'Nhập mã VIN để xem lịch sử thao tác'**
+  /// **'Enter VIN to view history'**
   String get enterVinToViewHistory;
 
   /// No description provided for @map.
   ///
   /// In en, this message translates to:
-  /// **'Bản đồ'**
+  /// **'Map'**
   String get map;
 
   /// No description provided for @doList.
   ///
   /// In en, this message translates to:
-  /// **'Danh sách DO'**
+  /// **'DO List'**
   String get doList;
 
   /// No description provided for @charging.
   ///
   /// In en, this message translates to:
-  /// **'Sạc xe'**
+  /// **'Charging'**
   String get charging;
+
+  /// No description provided for @vehicleDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Details'**
+  String get vehicleDetailTitle;
+
+  /// No description provided for @vinIdentifier.
+  ///
+  /// In en, this message translates to:
+  /// **'VIN IDENTIFIER'**
+  String get vinIdentifier;
+
+  /// No description provided for @vehicleModel.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLE MODEL'**
+  String get vehicleModel;
+
+  /// No description provided for @vehicleColor.
+  ///
+  /// In en, this message translates to:
+  /// **'COLOR'**
+  String get vehicleColor;
+
+  /// No description provided for @batteryCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'BATTERY CAPACITY'**
+  String get batteryCapacity;
+
+  /// No description provided for @aging.
+  ///
+  /// In en, this message translates to:
+  /// **'AGING'**
+  String get aging;
+
+  /// No description provided for @currentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT LOCATION'**
+  String get currentLocation;
+
+  /// No description provided for @availableActions.
+  ///
+  /// In en, this message translates to:
+  /// **'AVAILABLE ACTIONS'**
+  String get availableActions;
+
+  /// No description provided for @moveToExportArea.
+  ///
+  /// In en, this message translates to:
+  /// **'MOVE TO EXPORT WAITING AREA'**
+  String get moveToExportArea;
+
+  /// No description provided for @prepareForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'PREPARE FOR DELIVERY TRANSPORT'**
+  String get prepareForDelivery;
+
+  /// No description provided for @moveToQCArea.
+  ///
+  /// In en, this message translates to:
+  /// **'MOVE TO QC AREA'**
+  String get moveToQCArea;
+
+  /// No description provided for @recheckQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'RECHECK QUALITY'**
+  String get recheckQuality;
+
+  /// No description provided for @chooseParkingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'CHOOSE PARKING LOCATION'**
+  String get chooseParkingLocation;
+
+  /// No description provided for @businessAreaClassification.
+  ///
+  /// In en, this message translates to:
+  /// **'BUSINESS AREA CLASSIFICATION'**
+  String get businessAreaClassification;
+
+  /// No description provided for @finishedProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'FINISHED PRODUCT'**
+  String get finishedProduct;
+
+  /// No description provided for @chargingDischarging.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING/DISCHARGING'**
+  String get chargingDischarging;
+
+  /// No description provided for @exportWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPORT WAITING'**
+  String get exportWaiting;
+
+  /// No description provided for @qcArea.
+  ///
+  /// In en, this message translates to:
+  /// **'QC AREA'**
+  String get qcArea;
+
+  /// No description provided for @chargingStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING'**
+  String get chargingStatus;
+
+  /// No description provided for @entryTime.
+  ///
+  /// In en, this message translates to:
+  /// **'ENTRY TIME'**
+  String get entryTime;
+
+  /// No description provided for @remainingSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'REMAINING SLOTS'**
+  String get remainingSlots;
+
+  /// No description provided for @capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'CAPACITY'**
+  String get capacity;
+
+  /// No description provided for @deliveryOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} DELIVERY ORDERS (DO)'**
+  String deliveryOrders(Object count);
 }
 
 class _AppLocalizationsDelegate

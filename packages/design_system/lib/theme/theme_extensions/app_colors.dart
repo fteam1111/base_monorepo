@@ -5,31 +5,51 @@ import 'package:design_system/theme/tokens/colors.dart';
 /// Access via: Theme.of(context).extension`<AppColorsExtension>`()
 @immutable
 class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
+  // Nền ứng dụng (nền của scaffold/page)
   final Color background;
 
+  // Trạng thái thành công (ví dụ: text/icon thành công, badge)
   final Color success;
+  // Nền trạng thái thành công nhẹ (ví dụ: nền chip/banner thành công)
   final Color successContainer;
+  // Màu chữ/icon trên nền success
   final Color onSuccess;
+  // Màu chữ/icon trên nền successContainer
   final Color onSuccessContainer;
 
+  // Trạng thái cảnh báo (ví dụ: text/icon cảnh báo, badge)
   final Color warning;
+  // Nền trạng thái cảnh báo nhẹ (ví dụ: nền chip/banner cảnh báo)
   final Color warningContainer;
+  // Màu chữ/icon trên nền warning
   final Color onWarning;
+  // Màu chữ/icon trên nền warningContainer
   final Color onWarningContainer;
 
+  // Trạng thái thông tin (ví dụ: text/icon thông tin)
   final Color info;
+  // Nền trạng thái thông tin nhẹ (ví dụ: nền chip/banner thông tin)
   final Color infoContainer;
+  // Màu chữ/icon trên nền info
   final Color onInfo;
+  // Màu chữ/icon trên nền infoContainer
   final Color onInfoContainer;
 
+  // Màu trung tính để nhấn mạnh text/icon
   final Color neutral;
+  // Các bề mặt trung tính phụ trợ
   final Color neutralVariant;
 
+  // Nền của Card
   final Color cardBackground;
+  // Nền của Dialog
   final Color dialogBackground;
+  // Nền của Bottom Sheet
   final Color bottomSheetBackground;
 
+  // Màu của Divider (đường kẻ phân cách)
   final Color divider;
+  // Màu của viền/border (input, card)
   final Color border;
 
   const AppColorsExtension({

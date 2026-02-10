@@ -12,7 +12,7 @@ class CustomFloatingActionButton extends StatelessWidget {
     return Visibility(
       visible: !context.isKeyboardVisible,
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: onPressed,
         backgroundColor: AppColors.backgroundLight,
         elevation: 0,
         child: SizedBox(
