@@ -144,4 +144,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String deliveryOrders(Object count) {
     return '$count DELIVERY ORDERS (DO)';
   }
+
+  @override
+  String get youSelectedParkingSlot => 'You have selected a parking slot';
+
+  @override
+  String get factory => 'Factory';
+
+  @override
+  String get area => 'Area';
+
+  @override
+  String get position => 'Position';
+
+  @override
+  String get parkingSelectionNote =>
+      'By selecting \"Confirm parking slot reservation\", the system will hold this empty slot for you for 15 minutes to perform vehicle operations.';
+
+  @override
+  String get confirmParkingSelection => 'Confirm parking slot reservation';
 }

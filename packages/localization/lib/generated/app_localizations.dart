@@ -367,6 +367,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} DELIVERY ORDERS (DO)'**
   String deliveryOrders(Object count);
+
+  /// No description provided for @youSelectedParkingSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'You have selected a parking slot'**
+  String get youSelectedParkingSlot;
+
+  /// No description provided for @factory.
+  ///
+  /// In en, this message translates to:
+  /// **'Factory'**
+  String get factory;
+
+  /// No description provided for @area.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get area;
+
+  /// No description provided for @position.
+  ///
+  /// In en, this message translates to:
+  /// **'Position'**
+  String get position;
+
+  /// No description provided for @parkingSelectionNote.
+  ///
+  /// In en, this message translates to:
+  /// **'By selecting \"Confirm parking slot reservation\", the system will hold this empty slot for you for 15 minutes to perform vehicle operations.'**
+  String get parkingSelectionNote;
+
+  /// No description provided for @confirmParkingSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm parking slot reservation'**
+  String get confirmParkingSelection;
 }
 
 class _AppLocalizationsDelegate

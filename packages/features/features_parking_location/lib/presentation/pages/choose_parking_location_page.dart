@@ -3,6 +3,7 @@ import 'package:features_parking_location/presentation/widgets/parking_grid_item
 import 'package:features_parking_location/presentation/widgets/parking_list_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_export_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_qc_item.dart';
+import 'package:features_parking_location/presentation/widgets/parking_selection_bottom_sheet.dart';
 import 'package:features_parking_location/presentation/widgets/parking_tab_bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -88,6 +89,14 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
               label: 'A${index + 1}',
               current: (index + 1) * 20,
               total: 400,
+              onPressed: () {
+                ParkingSelectionBottomSheet.show(
+                  context,
+                  factory: 'GA',
+                  area: '12B-12C',
+                  position: '${index + 1}',
+                );
+              },
             ),
             childCount: 100,
           ),
