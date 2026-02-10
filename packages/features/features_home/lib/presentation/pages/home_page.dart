@@ -26,13 +26,13 @@ class HomePage extends StatelessWidget {
             title: context.l10n.home,
             showLogout: true,
             onLogoutPressed: () {
-              context.read<AuthBloc>().add(AuthLogoutRequested());
+              context.read<AuthBloc>().add(const AuthLogoutRequested());
             },
           ),
           Expanded(
             child: CustomScrollView(
               slivers: [
-                HomeUserSection(
+                const HomeUserSection(
                   userName: 'Nguyen Van B',
                   location: 'Nhà máy Hà Tĩnh',
                 ).toSliverPadding(
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const HomeMenuGridSliverSection(),
-                Gap(AppSpacing.sectionSpacing).toSliverNoPadding(),
+                const Gap(AppSpacing.sectionSpacing).toSliverNoPadding(),
               ],
             ),
           ),

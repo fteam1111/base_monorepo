@@ -31,11 +31,10 @@ class AppBarHomeSection extends StatelessWidget {
       height: appBarHeight,
       child: LayoutBuilder(
         builder: (context, constrains) {
-          final double logoHeight =
-              appBarHeight / 2 * (constrains.maxWidth / 411);
+          final logoHeight = appBarHeight / 2 * (constrains.maxWidth / 411);
           return Stack(
             children: [
-              _BackgroundSection(),
+              const _BackgroundSection(),
               _LogoSection(logoHeight: logoHeight),
               _ContentSection(
                 title: title,
@@ -84,7 +83,7 @@ class _LogoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: AppSpacing.paddingXXXS,
         bottom: AppSpacing.paddingXS,
       ),
@@ -171,7 +170,7 @@ class _LanguageSwitchSection extends StatelessWidget {
               );
             },
             showSelectedIcon: false,
-            style: ButtonStyle(visualDensity: VisualDensity.compact),
+            style: const ButtonStyle(visualDensity: VisualDensity.compact),
           ),
         );
       },
