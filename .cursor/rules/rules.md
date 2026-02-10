@@ -99,6 +99,79 @@
 
 ---
 
+## 4.1) Quy tắc Flutter BLoC (structure + DI + provider)
+
+### 1) Tổ chức file/thư mục
+
+- **Vị trí**
+  - BLoC đặt trong:
+    - `packages/features/<feature>/lib/presentation/bloc/`
+
+- **Tách file theo chuẩn**
+  - Một BLoC tách thành 3 file:
+    - `<name>_bloc.dart`
+    - `<name>_event.dart`
+    - `<name>_state.dart`
+
+- **Dùng `part`/`part of` (theo style hiện có như `AuthBloc`)**
+  - Trong `<name>_bloc.dart`:
+    - `part '<name>_event.dart';`
+    - `part '<name>_state.dart';`
+  - Trong `<name>_event.dart` và `<name>_state.dart`:
+    - `part of '<name>_bloc.dart';`
+
+### 2) Quy ước đặt tên
+
+- **Tên file**: snake_case
+  - Ví dụ: `auth_bloc.dart`, `auth_event.dart`, `auth_state.dart`
+- **Tên class**: PascalCase
+  - Ví dụ: `AuthBloc`, `AuthEvent`, `AuthState`
+
+### 3) Quy tắc Event/State
+
+- **Event**
+  - Đặt tên theo hành vi người dùng / yêu cầu hệ thống, thường dạng `*Requested` hoặc `*Changed`.
+  - Event nên là immutable và ưu tiên `const` constructor.
+
+- **State**
+  - Phải có `Initial` state.
+  - Các state đại diện rõ UI status (ví dụ: `Loading`, `Authenticated`, `Unauthenticated`, `Error`).
+  - State nên immutable và ưu tiên `const` constructor.
+
+### 4) Inject dependency cho BLoC
+
+- **Không khởi tạo UseCase/Repository trong BLoC**.
+- Nếu BLoC có dùng `UseCase` / `Repository` / `Service` (như `AuthBloc`) thì **tất cả phải được inject qua constructor**.
+
+### 5) Rule đăng ký DI tại `DependencyManager`
+
+- Dependencies đăng ký theo thứ tự:
+  - **DataSource** -> **Repository** -> **UseCase** -> **Bloc/Cubit**
+
+- Chọn scope đăng ký BLoC đúng mục đích:
+  - **`registerLazySingleton<Bloc>`**
+    - Khi cần giữ state xuyên suốt vòng đời app (ví dụ: `AuthBloc`, `LocalizationBloc`).
+  - **`registerFactory<Bloc>`**
+    - Khi muốn tạo mới mỗi lần dùng / mỗi lần vào màn hình (ví dụ: `SplashBloc`).
+
+### 6) Rule cung cấp BlocProvider trong app
+
+- **Global BLoC**
+  - Provide ở cấp app (thường `CustomApp` / root widget) bằng `MultiBlocProvider`.
+  - Lấy instance từ DI: `locator<YourBloc>()`.
+
+- **Page/feature-scoped BLoC**
+  - Provide tại page bằng `BlocProvider(create: (_) => locator<YourBloc>())`.
+
+### 7) Handler pattern
+
+- Đăng ký handler trong constructor:
+  - `on<EventName>(_onEventName);`
+- Logic phức tạp tách thành private method:
+  - `_onEventName(EventName event, Emitter<State> emit)`
+
+---
+
 ## 5) Codegen / File sinh tự động
 
 - Không bao giờ sửa thủ công các file sinh tự động:
@@ -141,6 +214,16 @@
 - **Không hardcode style khi không cần**
   - Tránh hardcode màu (`Color(...)`), radius, elevation, padding, text style… nếu theme/token đã có.
   - Nếu cần thay đổi diện rộng (ví dụ radius/padding chuẩn cho button), ưu tiên chỉnh trong design system/theme thay vì sửa từng screen.
+
+- **Tránh API deprecated (Flutter/Dart)**
+  - Không dùng các API đã bị đánh dấu deprecated (IDE sẽ báo gạch vàng / warning).
+  - Ví dụ phổ biến: **không dùng** `Color.withOpacity(...)`.
+    - Ưu tiên thay bằng:
+      - `color.withValues(alpha: <0..1>)` (nếu project Flutter version hỗ trợ)
+      - hoặc `Color.fromARGB(a, r, g, b)` / `color.withAlpha(a)` (khi cần alpha theo 0..255)
+  - Khi thấy warning deprecated:
+    - Tìm API thay thế theo gợi ý của analyzer/IDE.
+    - Không suppress warning bằng ignore trừ khi có lý do rõ ràng và được yêu cầu.
 
 ---
 

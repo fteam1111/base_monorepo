@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:features_map/features_map.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -170,6 +171,9 @@ class DependencyManager {
     locator.registerLazySingleton<ThemeCubit>(
       () => ThemeCubit(locator<ThemeStorage>()),
     );
+
+    // Map BLoC - Factory (new instance per page)
+    locator.registerFactory<MapBloc>(() => MapBloc());
 
     // Deep Linking
     locator.registerLazySingleton(() => DeepLinkingService());

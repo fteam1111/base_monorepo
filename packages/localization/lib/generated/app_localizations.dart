@@ -197,7 +197,7 @@ abstract class AppLocalizations {
   /// No description provided for @getStarted.
   ///
   /// In en, this message translates to:
-  /// **'Get Started'**
+  /// **'Get started'**
   String get getStarted;
 
   /// No description provided for @parkingHistoryTitle.
@@ -221,7 +221,7 @@ abstract class AppLocalizations {
   /// No description provided for @doList.
   ///
   /// In en, this message translates to:
-  /// **'DO List'**
+  /// **'DO list'**
   String get doList;
 
   /// No description provided for @charging.
@@ -233,139 +233,139 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleDetailTitle.
   ///
   /// In en, this message translates to:
-  /// **'Vehicle Details'**
+  /// **'Vehicle details'**
   String get vehicleDetailTitle;
 
   /// No description provided for @vinIdentifier.
   ///
   /// In en, this message translates to:
-  /// **'VIN IDENTIFIER'**
+  /// **'Vin identifier'**
   String get vinIdentifier;
 
   /// No description provided for @vehicleModel.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLE MODEL'**
+  /// **'Vehicle model'**
   String get vehicleModel;
 
   /// No description provided for @vehicleColor.
   ///
   /// In en, this message translates to:
-  /// **'COLOR'**
+  /// **'Color'**
   String get vehicleColor;
 
   /// No description provided for @batteryCapacity.
   ///
   /// In en, this message translates to:
-  /// **'BATTERY CAPACITY'**
+  /// **'Battery capacity'**
   String get batteryCapacity;
 
   /// No description provided for @aging.
   ///
   /// In en, this message translates to:
-  /// **'AGING'**
+  /// **'Aging'**
   String get aging;
 
   /// No description provided for @currentLocation.
   ///
   /// In en, this message translates to:
-  /// **'CURRENT LOCATION'**
+  /// **'Current location'**
   String get currentLocation;
 
   /// No description provided for @availableActions.
   ///
   /// In en, this message translates to:
-  /// **'AVAILABLE ACTIONS'**
+  /// **'Available actions'**
   String get availableActions;
 
   /// No description provided for @moveToExportArea.
   ///
   /// In en, this message translates to:
-  /// **'MOVE TO EXPORT WAITING AREA'**
+  /// **'Move to export waiting area'**
   String get moveToExportArea;
 
   /// No description provided for @prepareForDelivery.
   ///
   /// In en, this message translates to:
-  /// **'PREPARE FOR DELIVERY TRANSPORT'**
+  /// **'Prepare for delivery transport'**
   String get prepareForDelivery;
 
   /// No description provided for @moveToQCArea.
   ///
   /// In en, this message translates to:
-  /// **'MOVE TO QC AREA'**
+  /// **'Move to QC area'**
   String get moveToQCArea;
 
   /// No description provided for @recheckQuality.
   ///
   /// In en, this message translates to:
-  /// **'RECHECK QUALITY'**
+  /// **'Recheck quality'**
   String get recheckQuality;
 
   /// No description provided for @chooseParkingLocation.
   ///
   /// In en, this message translates to:
-  /// **'CHOOSE PARKING LOCATION'**
+  /// **'Choose parking location'**
   String get chooseParkingLocation;
 
   /// No description provided for @businessAreaClassification.
   ///
   /// In en, this message translates to:
-  /// **'BUSINESS AREA CLASSIFICATION'**
+  /// **'Business area classification'**
   String get businessAreaClassification;
 
   /// No description provided for @finishedProduct.
   ///
   /// In en, this message translates to:
-  /// **'FINISHED PRODUCT'**
+  /// **'Finished product'**
   String get finishedProduct;
 
   /// No description provided for @chargingDischarging.
   ///
   /// In en, this message translates to:
-  /// **'CHARGING/DISCHARGING'**
+  /// **'Charging/discharging'**
   String get chargingDischarging;
 
   /// No description provided for @exportWaiting.
   ///
   /// In en, this message translates to:
-  /// **'EXPORT WAITING'**
+  /// **'Export waiting'**
   String get exportWaiting;
 
   /// No description provided for @qcArea.
   ///
   /// In en, this message translates to:
-  /// **'QC AREA'**
+  /// **'QC area'**
   String get qcArea;
 
   /// No description provided for @chargingStatus.
   ///
   /// In en, this message translates to:
-  /// **'CHARGING'**
+  /// **'Charging'**
   String get chargingStatus;
 
   /// No description provided for @entryTime.
   ///
   /// In en, this message translates to:
-  /// **'ENTRY TIME'**
+  /// **'Entry time'**
   String get entryTime;
 
   /// No description provided for @remainingSlots.
   ///
   /// In en, this message translates to:
-  /// **'REMAINING SLOTS'**
+  /// **'Remaining slots'**
   String get remainingSlots;
 
   /// No description provided for @capacity.
   ///
   /// In en, this message translates to:
-  /// **'CAPACITY'**
+  /// **'Capacity'**
   String get capacity;
 
   /// No description provided for @deliveryOrders.
   ///
   /// In en, this message translates to:
-  /// **'{count} DELIVERY ORDERS (DO)'**
+  /// **'{count} delivery orders (DO)'**
   String deliveryOrders(Object count);
 
   /// No description provided for @youSelectedParkingSlot.
@@ -403,6 +403,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm parking slot reservation'**
   String get confirmParkingSelection;
+
+  /// No description provided for @factoryMapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Factory map'**
+  String get factoryMapTitle;
+
+  /// No description provided for @exportWaitingAreaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export waiting area'**
+  String get exportWaitingAreaSubtitle;
 }
 
 class _AppLocalizationsDelegate

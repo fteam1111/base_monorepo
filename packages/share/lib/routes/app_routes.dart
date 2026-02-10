@@ -22,6 +22,7 @@ class AppRoutes {
   static const String parkingHistory = 'parking-history';
   static const String vehicleDetail = 'vehicle-detail';
   static const String chooseParkingLocation = 'choose-parking-location';
+  static const String factoryMap = 'factory-map';
 
   // Auth Routes
   static const String login = 'login';
@@ -35,6 +36,7 @@ class AppRoutes {
   static const String parkingHistoryPath = '/parking-history';
   static const String vehicleDetailPath = '/vehicle-detail';
   static const String chooseParkingLocationPath = '/choose-parking-location';
+  static const String factoryMapPath = '/factory-map';
   static const String loginPath = '/login';
 
   // ==================== Route Parameters ====================
@@ -72,6 +74,10 @@ class AppRoutes {
 
   static void navigateToChooseParkingLocation(BuildContext context) {
     context.push(chooseParkingLocationPath);
+  }
+
+  static void navigateToFactoryMap(BuildContext context) {
+    context.push(factoryMapPath);
   }
 
   /// Navigate back

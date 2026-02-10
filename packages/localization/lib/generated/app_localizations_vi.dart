@@ -78,89 +78,95 @@ class AppLocalizationsVi extends AppLocalizations {
   String get vehicleDetailTitle => 'Chi tiết phương tiện';
 
   @override
-  String get vinIdentifier => 'MÃ ĐỊNH DANH VIN';
+  String get vinIdentifier => 'Mã định danh VIN';
 
   @override
-  String get vehicleModel => 'DÒNG XE';
+  String get vehicleModel => 'Dòng xe';
 
   @override
-  String get vehicleColor => 'MÀU SẮC';
+  String get vehicleColor => 'Màu sắc';
 
   @override
-  String get batteryCapacity => 'DUNG LƯỢNG PIN';
+  String get batteryCapacity => 'Dung lượng pin';
 
   @override
-  String get aging => 'AGING';
+  String get aging => 'Aging';
 
   @override
-  String get currentLocation => 'VỊ TRÍ HIỆN TẠI';
+  String get currentLocation => 'Vị trí hiện tại';
 
   @override
-  String get availableActions => 'THAO TÁC KHẢ DỤNG';
+  String get availableActions => 'Thao tác khả dụng';
 
   @override
-  String get moveToExportArea => 'DI CHUYỂN SANG KHU CHỜ XUẤT';
+  String get moveToExportArea => 'Di chuyển sang khu chờ xuất';
 
   @override
-  String get prepareForDelivery => 'CHUẨN BỊ BÀN GIAO VẬN CHUYỂN';
+  String get prepareForDelivery => 'Chuẩn bị bàn giao vận chuyển';
 
   @override
-  String get moveToQCArea => 'DI CHUYỂN SANG KHU QC';
+  String get moveToQCArea => 'Di chuyển sang khu QC';
 
   @override
-  String get recheckQuality => 'KIỂM TRA CHẤT LƯỢNG LẠI';
+  String get recheckQuality => 'Kiểm tra chất lượng lại';
 
   @override
-  String get chooseParkingLocation => 'CHỌN VỊ TRÍ ĐỖ';
+  String get chooseParkingLocation => 'Chọn vị trí đỗ';
 
   @override
-  String get businessAreaClassification => 'PHÂN LOẠI KHU VỰC NGHIỆP VỤ';
+  String get businessAreaClassification => 'Phân loại khu vực nghiệp vụ';
 
   @override
-  String get finishedProduct => 'THÀNH PHẨM';
+  String get finishedProduct => 'Thành phẩm';
 
   @override
-  String get chargingDischarging => 'SẠC XẢ';
+  String get chargingDischarging => 'Sạc xả';
 
   @override
-  String get exportWaiting => 'CHỜ XUẤT';
+  String get exportWaiting => 'Chờ xuất';
 
   @override
-  String get qcArea => 'KHU QC';
+  String get qcArea => 'Khu QC';
 
   @override
-  String get chargingStatus => 'ĐANG SẠC';
+  String get chargingStatus => 'Đang sạc';
 
   @override
-  String get entryTime => 'THỜI GIAN VÀO KHU';
+  String get entryTime => 'Thời gian vào khu';
 
   @override
-  String get remainingSlots => 'CÒN CHỖ';
+  String get remainingSlots => 'Còn chỗ';
 
   @override
-  String get capacity => 'SỨC CHỨA';
+  String get capacity => 'Sức chứa';
 
   @override
   String deliveryOrders(Object count) {
-    return '$count LỆNH GIAO HÀNG (DO)';
+    return '$count lệnh giao hàng (DO)';
   }
 
   @override
-  String get youSelectedParkingSlot => 'You have selected a parking slot';
+  String get youSelectedParkingSlot => 'Bạn đã chọn ô đỗ';
 
   @override
-  String get factory => 'Factory';
+  String get factory => 'Xưởng';
 
   @override
-  String get area => 'Area';
+  String get area => 'Khu vực';
 
   @override
-  String get position => 'Position';
+  String get position => 'Vị trí';
 
   @override
   String get parkingSelectionNote =>
-      'By selecting \"Confirm parking slot reservation\", the system will hold this empty slot for you for 15 minutes to perform vehicle operations.';
+      'Bằng việc chọn \"Xác nhận giữ ô đỗ xe\", hệ thống sẽ giữ ô trống này cho bạn trong 15 phút để bạn thực hiện thao tác với xe.';
 
   @override
-  String get confirmParkingSelection => 'Confirm parking slot reservation';
+  String get confirmParkingSelection => 'Xác nhận giữ ô đỗ xe';
+
+  @override
+  String get factoryMapTitle => 'Sơ đồ nhà máy';
+
+  @override
+  String get exportWaitingAreaSubtitle => 'Khu chờ xuất';
 }
