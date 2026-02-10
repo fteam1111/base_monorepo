@@ -109,4 +109,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recheckQuality => 'RECHECK QUALITY';
+
+  @override
+  String get chooseParkingLocation => 'CHOOSE PARKING LOCATION';
+
+  @override
+  String get businessAreaClassification => 'BUSINESS AREA CLASSIFICATION';
+
+  @override
+  String get finishedProduct => 'FINISHED PRODUCT';
+
+  @override
+  String get chargingDischarging => 'CHARGING/DISCHARGING';
+
+  @override
+  String get exportWaiting => 'EXPORT WAITING';
+
+  @override
+  String get qcArea => 'QC AREA';
+
+  @override
+  String get chargingStatus => 'CHARGING';
+
+  @override
+  String get entryTime => 'ENTRY TIME';
+
+  @override
+  String get remainingSlots => 'REMAINING SLOTS';
+
+  @override
+  String get capacity => 'CAPACITY';
+
+  @override
+  String deliveryOrders(Object count) {
+    return '$count DELIVERY ORDERS (DO)';
+  }
 }

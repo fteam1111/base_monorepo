@@ -16,6 +16,7 @@ workspace:
   - packages/features/features_home
   - packages/features/features_parking_history
   - packages/features/features_vehicle
+  - packages/features/features_parking_location
 
 dependencies:
   # DI

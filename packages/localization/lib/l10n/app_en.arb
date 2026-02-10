@@ -33,5 +33,16 @@
   "moveToExportArea": "MOVE TO EXPORT WAITING AREA",
   "prepareForDelivery": "PREPARE FOR DELIVERY TRANSPORT",
   "moveToQCArea": "MOVE TO QC AREA",
-  "recheckQuality": "RECHECK QUALITY"
+  "recheckQuality": "RECHECK QUALITY",
+  "chooseParkingLocation": "CHOOSE PARKING LOCATION",
+  "businessAreaClassification": "BUSINESS AREA CLASSIFICATION",
+  "finishedProduct": "FINISHED PRODUCT",
+  "chargingDischarging": "CHARGING/DISCHARGING",
+  "exportWaiting": "EXPORT WAITING",
+  "qcArea": "QC AREA",
+  "chargingStatus": "CHARGING",
+  "entryTime": "ENTRY TIME",
+  "remainingSlots": "REMAINING SLOTS",
+  "capacity": "CAPACITY",
+  "deliveryOrders": "{count} DELIVERY ORDERS (DO)"
 }

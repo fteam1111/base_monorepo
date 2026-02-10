@@ -44,8 +44,12 @@ class VehicleDetailPage extends StatelessWidget {
               ),
               const Gap(AppSpacing.sectionSpacing),
               VehicleActionsSection(
-                onMoveToAction: () {},
-                onMoveFromAction: () {},
+                onMoveToAction: () {
+                  AppRoutes.navigateToChooseParkingLocation(context);
+                },
+                onMoveFromAction: () {
+                  AppRoutes.navigateToChooseParkingLocation(context);
+                },
               ),
               const Gap(AppSpacing.sectionSpacing),
             ],

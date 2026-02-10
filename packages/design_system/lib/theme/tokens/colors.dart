@@ -2,6 +2,50 @@ import 'package:flutter/material.dart';
 
 /// Design token: Color palette for the application
 /// Following Material 3 color system
+/// =======================
+/// COLOR SEMANTIC CHEAT SHEET
+/// =======================
+///
+/// CORE (Action)
+/// primary               -> Action chính (CTA, button chính)
+/// onPrimary             -> Text/Icon trên primary
+/// primaryContainer      -> Background action phụ (FAB, selected state)
+/// onPrimaryContainer    -> Text trên primaryContainer
+///
+/// secondary             -> Action phụ
+/// tertiary              -> Trang trí / highlight nhẹ (badge, tag, accent)
+///
+/// SURFACE (Layer)
+/// background            -> Nền toàn app
+/// surface               -> Card, dialog, bottom sheet
+/// surfaceVariant        -> AppBar, input, container phụ
+/// onSurface             -> Text chính (title, body)
+/// onSurfaceVariant      -> Text phụ (subtitle, hint, disabled)
+///
+/// STATE
+/// error                 -> Lỗi, validation fail
+/// success               -> Thành công
+/// warning               -> Cảnh báo
+/// info                  -> Thông tin
+///
+/// OUTLINE
+/// outline               -> Border input, focus ring
+/// outlineVariant        -> Divider, separator
+///
+/// INVERSE
+/// inverseSurface        -> Snackbar, overlay
+/// onInverseSurface      -> Text trên overlay
+///
+/// NEUTRAL
+/// neutral50-60          -> Text phụ
+/// neutral80-90         -> Border nhẹ
+/// neutral99-100        -> White surface
+///
+/// RULE:
+/// Background = surface/background
+/// Text       = onX
+/// Action     = primary/secondary
+
 class AppColors {
   AppColors._();
 

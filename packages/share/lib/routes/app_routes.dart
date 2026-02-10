@@ -21,6 +21,7 @@ class AppRoutes {
   static const String home = 'home';
   static const String parkingHistory = 'parking-history';
   static const String vehicleDetail = 'vehicle-detail';
+  static const String chooseParkingLocation = 'choose-parking-location';
 
   // Auth Routes
   static const String login = 'login';
@@ -33,6 +34,7 @@ class AppRoutes {
   static const String homePath = '/home';
   static const String parkingHistoryPath = '/parking-history';
   static const String vehicleDetailPath = '/vehicle-detail';
+  static const String chooseParkingLocationPath = '/choose-parking-location';
   static const String loginPath = '/login';
 
   // ==================== Route Parameters ====================
@@ -66,6 +68,10 @@ class AppRoutes {
 
   static void navigateToVehicleDetail(BuildContext context) {
     context.push(vehicleDetailPath);
+  }
+
+  static void navigateToChooseParkingLocation(BuildContext context) {
+    context.push(chooseParkingLocationPath);
   }
 
   /// Navigate back

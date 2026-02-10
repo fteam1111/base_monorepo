@@ -301,6 +301,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'RECHECK QUALITY'**
   String get recheckQuality;
+
+  /// No description provided for @chooseParkingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'CHOOSE PARKING LOCATION'**
+  String get chooseParkingLocation;
+
+  /// No description provided for @businessAreaClassification.
+  ///
+  /// In en, this message translates to:
+  /// **'BUSINESS AREA CLASSIFICATION'**
+  String get businessAreaClassification;
+
+  /// No description provided for @finishedProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'FINISHED PRODUCT'**
+  String get finishedProduct;
+
+  /// No description provided for @chargingDischarging.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING/DISCHARGING'**
+  String get chargingDischarging;
+
+  /// No description provided for @exportWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPORT WAITING'**
+  String get exportWaiting;
+
+  /// No description provided for @qcArea.
+  ///
+  /// In en, this message translates to:
+  /// **'QC AREA'**
+  String get qcArea;
+
+  /// No description provided for @chargingStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING'**
+  String get chargingStatus;
+
+  /// No description provided for @entryTime.
+  ///
+  /// In en, this message translates to:
+  /// **'ENTRY TIME'**
+  String get entryTime;
+
+  /// No description provided for @remainingSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'REMAINING SLOTS'**
+  String get remainingSlots;
+
+  /// No description provided for @capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'CAPACITY'**
+  String get capacity;
+
+  /// No description provided for @deliveryOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} DELIVERY ORDERS (DO)'**
+  String deliveryOrders(Object count);
 }
 
 class _AppLocalizationsDelegate

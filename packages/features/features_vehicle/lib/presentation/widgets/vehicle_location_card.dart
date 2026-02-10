@@ -33,21 +33,8 @@ class VehicleLocationCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: AppSpacing.massive,
-            height: AppSpacing.massive,
-            decoration: BoxDecoration(
-              color: colorScheme.primaryContainer.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              border: Border.all(
-                color: colorScheme.primary.withValues(alpha: 0.2),
-              ),
-            ),
-            child: Icon(
-              Icons.local_parking,
-              color: colorScheme.primary,
-              size: AppSpacing.iconDefault,
-            ),
+          AppIconContainer(
+            icon: Icon(Icons.local_parking, color: colorScheme.primary),
           ),
           const Gap(AppSpacing.sectionPadding),
           Expanded(

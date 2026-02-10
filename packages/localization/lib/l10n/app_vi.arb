@@ -33,5 +33,16 @@
   "moveToExportArea": "DI CHUYỂN SANG KHU CHỜ XUẤT",
   "prepareForDelivery": "CHUẨN BỊ BÀN GIAO VẬN CHUYỂN",
   "moveToQCArea": "DI CHUYỂN SANG KHU QC",
-  "recheckQuality": "KIỂM TRA CHẤT LƯỢNG LẠI"
+  "recheckQuality": "KIỂM TRA CHẤT LƯỢNG LẠI",
+  "chooseParkingLocation": "CHỌN VỊ TRÍ ĐỖ",
+  "businessAreaClassification": "PHÂN LOẠI KHU VỰC NGHIỆP VỤ",
+  "finishedProduct": "THÀNH PHẨM",
+  "chargingDischarging": "SẠC XẢ",
+  "exportWaiting": "CHỜ XUẤT",
+  "qcArea": "KHU QC",
+  "chargingStatus": "ĐANG SẠC",
+  "entryTime": "THỜI GIAN VÀO KHU",
+  "remainingSlots": "CÒN CHỖ",
+  "capacity": "SỨC CHỨA",
+  "deliveryOrders": "{count} LỆNH GIAO HÀNG (DO)"
 }

@@ -109,4 +109,39 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get recheckQuality => 'KIỂM TRA CHẤT LƯỢNG LẠI';
+
+  @override
+  String get chooseParkingLocation => 'CHỌN VỊ TRÍ ĐỖ';
+
+  @override
+  String get businessAreaClassification => 'PHÂN LOẠI KHU VỰC NGHIỆP VỤ';
+
+  @override
+  String get finishedProduct => 'THÀNH PHẨM';
+
+  @override
+  String get chargingDischarging => 'SẠC XẢ';
+
+  @override
+  String get exportWaiting => 'CHỜ XUẤT';
+
+  @override
+  String get qcArea => 'KHU QC';
+
+  @override
+  String get chargingStatus => 'ĐANG SẠC';
+
+  @override
+  String get entryTime => 'THỜI GIAN VÀO KHU';
+
+  @override
+  String get remainingSlots => 'CÒN CHỖ';
+
+  @override
+  String get capacity => 'SỨC CHỨA';
+
+  @override
+  String deliveryOrders(Object count) {
+    return '$count LỆNH GIAO HÀNG (DO)';
+  }
 }
