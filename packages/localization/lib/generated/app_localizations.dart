@@ -224,6 +224,18 @@ abstract class AppLocalizations {
   /// **'DO List'**
   String get doList;
 
+  /// No description provided for @deliveryOrderListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DO List'**
+  String get deliveryOrderListTitle;
+
+  /// No description provided for @deliveryOrderBatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BATCH DELIVERY ORDERS'**
+  String get deliveryOrderBatchTitle;
+
   /// No description provided for @charging.
   ///
   /// In en, this message translates to:

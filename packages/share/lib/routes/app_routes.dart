@@ -26,6 +26,10 @@ class AppRoutes {
   // Auth Routes
   static const String login = 'login';
 
+  // DO Routes
+  static const String doList = 'do-list';
+  static const String doDetail = 'do-detail';
+
   // ==================== Route Paths ====================
 
   // Root paths
@@ -36,6 +40,8 @@ class AppRoutes {
   static const String vehicleDetailPath = '/vehicle-detail';
   static const String chooseParkingLocationPath = '/choose-parking-location';
   static const String loginPath = '/login';
+  static const String doListPath = '/do-list';
+  static const String doDetailPath = '/do-detail';
 
   // ==================== Route Parameters ====================
 

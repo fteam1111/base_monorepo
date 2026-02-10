@@ -21,6 +21,8 @@
   "enterVinToViewHistory": "Enter VIN to view history",
   "map": "Map",
   "doList": "DO List",
+  "deliveryOrderListTitle": "DO List",
+  "deliveryOrderBatchTitle": "BATCH DELIVERY ORDERS",
   "charging": "Charging",
   "vehicleDetailTitle": "Vehicle Details",
   "vinIdentifier": "VIN IDENTIFIER",

@@ -72,6 +72,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get doList => 'Danh sách DO';
 
   @override
+  String get deliveryOrderListTitle => 'Danh sách DO';
+
+  @override
+  String get deliveryOrderBatchTitle => 'LỆNH GIAO HÀNG THEO ĐỢT';
+
+  @override
   String get charging => 'Sạc xe';
 
   @override

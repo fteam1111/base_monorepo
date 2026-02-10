@@ -12,7 +12,7 @@ class ParkingHistoryPage extends StatefulWidget {
 }
 
 class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
-  final double _spacingButtomList = 100;
+  final double _spacingBottomList = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +69,18 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
                     color: AppColors.secondaryLight,
                   ),
                 ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(AppSpacing.paddingXS),
-                  child: Image.asset(
-                    height: AppSpacing.medium,
-                    width: AppSpacing.medium,
-                    AppIcons.icScanQr,
-                    package: AppAssets.package,
-                    color: AppColors.secondaryLight,
+                suffixIcon: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSpacing.paddingXS),
+                    child: Image.asset(
+                      height: AppSpacing.medium,
+                      width: AppSpacing.medium,
+                      AppIcons.icScanQr,
+                      package: AppAssets.package,
+                      color: AppColors.secondaryLight,
+                    ),
                   ),
                 ),
               ).applyDefaults(Theme.of(context).inputDecorationTheme),
@@ -88,7 +92,7 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
                 AppSpacing.medium,
                 AppSpacing.none,
                 AppSpacing.medium,
-                _spacingButtomList,
+                _spacingBottomList,
               ),
               itemCount: items.length,
               itemBuilder: (context, index) {

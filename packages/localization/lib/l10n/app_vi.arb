@@ -21,6 +21,8 @@
   "enterVinToViewHistory": "Nhập mã VIN để xem lịch sử thao tác",
   "map": "Bản đồ",
   "doList": "Danh sách DO",
+  "deliveryOrderListTitle": "Danh sách DO",
+  "deliveryOrderBatchTitle": "LỆNH GIAO HÀNG THEO ĐỢT",
   "charging": "Sạc xe",
   "vehicleDetailTitle": "Chi tiết phương tiện",
   "vinIdentifier": "MÃ ĐỊNH DANH VIN",

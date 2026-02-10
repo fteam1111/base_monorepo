@@ -72,6 +72,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get doList => 'DO List';
 
   @override
+  String get deliveryOrderListTitle => 'DO List';
+
+  @override
+  String get deliveryOrderBatchTitle => 'BATCH DELIVERY ORDERS';
+
+  @override
   String get charging => 'Charging';
 
   @override

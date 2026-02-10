@@ -19,6 +19,7 @@ export 'theme/tokens/typography.dart';
 
 // widgets
 export 'package:design_system/widgets/components/app_icon_container.dart';
+export 'package:design_system/widgets/components/app_segmented_tab_bar.dart';
 export 'package:design_system/widgets/components/custom_card.dart';
 export 'package:design_system/widgets/responsive.dart';
 export 'package:design_system/widgets/upgrade/upgrade_alert_wrapper.dart';
