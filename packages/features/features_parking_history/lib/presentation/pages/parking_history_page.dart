@@ -52,15 +52,18 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppSpacing.medium),
+            padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
             child: TextField(
+              onTapUpOutside: (_){
+                FocusScope.of(context).unfocus();
+              },
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: AppSpacing.paddingXS,
                   horizontal: AppSpacing.paddingMD,
                 ),
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(AppSpacing.paddingXS),
+                  padding: const EdgeInsets.only(left: AppSpacing.paddingXS),
                   child: Image.asset(
                     height: AppSpacing.medium,
                     width: AppSpacing.medium,
@@ -68,6 +71,10 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
                     package: AppAssets.package,
                     color: AppColors.secondaryLight,
                   ),
+                ),
+                prefixIconConstraints: const BoxConstraints(
+                  minWidth: AppSpacing.smd,
+                  minHeight: AppSpacing.smd,
                 ),
                 suffixIcon: GestureDetector(
                   behavior: HitTestBehavior.translucent,

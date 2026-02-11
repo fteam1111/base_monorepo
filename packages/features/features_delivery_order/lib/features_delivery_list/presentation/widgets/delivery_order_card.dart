@@ -7,12 +7,14 @@ enum DeliveryOrderStatus {
   preparing,
   ready;
 
-  String get label {
+  String label(BuildContext context) {
+    final l10n = context.l10n;
+
     switch (this) {
       case DeliveryOrderStatus.preparing:
-        return 'ĐANG CHUẨN BỊ';
+        return l10n.deliveryOrderStatusPreparing;
       case DeliveryOrderStatus.ready:
-        return 'SẴN SÀNG';
+        return l10n.deliveryOrderStatusReady;
     }
   }
 
@@ -56,7 +58,7 @@ class DeliveryOrderCard extends StatelessWidget {
   final String colorName;
   final int quantity;
   final String deadline;
-  final double progress; // 0.0 to 1.0
+  final double progress;
   final VoidCallback? onTap;
 
   @override
@@ -80,181 +82,11 @@ class DeliveryOrderCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'MÃ LỆNH GIAO HÀNG',
-                        style: AppTypography.labelSmall.copyWith(
-                          color: context.colorScheme.onSurfaceVariant,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        doCode,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTypography.bodyLarge.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.colorScheme.onSurface,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Flexible(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Flexible(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: AppSpacing.paddingXXXS,
-                              horizontal: AppSpacing.paddingXS,
-                            ),
-                            decoration: BoxDecoration(
-                              color: status.backgroundLabel(context),
-                              borderRadius: BorderRadius.circular(AppRadius.sm),
-                            ),
-                            child: Text(
-                              status.label,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTypography.labelMedium.copyWith(
-                                color: status.labelColor(context),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: AppSpacing.paddingXXXS),
-                        Icon(
-                          Icons.chevron_right,
-                          color: context.colorScheme.onSurfaceVariant,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.paddingMD),
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.paddingSM),
-                decoration: BoxDecoration(
-                  color: context.colorScheme.primary.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Row(
-                                  children: [
-                                    const AppIconContainer(
-                                      icon: Icon(Icons.motorcycle),
-                                      size: AppSpacing.xl,
-                                      borderRadius: AppRadius.md,
-                                    ),
-                                    const SizedBox(width: AppSpacing.paddingXS),
-                                    _buildDetailCol(
-                                      context,
-                                      'MODEL XE',
-                                      modelName,
-                                      isItalic: true,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.paddingXS),
-                              Flexible(
-                                child: _buildDetailCol(
-                                  context,
-                                  'MÀU SẮC',
-                                  '$colorCode ($colorName)',
-                                  textAlign: TextAlign.end,
-                                  isCard: true,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Divider(
-                            height: AppSpacing.paddingMD,
-                            color: context.colorScheme.outline,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: _buildDetailCol(
-                                  context,
-                                  'SỐ LƯỢNG',
-                                  '$quantity CHIẾC',
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.paddingXS),
-                              Flexible(
-                                child: _buildDetailCol(
-                                  context,
-                                  'DEADLINE',
-                                  deadline,
-                                  valueColor:
-                                      status == DeliveryOrderStatus.ready
-                                      ? null
-                                      : context.colorScheme.error,
-                                  textAlign: TextAlign.end,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSpacing.paddingMD),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'TIẾN ĐỘ HOÀN THÀNH',
-                    style: AppTypography.labelSmall.copyWith(
-                      color: context.colorScheme.onSurfaceVariant,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${(progress * 100).toInt()}%',
-                    style: AppTypography.labelSmall.copyWith(
-                      color: context.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.paddingXS),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(AppRadius.full),
-                child: LinearProgressIndicator(
-                  value: progress,
-                  backgroundColor: context.colorScheme.primary.withValues(
-                    alpha: 0.1,
-                  ),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    context.colorScheme.primary,
-                  ),
-                  minHeight: 8,
-                ),
-              ),
+              _buildHeader(context),
+              const Gap(AppSpacing.paddingMD),
+              _buildInfoSection(context),
+              const Gap(AppSpacing.paddingMD),
+              _buildProgress(context),
             ],
           ),
         ),
@@ -262,56 +94,242 @@ class DeliveryOrderCard extends StatelessWidget {
     );
   }
 
+  Widget _buildHeader(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.deliveryOrderCodeLabel,
+                style: AppTypography.labelSmall.copyWith(
+                  color: context.colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                doCode,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.bodyLarge.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.paddingXXXS,
+                horizontal: AppSpacing.paddingXS,
+              ),
+              decoration: BoxDecoration(
+                color: status.backgroundLabel(context),
+                borderRadius: BorderRadius.circular(AppRadius.sm),
+              ),
+              child: Text(
+                status.label(context),
+                style: AppTypography.labelMedium.copyWith(
+                  color: status.labelColor(context),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Gap(AppSpacing.paddingXXXS),
+            Icon(
+              Icons.chevron_right,
+              color: context.colorScheme.onSurfaceVariant,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoSection(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.paddingSM),
+      decoration: BoxDecoration(
+        color: context.colorScheme.primary.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    const AppIconContainer(
+                      icon: Icon(Icons.motorcycle),
+                      size: AppSpacing.xl,
+                      borderRadius: AppRadius.md,
+                    ),
+                    const Gap(AppSpacing.paddingXS),
+                    Expanded(
+                      child: _buildDetailCol(
+                        context,
+                        context.l10n.deliveryOrderVehicleModelLabel,
+                        child: _buildValueText(
+                          context,
+                          modelName,
+                          isItalic: true,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(AppSpacing.paddingXS),
+              Expanded(
+                child: _buildDetailCol(
+                  context,
+                  context.l10n.deliveryOrderColorLabel,
+                  textAlign: TextAlign.end,
+                  child: _buildCardValue(context, '$colorCode ($colorName)'),
+                ),
+              ),
+            ],
+          ),
+          Divider(
+            height: AppSpacing.paddingMD,
+            color: context.colorScheme.outline,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: _buildDetailCol(
+                  context,
+                  context.l10n.deliveryOrderQuantityLabel,
+                  child: _buildValueText(
+                    context,
+                    '$quantity ${context.l10n.deliveryOrderQuantityUnit}',
+                  ),
+                ),
+              ),
+              const Gap(AppSpacing.paddingXS),
+              Expanded(
+                child: _buildDetailCol(
+                  context,
+                  context.l10n.deliveryOrderDeadlineLabel,
+                  textAlign: TextAlign.end,
+                  child: _buildValueText(
+                    context,
+                    deadline,
+                    valueColor: status == DeliveryOrderStatus.ready
+                        ? null
+                        : context.colorScheme.error,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgress(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.l10n.deliveryOrderCompletionProgressLabel,
+              style: AppTypography.labelSmall.copyWith(
+                color: context.colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '${(progress * 100).toInt()}%',
+              style: AppTypography.labelSmall.copyWith(
+                color: context.colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const Gap(AppSpacing.paddingXS),
+        AppLinearProgressIndicator(
+          value: progress,
+          minHeight: 8,
+        ),
+      ],
+    );
+  }
+
   Widget _buildDetailCol(
     BuildContext context,
-    String label,
+    String label, {
+    required Widget child,
+    TextAlign textAlign = TextAlign.start,
+  }) {
+    final isEnd = textAlign == TextAlign.end;
+
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: isEnd
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: textAlign,
+            style: AppTypography.labelSmall.copyWith(
+              color: context.colorScheme.onSurfaceVariant.withValues(
+                alpha: 0.6,
+              ),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Gap(AppSpacing.paddingXXXS),
+          Align(
+            alignment: isEnd ? Alignment.centerRight : Alignment.centerLeft,
+            child: child,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildValueText(
+    BuildContext context,
     String value, {
     bool isItalic = false,
     Color? valueColor,
-    TextAlign textAlign = TextAlign.start,
-    bool isCard = false,
   }) {
-    return Column(
-      crossAxisAlignment: textAlign == TextAlign.start
-          ? CrossAxisAlignment.start
-          : CrossAxisAlignment.end,
-      children: [
-        Text(
-          label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: AppTypography.labelSmall.copyWith(
-            color: context.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: isCard
-                ? Border.all(color: context.colorScheme.outline)
-                : null,
-            color: isCard ? AppColors.onBackgroundDark : null,
-            borderRadius: isCard ? BorderRadius.circular(AppRadius.sm) : null,
-          ),
-          padding: isCard ? const EdgeInsets.all(AppSpacing.paddingXXXS) : null,
-          child: Text(
-            value,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: isCard
-                ? context.appTypography.bodySmall.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: isItalic ? FontStyle.italic : null,
-                    color: valueColor ?? context.colorScheme.onSurface,
-                  )
-                : context.appTypography.bodyMedium.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: isItalic ? FontStyle.italic : null,
-                    color: valueColor ?? context.colorScheme.onSurface,
-                  ),
-          ),
-        ),
-      ],
+    return Text(
+      value,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: context.appTypography.bodyMedium.copyWith(
+        fontWeight: FontWeight.bold,
+        fontStyle: isItalic ? FontStyle.italic : null,
+        color: valueColor ?? context.colorScheme.onSurface,
+      ),
+    );
+  }
+
+  Widget _buildCardValue(BuildContext context, String value) {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.paddingXXXS),
+      decoration: BoxDecoration(
+        color: AppColors.cardLight,
+        border: Border.all(color: context.colorScheme.outline),
+        borderRadius: BorderRadius.circular(AppRadius.sm),
+      ),
+      child: _buildValueText(context, value),
     );
   }
 }

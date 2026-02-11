@@ -80,6 +80,14 @@ class AppRoutes {
     context.push(chooseParkingLocationPath);
   }
 
+  static void navigateToDeliveryOrderList(BuildContext context) {
+    context.push(doListPath);
+  }
+
+  static void navigateToDeliveryOrderDetail(BuildContext context) {
+    context.push(doDetail);
+  }
+
   /// Navigate back
   static void navigateBack(BuildContext context) {
     context.pop();

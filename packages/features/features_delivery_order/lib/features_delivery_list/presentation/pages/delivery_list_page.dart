@@ -14,11 +14,19 @@ class DeliveryListPage extends StatefulWidget {
 class _DeliveryListPageState extends State<DeliveryListPage> {
   int _selectedTabIndex = 0;
 
-  final List<Map<String, dynamic>> _tabs = [
-    {'label': 'TẤT CẢ (4)', 'status': null},
-    {'label': 'ĐANG CHUẨN BỊ (2)', 'status': DeliveryOrderStatus.preparing},
-    {'label': 'SẴN SÀNG (1)', 'status': DeliveryOrderStatus.ready},
-  ];
+  List<Map<String, dynamic>> _tabs(BuildContext context) {
+    return [
+      {'label': context.l10n.allWithCount(4), 'status': null},
+      {
+        'label': context.l10n.preparingWithCount(2),
+        'status': DeliveryOrderStatus.preparing,
+      },
+      {
+        'label': context.l10n.readyWithCount(1),
+        'status': DeliveryOrderStatus.ready,
+      },
+    ];
+  }
 
   final List<Map<String, dynamic>> _mockData = [
     {
@@ -65,11 +73,13 @@ class _DeliveryListPageState extends State<DeliveryListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final tabs = _tabs(context);
+
     final filteredData = _selectedTabIndex == 0
         ? _mockData
         : _mockData
               .where(
-                (item) => item['status'] == _tabs[_selectedTabIndex]['status'],
+                (item) => item['status'] == tabs[_selectedTabIndex]['status'],
               )
               .toList();
 
@@ -120,9 +130,9 @@ class _DeliveryListPageState extends State<DeliveryListPage> {
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.paddingSM,
               ),
-              items: List.generate(_tabs.length, (index) {
+              items: List.generate(tabs.length, (index) {
                 return AppSegmentedTabItem(
-                  label: _tabs[index]['label'],
+                  label: tabs[index]['label'],
                   value: index,
                 );
               }),
@@ -144,7 +154,7 @@ class _DeliveryListPageState extends State<DeliveryListPage> {
                   deadline: item['deadline'],
                   progress: item['progress'],
                   onTap: () {
-                    AppRoutes.pushNamed(context, AppRoutes.doDetail);
+                    AppRoutes.navigateToDeliveryOrderDetail(context);
                   },
                 );
               },
