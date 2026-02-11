@@ -82,7 +82,7 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
             crossAxisCount: 2,
             mainAxisSpacing: AppSpacing.gridSpacing,
             crossAxisSpacing: AppSpacing.gridSpacing,
-            childAspectRatio: 1,
+            childAspectRatio: 0.87,
           ),
           delegate: SliverChildBuilderDelegate(
             (context, index) => ParkingGridItem(
