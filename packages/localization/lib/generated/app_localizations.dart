@@ -206,6 +206,60 @@ abstract class AppLocalizations {
   /// **'History'**
   String get parkingHistoryTitle;
 
+  /// No description provided for @vehicleChargingAreaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING AREA'**
+  String get vehicleChargingAreaTitle;
+
+  /// No description provided for @vehicleChargingAreaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BATTERY MAINTENANCE MANAGEMENT'**
+  String get vehicleChargingAreaSubtitle;
+
+  /// No description provided for @vehicleChargingSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by VIN...'**
+  String get vehicleChargingSearchHint;
+
+  /// No description provided for @vehicleChargingInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CHARGING INFO'**
+  String get vehicleChargingInfoTitle;
+
+  /// No description provided for @vehicleChargingInfoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLE DETAILS'**
+  String get vehicleChargingInfoSubtitle;
+
+  /// No description provided for @vehicleChargingInfoStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'STATUS'**
+  String get vehicleChargingInfoStatusLabel;
+
+  /// No description provided for @vehicleChargingInfoSubAreaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'SUB AREA'**
+  String get vehicleChargingInfoSubAreaLabel;
+
+  /// No description provided for @vehicleChargingInfoCheckAgingDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CHECK AGING DATE'**
+  String get vehicleChargingInfoCheckAgingDateLabel;
+
+  /// No description provided for @vehicleChargingCloseInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'CLOSE INFO'**
+  String get vehicleChargingCloseInfo;
+
   /// No description provided for @enterVinToViewHistory.
   ///
   /// In en, this message translates to:

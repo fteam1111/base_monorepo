@@ -63,6 +63,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get parkingHistoryTitle => 'History';
 
   @override
+  String get vehicleChargingAreaTitle => 'CHARGING AREA';
+
+  @override
+  String get vehicleChargingAreaSubtitle => 'BATTERY MAINTENANCE MANAGEMENT';
+
+  @override
+  String get vehicleChargingSearchHint => 'Search by VIN...';
+
+  @override
+  String get vehicleChargingInfoTitle => 'CHARGING INFO';
+
+  @override
+  String get vehicleChargingInfoSubtitle => 'VEHICLE DETAILS';
+
+  @override
+  String get vehicleChargingInfoStatusLabel => 'STATUS';
+
+  @override
+  String get vehicleChargingInfoSubAreaLabel => 'SUB AREA';
+
+  @override
+  String get vehicleChargingInfoCheckAgingDateLabel => 'CHECK AGING DATE';
+
+  @override
+  String get vehicleChargingCloseInfo => 'CLOSE INFO';
+
+  @override
   String get enterVinToViewHistory => 'Enter VIN to view history';
 
   @override

@@ -22,6 +22,7 @@ class AppRoutes {
   static const String parkingHistory = 'parking-history';
   static const String vehicleDetail = 'vehicle-detail';
   static const String chooseParkingLocation = 'choose-parking-location';
+  static const String vehicleCharging = 'vehicle_charging';
 
   // Auth Routes
   static const String login = 'login';
@@ -40,6 +41,7 @@ class AppRoutes {
   static const String vehicleDetailPath = '/vehicle-detail';
   static const String chooseParkingLocationPath = '/choose-parking-location';
   static const String loginPath = '/login';
+  static const String vehicleChargingPath = '/vehicle_charging';
   static const String doListPath = '/do-list';
   static const String doDetailPath = '/do-detail';
 
@@ -78,6 +80,10 @@ class AppRoutes {
 
   static void navigateToChooseParkingLocation(BuildContext context) {
     context.push(chooseParkingLocationPath);
+  }
+
+  static void navigateToVehicleCharging(BuildContext context) {
+    context.push(vehicleChargingPath);
   }
 
   static void navigateToDeliveryOrderList(BuildContext context) {

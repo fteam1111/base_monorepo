@@ -41,6 +41,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 HomeMenuGridSliverSection(
+                  onChargingPressed: () {
+                    AppRoutes.navigateToVehicleCharging(context);
+                  },
                   onDoListPressed: () {
                     AppRoutes.navigateToDeliveryOrderList(context);
                   },

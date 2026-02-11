@@ -18,6 +18,7 @@ workspace:
   - packages/features/features_vehicle
   - packages/features/features_parking_location
   - packages/features/features_delivery_order
+  - packages/features/features_vehicle_charging
 
 dependencies:
   # DI
