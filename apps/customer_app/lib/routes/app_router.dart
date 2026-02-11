@@ -9,6 +9,7 @@ import 'package:features_splash/features_splash.dart';
 import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
 import 'package:features_vehicle/features_vehicle.dart';
+import 'package:features_delivery_order/features_delivery_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -176,6 +177,27 @@ class AppRouter {
                 loginUrl: locator<BaseConfig>().loginUrl,
               ),
             ),
+          ),
+        ),
+
+        // ==================== DO Routes ====================
+        GoRoute(
+          path: AppRoutes.doListPath,
+          name: AppRoutes.doList,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            key: state.pageKey,
+            name: AppRoutes.doList,
+            child: DeliveryListPage(),
+          ),
+        ),
+
+        GoRoute(
+          path: AppRoutes.doDetailPath,
+          name: AppRoutes.doDetail,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            key: state.pageKey,
+            name: AppRoutes.doDetail,
+            child: const DeliveryDetailPage(),
           ),
         ),
       ],

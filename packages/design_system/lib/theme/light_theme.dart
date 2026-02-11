@@ -315,6 +315,7 @@ class AppLightTheme {
       // Progress indicator theme
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: colorScheme.primary,
+        linearTrackColor: colorScheme.primary.withValues(alpha: 0.1),
         circularTrackColor: colorScheme.surfaceContainerHighest,
       ),
 

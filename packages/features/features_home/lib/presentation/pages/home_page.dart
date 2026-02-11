@@ -40,7 +40,11 @@ class HomePage extends StatelessWidget {
                     horizontal: context.appSpacing.pageHorizontal,
                   ),
                 ),
-                const HomeMenuGridSliverSection(),
+                HomeMenuGridSliverSection(
+                  onDoListPressed: () {
+                    AppRoutes.navigateToDeliveryOrderList(context);
+                  },
+                ),
                 const Gap(AppSpacing.sectionSpacing).toSliverNoPadding(),
               ],
             ),

@@ -224,6 +224,78 @@ abstract class AppLocalizations {
   /// **'DO List'**
   String get doList;
 
+  /// No description provided for @deliveryOrderListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DO List'**
+  String get deliveryOrderListTitle;
+
+  /// No description provided for @deliveryOrderBatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BATCH DELIVERY ORDERS'**
+  String get deliveryOrderBatchTitle;
+
+  /// No description provided for @customer.
+  ///
+  /// In en, this message translates to:
+  /// **'CUSTOMER'**
+  String get customer;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'PROGRESS'**
+  String get progress;
+
+  /// No description provided for @filterList.
+  ///
+  /// In en, this message translates to:
+  /// **'LIST FILTER'**
+  String get filterList;
+
+  /// No description provided for @findVinCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Search VIN...'**
+  String get findVinCode;
+
+  /// No description provided for @allModels.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL MODELS'**
+  String get allModels;
+
+  /// No description provided for @allColors.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL COLORS'**
+  String get allColors;
+
+  /// No description provided for @pickUpGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'PICKUP GUIDE'**
+  String get pickUpGuide;
+
+  /// No description provided for @results.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} RESULTS'**
+  String results(Object count);
+
+  /// No description provided for @resultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} RESULTS'**
+  String resultsCount(Object count);
+
+  /// No description provided for @warehouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Warehouse entry: {date}'**
+  String warehouse(Object date);
+
   /// No description provided for @charging.
   ///
   /// In en, this message translates to:
@@ -367,6 +439,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} DELIVERY ORDERS (DO)'**
   String deliveryOrders(Object count);
+
+  /// No description provided for @deliveryOrderStatusPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'PREPARING'**
+  String get deliveryOrderStatusPreparing;
+
+  /// No description provided for @deliveryOrderStatusReady.
+  ///
+  /// In en, this message translates to:
+  /// **'READY'**
+  String get deliveryOrderStatusReady;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL'**
+  String get all;
+
+  /// No description provided for @allWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL ({count})'**
+  String allWithCount(Object count);
+
+  /// No description provided for @preparingWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'PREPARING ({count})'**
+  String preparingWithCount(Object count);
+
+  /// No description provided for @readyWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'READY ({count})'**
+  String readyWithCount(Object count);
+
+  /// No description provided for @unitVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLES'**
+  String get unitVehicle;
+
+  /// No description provided for @unitUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'UNITS'**
+  String get unitUnit;
+
+  /// No description provided for @deliveryOrderCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'DELIVERY ORDER CODE'**
+  String get deliveryOrderCodeLabel;
+
+  /// No description provided for @deliveryOrderVehicleModelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLE MODEL'**
+  String get deliveryOrderVehicleModelLabel;
+
+  /// No description provided for @deliveryOrderColorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'COLOR'**
+  String get deliveryOrderColorLabel;
+
+  /// No description provided for @deliveryOrderQuantityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'QUANTITY'**
+  String get deliveryOrderQuantityLabel;
+
+  /// No description provided for @deliveryOrderQuantityUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'UNITS'**
+  String get deliveryOrderQuantityUnit;
+
+  /// No description provided for @locationFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Area {area} - Position {position}'**
+  String locationFormat(Object area, Object position);
+
+  /// No description provided for @deliveryOrderDeadlineLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'DEADLINE'**
+  String get deliveryOrderDeadlineLabel;
+
+  /// No description provided for @deliveryOrderCompletionProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'COMPLETION PROGRESS'**
+  String get deliveryOrderCompletionProgressLabel;
+
+  /// No description provided for @deliveryOrderDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DO: {code}'**
+  String deliveryOrderDetailTitle(Object code);
+
+  /// No description provided for @deliveryOrderPickupGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PICKUP GUIDE'**
+  String get deliveryOrderPickupGuideTitle;
+
+  /// No description provided for @fifoBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'FIFO #{number}'**
+  String fifoBadge(Object number);
 }
 
 class _AppLocalizationsDelegate
