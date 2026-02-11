@@ -85,7 +85,7 @@ class AppRoutes {
   }
 
   static void navigateToDeliveryOrderDetail(BuildContext context) {
-    context.push(doDetail);
+    context.push(doDetailPath);
   }
 
   /// Navigate back
