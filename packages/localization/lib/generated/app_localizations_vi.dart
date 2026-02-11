@@ -63,6 +63,33 @@ class AppLocalizationsVi extends AppLocalizations {
   String get parkingHistoryTitle => 'Lịch sử';
 
   @override
+  String get vehicleChargingAreaTitle => 'KHU SẠC XẢ';
+
+  @override
+  String get vehicleChargingAreaSubtitle => 'QUẢN LÝ BẢO DƯỠNG PIN';
+
+  @override
+  String get vehicleChargingSearchHint => 'Tìm theo mã VIN...';
+
+  @override
+  String get vehicleChargingInfoTitle => 'THÔNG TIN SẠC XẢ';
+
+  @override
+  String get vehicleChargingInfoSubtitle => 'CHI TIẾT PHƯƠNG TIỆN';
+
+  @override
+  String get vehicleChargingInfoStatusLabel => 'TRẠNG THÁI';
+
+  @override
+  String get vehicleChargingInfoSubAreaLabel => 'KHU VỰC CON';
+
+  @override
+  String get vehicleChargingInfoCheckAgingDateLabel => 'NGÀY CHECK AGING';
+
+  @override
+  String get vehicleChargingCloseInfo => 'ĐÓNG THÔNG TIN';
+
+  @override
   String get enterVinToViewHistory => 'Nhập mã VIN để xem lịch sử thao tác';
 
   @override
