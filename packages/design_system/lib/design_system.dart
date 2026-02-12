@@ -23,6 +23,7 @@ export 'package:design_system/widgets/components/app_segmented_tab_bar.dart';
 export 'package:design_system/widgets/components/app_dropdown.dart';
 export 'package:design_system/widgets/components/app_linear_progress_indicator.dart';
 export 'package:design_system/widgets/components/custom_app_bar.dart';
+export 'package:design_system/widgets/components/app_text_field.dart';
 export 'package:design_system/widgets/components/custom_card.dart';
 export 'package:design_system/widgets/components/loading_more_indicator.dart';
 export 'package:design_system/widgets/components/scroll_list.dart';

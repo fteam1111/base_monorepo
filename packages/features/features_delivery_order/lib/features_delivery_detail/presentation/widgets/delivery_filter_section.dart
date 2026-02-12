@@ -64,24 +64,8 @@ class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
             ],
           ),
           const Gap(AppSpacing.paddingSM),
-          TextField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: AppSpacing.paddingXS,
-                horizontal: AppSpacing.paddingMD,
-              ),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(AppSpacing.paddingXS),
-                child: Image.asset(
-                  AppIcons.icSearch,
-                  package: AppAssets.package,
-                  height: AppSpacing.iconXS,
-                  width: AppSpacing.iconXS,
-                  color: context.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              hintText: context.l10n.findVinCode,
-            ).applyDefaults(Theme.of(context).inputDecorationTheme),
+          AppTextField.search(
+            hintText: context.l10n.findVinCode,
           ),
           const Gap(AppSpacing.paddingSM),
           Row(
