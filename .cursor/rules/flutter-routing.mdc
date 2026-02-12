@@ -1,0 +1,13 @@
+---
+description: Quy tắc điều hướng và routing trong ứng dụng Flutter (GoRouter).
+globs: **/routes/*.dart, lib/main.dart, apps/customer_app/lib/routes/*.dart
+---
+# Routing Rules (GoRouter)
+
+## 1) Nguồn sự thật duy nhất
+- Route names/paths/params định nghĩa tại `packages/share/lib/routes/app_routes.dart`.
+- Cấu hình router tại `apps/customer_app/lib/routes/app_router.dart`.
+
+## 2) Quy tắc điều hướng
+- **Tabs**: Dùng `StatefulShellRoute.indexedStack`.
+- **Không điều hướng trong Domain**: Domain layer tuyệt đối không được gọi `context.go`, `GoRouter`, hoặc `AppRoutes`.

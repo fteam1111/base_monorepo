@@ -1,0 +1,40 @@
+---
+description: Quy tắc triển khai Flutter BLoC, Cubit, quản lý State và tương tác với Domain Layer.
+globs: **/*_bloc.dart, **/*_event.dart, **/*_state.dart, **/bloc/*.dart, **/cubit/*.dart, **/*_cubit.dart
+---
+# Flutter BLoC & Cubit Rules
+
+## 1) Lựa chọn BLoC vs Cubit
+-   **Cubit**: Dùng cho các màn hình/chức năng **đơn giản**, state thay đổi đồng bộ hoặc không cần biến đổi sự kiện phức tạp (debounce, throttle, switchMap).
+    -   Ví dụ: Toggle switch, Counter, Simple Form, Fetch Data đơn giản.
+-   **BLoC**: Dùng cho các flow phức tạp, cần xử lý **Event Transformation** hoặc khi state phụ thuộc vào luồng sự kiện liên tục.
+    -   Ví dụ: Search (cần debounce), Authentication (cần xử lý nhiều trạng thái liên tiếp), Infinite Scroll.
+
+## 2) Vai trò & Trách nhiệm (Chung cho cả BLoC & Cubit)
+-   **Chỉ quản lý UI State**: Nhận Input (Event/Method call) từ UI, gọi Domain Layer, Emit State mới.
+-   **KHÔNG chứa Business Logic**: Logic nghiệp vụ phải nằm trong **UseCase/Interactors**.
+-   **Giao tiếp Domain**: Chỉ nên phụ thuộc vào **UseCases**. Trường hợp rất đơn giản (chỉ đọc) có thể gọi Repository Interface.
+
+## 3) Tổ chức File & Naming
+### Với BLoC
+-   3 file: `<feature>_bloc.dart`, `<feature>_event.dart`, `<feature>_state.dart`.
+-   Naming: PascalCase `FeatureBloc`, `FeatureEvent`, `FeatureState`.
+
+### Với Cubit
+-   2 file: `<feature>_cubit.dart`, `<feature>_state.dart` (Không có file Event).
+-   Class: `FeatureCubit` extends `Cubit<FeatureState>`.
+-   Method: Public methods thay vì Event (VD: `void login()`, `void refresh()`).
+
+### State (Chung)
+-   Phải mô tả đầy đủ trạng thái UI. Ưu tiên `sealed class` (Dart 3) hoặc `freezed`.
+-   Trạng thái cơ sở: `Initial`, `Loading`, `Success`, `Failure`.
+
+## 4) Dependency Injection
+-   Inject **UseCase** qua constructor.
+-   Đăng ký tại `DependencyManager` module:
+    -   `registerFactory`: Cho Cubit/Bloc màn hình (huỷ khi đóng).
+    -   `registerLazySingleton`: Cho Global State.
+
+## 5) Handler Pattern (BLoC)
+-   Sử dụng `on<Event>(_onEvent)`.
+-   Hàm handler ngắn gọn, gọi UseCase và map `Either<Failure, T>` sang State.
