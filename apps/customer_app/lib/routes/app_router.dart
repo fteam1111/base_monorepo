@@ -5,6 +5,7 @@ import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_dashboard/features_dashboard.dart';
 import 'package:features_home/features_home.dart';
+import 'package:features_map/features_map.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
@@ -150,6 +151,16 @@ class AppRouter {
           ),
         ),
 
+        GoRoute(
+          path: AppRoutes.factoryMapPath,
+          name: AppRoutes.factoryMap,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            key: state.pageKey,
+            name: AppRoutes.factoryMap,
+            child: const FactoryMapPage(),
+          ),
+        ),
+
         // ==================== Splash Route ====================
         GoRoute(
           path: AppRoutes.splashPath,
@@ -188,7 +199,7 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             name: AppRoutes.doList,
-            child: DeliveryListPage(),
+            child: const DeliveryListPage(),
           ),
         ),
 

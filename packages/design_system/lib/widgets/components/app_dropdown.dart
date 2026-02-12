@@ -117,9 +117,7 @@ class AppDropdown<T> extends StatelessWidget {
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(AppRadius.input),
-            border: Border.all(
-              color: colorScheme.outline,
-            ),
+            border: Border.all(color: colorScheme.outline),
           ),
         ),
 

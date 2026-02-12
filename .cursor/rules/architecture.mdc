@@ -1,0 +1,99 @@
+---
+description: Quy tắc cốt lõi về Kiến trúc Clean Architecture, Domain-Driven Design (DDD) và các tiêu chuẩn coding.
+globs: lib/**/*, packages/**/*
+alwaysApply: true
+---
+# Kiến trúc & DDD Principles
+
+## 1) Tổng quan cấu trúc Project (Monorepo)
+
+```
+packages/
+├── core/                         # Chứa các Extension, Utils, Base Class dùng chung toàn app.
+├── design_system/                # Chứa Theme, Color, Typography, Shared Widgets (Button, Input...).
+├── network/                      # Cấu hình Dio, Interceptor, APIs client cơ bản.
+├── local_storage/                # SharedPreferences, Hive, SecureStorage.
+├── localization/                 # File ngôn ngữ (arb), generated localization code.
+├── share/                        # Các constant, helper shared khác (Route paths, Assets...).
+└── features/                     # Chứa các Feature Package (Auth, Home, Profile...).
+    └── feature_name/             # Tên feature (ví dụ: features_auth)
+        ├── lib/
+        │   ├── domain/           # LAYER 1: TRUNG TÂM (No Flutter dependency)
+        │   │   ├── entities/     # Business Objects (User, Order...). Có logic, định danh.
+        │   │   ├── values/       # Value Objects (Email, Password...). Immutable, tự validate.
+        │   │   ├── repositories/ # Repository Interfaces (IAuthRepository). Abstraction.
+        │   │   └── usecases/     # Application Logic (LoginUseCase). Điều phối Data & Domain.
+        │   │
+        │   ├── data/             # LAYER 2: DỮ LIỆU & TRIỂN KHAI
+        │   │   ├── models/       # DTOs (UserModel). Map từ JSON/DB.
+        │   │   ├── datasources/  # Remote (API) hoặc Local (DB) data source.
+        │   │   ├── repositories/ # Repository Impl (AuthRepositoryImpl). Map DTO -> Entity.
+        │   │   └── mappers/      # Mapper classes/extensions (Dto <-> Entity).
+        │   │
+        │   └── presentation/     # LAYER 3: GIAO DIỆN & STATE
+        │       ├── bloc/         # BLoC/Cubit. Quản lý State UI. Gọi UseCase.
+        │       ├── pages/        # Các màn hình chính (LoginPage). Wire BLoC.
+        │       └── widgets/      # Các widget nhỏ tách ra từ Page.
+        └── pubspec.yaml          # Khai báo dependency của feature.
+```
+
+## 2) Nguyên tắc cốt lõi
+Dự án tuân thủ ngặt nghèo **Clean Architecture** kết hợp với **Domain-Driven Design (DDD)**.
+Mục tiêu là tạo ra một **Rich Domain Model** nơi logic nghiệp vụ được đóng gói trong Domain Layer, không bị rò rỉ ra UI hay Data.
+
+### Ranh giới tầng (Dependency Rule)
+1.  **Domain**: Trung tâm, không phụ thuộc vào bất kỳ tầng nào khác (No UI, No Data Source, No Frameworks).
+2.  **Presentation**: Phụ thuộc vào **Domain**.
+3.  **Data**: Phụ thuộc vào **Domain** (implement repository interfaces).
+
+> **Tuyệt đối cấm**: Presentation import trực tiếp Data.
+
+## 3) Domain Layer (The Heart)
+Đây là nơi chứa toàn bộ logic nghiệp vụ quan trọng.
+
+-   **Entities**:
+    -   Là các object có **định danh (identity)** duy nhất.
+    -   Phải là **Mutable** hoặc **Immutable** tùy nghiệp vụ, nhưng **phải chứa logic**.
+    -   Tránh "Anemic Domain Model" (chỉ có getter/setter mà không có hàm xử lý).
+    -   Ví dụ: `User` có hàm `changePassword()`, `Order` có hàm `addItem()`.
+
+-   **Value Objects**:
+    -   Là các object được định nghĩa bởi **thuộc tính** (equality by value), không có định danh.
+    -   Phải là **Immutable**.
+    -   Phải tự **Validate** khi khởi tạo.
+    -   Ví dụ: `Address`, `Money`, `Email`, `PhoneNumber`.
+
+-   **Use Cases (Interactors)**:
+    -   Đóng vai trò là **Application Services**.
+    -   Chứa logic điều phối (orchestration) các Entity và Domain Service.
+    -   Mỗi UseCase nên chỉ làm **một việc cụ thể**.
+    -   Đặt tên: `<Verb><Subject>UseCase` (VD: `LoginUserUseCase`, `CheckoutOrderUseCase`).
+
+-   **Repository Interfaces**:
+    -   Định nghĩa các hành động truy xuất dữ liệu **dưới góc độ Domain** (gần giống Collection).
+    -   Không lộ các chi tiết kỹ thuật (HTTP, Cached, SQL).
+
+## 4) Data Layer
+Nhiệm vụ chuyển đổi dữ liệu từ thế giới bên ngoài vào Domain.
+
+-   **DTOs (Data Transfer Objects)**:
+    -   Các class thuần dữ liệu (`*Dto`, `*Model`) dùng để map JSON/DB response.
+    -   Không chứa logic nghiệp vụ.
+    -   Nằm trong `data/models`.
+    -   **BẮT BUỘC**: Phải map sang Entity ngay tại ranh giới Repository Implementation.
+    -   **Mappers**: Sử dụng Extension hoặc Class riêng để map DTO <-> Entity.
+
+-   **Repository Implementations**:
+    -   Implement interface từ Domain.
+    -   Gọi Data Sources, map DTO -> Entity và trả về cho Domain.
+
+## 5) Dependency Injection
+-   Sử dụng `get_it` + `injectable`.
+-   Đăng ký Interface tại Module (nếu cần) hoặc dùng annotation `@Injectable(as: IRepository)`.
+-   **Quy tắc**: Presentation chỉ xin cấp phát UseCase hoặc Repository Interface, không bao giờ zin cấp phát Repository Implementation trực tiếp.
+
+## 6) Quy ước Coding
+-   **Kết quả trả về**: Data layer và Domain layer sử dụng `Either<Failure, T>` để xử lý lỗi một cách tường minh (Functional Error Handling).
+-   **Immutable**: Ưu tiên tính bất biến cho Value Objects, Events, States.
+-   **Validation**: Validate dữ liệu đầu vào ngay tại Value Object hoặc Entity constructor.
+-   **An toàn**: Không refactor/đổi tên file diện rộng mà không có sự đồng ý. Không tự ý chạy `build_runner` nếu chưa hỏi.

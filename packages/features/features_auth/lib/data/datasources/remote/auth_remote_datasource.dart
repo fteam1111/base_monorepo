@@ -1,6 +1,7 @@
 import 'package:core/model/base_response.dart';
 import 'package:dio/dio.dart';
-import 'package:features_auth/features_auth.dart';
+import 'package:features_auth/data/models/auth_token_dto.dart';
+import 'package:features_auth/data/models/user_model_dto.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:share/routes/api_routes.dart';
 

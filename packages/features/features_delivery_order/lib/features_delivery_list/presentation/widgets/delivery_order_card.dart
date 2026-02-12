@@ -257,10 +257,7 @@ class DeliveryOrderCard extends StatelessWidget {
           ],
         ),
         const Gap(AppSpacing.paddingXS),
-        AppLinearProgressIndicator(
-          value: progress,
-          minHeight: 8,
-        ),
+        AppLinearProgressIndicator(value: progress, minHeight: 8),
       ],
     );
   }

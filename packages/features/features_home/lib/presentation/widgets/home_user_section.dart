@@ -45,14 +45,14 @@ class HomeUserSection extends StatelessWidget {
               Image.asset(
                 AppIcons.icLocation,
                 package: AppAssets.package,
-                width: AppSpacing.iconDefault,
-                height: AppSpacing.iconDefault,
+                width: AppSpacing.iconInline,
+                height: AppSpacing.iconInline,
                 color: context.theme.colorScheme.primary,
               ),
               const Gap(AppSpacing.tiny),
               Text(
                 location,
-                style: context.appTypography.bodyLarge.copyWith(
+                style: context.appTypography.bodyMedium.copyWith(
                   color: context.theme.colorScheme.primary,
                   decoration: TextDecoration.underline,
                 ),

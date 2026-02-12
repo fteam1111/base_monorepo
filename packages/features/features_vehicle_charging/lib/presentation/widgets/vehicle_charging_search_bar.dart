@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:share/extensions/context_ext.dart';
 
 class VehicleChargingSearchBar extends StatelessWidget {
-  const VehicleChargingSearchBar({
-    super.key,
-    required this.controller,
-  });
+  const VehicleChargingSearchBar({super.key, required this.controller});
 
   final TextEditingController controller;
 

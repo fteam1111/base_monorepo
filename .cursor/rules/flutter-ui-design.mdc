@@ -1,0 +1,89 @@
+---
+description: Quy tắc thiết kế UI, Material 3, Extension shortcuts và Design System.
+globs: **/presentation/pages/**/*.dart, **/presentation/widgets/**/*.dart, packages/design_system/**/*.dart
+alwaysApply: true
+---
+# UI Design & Flutter Best Practices
+
+## 1) Nguyên tắc chung (Flutter 3.x & Material 3)
+-   **Material 3**: Sử dụng các visual component của Material 3 (M3) mặc định.
+-   **Null Safety**: Tuân thủ nghiêm ngặt. Tránh `!` (bang operator) trừ khi chắc chắn 100%. Ưu tiên dùng `?` và xử lý null.
+-   **Naming**: `lowerCamelCase` cho biến/hàm, `PascalCase` cho Widget/Class. File name `snake_case`.
+-   **Const**: Luôn sử dụng `const` constructor cho Widget không thay đổi để tối ưu performance.
+-   **Widget Keys**: Cung cấp `Key? key` cho constructor của Widget. Dùng `ValueKey` hoặc `ObjectKey` khi cần định danh trong list.
+
+## 2) Composition & Scaffolding
+-   **Small & Focused**: Chia nhỏ UI thành các widget nhỏ. Không viết hàm `_buildHelper()` dài ngoằng.
+-   **Stateless over Stateful**: Ưu tiên `StatelessWidget`.
+-   **State-Driven**: UI là ánh xạ của State (`f(State)`).
+
+**Ví dụ minh hoạ (Tên Widget thay đổi theo Feature):**
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: ...,
+    // Tùy chọn Layout (Column, ListView, CustomScrollView...)
+    body: Column(
+      children: [
+        // VD: Feature là 'ProductDetail' -> ProductHeaderSection, ProductInfoSection...
+        const LoginHeaderSection(),  
+        const LoginFormSection(),    
+        const LoginActionsSection(), 
+      ],
+    ),
+  );
+}
+```
+
+-   **Tách Section ra Widget**: Mỗi section tương đối độc lập -> tách thành file riêng trong `widgets/`.
+-   **Đặt tên Section linh hoạt**: `[FeatureName][SectionName]Section` (VD: `HomeBannerSection`, `ProfileMenuSection`). Tránh rập khuôn tên trong ví dụ.
+-   **Gom nhóm**: Header, Body (Content/Empty/Error), Footer (Actions).
+
+## 4) Design System & Extensions (Use These!)
+
+> **Ưu tiên Theme/Design System trong `packages/design_system`**:
+> - Button **tận dụng** `ElevatedButtonTheme`/`OutlinedButtonTheme` từ theme.
+> - Input **tận dụng** `TextField` mặc định theo theme.
+> - **Không hardcode style**: Tránh `Color(...)`, radius, elevation, padding nếu theme/token đã có.
+
+Tuyệt đối hạn chế gọi trực tiếp `Theme.of(context)` hoặc `MediaQuery.of(context)` dài dòng.
+Hãy sử dụng **Extension** có sẵn trong `packages/share/lib/extensions/context_ext.dart`:
+
+### Theme & Colors
+-   Thay vì `Theme.of(context).textTheme...` -> Dùng **`context.textTheme`**.
+-   Thay vì `Theme.of(context).colorScheme...` -> Dùng **`context.colorScheme`**.
+-   Truy cập Custom Tokens:
+    -   Màu mở rộng: `context.appColors.success`, `context.appColors.warning`...
+    -   Radius: `context.appRadius.r8`, `context.appRadius.r16`...
+    -   Spacing: `context.appSpacing.s12`, `context.appSpacing.s24`...
+    -   Typography: `context.appTypography.bodyMedium`...
+
+### Layout & Responsive
+-   Màn hình: `context.screenWidth`, `context.screenHeight`.
+-   Padding chuẩn: `context.statusBarHeight`, `context.bottomPadding`.
+-   Responsive check: `context.isSmallScreen` (Mobile), `context.isMediumScreen` (Tablet).
+
+### Localization
+-   Thay vì `AppLocalizations.of(context)!` -> Dùng **`context.l10n`**.
+
+## 5) Button Styles
+-   Sử dụng `ElevatedButton`, `OutlinedButton` theo theme mặc định.
+-   **Không tạo style mới rải rác**: Không dùng `styleFrom(...)` tại từng màn hình nếu style đó có thể đưa vào theme.
+-   Nếu cần style đặc biệt, kiểm tra `context.primaryButtonStyle` hoặc `context.secondaryButtonStyle` (trong `button_styles.dart`).
+
+## 6) Input / Form Rules
+-   **TextField**: Tránh custom `decoration:` (labelStyle, border, fillColor...) ở từng màn hình nếu theme đã cover.
+-   **Validation**: Hiển thị lỗi theo cơ chế chuẩn của Flutter form + theme. Message đưa vào localization.
+
+## 7) Layout Principles
+-   Tránh widget lồng nhau quá sâu (Deep Nesting).
+-   Sử dụng `Column`/`Row` hợp lý với `Expanded`/`Flexible`.
+-   Luôn bọc scrollable content trong `SafeArea` (hoặc dùng padding từ context extension).
+-   Xử lý bàn phím che input: dùng `context.bottomPadding` hoặc kiểm tra `context.isKeyboardVisible`.
+
+## 8) Tránh API Deprecated
+-   Không dùng `Color.withOpacity`. Dùng `color.withValues(alpha: 0.5)` hoặc `Color.fromARGB`.
+
+## 9) Dùng Gap thay cho SizeBox
+-   Dùng Gap thay cho Sizebox khi đặt trong column hay row.

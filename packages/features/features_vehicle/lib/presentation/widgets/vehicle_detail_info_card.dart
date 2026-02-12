@@ -47,6 +47,7 @@ class VehicleDetailInfoCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
+                flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -70,16 +71,20 @@ class VehicleDetailInfoCard extends StatelessWidget {
               ),
 
               // Status chips
-              Wrap(
-                spacing: AppSpacing.xxs,
-                children: statuses
-                    .map((status) => _StatusChip(label: status))
-                    .toList(),
+              Expanded(
+                flex: 1,
+                child: Wrap(
+                  spacing: AppSpacing.xxs,
+                  runSpacing: AppSpacing.xxs,
+                  alignment: WrapAlignment.end,
+                  children: statuses
+                      .map((status) => _StatusChip(label: status))
+                      .toList(),
+                ),
               ),
             ],
           ),
-          const Gap(AppSpacing.paddingMD),
-
+          const Gap(AppSpacing.paddingXS),
           // Information vehicle
           Row(
             children: [
@@ -98,7 +103,7 @@ class VehicleDetailInfoCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(AppSpacing.paddingSM),
+          const Gap(AppSpacing.paddingXS),
           Row(
             children: [
               Expanded(

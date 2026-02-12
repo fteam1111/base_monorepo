@@ -84,7 +84,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/users/me',
+            '/api/v1/client/users/me',
             queryParameters: queryParameters,
             data: _data,
           )

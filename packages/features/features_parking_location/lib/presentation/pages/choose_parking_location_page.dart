@@ -1,8 +1,9 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_parking_location/presentation/widgets/parking_export_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_grid_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_list_item.dart';
-import 'package:features_parking_location/presentation/widgets/parking_export_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_qc_item.dart';
+import 'package:features_parking_location/presentation/widgets/parking_selection_bottom_sheet.dart';
 import 'package:features_parking_location/presentation/widgets/parking_tab_bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -81,13 +82,21 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
             crossAxisCount: 2,
             mainAxisSpacing: AppSpacing.gridSpacing,
             crossAxisSpacing: AppSpacing.gridSpacing,
-            childAspectRatio: 1,
+            childAspectRatio: 0.87,
           ),
           delegate: SliverChildBuilderDelegate(
             (context, index) => ParkingGridItem(
               label: 'A${index + 1}',
               current: (index + 1) * 20,
               total: 400,
+              onPressed: () {
+                ParkingSelectionBottomSheet.show(
+                  context,
+                  factory: 'GA',
+                  area: '12B-12C',
+                  position: '${index + 1}',
+                );
+              },
             ),
             childCount: 100,
           ),
@@ -125,8 +134,14 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
       case ParkingTab.qc:
         return SliverList(
           delegate: SliverChildBuilderDelegate(
-            (context, index) =>
-                const ParkingQCItem(name: 'Khu QC 01', remaining: 1, total: 10),
+            (context, index) => ParkingQCItem(
+              name: 'Khu QC 01',
+              remaining: 1,
+              total: 10,
+              onPressed: () {
+                AppRoutes.navigateToFactoryMap(context);
+              },
+            ),
             childCount: 1,
           ),
         );

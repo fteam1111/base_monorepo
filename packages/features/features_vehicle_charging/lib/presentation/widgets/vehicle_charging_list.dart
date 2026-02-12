@@ -1,8 +1,8 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_vehicle_charging/presentation/pages/vehicle_charging_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
-import '../pages/vehicle_charging_page.dart';
 
 class VehicleChargingList extends StatelessWidget {
   const VehicleChargingList({
