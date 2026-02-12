@@ -199,7 +199,7 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             name: AppRoutes.doList,
-            child: DeliveryListPage(),
+            child: const DeliveryListPage(),
           ),
         ),
 

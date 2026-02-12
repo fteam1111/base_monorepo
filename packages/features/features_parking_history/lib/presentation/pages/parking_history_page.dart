@@ -1,8 +1,7 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_parking_history/presentation/widgets/parking_history_item.dart';
 import 'package:flutter/material.dart';
 import 'package:share/extensions/context_ext.dart';
-
-import '../widgets/parking_history_item.dart';
 
 class ParkingHistoryPage extends StatefulWidget {
   const ParkingHistoryPage({super.key});

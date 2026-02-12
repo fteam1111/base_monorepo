@@ -17,7 +17,7 @@ import 'package:network/network.dart';
 import 'package:share/share.dart';
 import 'package:upgrader/upgrader.dart';
 
-final _crashlytics = locator<FirebaseCrashlyticsService>().crashlytics;
+// final _crashlytics = locator<FirebaseCrashlyticsService>().crashlytics;
 
 Future<void> initialSetup(
   BaseConfig config,
