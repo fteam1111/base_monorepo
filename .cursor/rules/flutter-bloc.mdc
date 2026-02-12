@@ -1,6 +1,7 @@
 ---
 description: Quy tắc triển khai Flutter BLoC, Cubit, quản lý State và tương tác với Domain Layer.
-globs: **/*_bloc.dart, **/*_event.dart, **/*_state.dart, **/bloc/*.dart, **/cubit/*.dart, **/*_cubit.dart
+globs:
+alwaysApply: true
 ---
 # Flutter BLoC & Cubit Rules
 

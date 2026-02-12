@@ -1,6 +1,7 @@
 ---
 description: Quy tắc điều hướng và routing trong ứng dụng Flutter (GoRouter).
-globs: **/routes/*.dart, lib/main.dart, apps/customer_app/lib/routes/*.dart
+globs:
+alwaysApply: true
 ---
 # Routing Rules (GoRouter)
 

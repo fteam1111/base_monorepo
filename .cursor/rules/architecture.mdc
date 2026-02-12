@@ -1,6 +1,7 @@
 ---
 description: Quy tắc cốt lõi về Kiến trúc Clean Architecture, Domain-Driven Design (DDD) và các tiêu chuẩn coding.
 globs: lib/**/*, packages/**/*
+alwaysApply: true
 ---
 # Kiến trúc & DDD Principles
 

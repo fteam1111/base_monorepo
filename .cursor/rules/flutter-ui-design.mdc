@@ -1,6 +1,7 @@
 ---
 description: Quy tắc thiết kế UI, Material 3, Extension shortcuts và Design System.
 globs: **/presentation/pages/**/*.dart, **/presentation/widgets/**/*.dart, packages/design_system/**/*.dart
+alwaysApply: true
 ---
 # UI Design & Flutter Best Practices
 
@@ -11,12 +12,41 @@ globs: **/presentation/pages/**/*.dart, **/presentation/widgets/**/*.dart, packa
 -   **Const**: Luôn sử dụng `const` constructor cho Widget không thay đổi để tối ưu performance.
 -   **Widget Keys**: Cung cấp `Key? key` cho constructor của Widget. Dùng `ValueKey` hoặc `ObjectKey` khi cần định danh trong list.
 
-## 2) Composition & Widget Structure
--   **Small & Focused**: Chia nhỏ UI thành các widget nhỏ, tập trung một nhiệm vụ. Không viết hàm `_buildHelper()` dài ngoằng trong file, hãy tách ra Widget riêng (`StatelessWidget`).
--   **Stateless over Stateful**: Ưu tiên `StatelessWidget`. Chỉ dùng `StatefulWidget` khi cần giữ state cục bộ (animation, scroll controller, input focus).
--   **State-Driven**: UI là ánh xạ của State (`f(State)`). Không lưu business logic trong UI.
+## 2) Composition & Scaffolding
+-   **Small & Focused**: Chia nhỏ UI thành các widget nhỏ. Không viết hàm `_buildHelper()` dài ngoằng.
+-   **Stateless over Stateful**: Ưu tiên `StatelessWidget`.
+-   **State-Driven**: UI là ánh xạ của State (`f(State)`).
 
-## 3) Design System & Extensions (Use These!)
+**Ví dụ minh hoạ (Tên Widget thay đổi theo Feature):**
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: ...,
+    // Tùy chọn Layout (Column, ListView, CustomScrollView...)
+    body: Column(
+      children: [
+        // VD: Feature là 'ProductDetail' -> ProductHeaderSection, ProductInfoSection...
+        const LoginHeaderSection(),  
+        const LoginFormSection(),    
+        const LoginActionsSection(), 
+      ],
+    ),
+  );
+}
+```
+
+-   **Tách Section ra Widget**: Mỗi section tương đối độc lập -> tách thành file riêng trong `widgets/`.
+-   **Đặt tên Section linh hoạt**: `[FeatureName][SectionName]Section` (VD: `HomeBannerSection`, `ProfileMenuSection`). Tránh rập khuôn tên trong ví dụ.
+-   **Gom nhóm**: Header, Body (Content/Empty/Error), Footer (Actions).
+
+## 4) Design System & Extensions (Use These!)
+
+> **Ưu tiên Theme/Design System trong `packages/design_system`**:
+> - Button **tận dụng** `ElevatedButtonTheme`/`OutlinedButtonTheme` từ theme.
+> - Input **tận dụng** `TextField` mặc định theo theme.
+> - **Không hardcode style**: Tránh `Color(...)`, radius, elevation, padding nếu theme/token đã có.
+
 Tuyệt đối hạn chế gọi trực tiếp `Theme.of(context)` hoặc `MediaQuery.of(context)` dài dòng.
 Hãy sử dụng **Extension** có sẵn trong `packages/share/lib/extensions/context_ext.dart`:
 
@@ -37,15 +67,23 @@ Hãy sử dụng **Extension** có sẵn trong `packages/share/lib/extensions/co
 ### Localization
 -   Thay vì `AppLocalizations.of(context)!` -> Dùng **`context.l10n`**.
 
-## 4) Button Styles
+## 5) Button Styles
 -   Sử dụng `ElevatedButton`, `OutlinedButton` theo theme mặc định.
+-   **Không tạo style mới rải rác**: Không dùng `styleFrom(...)` tại từng màn hình nếu style đó có thể đưa vào theme.
 -   Nếu cần style đặc biệt, kiểm tra `context.primaryButtonStyle` hoặc `context.secondaryButtonStyle` (trong `button_styles.dart`).
 
-## 5) Layout Principles
+## 6) Input / Form Rules
+-   **TextField**: Tránh custom `decoration:` (labelStyle, border, fillColor...) ở từng màn hình nếu theme đã cover.
+-   **Validation**: Hiển thị lỗi theo cơ chế chuẩn của Flutter form + theme. Message đưa vào localization.
+
+## 7) Layout Principles
 -   Tránh widget lồng nhau quá sâu (Deep Nesting).
 -   Sử dụng `Column`/`Row` hợp lý với `Expanded`/`Flexible`.
 -   Luôn bọc scrollable content trong `SafeArea` (hoặc dùng padding từ context extension).
 -   Xử lý bàn phím che input: dùng `context.bottomPadding` hoặc kiểm tra `context.isKeyboardVisible`.
 
-## 6) Tránh API Deprecated
+## 8) Tránh API Deprecated
 -   Không dùng `Color.withOpacity`. Dùng `color.withValues(alpha: 0.5)` hoặc `Color.fromARGB`.
+
+## 9) Dùng Gap thay cho SizeBox
+-   Dùng Gap thay cho Sizebox khi đặt trong column hay row.
