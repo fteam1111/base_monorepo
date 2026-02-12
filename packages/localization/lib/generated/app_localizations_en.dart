@@ -63,6 +63,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get parkingHistoryTitle => 'History';
 
   @override
+  String get vehicleChargingAreaTitle => 'CHARGING AREA';
+
+  @override
+  String get vehicleChargingAreaSubtitle => 'BATTERY MAINTENANCE MANAGEMENT';
+
+  @override
+  String get vehicleChargingSearchHint => 'Search by VIN...';
+
+  @override
+  String get vehicleChargingInfoTitle => 'CHARGING INFO';
+
+  @override
+  String get vehicleChargingInfoSubtitle => 'VEHICLE DETAILS';
+
+  @override
+  String get vehicleChargingInfoStatusLabel => 'STATUS';
+
+  @override
+  String get vehicleChargingInfoSubAreaLabel => 'SUB AREA';
+
+  @override
+  String get vehicleChargingInfoCheckAgingDateLabel => 'CHECK AGING DATE';
+
+  @override
+  String get vehicleChargingCloseInfo => 'CLOSE INFO';
+
+  @override
   String get enterVinToViewHistory => 'Enter VIN to view history';
 
   @override
@@ -70,6 +97,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get doList => 'DO list';
+
+  @override
+  String get deliveryOrderListTitle => 'DO List';
+
+  @override
+  String get deliveryOrderBatchTitle => 'BATCH DELIVERY ORDERS';
+
+  @override
+  String get customer => 'CUSTOMER';
+
+  @override
+  String get progress => 'PROGRESS';
+
+  @override
+  String get filterList => 'LIST FILTER';
+
+  @override
+  String get findVinCode => 'Search VIN...';
+
+  @override
+  String get allModels => 'ALL MODELS';
+
+  @override
+  String get allColors => 'ALL COLORS';
+
+  @override
+  String get pickUpGuide => 'PICKUP GUIDE';
+
+  @override
+  String results(Object count) {
+    return '$count RESULTS';
+  }
+
+  @override
+  String resultsCount(Object count) {
+    return '$count RESULTS';
+  }
+
+  @override
+  String warehouse(Object date) {
+    return 'Warehouse entry: $date';
+  }
 
   @override
   String get charging => 'Charging';
@@ -169,4 +238,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exportWaitingAreaSubtitle => 'Export waiting area';
+
+  @override
+  String get deliveryOrderStatusPreparing => 'PREPARING';
+
+  @override
+  String get deliveryOrderStatusReady => 'READY';
+
+  @override
+  String get all => 'ALL';
+
+  @override
+  String allWithCount(Object count) {
+    return 'ALL ($count)';
+  }
+
+  @override
+  String preparingWithCount(Object count) {
+    return 'PREPARING ($count)';
+  }
+
+  @override
+  String readyWithCount(Object count) {
+    return 'READY ($count)';
+  }
+
+  @override
+  String get unitVehicle => 'VEHICLES';
+
+  @override
+  String get unitUnit => 'UNITS';
+
+  @override
+  String get deliveryOrderCodeLabel => 'DELIVERY ORDER CODE';
+
+  @override
+  String get deliveryOrderVehicleModelLabel => 'VEHICLE MODEL';
+
+  @override
+  String get deliveryOrderColorLabel => 'COLOR';
+
+  @override
+  String get deliveryOrderQuantityLabel => 'QUANTITY';
+
+  @override
+  String get deliveryOrderQuantityUnit => 'UNITS';
+
+  @override
+  String locationFormat(Object area, Object position) {
+    return 'Area $area - Position $position';
+  }
+
+  @override
+  String get deliveryOrderDeadlineLabel => 'DEADLINE';
+
+  @override
+  String get deliveryOrderCompletionProgressLabel => 'COMPLETION PROGRESS';
+
+  @override
+  String deliveryOrderDetailTitle(Object code) {
+    return 'DO: $code';
+  }
+
+  @override
+  String get deliveryOrderPickupGuideTitle => 'PICKUP GUIDE';
+
+  @override
+  String fifoBadge(Object number) {
+    return 'FIFO #$number';
+  }
 }

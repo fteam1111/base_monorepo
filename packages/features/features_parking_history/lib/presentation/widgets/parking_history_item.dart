@@ -21,7 +21,7 @@ class ParkingHistoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.appColors;
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.paddingMD),
+      padding: const EdgeInsets.all(AppSpacing.paddingXS),
       decoration: BoxDecoration(
         color: colors.cardBackground,
         borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -49,7 +49,7 @@ class ParkingHistoryItem extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: AppSpacing.paddingXS),
+          const SizedBox(height: AppSpacing.paddingXXXS),
           Text(
             status,
             style: context.appTypography.bodyMedium.copyWith(
@@ -59,7 +59,7 @@ class ParkingHistoryItem extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: AppSpacing.paddingLG),
+          const SizedBox(height: AppSpacing.paddingXS),
           ...info.entries.map(
             (entry) => _buildInfoRow(context, entry.key, entry.value),
           ),
@@ -72,7 +72,7 @@ class ParkingHistoryItem extends StatelessWidget {
     final typography = context.appTypography;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.paddingXS / 2),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
