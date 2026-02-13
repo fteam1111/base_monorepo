@@ -1,4 +1,4 @@
-import 'package:features_map/presentation/widgets/map_app_bar_title_section.dart';
+import 'package:design_system/design_system.dart';
 import 'package:features_map/presentation/widgets/map_control_panel_section.dart';
 import 'package:features_map/presentation/widgets/map_viewer_section.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +31,9 @@ class _FactoryMapPageState extends State<FactoryMapPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        centerTitle: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
-        title: const MapAppBarTitleSection(),
+      appBar: CustomAppBar(
+        title: context.l10n.factoryMapTitle,
+        subtitle: context.l10n.exportWaitingAreaSubtitle,
       ),
       body: Stack(
         children: [

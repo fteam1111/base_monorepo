@@ -8,11 +8,10 @@ class _Logo extends StatelessWidget {
     return Shimmer(
       duration: const Duration(seconds: 1),
       interval: const Duration(seconds: 1),
-      color: Colors.black,
-      colorOpacity: 0,
+      color: context.appColors.neutralVariant,
       enabled: true,
       direction: const ShimmerDirection.fromLTRB(),
-      child: Image.asset('packages/design_system/assets/images/img_logo.png'),
+      child: Image.asset(AppIcons.icHome, package: AppAssets.package),
     );
   }
 }

@@ -18,19 +18,7 @@ class VehicleLocationCard extends StatelessWidget {
     final colorScheme = context.theme.colorScheme;
     final typography = context.appTypography;
 
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.cardPadding),
-      decoration: BoxDecoration(
-        color: context.appColors.cardBackground,
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return CustomCard(
       child: Row(
         children: [
           AppIconContainer(

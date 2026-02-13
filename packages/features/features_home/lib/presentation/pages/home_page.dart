@@ -38,8 +38,10 @@ class HomePage extends StatelessWidget {
                 ).toSliverPadding(
                   padding: EdgeInsets.symmetric(
                     horizontal: context.appSpacing.pageHorizontal,
+                    vertical: AppSpacing.sectionSpacing,
                   ),
                 ),
+
                 HomeMenuGridSliverSection(
                   onChargingPressed: () {
                     AppRoutes.navigateToVehicleCharging(context);

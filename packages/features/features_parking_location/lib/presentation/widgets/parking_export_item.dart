@@ -19,49 +19,41 @@ class ParkingExportItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
 
-    return Material(
-      color: context.appColors.cardBackground,
-      borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.cardPadding),
-          child: Row(
-            children: [
-              AppIconContainer(
-                icon: Icon(
-                  Icons.local_shipping_outlined,
-                  color: colorScheme.primary,
-                ),
-              ),
-              const Gap(AppSpacing.paddingSM),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: context.appTypography.bodyLarge.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Gap(AppSpacing.xxxs),
-                    Text(
-                      context.l10n.deliveryOrders('$orderCount'),
-                      style: context.appTypography.bodySmall.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.05,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
-            ],
+    return CustomCard(
+      onTap: onPressed,
+      child: Row(
+        children: [
+          AppIconContainer(
+            icon: Icon(
+              Icons.local_shipping_outlined,
+              color: colorScheme.primary,
+            ),
           ),
-        ),
+          const Gap(AppSpacing.paddingSM),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: context.appTypography.bodyLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Gap(AppSpacing.xxxs),
+                Text(
+                  context.l10n.deliveryOrders('$orderCount'),
+                  style: context.appTypography.bodySmall.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.05,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+        ],
       ),
     );
   }

@@ -96,12 +96,8 @@ class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: context.colorScheme.onSurface),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
-        title: Text(
+      appBar: CustomAppBar(
+        titleWidget: Text(
           context.l10n.deliveryOrderDetailTitle('DO-2024-001'),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

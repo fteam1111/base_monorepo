@@ -21,53 +21,44 @@ class ParkingGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
 
-    return Material(
-      color: context.appColors.cardBackground,
-      borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-      elevation: 0,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.cardPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: AppSpacing.gigantic,
-                height: AppSpacing.gigantic,
-                decoration: BoxDecoration(
-                  color: colorScheme.primary,
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'P',
-                  style: context.appTypography.sectionHeader.copyWith(
-                    color: colorScheme.onPrimary,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
+    return CustomCard(
+      onTap: onPressed,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: AppSpacing.gigantic,
+            height: AppSpacing.gigantic,
+            decoration: BoxDecoration(
+              color: colorScheme.primary,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'P',
+              style: context.appTypography.sectionHeader.copyWith(
+                color: colorScheme.onPrimary,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
               ),
-              const Gap(AppSpacing.sectionPadding),
-              Text(
-                label,
-                style: context.appTypography.sectionHeader.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Gap(AppSpacing.xxs),
-              Text(
-                '$current/$total',
-                style: context.appTypography.bodyMedium.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          const Gap(AppSpacing.sectionPadding),
+          Text(
+            label,
+            style: context.appTypography.sectionHeader.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Gap(AppSpacing.xxs),
+          Text(
+            '$current/$total',
+            style: context.appTypography.bodyMedium.copyWith(
+              color: colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

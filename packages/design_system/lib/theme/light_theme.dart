@@ -85,9 +85,11 @@ class AppLightTheme {
       // AppBar theme
       appBarTheme: AppBarTheme(
         centerTitle: false,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        backgroundColor: AppColors.surfaceVariantLight,
+        elevation: 4,
+        shadowColor: colorScheme.onSurface.withValues(alpha: 0.2),
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 4,
+        backgroundColor: colorScheme.surfaceContainerHighest,
         foregroundColor: colorScheme.onSurface,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: AppTypography.titleLarge.copyWith(

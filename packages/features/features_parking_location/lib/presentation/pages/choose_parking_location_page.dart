@@ -21,35 +21,37 @@ class ChooseParkingLocationPage extends StatefulWidget {
 class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
   ParkingTab _selectedTab = ParkingTab.finished;
 
+  late final ScrollController _finishedController;
+  late final ScrollController _chargingController;
+  late final ScrollController _exportController;
+  late final ScrollController _qcController;
+
+  @override
+  void initState() {
+    super.initState();
+    _finishedController = ScrollController();
+    _chargingController = ScrollController();
+    _exportController = ScrollController();
+    _qcController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _finishedController.dispose();
+    _chargingController.dispose();
+    _exportController.dispose();
+    _qcController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.colorScheme.surfaceContainerLowest,
-      appBar: AppBar(
+      appBar: CustomAppBar(
         centerTitle: false,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.chooseParkingLocation,
-              style: context.appTypography.sectionHeader.copyWith(
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              context.l10n.businessAreaClassification,
-              style: context.appTypography.bodySmall.copyWith(
-                color: context.theme.colorScheme.onSurfaceVariant,
-                letterSpacing: 1.1,
-              ),
-            ),
-          ],
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
+        title: context.l10n.chooseParkingLocation,
+        subtitle: context.l10n.businessAreaClassification,
       ),
       body: Column(
         children: [
@@ -58,15 +60,11 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
             onTabChanged: (tab) => setState(() => _selectedTab = tab),
           ),
           Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.appSpacing.pageHorizontal,
-                  ),
-                  sliver: _buildSliverContent(),
-                ),
-              ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.appSpacing.pageHorizontal,
+              ),
+              child: _buildTabContent(),
             ),
           ),
         ],
@@ -74,18 +72,20 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
     );
   }
 
-  Widget _buildSliverContent() {
+  Widget _buildTabContent() {
     switch (_selectedTab) {
       case ParkingTab.finished:
-        return SliverGrid(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: AppSpacing.gridSpacing,
-            crossAxisSpacing: AppSpacing.gridSpacing,
-            childAspectRatio: 0.87,
-          ),
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => ParkingGridItem(
+        return ScrollableGridView<int>(
+          controller: _finishedController,
+          isLoading: false,
+          items: List<int>.generate(100, (i) => i),
+          noRecordFoundWidget: const SizedBox.shrink(),
+          crossAxisCount: 2,
+          mainAxisSpacing: AppSpacing.gridSpacing,
+          crossAxisSpacing: AppSpacing.gridSpacing,
+          childAspectRatio: 0.87,
+          itemBuilder: (context, index, item) {
+            return ParkingGridItem(
               label: 'A${index + 1}',
               current: (index + 1) * 20,
               total: 400,
@@ -97,53 +97,58 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
                   position: '${index + 1}',
                 );
               },
-            ),
-            childCount: 100,
-          ),
+            );
+          },
         );
+
       case ParkingTab.charging:
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.paddingSM),
-              child: ParkingListItem(
-                vin: index == 0 ? 'VIN-FLZ-1102' : 'VIN-VNT-9901',
-                model: index == 0 ? 'FELIZ S' : 'VENTO S',
-                station: 'Trạm 0${index + 1}',
-                entryTime: index == 0
-                    ? '08:30 - 15/05/2024'
-                    : '10:15 - 15/05/2024',
-              ),
-            ),
-            childCount: 2,
-          ),
+        return ScrollList<int>(
+          controller: _chargingController,
+          isLoading: false,
+          items: List<int>.generate(2, (i) => i),
+          noRecordFoundWidget: const SizedBox.shrink(),
+          itemBuilder: (context, index, item) {
+            return ParkingListItem(
+              vin: index == 0 ? 'VIN-FLZ-1102' : 'VIN-VNT-9901',
+              model: index == 0 ? 'FELIZ S' : 'VENTO S',
+              station: 'Trạm 0${index + 1}',
+              entryTime: index == 0
+                  ? '08:30 - 15/05/2024'
+                  : '10:15 - 15/05/2024',
+            );
+          },
         );
+
       case ParkingTab.export:
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.paddingSM),
-              child: ParkingExportItem(
-                name: 'Lồng ${index + 1}',
-                orderCount: index == 0 ? 2 : (index == 1 ? 1 : 0),
-              ),
-            ),
-            childCount: 3,
-          ),
+        return ScrollList<int>(
+          controller: _exportController,
+          isLoading: false,
+          items: List<int>.generate(3, (i) => i),
+          noRecordFoundWidget: const SizedBox.shrink(),
+          itemBuilder: (context, index, item) {
+            return ParkingExportItem(
+              name: 'Lồng ${index + 1}',
+              orderCount: index == 0 ? 2 : (index == 1 ? 1 : 0),
+            );
+          },
         );
+
       case ParkingTab.qc:
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => ParkingQCItem(
+        return ScrollList<int>(
+          controller: _qcController,
+          isLoading: false,
+          items: List<int>.generate(1, (i) => i),
+          noRecordFoundWidget: const SizedBox.shrink(),
+          itemBuilder: (context, index, item) {
+            return ParkingQCItem(
               name: 'Khu QC 01',
               remaining: 1,
               total: 10,
               onPressed: () {
                 AppRoutes.navigateToFactoryMap(context);
               },
-            ),
-            childCount: 1,
-          ),
+            );
+          },
         );
     }
   }
