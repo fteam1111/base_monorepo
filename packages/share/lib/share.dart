@@ -8,6 +8,7 @@ export 'common/permission_service.dart';
 
 export 'constants/app_constants.dart';
 export 'constants/regex_patterns.dart';
+export 'constants/widget_keys.dart';
 
 export 'connectivity/connectivity_service.dart';
 export 'connectivity/domain/connectivity_repository.dart';

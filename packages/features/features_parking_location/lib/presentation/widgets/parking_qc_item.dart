@@ -21,84 +21,76 @@ class ParkingQCItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
 
-    return Material(
-      color: context.appColors.cardBackground,
-      borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.cardPadding),
-          child: Row(
-            children: [
-              AppIconContainer(
-                icon: Text(
-                  'QC1',
-                  style: context.appTypography.bodyMedium.copyWith(
-                    color: colorScheme.primary,
+    return CustomCard(
+      onTap: onPressed,
+      child: Row(
+        children: [
+          AppIconContainer(
+            icon: Text(
+              'QC1',
+              style: context.appTypography.bodyMedium.copyWith(
+                color: colorScheme.primary,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+          const Gap(AppSpacing.sectionPadding),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: context.appTypography.bodyLarge.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
                   ),
                 ),
-              ),
-              const Gap(AppSpacing.sectionPadding),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                const Gap(AppSpacing.xxxs),
+                Row(
                   children: [
                     Text(
-                      name,
-                      style: context.appTypography.bodyLarge.copyWith(
+                      context.l10n.remainingSlots,
+                      style: context.appTypography.bodySmall.copyWith(
+                        color: colorScheme.tertiary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Gap(AppSpacing.xxxs),
-                    Row(
-                      children: [
-                        Text(
-                          context.l10n.remainingSlots,
-                          style: context.appTypography.bodySmall.copyWith(
-                            color: colorScheme.tertiary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Gap(AppSpacing.xxs),
-                        Text(
-                          '$remaining',
-                          style: context.appTypography.bodySmall.copyWith(
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Gap(AppSpacing.xxxs),
-                    Row(
-                      children: [
-                        Text(
-                          context.l10n.capacity,
-                          style: context.appTypography.bodySmall.copyWith(
-                            color: colorScheme.tertiary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Gap(AppSpacing.xxs),
-                        Text(
-                          '$remaining/$total',
-                          style: context.appTypography.bodySmall.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                    const Gap(AppSpacing.xxs),
+                    Text(
+                      '$remaining',
+                      style: context.appTypography.bodySmall.copyWith(
+                        color: colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
-              ),
-              Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
-            ],
+                const Gap(AppSpacing.xxxs),
+                Row(
+                  children: [
+                    Text(
+                      context.l10n.capacity,
+                      style: context.appTypography.bodySmall.copyWith(
+                        color: colorScheme.tertiary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Gap(AppSpacing.xxs),
+                    Text(
+                      '$remaining/$total',
+                      style: context.appTypography.bodySmall.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
+          Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+        ],
       ),
     );
   }

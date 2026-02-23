@@ -27,8 +27,19 @@ class AppBarHomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.theme.appBarTheme.backgroundColor,
       height: appBarHeight,
+      decoration: BoxDecoration(
+        color: context.theme.appBarTheme.backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color:
+                context.theme.appBarTheme.shadowColor ??
+                AppColors.onSurfaceLight.withValues(alpha: 0.09),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
       child: LayoutBuilder(
         builder: (context, constrains) {
           final logoHeight = appBarHeight / 2 * (constrains.maxWidth / 411);

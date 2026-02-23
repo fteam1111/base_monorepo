@@ -20,7 +20,7 @@ class AppRadius {
   static const double buttonSmall = sm; // 8px
   static const double buttonLarge = lg; // 16px
 
-  static const double card = md; // 12px
+  static const double card = xl; // 20px
   static const double cardSmall = sm; // 8px
   static const double cardLarge = lg; // 16px
 

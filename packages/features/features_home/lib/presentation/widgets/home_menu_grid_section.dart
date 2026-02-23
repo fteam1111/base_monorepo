@@ -79,42 +79,34 @@ class _HomeMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
 
-    return Material(
-      color: context.appColors.cardBackground,
-      borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        onTap: onPressed,
-        child: Padding(
-          padding: EdgeInsets.all(context.appSpacing.cardPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: AppSpacing.gigantic,
-                height: AppSpacing.gigantic,
-                decoration: BoxDecoration(
-                  color: colorScheme.primary,
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: Image.asset(
-                  iconAsset,
-                  package: AppAssets.package,
-                  width: AppSpacing.iconDefault,
-                  height: AppSpacing.iconDefault,
-                  color: colorScheme.onPrimary,
-                ),
-              ),
-              const Gap(AppSpacing.small),
-              Text(
-                label,
-                textAlign: TextAlign.center,
-                style: context.appTypography.bodyMedium,
-              ),
-            ],
+    return CustomCard(
+      onTap: onPressed,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: AppSpacing.gigantic,
+            height: AppSpacing.gigantic,
+            decoration: BoxDecoration(
+              color: colorScheme.primary,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Image.asset(
+              iconAsset,
+              package: AppAssets.package,
+              width: AppSpacing.iconDefault,
+              height: AppSpacing.iconDefault,
+              color: colorScheme.onPrimary,
+            ),
           ),
-        ),
+          const Gap(AppSpacing.small),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: context.appTypography.bodyMedium,
+          ),
+        ],
       ),
     );
   }

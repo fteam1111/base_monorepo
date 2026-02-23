@@ -1,11 +1,9 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-
 import 'package:features_vehicle_charging/presentation/widgets/charging_info_dialog.dart';
-import 'package:features_vehicle_charging/presentation/widgets/vehicle_charging_app_bar_title.dart';
 import 'package:features_vehicle_charging/presentation/widgets/vehicle_charging_list.dart';
 import 'package:features_vehicle_charging/presentation/widgets/vehicle_charging_search_bar.dart';
-import 'package:share/share.dart';
+import 'package:flutter/material.dart';
+import 'package:share/extensions/context_ext.dart';
 
 class VehicleChargingPage extends StatefulWidget {
   const VehicleChargingPage({super.key});
@@ -57,13 +55,9 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
 
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
-      appBar: AppBar(
-        titleSpacing: AppSpacing.none,
-        title: const VehicleChargingAppBarTitle(),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: context.colorScheme.primary),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
+      appBar: CustomAppBar(
+        title: context.l10n.vehicleChargingAreaTitle,
+        subtitle: context.l10n.vehicleChargingAreaSubtitle,
       ),
       body: Column(
         children: [

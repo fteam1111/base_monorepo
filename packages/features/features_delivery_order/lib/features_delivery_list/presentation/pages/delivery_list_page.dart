@@ -85,43 +85,16 @@ class _DeliveryListPageState extends State<DeliveryListPage> {
 
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
-      appBar: AppBar(
+      appBar: CustomAppBar(
         centerTitle: false,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: context.colorScheme.primary),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.deliveryOrderListTitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTypography.titleLarge.copyWith(
-                fontWeight: FontWeight.bold,
-                color: context.colorScheme.onSurface,
-              ),
-            ),
-            Text(
-              context.l10n.deliveryOrderBatchTitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTypography.labelSmall.copyWith(
-                color: context.colorScheme.onSurfaceVariant.withValues(
-                  alpha: 0.5,
-                ),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+        title: context.l10n.deliveryOrderListTitle,
+        subtitle: context.l10n.deliveryOrderBatchTitle,
       ),
       body: Column(
         children: [
           Container(
-            color: context.appColors.background,
+            color: context.theme.scaffoldBackgroundColor,
             padding: const EdgeInsets.symmetric(vertical: AppSpacing.paddingXS),
             child: AppSegmentedTabBar(
               selectedValue: _selectedTabIndex,

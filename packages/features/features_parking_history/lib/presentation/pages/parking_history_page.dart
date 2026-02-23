@@ -47,7 +47,10 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
 
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
-      appBar: AppBar(title: Text(context.l10n.parkingHistoryTitle)),
+      appBar: CustomAppBar(
+        title: context.l10n.parkingHistoryTitle,
+        leadingType: CustomAppBarLeadingType.none,
+      ),
       body: Column(
         children: [
           Padding(

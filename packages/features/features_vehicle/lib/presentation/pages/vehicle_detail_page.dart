@@ -13,14 +13,7 @@ class VehicleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: Text(context.l10n.vehicleDetailTitle),
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => AppRoutes.navigateBack(context),
-        ),
-      ),
+      appBar: CustomAppBar(title: context.l10n.vehicleDetailTitle),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

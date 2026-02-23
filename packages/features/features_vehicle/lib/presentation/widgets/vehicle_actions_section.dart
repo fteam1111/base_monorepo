@@ -22,13 +22,12 @@ class VehicleActionsSection extends StatelessWidget {
       children: [
         Text(
           context.l10n.availableActions,
-          style: typography.bodySmall.copyWith(
+          style: typography.bodyLarge.copyWith(
             color: context.theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
-            letterSpacing: 1.2,
           ),
         ),
-        const Gap(AppSpacing.sectionSpacing),
+        const Gap(AppSpacing.sectionPadding),
         _ActionLargeButton(
           title: context.l10n.moveToExportArea,
           subtitle: context.l10n.prepareForDelivery,
@@ -68,61 +67,49 @@ class _ActionLargeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final typography = context.appTypography;
 
-    return Material(
-      color: backgroundColor,
-      borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-      elevation: 4,
+    return CustomCard(
+      backgroundColor: backgroundColor,
       shadowColor: backgroundColor.withValues(alpha: 0.6),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(AppRadius.extraLarge),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.paddingSM),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.paddingXS),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                ),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: AppSpacing.iconAction,
-                ),
-              ),
-              const Gap(AppSpacing.paddingSM),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: typography.bodyMedium.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    Text(
-                      subtitle,
-                      style: typography.bodySmall.copyWith(
-                        color: Colors.white.withValues(alpha: 0.8),
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(
-                Icons.chevron_right,
-                color: Colors.white,
-                size: AppSpacing.iconDefault,
-              ),
-            ],
+      onTap: onPressed,
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.paddingXS),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+            ),
+            child: Icon(icon, color: Colors.white, size: AppSpacing.iconAction),
           ),
-        ),
+          const Gap(AppSpacing.paddingSM),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: typography.bodyMedium.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: typography.bodySmall.copyWith(
+                    color: Colors.white.withValues(alpha: 0.8),
+                    fontSize: 10,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Icon(
+            Icons.chevron_right,
+            color: Colors.white,
+            size: AppSpacing.iconDefault,
+          ),
+        ],
       ),
     );
   }
