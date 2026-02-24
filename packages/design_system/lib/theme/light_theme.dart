@@ -94,6 +94,7 @@ class AppLightTheme {
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: AppTypography.titleLarge.copyWith(
           color: colorScheme.onSurface,
+          fontWeight: FontWeight.bold,
         ),
       ),
 

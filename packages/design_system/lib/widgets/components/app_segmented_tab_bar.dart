@@ -37,9 +37,10 @@ class AppSegmentedTabBar extends StatelessWidget {
       height: height,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding:
-            padding ??
-            const EdgeInsets.symmetric(horizontal: AppSpacing.pageHorizontal),
+        padding: padding ??
+            const EdgeInsets.symmetric(
+              horizontal: AppSpacing.pageHorizontal,
+            ),
         itemCount: items.length,
         separatorBuilder: (context, index) =>
             const SizedBox(width: AppSpacing.paddingXS),
