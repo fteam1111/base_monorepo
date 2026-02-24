@@ -12,6 +12,13 @@ class ParkingHistoryPage extends StatefulWidget {
 
 class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
   final double _spacingBottomList = 100;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,27 +103,33 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.fromLTRB(
-                AppSpacing.medium,
-                AppSpacing.none,
-                AppSpacing.medium,
-                _spacingBottomList,
+            child: ScrollList<Map<String, dynamic>>(
+              controller: _scrollController,
+              isLoading: false,
+              items: items,
+              header: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.medium),
+                child: SizedBox.shrink(),
               ),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final item = items[index];
-
-                return ParkingHistoryItem(
-                  vin: item['vin'] as String,
-                  status: item['status'] as String,
-                  isLeaving: item['isLeaving'] as bool,
-                  info: (item['info'] as Map).cast<String, String>(),
+              itemBuilder: (context, index, item) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: AppSpacing.medium,
+                    right: AppSpacing.medium,
+                    bottom: index == items.length - 1 ? _spacingBottomList : 0,
+                  ),
+                  child: ParkingHistoryItem(
+                    vin: item['vin'] as String,
+                    status: item['status'] as String,
+                    isLeaving: item['isLeaving'] as bool,
+                    info: (item['info'] as Map).cast<String, String>(),
+                  ),
                 );
               },
-              separatorBuilder: (_, __) {
+              separatorBuilder: (context, index) {
                 return const SizedBox(height: AppSpacing.sectionPadding);
               },
+              noRecordFoundWidget: const SizedBox.shrink(),
             ),
           ),
         ],

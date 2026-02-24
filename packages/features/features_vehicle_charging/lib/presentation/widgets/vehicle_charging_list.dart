@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
 
-class VehicleChargingList extends StatelessWidget {
+class VehicleChargingList extends StatefulWidget {
   const VehicleChargingList({
     super.key,
     required this.items,
@@ -15,27 +15,48 @@ class VehicleChargingList extends StatelessWidget {
   final void Function(VehicleChargingItemModel) onTapInfo;
 
   @override
+  State<VehicleChargingList> createState() => _VehicleChargingListState();
+}
+
+class _VehicleChargingListState extends State<VehicleChargingList> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
 
-    return ListView.separated(
-      padding: EdgeInsets.fromLTRB(
-        context.appSpacing.pageHorizontal,
-        AppSpacing.none,
-        context.appSpacing.pageHorizontal,
-        AppSpacing.large,
+    return ScrollList<VehicleChargingItemModel>(
+      controller: _scrollController,
+      isLoading: false,
+      items: widget.items,
+      header: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.appSpacing.pageHorizontal,
+        ),
+        child: const SizedBox.shrink(),
       ),
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-
-        return _VehicleChargingCard(
-          item: item,
-          onTapInfo: () => onTapInfo(item),
-          colorScheme: colorScheme,
+      itemBuilder: (context, index, item) {
+        return Padding(
+          padding: EdgeInsets.only(
+            left: context.appSpacing.pageHorizontal,
+            right: context.appSpacing.pageHorizontal,
+            bottom: index == widget.items.length - 1 ? AppSpacing.large : 0,
+          ),
+          child: _VehicleChargingCard(
+            item: item,
+            onTapInfo: () => widget.onTapInfo(item),
+            colorScheme: colorScheme,
+          ),
         );
       },
       separatorBuilder: (_, __) => const Gap(AppSpacing.sectionPadding),
+      noRecordFoundWidget: const SizedBox.shrink(),
     );
   }
 }

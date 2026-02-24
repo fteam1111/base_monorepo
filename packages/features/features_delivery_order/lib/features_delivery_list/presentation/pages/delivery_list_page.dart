@@ -13,6 +13,13 @@ class DeliveryListPage extends StatefulWidget {
 
 class _DeliveryListPageState extends State<DeliveryListPage> {
   int _selectedTabIndex = 0;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   List<Map<String, dynamic>> _tabs(BuildContext context) {
     return [
@@ -112,28 +119,38 @@ class _DeliveryListPageState extends State<DeliveryListPage> {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.all(AppSpacing.paddingSM),
-              itemCount: filteredData.length,
-              itemBuilder: (context, index) {
-                final item = filteredData[index];
-                return DeliveryOrderCard(
-                  doCode: item['doCode'],
-                  status: item['status'],
-                  modelName: item['modelName'],
-                  colorCode: item['colorCode'],
-                  colorName: item['colorName'],
-                  quantity: item['quantity'],
-                  deadline: item['deadline'],
-                  progress: item['progress'],
-                  onTap: () {
-                    AppRoutes.navigateToDeliveryOrderDetail(context);
-                  },
+            child: ScrollList<Map<String, dynamic>>(
+              controller: _scrollController,
+              isLoading: false,
+              items: filteredData,
+              header: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.paddingSM),
+                child: SizedBox.shrink(),
+              ),
+              itemBuilder: (context, index, item) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.paddingSM,
+                  ),
+                  child: DeliveryOrderCard(
+                    doCode: item['doCode'],
+                    status: item['status'],
+                    modelName: item['modelName'],
+                    colorCode: item['colorCode'],
+                    colorName: item['colorName'],
+                    quantity: item['quantity'],
+                    deadline: item['deadline'],
+                    progress: item['progress'],
+                    onTap: () {
+                      AppRoutes.navigateToDeliveryOrderDetail(context);
+                    },
+                  ),
                 );
               },
-              separatorBuilder: (_, __) {
+              separatorBuilder: (context, index) {
                 return const Gap(AppSpacing.paddingSM);
               },
+              noRecordFoundWidget: const SizedBox.shrink(),
             ),
           ),
         ],
