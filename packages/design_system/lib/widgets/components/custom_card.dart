@@ -91,16 +91,15 @@ class CustomCard extends StatelessWidget {
       child: Material(
         color: resolvedBackground,
         elevation: elevation,
-        borderRadius: resolvedBorderRadius,
         clipBehavior: clipBehavior,
-        shape: showBorder
-            ? RoundedRectangleBorder(
-                borderRadius: resolvedBorderRadius,
-                side: BorderSide(
+        shape: RoundedRectangleBorder(
+          borderRadius: resolvedBorderRadius,
+          side: showBorder
+              ? BorderSide(
                   color: borderColor ?? context.colorScheme.outlineVariant,
-                ),
-              )
-            : null,
+                )
+              : BorderSide.none,
+        ),
         child: InkWell(
           onTap: onTap,
           borderRadius: resolvedBorderRadius,

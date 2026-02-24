@@ -30,19 +30,7 @@ class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
       const AppDropdownItem(value: 'white', label: 'Trắng'),
     ];
 
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.paddingMD),
-      decoration: BoxDecoration(
-        color: context.appColors.cardBackground,
-        borderRadius: BorderRadius.circular(AppRadius.xxl),
-        boxShadow: [
-          BoxShadow(
-            color: context.colorScheme.shadow.withValues(alpha: 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
+    return CustomCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
