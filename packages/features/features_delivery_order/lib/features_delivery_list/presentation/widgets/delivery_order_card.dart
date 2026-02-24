@@ -63,33 +63,18 @@ class DeliveryOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return CustomCard(
       onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: context.appColors.cardBackground,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          boxShadow: [
-            BoxShadow(
-              color: context.colorScheme.shadow.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.paddingMD),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(context),
-              const Gap(AppSpacing.paddingMD),
-              _buildInfoSection(context),
-              const Gap(AppSpacing.paddingMD),
-              _buildProgress(context),
-            ],
-          ),
-        ),
+      padding: const EdgeInsets.all(AppSpacing.paddingMD),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const Gap(AppSpacing.paddingSM),
+          _buildInfoSection(context),
+          const Gap(AppSpacing.paddingSM),
+          _buildProgress(context),
+        ],
       ),
     );
   }
@@ -123,15 +108,13 @@ class DeliveryOrderCard extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+            CustomCard(
               padding: const EdgeInsets.symmetric(
                 vertical: AppSpacing.paddingXXXS,
                 horizontal: AppSpacing.paddingXS,
               ),
-              decoration: BoxDecoration(
-                color: status.backgroundLabel(context),
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-              ),
+              backgroundColor: status.backgroundLabel(context),
+              shadowColor: Colors.transparent,
               child: Text(
                 status.label(context),
                 style: AppTypography.labelMedium.copyWith(
@@ -152,12 +135,11 @@ class DeliveryOrderCard extends StatelessWidget {
   }
 
   Widget _buildInfoSection(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.paddingSM),
-      decoration: BoxDecoration(
-        color: context.colorScheme.primary.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(AppRadius.md),
-      ),
+    return CustomCard(
+      backgroundColor: context.colorScheme.primary.withValues(alpha: 0.05),
+      borderColor: Colors.transparent,
+      elevation: 0,
+      shadowColor: Colors.transparent,
       child: Column(
         children: [
           Row(
