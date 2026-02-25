@@ -1,9 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:features_parking_history/presentation/widgets/parking_history_item.dart';
 import 'package:flutter/material.dart';
-import 'package:share/extensions/context_ext.dart';
-
-import 'package:features_parking_history/presentation/widgets/parking_history_item.dart';
+import 'package:share/share.dart';
 
 class ParkingHistoryPage extends StatefulWidget {
   const ParkingHistoryPage({super.key});
@@ -66,19 +64,31 @@ class _ParkingHistoryPageState extends State<ParkingHistoryPage> {
             padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
             child: AppTextField.search(
               hintText: context.l10n.parkingHistoryTitle,
-              suffix: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  // TODO: handle QR scan action
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: AppSpacing.paddingXS),
-                  child: Image.asset(
-                    AppIcons.icScanQr,
-                    package: AppAssets.package,
-                    height: AppSpacing.mediumLarge,
-                    width: AppSpacing.mediumLarge,
-                    color: AppColors.secondaryLight,
+              suffix: Padding(
+                padding: const EdgeInsets.only(right: AppSpacing.paddingXXXS),
+                child: Material(
+                  color: Colors.transparent,
+                  shape: const CircleBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkResponse(
+                    onTap: () {
+                      AppRoutes.navigateToQrScanner(context);
+                    },
+                    containedInkWell: true,
+                    highlightShape: BoxShape.circle,
+                    child: Container(
+                      width: AppSpacing.huge,
+                      height: AppSpacing.huge,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      child: Image.asset(
+                        AppIcons.icScanQr,
+                        package: AppAssets.package,
+                        height: AppSpacing.mediumLarge,
+                        width: AppSpacing.mediumLarge,
+                        color: AppColors.secondaryLight,
+                      ),
+                    ),
                   ),
                 ),
               ),

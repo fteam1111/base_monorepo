@@ -39,6 +39,8 @@ dependencies:
     path: ../../packages/features/features_dashboard
   features_home:
     path: ../../packages/features/features_home
+  features_qr_scanner:
+    path: ../../packages/features/features_qr_scanner
 
   # Storage dependencies
   shared_preferences: ^2.5.3

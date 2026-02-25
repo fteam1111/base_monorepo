@@ -388,4 +388,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get errorInvalidVin => 'VIN không hợp lệ';
+
+  @override
+  String get qrScannerTitle => 'Quét mã QR xe';
+
+  @override
+  String get qrScannerHint => 'Đưa mã QR vào khung quét';
 }

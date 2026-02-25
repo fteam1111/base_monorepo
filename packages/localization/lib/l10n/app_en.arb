@@ -129,5 +129,7 @@
   "errorInvalidDateValue": "Ngày tháng không hợp lệ",
   "errorInvalidDoubleValue": "Giá trị số thực không hợp lệ",
   "errorInvalidIntegerValue": "Giá trị số nguyên không hợp lệ",
-  "errorInvalidVin": "VIN không hợp lệ"
+  "errorInvalidVin": "VIN không hợp lệ",
+  "qrScannerTitle": "Scan vehicle QR code",
+  "qrScannerHint": "Place the QR code inside the frame"
 }

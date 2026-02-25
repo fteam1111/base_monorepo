@@ -91,21 +91,7 @@ class AppTextField extends StatelessWidget {
           color: AppColors.secondaryLight,
         ),
       ),
-      suffix: suffix ??
-          Padding(
-            padding: const EdgeInsets.only(right: AppSpacing.paddingXS),
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: onSuffixTap,
-              child: Image.asset(
-                AppIcons.icScanQr,
-                package: AppAssets.package,
-                height: AppSpacing.mediumLarge,
-                width: AppSpacing.mediumLarge,
-                color: AppColors.secondaryLight,
-              ),
-            ),
-          ),
+      suffix: suffix,
     );
   }
 
