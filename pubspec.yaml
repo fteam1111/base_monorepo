@@ -20,6 +20,7 @@ workspace:
   - packages/features/features_delivery_order
   - packages/features/features_vehicle_charging
   - packages/features/features_map
+  - packages/features/features_qr_scanner
 
 dependencies:
   # DI

@@ -23,7 +23,8 @@ class AppRoutes {
   static const String vehicleDetail = 'vehicle-detail';
   static const String chooseParkingLocation = 'choose-parking-location';
   static const String factoryMap = 'factory-map';
-  static const String vehicleCharging = 'vehicle_charging';
+  static const String vehicleCharging = 'vehicle-charging';
+  static const String qrScanner = 'qr_scanner';
 
   // Auth Routes
   static const String login = 'login';
@@ -43,9 +44,10 @@ class AppRoutes {
   static const String chooseParkingLocationPath = '/choose-parking-location';
   static const String factoryMapPath = '/factory-map';
   static const String loginPath = '/login';
-  static const String vehicleChargingPath = '/vehicle_charging';
+  static const String vehicleChargingPath = '/vehicle-charging';
   static const String doListPath = '/do-list';
   static const String doDetailPath = '/do-detail';
+  static const String qrScannerPath = '/qr_scanner';
 
   // ==================== Route Parameters ====================
 
@@ -98,6 +100,10 @@ class AppRoutes {
 
   static void navigateToFactoryMap(BuildContext context) {
     context.push(factoryMapPath);
+  }
+
+  static void navigateToQrScanner(BuildContext context) {
+    context.push(qrScannerPath);
   }
 
   /// Navigate back

@@ -12,6 +12,7 @@ import 'package:features_parking_location/features_parking_location.dart';
 import 'package:features_vehicle/features_vehicle.dart';
 import 'package:features_vehicle_charging/features_vehicle_charging.dart';
 import 'package:features_delivery_order/features_delivery_order.dart';
+import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -221,6 +222,17 @@ class AppRouter {
             key: state.pageKey,
             name: AppRoutes.vehicleCharging,
             child: const VehicleChargingPage(),
+          ),
+        ),
+
+        // ==================== QR Scanner Routes ====================
+        GoRoute(
+          path: AppRoutes.qrScannerPath,
+          name: AppRoutes.qrScanner,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            key: state.pageKey,
+            name: AppRoutes.qrScanner,
+            child: const QrScannerPage(),
           ),
         ),
       ],

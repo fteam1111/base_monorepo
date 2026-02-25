@@ -793,6 +793,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'VIN không hợp lệ'**
   String get errorInvalidVin;
+
+  /// No description provided for @qrScannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan vehicle QR code'**
+  String get qrScannerTitle;
+
+  /// No description provided for @qrScannerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Place the QR code inside the frame'**
+  String get qrScannerHint;
 }
 
 class _AppLocalizationsDelegate

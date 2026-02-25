@@ -112,7 +112,7 @@ class AppDropdown<T> extends StatelessWidget {
         },
 
         buttonStyleData: ButtonStyleData(
-          height: AppSpacing.massive,
+          height: AppSpacing.huge,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest,

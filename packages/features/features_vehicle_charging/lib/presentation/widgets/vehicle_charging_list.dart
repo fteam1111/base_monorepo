@@ -3,7 +3,6 @@ import 'package:features_vehicle_charging/presentation/pages/vehicle_charging_pa
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
-import 'package:features_vehicle_charging/presentation/pages/vehicle_charging_page.dart';
 
 class VehicleChargingList extends StatefulWidget {
   const VehicleChargingList({

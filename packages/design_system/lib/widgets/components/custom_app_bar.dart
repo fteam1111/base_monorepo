@@ -1,3 +1,4 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -37,6 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingWidth,
     this.titleSpacing,
     this.automaticallyImplyLeading = false,
+    this.isDarkBackground = false,
   });
 
   /// Kiểu leading: back hoặc none.
@@ -93,6 +95,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Tự động thêm leading.
   final bool automaticallyImplyLeading;
 
+  final bool isDarkBackground;
+
   @override
   Size get preferredSize {
     final height = toolbarHeight ?? kToolbarHeight;
@@ -123,7 +127,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     switch (leadingType) {
       case CustomAppBarLeadingType.none:
         return null;
+
       case CustomAppBarLeadingType.back:
+        if (isDarkBackground) {
+          return Padding(
+            padding: const EdgeInsets.only(left: AppSpacing.xs),
+            child: Material(
+              color: Colors.white.withValues(alpha: .12),
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: onBack ?? () => AppRoutes.navigateBack(context),
+                child: const Icon(Icons.arrow_back, color: Colors.white),
+              ),
+            ),
+          );
+        }
+
         return IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: onBack ?? () => AppRoutes.navigateBack(context),
