@@ -339,3 +339,31 @@ class AppLinkQueryParameter extends ValueObject<Map<String, String>> {
 
   const AppLinkQueryParameter._(this.value);
 }
+
+class VinID extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory VinID(String input) {
+    return VinID._(validateVinID(input));
+  }
+
+  String get displayDashIfEmpty => dashIfEmpty(value.getOrElse(() => ''));
+
+  bool get isNotEmpty => value.getOrElse(() => '').isNotEmpty;
+
+  const VinID._(this.value);
+}
+
+class EmailVinAddress extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory EmailVinAddress(String input) {
+    return EmailVinAddress._(
+      validateStringNotEmpty(input).flatMap(validateEmailVinAddress),
+    );
+  }
+
+  const EmailVinAddress._(this.value);
+}

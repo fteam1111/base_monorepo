@@ -86,7 +86,7 @@ extension ValueFailurePatterns<T> on ValueFailure<T> {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ExceedingLength<T> value)?  exceedingLength,TResult Function( SubceedLength<T> value)?  subceedLength,TResult Function( Empty<T> value)?  empty,TResult Function( Multiline<T> value)?  multiline,TResult Function( InvalidEmail<T> value)?  invalidEmail,TResult Function( ShortPassword<T> value)?  passwordNotMatchRequirements,TResult Function( InvalidJWT<T> value)?  invalidJWT,TResult Function( InvalidJWTPayload<T> value)?  invalidJWTPayload,TResult Function( OneUpperCase<T> value)?  mustOneUpperCaseCharacter,TResult Function( OneLowerCase<T> value)?  mustOneLowerCaseCharacter,TResult Function( OneNumeric<T> value)?  mustOneNumericCharacter,TResult Function( OneSpecial<T> value)?  mustOneSpecialCharacter,TResult Function( NotContainUserName<T> value)?  containsForbiddenSubstring,TResult Function( NotMatchOldPassword<T> value)?  mustNotMatchOldPassword,TResult Function( MatchNewPassword<T> value)?  mustMatchNewPassword,TResult Function( _isEmpty<T> value)?  isEmpty,TResult Function( _numberMustBiggerThanZero<T> value)?  numberMustBiggerThanZero,TResult Function( validateExceedsMaxValue<T> value)?  exceedingMaxValue,TResult Function( InvalidDateValue<T> value)?  invalidDateValue,TResult Function( InvalidDoubleValue<T> value)?  invalidDoubleValue,TResult Function( InvalidIntegerValue<T> value)?  invalidIntegerValue,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ExceedingLength<T> value)?  exceedingLength,TResult Function( SubceedLength<T> value)?  subceedLength,TResult Function( Empty<T> value)?  empty,TResult Function( Multiline<T> value)?  multiline,TResult Function( InvalidEmail<T> value)?  invalidEmail,TResult Function( NotVinGroupEmail<T> value)?  notVinGroupEmail,TResult Function( ShortPassword<T> value)?  passwordNotMatchRequirements,TResult Function( InvalidJWT<T> value)?  invalidJWT,TResult Function( InvalidJWTPayload<T> value)?  invalidJWTPayload,TResult Function( OneUpperCase<T> value)?  mustOneUpperCaseCharacter,TResult Function( OneLowerCase<T> value)?  mustOneLowerCaseCharacter,TResult Function( OneNumeric<T> value)?  mustOneNumericCharacter,TResult Function( OneSpecial<T> value)?  mustOneSpecialCharacter,TResult Function( NotContainUserName<T> value)?  containsForbiddenSubstring,TResult Function( NotMatchOldPassword<T> value)?  mustNotMatchOldPassword,TResult Function( MatchNewPassword<T> value)?  mustMatchNewPassword,TResult Function( _isEmpty<T> value)?  isEmpty,TResult Function( _numberMustBiggerThanZero<T> value)?  numberMustBiggerThanZero,TResult Function( validateExceedsMaxValue<T> value)?  exceedingMaxValue,TResult Function( InvalidDateValue<T> value)?  invalidDateValue,TResult Function( InvalidDoubleValue<T> value)?  invalidDoubleValue,TResult Function( InvalidIntegerValue<T> value)?  invalidIntegerValue,TResult Function( InvalidVin<T> value)?  invalidVin,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case ExceedingLength() when exceedingLength != null:
@@ -94,7 +94,8 @@ return exceedingLength(_that);case SubceedLength() when subceedLength != null:
 return subceedLength(_that);case Empty() when empty != null:
 return empty(_that);case Multiline() when multiline != null:
 return multiline(_that);case InvalidEmail() when invalidEmail != null:
-return invalidEmail(_that);case ShortPassword() when passwordNotMatchRequirements != null:
+return invalidEmail(_that);case NotVinGroupEmail() when notVinGroupEmail != null:
+return notVinGroupEmail(_that);case ShortPassword() when passwordNotMatchRequirements != null:
 return passwordNotMatchRequirements(_that);case InvalidJWT() when invalidJWT != null:
 return invalidJWT(_that);case InvalidJWTPayload() when invalidJWTPayload != null:
 return invalidJWTPayload(_that);case OneUpperCase() when mustOneUpperCaseCharacter != null:
@@ -110,7 +111,8 @@ return numberMustBiggerThanZero(_that);case validateExceedsMaxValue() when excee
 return exceedingMaxValue(_that);case InvalidDateValue() when invalidDateValue != null:
 return invalidDateValue(_that);case InvalidDoubleValue() when invalidDoubleValue != null:
 return invalidDoubleValue(_that);case InvalidIntegerValue() when invalidIntegerValue != null:
-return invalidIntegerValue(_that);case _:
+return invalidIntegerValue(_that);case InvalidVin() when invalidVin != null:
+return invalidVin(_that);case _:
   return orElse();
 
 }
@@ -128,7 +130,7 @@ return invalidIntegerValue(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ExceedingLength<T> value)  exceedingLength,required TResult Function( SubceedLength<T> value)  subceedLength,required TResult Function( Empty<T> value)  empty,required TResult Function( Multiline<T> value)  multiline,required TResult Function( InvalidEmail<T> value)  invalidEmail,required TResult Function( ShortPassword<T> value)  passwordNotMatchRequirements,required TResult Function( InvalidJWT<T> value)  invalidJWT,required TResult Function( InvalidJWTPayload<T> value)  invalidJWTPayload,required TResult Function( OneUpperCase<T> value)  mustOneUpperCaseCharacter,required TResult Function( OneLowerCase<T> value)  mustOneLowerCaseCharacter,required TResult Function( OneNumeric<T> value)  mustOneNumericCharacter,required TResult Function( OneSpecial<T> value)  mustOneSpecialCharacter,required TResult Function( NotContainUserName<T> value)  containsForbiddenSubstring,required TResult Function( NotMatchOldPassword<T> value)  mustNotMatchOldPassword,required TResult Function( MatchNewPassword<T> value)  mustMatchNewPassword,required TResult Function( _isEmpty<T> value)  isEmpty,required TResult Function( _numberMustBiggerThanZero<T> value)  numberMustBiggerThanZero,required TResult Function( validateExceedsMaxValue<T> value)  exceedingMaxValue,required TResult Function( InvalidDateValue<T> value)  invalidDateValue,required TResult Function( InvalidDoubleValue<T> value)  invalidDoubleValue,required TResult Function( InvalidIntegerValue<T> value)  invalidIntegerValue,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ExceedingLength<T> value)  exceedingLength,required TResult Function( SubceedLength<T> value)  subceedLength,required TResult Function( Empty<T> value)  empty,required TResult Function( Multiline<T> value)  multiline,required TResult Function( InvalidEmail<T> value)  invalidEmail,required TResult Function( NotVinGroupEmail<T> value)  notVinGroupEmail,required TResult Function( ShortPassword<T> value)  passwordNotMatchRequirements,required TResult Function( InvalidJWT<T> value)  invalidJWT,required TResult Function( InvalidJWTPayload<T> value)  invalidJWTPayload,required TResult Function( OneUpperCase<T> value)  mustOneUpperCaseCharacter,required TResult Function( OneLowerCase<T> value)  mustOneLowerCaseCharacter,required TResult Function( OneNumeric<T> value)  mustOneNumericCharacter,required TResult Function( OneSpecial<T> value)  mustOneSpecialCharacter,required TResult Function( NotContainUserName<T> value)  containsForbiddenSubstring,required TResult Function( NotMatchOldPassword<T> value)  mustNotMatchOldPassword,required TResult Function( MatchNewPassword<T> value)  mustMatchNewPassword,required TResult Function( _isEmpty<T> value)  isEmpty,required TResult Function( _numberMustBiggerThanZero<T> value)  numberMustBiggerThanZero,required TResult Function( validateExceedsMaxValue<T> value)  exceedingMaxValue,required TResult Function( InvalidDateValue<T> value)  invalidDateValue,required TResult Function( InvalidDoubleValue<T> value)  invalidDoubleValue,required TResult Function( InvalidIntegerValue<T> value)  invalidIntegerValue,required TResult Function( InvalidVin<T> value)  invalidVin,}){
 final _that = this;
 switch (_that) {
 case ExceedingLength():
@@ -136,7 +138,8 @@ return exceedingLength(_that);case SubceedLength():
 return subceedLength(_that);case Empty():
 return empty(_that);case Multiline():
 return multiline(_that);case InvalidEmail():
-return invalidEmail(_that);case ShortPassword():
+return invalidEmail(_that);case NotVinGroupEmail():
+return notVinGroupEmail(_that);case ShortPassword():
 return passwordNotMatchRequirements(_that);case InvalidJWT():
 return invalidJWT(_that);case InvalidJWTPayload():
 return invalidJWTPayload(_that);case OneUpperCase():
@@ -152,7 +155,8 @@ return numberMustBiggerThanZero(_that);case validateExceedsMaxValue():
 return exceedingMaxValue(_that);case InvalidDateValue():
 return invalidDateValue(_that);case InvalidDoubleValue():
 return invalidDoubleValue(_that);case InvalidIntegerValue():
-return invalidIntegerValue(_that);case _:
+return invalidIntegerValue(_that);case InvalidVin():
+return invalidVin(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -169,7 +173,7 @@ return invalidIntegerValue(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ExceedingLength<T> value)?  exceedingLength,TResult? Function( SubceedLength<T> value)?  subceedLength,TResult? Function( Empty<T> value)?  empty,TResult? Function( Multiline<T> value)?  multiline,TResult? Function( InvalidEmail<T> value)?  invalidEmail,TResult? Function( ShortPassword<T> value)?  passwordNotMatchRequirements,TResult? Function( InvalidJWT<T> value)?  invalidJWT,TResult? Function( InvalidJWTPayload<T> value)?  invalidJWTPayload,TResult? Function( OneUpperCase<T> value)?  mustOneUpperCaseCharacter,TResult? Function( OneLowerCase<T> value)?  mustOneLowerCaseCharacter,TResult? Function( OneNumeric<T> value)?  mustOneNumericCharacter,TResult? Function( OneSpecial<T> value)?  mustOneSpecialCharacter,TResult? Function( NotContainUserName<T> value)?  containsForbiddenSubstring,TResult? Function( NotMatchOldPassword<T> value)?  mustNotMatchOldPassword,TResult? Function( MatchNewPassword<T> value)?  mustMatchNewPassword,TResult? Function( _isEmpty<T> value)?  isEmpty,TResult? Function( _numberMustBiggerThanZero<T> value)?  numberMustBiggerThanZero,TResult? Function( validateExceedsMaxValue<T> value)?  exceedingMaxValue,TResult? Function( InvalidDateValue<T> value)?  invalidDateValue,TResult? Function( InvalidDoubleValue<T> value)?  invalidDoubleValue,TResult? Function( InvalidIntegerValue<T> value)?  invalidIntegerValue,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ExceedingLength<T> value)?  exceedingLength,TResult? Function( SubceedLength<T> value)?  subceedLength,TResult? Function( Empty<T> value)?  empty,TResult? Function( Multiline<T> value)?  multiline,TResult? Function( InvalidEmail<T> value)?  invalidEmail,TResult? Function( NotVinGroupEmail<T> value)?  notVinGroupEmail,TResult? Function( ShortPassword<T> value)?  passwordNotMatchRequirements,TResult? Function( InvalidJWT<T> value)?  invalidJWT,TResult? Function( InvalidJWTPayload<T> value)?  invalidJWTPayload,TResult? Function( OneUpperCase<T> value)?  mustOneUpperCaseCharacter,TResult? Function( OneLowerCase<T> value)?  mustOneLowerCaseCharacter,TResult? Function( OneNumeric<T> value)?  mustOneNumericCharacter,TResult? Function( OneSpecial<T> value)?  mustOneSpecialCharacter,TResult? Function( NotContainUserName<T> value)?  containsForbiddenSubstring,TResult? Function( NotMatchOldPassword<T> value)?  mustNotMatchOldPassword,TResult? Function( MatchNewPassword<T> value)?  mustMatchNewPassword,TResult? Function( _isEmpty<T> value)?  isEmpty,TResult? Function( _numberMustBiggerThanZero<T> value)?  numberMustBiggerThanZero,TResult? Function( validateExceedsMaxValue<T> value)?  exceedingMaxValue,TResult? Function( InvalidDateValue<T> value)?  invalidDateValue,TResult? Function( InvalidDoubleValue<T> value)?  invalidDoubleValue,TResult? Function( InvalidIntegerValue<T> value)?  invalidIntegerValue,TResult? Function( InvalidVin<T> value)?  invalidVin,}){
 final _that = this;
 switch (_that) {
 case ExceedingLength() when exceedingLength != null:
@@ -177,7 +181,8 @@ return exceedingLength(_that);case SubceedLength() when subceedLength != null:
 return subceedLength(_that);case Empty() when empty != null:
 return empty(_that);case Multiline() when multiline != null:
 return multiline(_that);case InvalidEmail() when invalidEmail != null:
-return invalidEmail(_that);case ShortPassword() when passwordNotMatchRequirements != null:
+return invalidEmail(_that);case NotVinGroupEmail() when notVinGroupEmail != null:
+return notVinGroupEmail(_that);case ShortPassword() when passwordNotMatchRequirements != null:
 return passwordNotMatchRequirements(_that);case InvalidJWT() when invalidJWT != null:
 return invalidJWT(_that);case InvalidJWTPayload() when invalidJWTPayload != null:
 return invalidJWTPayload(_that);case OneUpperCase() when mustOneUpperCaseCharacter != null:
@@ -193,7 +198,8 @@ return numberMustBiggerThanZero(_that);case validateExceedsMaxValue() when excee
 return exceedingMaxValue(_that);case InvalidDateValue() when invalidDateValue != null:
 return invalidDateValue(_that);case InvalidDoubleValue() when invalidDoubleValue != null:
 return invalidDoubleValue(_that);case InvalidIntegerValue() when invalidIntegerValue != null:
-return invalidIntegerValue(_that);case _:
+return invalidIntegerValue(_that);case InvalidVin() when invalidVin != null:
+return invalidVin(_that);case _:
   return null;
 
 }
@@ -210,14 +216,15 @@ return invalidIntegerValue(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T failedValue,  int max)?  exceedingLength,TResult Function( T failedValue,  int min)?  subceedLength,TResult Function( T failedValue)?  empty,TResult Function( T failedValue)?  multiline,TResult Function( T failedValue)?  invalidEmail,TResult Function( T failedValue)?  passwordNotMatchRequirements,TResult Function( T failedValue)?  invalidJWT,TResult Function( T failedValue)?  invalidJWTPayload,TResult Function( T failedValue)?  mustOneUpperCaseCharacter,TResult Function( T failedValue)?  mustOneLowerCaseCharacter,TResult Function( T failedValue)?  mustOneNumericCharacter,TResult Function( T failedValue)?  mustOneSpecialCharacter,TResult Function( T failedValue)?  containsForbiddenSubstring,TResult Function( T failedValue)?  mustNotMatchOldPassword,TResult Function( T failedValue)?  mustMatchNewPassword,TResult Function( T failedValue)?  isEmpty,TResult Function( T failedValue)?  numberMustBiggerThanZero,TResult Function( T failedValue)?  exceedingMaxValue,TResult Function( T failedValue)?  invalidDateValue,TResult Function( T failedValue)?  invalidDoubleValue,TResult Function( T failedValue)?  invalidIntegerValue,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T failedValue,  int max)?  exceedingLength,TResult Function( T failedValue,  int min)?  subceedLength,TResult Function( T failedValue)?  empty,TResult Function( T failedValue)?  multiline,TResult Function( T failedValue)?  invalidEmail,TResult Function( T failedValue)?  notVinGroupEmail,TResult Function( T failedValue)?  passwordNotMatchRequirements,TResult Function( T failedValue)?  invalidJWT,TResult Function( T failedValue)?  invalidJWTPayload,TResult Function( T failedValue)?  mustOneUpperCaseCharacter,TResult Function( T failedValue)?  mustOneLowerCaseCharacter,TResult Function( T failedValue)?  mustOneNumericCharacter,TResult Function( T failedValue)?  mustOneSpecialCharacter,TResult Function( T failedValue)?  containsForbiddenSubstring,TResult Function( T failedValue)?  mustNotMatchOldPassword,TResult Function( T failedValue)?  mustMatchNewPassword,TResult Function( T failedValue)?  isEmpty,TResult Function( T failedValue)?  numberMustBiggerThanZero,TResult Function( T failedValue)?  exceedingMaxValue,TResult Function( T failedValue)?  invalidDateValue,TResult Function( T failedValue)?  invalidDoubleValue,TResult Function( T failedValue)?  invalidIntegerValue,TResult Function( T failedValue)?  invalidVin,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ExceedingLength() when exceedingLength != null:
 return exceedingLength(_that.failedValue,_that.max);case SubceedLength() when subceedLength != null:
 return subceedLength(_that.failedValue,_that.min);case Empty() when empty != null:
 return empty(_that.failedValue);case Multiline() when multiline != null:
 return multiline(_that.failedValue);case InvalidEmail() when invalidEmail != null:
-return invalidEmail(_that.failedValue);case ShortPassword() when passwordNotMatchRequirements != null:
+return invalidEmail(_that.failedValue);case NotVinGroupEmail() when notVinGroupEmail != null:
+return notVinGroupEmail(_that.failedValue);case ShortPassword() when passwordNotMatchRequirements != null:
 return passwordNotMatchRequirements(_that.failedValue);case InvalidJWT() when invalidJWT != null:
 return invalidJWT(_that.failedValue);case InvalidJWTPayload() when invalidJWTPayload != null:
 return invalidJWTPayload(_that.failedValue);case OneUpperCase() when mustOneUpperCaseCharacter != null:
@@ -233,7 +240,8 @@ return numberMustBiggerThanZero(_that.failedValue);case validateExceedsMaxValue(
 return exceedingMaxValue(_that.failedValue);case InvalidDateValue() when invalidDateValue != null:
 return invalidDateValue(_that.failedValue);case InvalidDoubleValue() when invalidDoubleValue != null:
 return invalidDoubleValue(_that.failedValue);case InvalidIntegerValue() when invalidIntegerValue != null:
-return invalidIntegerValue(_that.failedValue);case _:
+return invalidIntegerValue(_that.failedValue);case InvalidVin() when invalidVin != null:
+return invalidVin(_that.failedValue);case _:
   return orElse();
 
 }
@@ -251,14 +259,15 @@ return invalidIntegerValue(_that.failedValue);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T failedValue,  int max)  exceedingLength,required TResult Function( T failedValue,  int min)  subceedLength,required TResult Function( T failedValue)  empty,required TResult Function( T failedValue)  multiline,required TResult Function( T failedValue)  invalidEmail,required TResult Function( T failedValue)  passwordNotMatchRequirements,required TResult Function( T failedValue)  invalidJWT,required TResult Function( T failedValue)  invalidJWTPayload,required TResult Function( T failedValue)  mustOneUpperCaseCharacter,required TResult Function( T failedValue)  mustOneLowerCaseCharacter,required TResult Function( T failedValue)  mustOneNumericCharacter,required TResult Function( T failedValue)  mustOneSpecialCharacter,required TResult Function( T failedValue)  containsForbiddenSubstring,required TResult Function( T failedValue)  mustNotMatchOldPassword,required TResult Function( T failedValue)  mustMatchNewPassword,required TResult Function( T failedValue)  isEmpty,required TResult Function( T failedValue)  numberMustBiggerThanZero,required TResult Function( T failedValue)  exceedingMaxValue,required TResult Function( T failedValue)  invalidDateValue,required TResult Function( T failedValue)  invalidDoubleValue,required TResult Function( T failedValue)  invalidIntegerValue,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T failedValue,  int max)  exceedingLength,required TResult Function( T failedValue,  int min)  subceedLength,required TResult Function( T failedValue)  empty,required TResult Function( T failedValue)  multiline,required TResult Function( T failedValue)  invalidEmail,required TResult Function( T failedValue)  notVinGroupEmail,required TResult Function( T failedValue)  passwordNotMatchRequirements,required TResult Function( T failedValue)  invalidJWT,required TResult Function( T failedValue)  invalidJWTPayload,required TResult Function( T failedValue)  mustOneUpperCaseCharacter,required TResult Function( T failedValue)  mustOneLowerCaseCharacter,required TResult Function( T failedValue)  mustOneNumericCharacter,required TResult Function( T failedValue)  mustOneSpecialCharacter,required TResult Function( T failedValue)  containsForbiddenSubstring,required TResult Function( T failedValue)  mustNotMatchOldPassword,required TResult Function( T failedValue)  mustMatchNewPassword,required TResult Function( T failedValue)  isEmpty,required TResult Function( T failedValue)  numberMustBiggerThanZero,required TResult Function( T failedValue)  exceedingMaxValue,required TResult Function( T failedValue)  invalidDateValue,required TResult Function( T failedValue)  invalidDoubleValue,required TResult Function( T failedValue)  invalidIntegerValue,required TResult Function( T failedValue)  invalidVin,}) {final _that = this;
 switch (_that) {
 case ExceedingLength():
 return exceedingLength(_that.failedValue,_that.max);case SubceedLength():
 return subceedLength(_that.failedValue,_that.min);case Empty():
 return empty(_that.failedValue);case Multiline():
 return multiline(_that.failedValue);case InvalidEmail():
-return invalidEmail(_that.failedValue);case ShortPassword():
+return invalidEmail(_that.failedValue);case NotVinGroupEmail():
+return notVinGroupEmail(_that.failedValue);case ShortPassword():
 return passwordNotMatchRequirements(_that.failedValue);case InvalidJWT():
 return invalidJWT(_that.failedValue);case InvalidJWTPayload():
 return invalidJWTPayload(_that.failedValue);case OneUpperCase():
@@ -274,7 +283,8 @@ return numberMustBiggerThanZero(_that.failedValue);case validateExceedsMaxValue(
 return exceedingMaxValue(_that.failedValue);case InvalidDateValue():
 return invalidDateValue(_that.failedValue);case InvalidDoubleValue():
 return invalidDoubleValue(_that.failedValue);case InvalidIntegerValue():
-return invalidIntegerValue(_that.failedValue);case _:
+return invalidIntegerValue(_that.failedValue);case InvalidVin():
+return invalidVin(_that.failedValue);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -291,14 +301,15 @@ return invalidIntegerValue(_that.failedValue);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T failedValue,  int max)?  exceedingLength,TResult? Function( T failedValue,  int min)?  subceedLength,TResult? Function( T failedValue)?  empty,TResult? Function( T failedValue)?  multiline,TResult? Function( T failedValue)?  invalidEmail,TResult? Function( T failedValue)?  passwordNotMatchRequirements,TResult? Function( T failedValue)?  invalidJWT,TResult? Function( T failedValue)?  invalidJWTPayload,TResult? Function( T failedValue)?  mustOneUpperCaseCharacter,TResult? Function( T failedValue)?  mustOneLowerCaseCharacter,TResult? Function( T failedValue)?  mustOneNumericCharacter,TResult? Function( T failedValue)?  mustOneSpecialCharacter,TResult? Function( T failedValue)?  containsForbiddenSubstring,TResult? Function( T failedValue)?  mustNotMatchOldPassword,TResult? Function( T failedValue)?  mustMatchNewPassword,TResult? Function( T failedValue)?  isEmpty,TResult? Function( T failedValue)?  numberMustBiggerThanZero,TResult? Function( T failedValue)?  exceedingMaxValue,TResult? Function( T failedValue)?  invalidDateValue,TResult? Function( T failedValue)?  invalidDoubleValue,TResult? Function( T failedValue)?  invalidIntegerValue,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T failedValue,  int max)?  exceedingLength,TResult? Function( T failedValue,  int min)?  subceedLength,TResult? Function( T failedValue)?  empty,TResult? Function( T failedValue)?  multiline,TResult? Function( T failedValue)?  invalidEmail,TResult? Function( T failedValue)?  notVinGroupEmail,TResult? Function( T failedValue)?  passwordNotMatchRequirements,TResult? Function( T failedValue)?  invalidJWT,TResult? Function( T failedValue)?  invalidJWTPayload,TResult? Function( T failedValue)?  mustOneUpperCaseCharacter,TResult? Function( T failedValue)?  mustOneLowerCaseCharacter,TResult? Function( T failedValue)?  mustOneNumericCharacter,TResult? Function( T failedValue)?  mustOneSpecialCharacter,TResult? Function( T failedValue)?  containsForbiddenSubstring,TResult? Function( T failedValue)?  mustNotMatchOldPassword,TResult? Function( T failedValue)?  mustMatchNewPassword,TResult? Function( T failedValue)?  isEmpty,TResult? Function( T failedValue)?  numberMustBiggerThanZero,TResult? Function( T failedValue)?  exceedingMaxValue,TResult? Function( T failedValue)?  invalidDateValue,TResult? Function( T failedValue)?  invalidDoubleValue,TResult? Function( T failedValue)?  invalidIntegerValue,TResult? Function( T failedValue)?  invalidVin,}) {final _that = this;
 switch (_that) {
 case ExceedingLength() when exceedingLength != null:
 return exceedingLength(_that.failedValue,_that.max);case SubceedLength() when subceedLength != null:
 return subceedLength(_that.failedValue,_that.min);case Empty() when empty != null:
 return empty(_that.failedValue);case Multiline() when multiline != null:
 return multiline(_that.failedValue);case InvalidEmail() when invalidEmail != null:
-return invalidEmail(_that.failedValue);case ShortPassword() when passwordNotMatchRequirements != null:
+return invalidEmail(_that.failedValue);case NotVinGroupEmail() when notVinGroupEmail != null:
+return notVinGroupEmail(_that.failedValue);case ShortPassword() when passwordNotMatchRequirements != null:
 return passwordNotMatchRequirements(_that.failedValue);case InvalidJWT() when invalidJWT != null:
 return invalidJWT(_that.failedValue);case InvalidJWTPayload() when invalidJWTPayload != null:
 return invalidJWTPayload(_that.failedValue);case OneUpperCase() when mustOneUpperCaseCharacter != null:
@@ -314,7 +325,8 @@ return numberMustBiggerThanZero(_that.failedValue);case validateExceedsMaxValue(
 return exceedingMaxValue(_that.failedValue);case InvalidDateValue() when invalidDateValue != null:
 return invalidDateValue(_that.failedValue);case InvalidDoubleValue() when invalidDoubleValue != null:
 return invalidDoubleValue(_that.failedValue);case InvalidIntegerValue() when invalidIntegerValue != null:
-return invalidIntegerValue(_that.failedValue);case _:
+return invalidIntegerValue(_that.failedValue);case InvalidVin() when invalidVin != null:
+return invalidVin(_that.failedValue);case _:
   return null;
 
 }
@@ -648,6 +660,72 @@ class _$InvalidEmailCopyWithImpl<T,$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? failedValue = freezed,}) {
   return _then(InvalidEmail<T>(
+failedValue: freezed == failedValue ? _self.failedValue : failedValue // ignore: cast_nullable_to_non_nullable
+as T,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class NotVinGroupEmail<T> implements ValueFailure<T> {
+  const NotVinGroupEmail({required this.failedValue});
+  
+
+@override final  T failedValue;
+
+/// Create a copy of ValueFailure
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotVinGroupEmailCopyWith<T, NotVinGroupEmail<T>> get copyWith => _$NotVinGroupEmailCopyWithImpl<T, NotVinGroupEmail<T>>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotVinGroupEmail<T>&&const DeepCollectionEquality().equals(other.failedValue, failedValue));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(failedValue));
+
+@override
+String toString() {
+  return 'ValueFailure<$T>.notVinGroupEmail(failedValue: $failedValue)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotVinGroupEmailCopyWith<T,$Res> implements $ValueFailureCopyWith<T, $Res> {
+  factory $NotVinGroupEmailCopyWith(NotVinGroupEmail<T> value, $Res Function(NotVinGroupEmail<T>) _then) = _$NotVinGroupEmailCopyWithImpl;
+@override @useResult
+$Res call({
+ T failedValue
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotVinGroupEmailCopyWithImpl<T,$Res>
+    implements $NotVinGroupEmailCopyWith<T, $Res> {
+  _$NotVinGroupEmailCopyWithImpl(this._self, this._then);
+
+  final NotVinGroupEmail<T> _self;
+  final $Res Function(NotVinGroupEmail<T>) _then;
+
+/// Create a copy of ValueFailure
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? failedValue = freezed,}) {
+  return _then(NotVinGroupEmail<T>(
 failedValue: freezed == failedValue ? _self.failedValue : failedValue // ignore: cast_nullable_to_non_nullable
 as T,
   ));
@@ -1704,6 +1782,72 @@ class _$InvalidIntegerValueCopyWithImpl<T,$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? failedValue = freezed,}) {
   return _then(InvalidIntegerValue<T>(
+failedValue: freezed == failedValue ? _self.failedValue : failedValue // ignore: cast_nullable_to_non_nullable
+as T,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class InvalidVin<T> implements ValueFailure<T> {
+  const InvalidVin({required this.failedValue});
+  
+
+@override final  T failedValue;
+
+/// Create a copy of ValueFailure
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InvalidVinCopyWith<T, InvalidVin<T>> get copyWith => _$InvalidVinCopyWithImpl<T, InvalidVin<T>>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InvalidVin<T>&&const DeepCollectionEquality().equals(other.failedValue, failedValue));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(failedValue));
+
+@override
+String toString() {
+  return 'ValueFailure<$T>.invalidVin(failedValue: $failedValue)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $InvalidVinCopyWith<T,$Res> implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidVinCopyWith(InvalidVin<T> value, $Res Function(InvalidVin<T>) _then) = _$InvalidVinCopyWithImpl;
+@override @useResult
+$Res call({
+ T failedValue
+});
+
+
+
+
+}
+/// @nodoc
+class _$InvalidVinCopyWithImpl<T,$Res>
+    implements $InvalidVinCopyWith<T, $Res> {
+  _$InvalidVinCopyWithImpl(this._self, this._then);
+
+  final InvalidVin<T> _self;
+  final $Res Function(InvalidVin<T>) _then;
+
+/// Create a copy of ValueFailure
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? failedValue = freezed,}) {
+  return _then(InvalidVin<T>(
 failedValue: freezed == failedValue ? _self.failedValue : failedValue // ignore: cast_nullable_to_non_nullable
 as T,
   ));

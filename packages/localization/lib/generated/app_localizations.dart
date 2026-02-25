@@ -655,6 +655,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'FIFO #{number}'**
   String fifoBadge(Object number);
+
+  /// No description provided for @errorExceedingLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị vượt quá độ dài tối đa cho phép ({max} ký tự)'**
+  String errorExceedingLength(int max);
+
+  /// No description provided for @errorSubceedLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị ngắn hơn độ dài tối thiểu yêu cầu ({min} ký tự)'**
+  String errorSubceedLength(int min);
+
+  /// No description provided for @errorEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị không được để trống'**
+  String get errorEmpty;
+
+  /// No description provided for @errorMultiline.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị chỉ được phép một dòng'**
+  String get errorMultiline;
+
+  /// No description provided for @errorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email không đúng định dạng'**
+  String get errorInvalidEmail;
+
+  /// No description provided for @errorNotVinGroupEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email phải thuộc domain @vingroup.net'**
+  String get errorNotVinGroupEmail;
+
+  /// No description provided for @errorPasswordNotMatchRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu không đạt đủ yêu cầu'**
+  String get errorPasswordNotMatchRequirements;
+
+  /// No description provided for @errorInvalidJWT.
+  ///
+  /// In en, this message translates to:
+  /// **'JWT không hợp lệ'**
+  String get errorInvalidJWT;
+
+  /// No description provided for @errorInvalidJWTPayload.
+  ///
+  /// In en, this message translates to:
+  /// **'JWT payload không hợp lệ'**
+  String get errorInvalidJWTPayload;
+
+  /// No description provided for @errorMustOneUpperCaseCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu phải có ít nhất một ký tự viết hoa'**
+  String get errorMustOneUpperCaseCharacter;
+
+  /// No description provided for @errorMustOneLowerCaseCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu phải có ít nhất một ký tự viết thường'**
+  String get errorMustOneLowerCaseCharacter;
+
+  /// No description provided for @errorMustOneNumericCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu phải có ít nhất một ký tự số'**
+  String get errorMustOneNumericCharacter;
+
+  /// No description provided for @errorMustOneSpecialCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu phải có ít nhất một ký tự đặc biệt'**
+  String get errorMustOneSpecialCharacter;
+
+  /// No description provided for @errorContainsForbiddenSubstring.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu không được chứa tên người dùng'**
+  String get errorContainsForbiddenSubstring;
+
+  /// No description provided for @errorMustNotMatchOldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu mới không được trùng với mật khẩu cũ'**
+  String get errorMustNotMatchOldPassword;
+
+  /// No description provided for @errorMustMatchNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Mật khẩu nhập lại không khớp'**
+  String get errorMustMatchNewPassword;
+
+  /// No description provided for @errorIsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị không được để trống'**
+  String get errorIsEmpty;
+
+  /// No description provided for @errorNumberMustBiggerThanZero.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị phải lớn hơn 0'**
+  String get errorNumberMustBiggerThanZero;
+
+  /// No description provided for @errorExceedingMaxValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị vượt quá giới hạn tối đa cho phép'**
+  String get errorExceedingMaxValue;
+
+  /// No description provided for @errorInvalidDateValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Ngày tháng không hợp lệ'**
+  String get errorInvalidDateValue;
+
+  /// No description provided for @errorInvalidDoubleValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị số thực không hợp lệ'**
+  String get errorInvalidDoubleValue;
+
+  /// No description provided for @errorInvalidIntegerValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Giá trị số nguyên không hợp lệ'**
+  String get errorInvalidIntegerValue;
+
+  /// No description provided for @errorInvalidVin.
+  ///
+  /// In en, this message translates to:
+  /// **'VIN không hợp lệ'**
+  String get errorInvalidVin;
 }
 
 class _AppLocalizationsDelegate

@@ -33,7 +33,6 @@ dependencies:
   # Network
   dio: ^5.9.0
   retrofit: ^4.7.3
-  retrofit_generator: ^10.0.6
   json_annotation: ^4.9.0
 
   webview_flutter: ^4.13.1
@@ -47,5 +46,7 @@ dev_dependencies:
   freezed: ^3.2.3
   build_runner: ^2.9.0
   json_serializable: ^6.11.1
+  retrofit_generator: ^10.0.6
+
 
 resolution: workspace
