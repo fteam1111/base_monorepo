@@ -92,5 +92,42 @@
   "deliveryOrderCompletionProgressLabel": "COMPLETION PROGRESS",
   "deliveryOrderDetailTitle": "DO: {code}",
   "deliveryOrderPickupGuideTitle": "PICKUP GUIDE",
-  "fifoBadge": "FIFO #{number}"
+  "fifoBadge": "FIFO #{number}",
+  "errorExceedingLength": "Giá trị vượt quá độ dài tối đa cho phép ({max} ký tự)",
+  "@errorExceedingLength": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "errorSubceedLength": "Giá trị ngắn hơn độ dài tối thiểu yêu cầu ({min} ký tự)",
+  "@errorSubceedLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "errorEmpty": "Giá trị không được để trống",
+  "errorMultiline": "Giá trị chỉ được phép một dòng",
+  "errorInvalidEmail": "Email không đúng định dạng",
+  "errorNotVinGroupEmail": "Email phải thuộc domain @vingroup.net",
+  "errorPasswordNotMatchRequirements": "Mật khẩu không đạt đủ yêu cầu",
+  "errorInvalidJWT": "JWT không hợp lệ",
+  "errorInvalidJWTPayload": "JWT payload không hợp lệ",
+  "errorMustOneUpperCaseCharacter": "Mật khẩu phải có ít nhất một ký tự viết hoa",
+  "errorMustOneLowerCaseCharacter": "Mật khẩu phải có ít nhất một ký tự viết thường",
+  "errorMustOneNumericCharacter": "Mật khẩu phải có ít nhất một ký tự số",
+  "errorMustOneSpecialCharacter": "Mật khẩu phải có ít nhất một ký tự đặc biệt",
+  "errorContainsForbiddenSubstring": "Mật khẩu không được chứa tên người dùng",
+  "errorMustNotMatchOldPassword": "Mật khẩu mới không được trùng với mật khẩu cũ",
+  "errorMustMatchNewPassword": "Mật khẩu nhập lại không khớp",
+  "errorIsEmpty": "Giá trị không được để trống",
+  "errorNumberMustBiggerThanZero": "Giá trị phải lớn hơn 0",
+  "errorExceedingMaxValue": "Giá trị vượt quá giới hạn tối đa cho phép",
+  "errorInvalidDateValue": "Ngày tháng không hợp lệ",
+  "errorInvalidDoubleValue": "Giá trị số thực không hợp lệ",
+  "errorInvalidIntegerValue": "Giá trị số nguyên không hợp lệ",
+  "errorInvalidVin": "VIN không hợp lệ"
 }

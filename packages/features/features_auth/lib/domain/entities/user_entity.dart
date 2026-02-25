@@ -1,12 +1,11 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
-import 'package:features_auth/domain/value/value_object.dart';
 
 /// Domain layer user entity
 /// Pure business logic, no dependencies on external frameworks
 class UserEntity extends Equatable {
   final IntegerValue id;
-  final EmailAddress email;
+  final EmailVinAddress email;
   final StringValue fullName;
   final bool isActive;
   final UserRoleEntity role;

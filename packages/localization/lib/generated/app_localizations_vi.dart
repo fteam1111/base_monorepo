@@ -307,4 +307,85 @@ class AppLocalizationsVi extends AppLocalizations {
   String fifoBadge(Object number) {
     return 'FIFO #$number';
   }
+
+  @override
+  String errorExceedingLength(int max) {
+    return 'Giá trị vượt quá độ dài tối đa cho phép ($max ký tự)';
+  }
+
+  @override
+  String errorSubceedLength(int min) {
+    return 'Giá trị ngắn hơn độ dài tối thiểu yêu cầu ($min ký tự)';
+  }
+
+  @override
+  String get errorEmpty => 'Giá trị không được để trống';
+
+  @override
+  String get errorMultiline => 'Giá trị chỉ được phép một dòng';
+
+  @override
+  String get errorInvalidEmail => 'Email không đúng định dạng';
+
+  @override
+  String get errorNotVinGroupEmail => 'Email phải thuộc domain @vingroup.net';
+
+  @override
+  String get errorPasswordNotMatchRequirements =>
+      'Mật khẩu không đạt đủ yêu cầu';
+
+  @override
+  String get errorInvalidJWT => 'JWT không hợp lệ';
+
+  @override
+  String get errorInvalidJWTPayload => 'JWT payload không hợp lệ';
+
+  @override
+  String get errorMustOneUpperCaseCharacter =>
+      'Mật khẩu phải có ít nhất một ký tự viết hoa';
+
+  @override
+  String get errorMustOneLowerCaseCharacter =>
+      'Mật khẩu phải có ít nhất một ký tự viết thường';
+
+  @override
+  String get errorMustOneNumericCharacter =>
+      'Mật khẩu phải có ít nhất một ký tự số';
+
+  @override
+  String get errorMustOneSpecialCharacter =>
+      'Mật khẩu phải có ít nhất một ký tự đặc biệt';
+
+  @override
+  String get errorContainsForbiddenSubstring =>
+      'Mật khẩu không được chứa tên người dùng';
+
+  @override
+  String get errorMustNotMatchOldPassword =>
+      'Mật khẩu mới không được trùng với mật khẩu cũ';
+
+  @override
+  String get errorMustMatchNewPassword => 'Mật khẩu nhập lại không khớp';
+
+  @override
+  String get errorIsEmpty => 'Giá trị không được để trống';
+
+  @override
+  String get errorNumberMustBiggerThanZero => 'Giá trị phải lớn hơn 0';
+
+  @override
+  String get errorExceedingMaxValue =>
+      'Giá trị vượt quá giới hạn tối đa cho phép';
+
+  @override
+  String get errorInvalidDateValue => 'Ngày tháng không hợp lệ';
+
+  @override
+  String get errorInvalidDoubleValue => 'Giá trị số thực không hợp lệ';
+
+  @override
+  String get errorInvalidIntegerValue => 'Giá trị số nguyên không hợp lệ';
+
+  @override
+  String get errorInvalidVin => 'VIN không hợp lệ';
 }

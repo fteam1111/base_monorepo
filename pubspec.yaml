@@ -39,45 +39,51 @@ dev_dependencies:
 
 melos:
   scripts:
-    gen:user:
-      description: Run build_runner for features_user first (dependency base)
+    gen:core:
+      description: Generate core package first
       run: >
-        melos exec --scope=features_user --depends-on=build_runner --
-        flutter pub run build_runner build --delete-conflicting-outputs
+        melos exec --scope=core --
+        dart run build_runner build --delete-conflicting-outputs
 
-    gen:auth:
-      description: Run build_runner for features_auth after features_user
+    gen:packages:
+      description: Generate shared packages after core
       run: >
-        melos exec --scope=features_auth --depends-on=build_runner --
-        flutter pub run build_runner build --delete-conflicting-outputs
+        melos exec 
+        --scope=design_system,local_storage,localization,network,share
+        --
+        dart run build_runner build --delete-conflicting-outputs
 
-    gen:home:
-      description: Run build_runner for features_home after its dependencies
+    gen:features:
+      description: Generate feature packages after shared packages
       run: >
-        melos exec --scope=features_home --depends-on=build_runner --
-        flutter pub run build_runner build --delete-conflicting-outputs
+        melos exec
+        --scope=features_auth,features_splash,features_dashboard,features_home,features_parking_history,features_vehicle,features_parking_location,features_delivery_order,features_vehicle_charging,features_map
+        --
+        dart run build_runner build --delete-conflicting-outputs
 
-    gen:customer_app:
-      description: Run build_runner for customer_app last
+    gen:app:
+      description: Generate app last
       run: >
-        melos exec --scope=customer_app --depends-on=build_runner --
-        flutter pub run build_runner build --delete-conflicting-outputs
+        melos exec --scope=customer_app --
+        dart run build_runner build --delete-conflicting-outputs
 
     gen:
-      description: Run build_runner in order to avoid parallel generation races
+      description: Run build in correct dependency order
       run: >
-        melos run gen:user &&
-        melos run gen:auth &&
-        melos run gen:home &&
-        melos run gen:customer_app
+        melos run gen:core &&
+        melos run gen:packages &&
+        melos run gen:features &&
+        melos run gen:app
 
+    # Giữ lại gen_all nếu cần nhưng đổi tên để tránh nhầm
     gen_all:
-      description: Run build_runner for all packages
+      description: "[UNSAFE] Run build_runner for all packages in parallel"
       run: >
-        melos exec --depends-on=build_runner --
-        flutter pub run build_runner build --delete-conflicting-outputs
+        melos exec --concurrency=1 --depends-on=build_runner --
+        dart run build_runner build --delete-conflicting-outputs
+
     gen_watch:
       description: Run build_runner watch for all packages
       run: >
         melos exec --depends-on=build_runner --
-        flutter pub run build_runner watch
+        dart run build_runner watch
