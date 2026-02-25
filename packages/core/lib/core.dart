@@ -19,5 +19,8 @@ export 'package:core/value/value_objects.dart';
 export 'package:core/value/value_transformers.dart';
 export 'package:core/value/value_validators.dart';
 
+// Role (global)
+export 'package:core/role/domain/enum/user_role.dart';
+
 // config
 export 'package:core/config/base_config.dart';
