@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core/role/domain/entities/user_role_page_entity.dart';
+import 'package:core/role/domain/entities/user_role_entity.dart';
 import 'package:core/role/domain/repositories/user_role_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -8,9 +8,9 @@ class GetClientRolesUseCase {
 
   final UserRoleRepository _repository;
 
-  Future<Either<ApiFailure, UserRolePageEntity>> call({
-    int page = 1,
-    int size = 10,
+  Future<Either<ApiFailure, List<UserRoleEntity>>> call({
+    int? page,
+    int? size,
   }) {
     return _repository.getClientRoles(page: page, size: size);
   }

@@ -25,12 +25,3 @@ Map<String, dynamic> _$UserModelDtoToJson(_UserModelDto instance) =>
       'role': instance.role,
       'factory': instance.factory,
     };
-
-_UserRoleModelDto _$UserRoleModelDtoFromJson(Map<String, dynamic> json) =>
-    _UserRoleModelDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$UserRoleModelDtoToJson(_UserRoleModelDto instance) =>
-    <String, dynamic>{'id': instance.id, 'name': instance.name};

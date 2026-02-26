@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'role_remote_datasource.dart';
+part of 'factory_remote_datasource.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'role_remote_datasource.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _RoleRemoteDataSource implements RoleRemoteDataSource {
-  _RoleRemoteDataSource(this._dio, {this.baseUrl, this.errorLogger});
+class _FactoryRemoteDataSource implements FactoryRemoteDataSource {
+  _FactoryRemoteDataSource(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,37 +20,30 @@ class _RoleRemoteDataSource implements RoleRemoteDataSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BasePaginationResponse<List<UserRoleModelDto>>> getClientRoles({
-    int? page = 1,
-    int? size = 999,
-  }) async {
+  Future<BaseResponse<List<FactoryModelDto>>> getClientFactories() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page, r'size': size};
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options =
-        _setStreamType<BasePaginationResponse<List<UserRoleModelDto>>>(
-          Options(method: 'GET', headers: _headers, extra: _extra)
-              .compose(
-                _dio.options,
-                '/api/v1/client/roles',
-                queryParameters: queryParameters,
-                data: _data,
-              )
-              .copyWith(
-                baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
-              ),
-        );
+    final _options = _setStreamType<BaseResponse<List<FactoryModelDto>>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/api/v1/client/factories',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BasePaginationResponse<List<UserRoleModelDto>> _value;
+    late BaseResponse<List<FactoryModelDto>> _value;
     try {
-      _value = BasePaginationResponse<List<UserRoleModelDto>>.fromJson(
+      _value = BaseResponse<List<FactoryModelDto>>.fromJson(
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                  .map<UserRoleModelDto>(
-                    (i) => UserRoleModelDto.fromJson(i as Map<String, dynamic>),
+                  .map<FactoryModelDto>(
+                    (i) => FactoryModelDto.fromJson(i as Map<String, dynamic>),
                   )
                   .toList()
             : List.empty(),

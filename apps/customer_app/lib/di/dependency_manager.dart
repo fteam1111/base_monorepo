@@ -1,4 +1,9 @@
 import 'package:core/core.dart';
+import 'package:core/factory/bloc/factory_cubit.dart';
+import 'package:core/factory/data/datasources/remote/factory_remote_datasource.dart';
+import 'package:core/factory/data/repositories/factory_repository_impl.dart';
+import 'package:core/factory/domain/repositories/factory_repository.dart';
+import 'package:core/factory/domain/usecases/get_client_factories_usecase.dart';
 import 'package:core/role/bloc/user_role_cubit.dart';
 import 'package:core/role/data/datasources/remote/role_remote_datasource.dart';
 import 'package:core/role/data/repositories/user_role_repository_impl.dart';
@@ -87,6 +92,10 @@ class DependencyManager {
       () => RoleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
+    locator.registerLazySingleton<FactoryRemoteDataSource>(
+      () => FactoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
     // Repositories
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -103,6 +112,10 @@ class DependencyManager {
 
     locator.registerLazySingleton<UserRoleRepository>(
       () => UserRoleRepositoryImpl(locator<RoleRemoteDataSource>()),
+    );
+
+    locator.registerLazySingleton<FactoryRepository>(
+      () => FactoryRepositoryImpl(locator<FactoryRemoteDataSource>()),
     );
 
     // ==================== Domain Layer ====================
@@ -122,6 +135,10 @@ class DependencyManager {
 
     locator.registerLazySingleton<GetClientRolesUseCase>(
       () => GetClientRolesUseCase(locator<UserRoleRepository>()),
+    );
+
+    locator.registerLazySingleton<GetClientFactoriesUseCase>(
+      () => GetClientFactoriesUseCase(locator<FactoryRepository>()),
     );
 
     // Localization Use Cases
@@ -192,6 +209,11 @@ class DependencyManager {
     // UserRole Cubit - Singleton
     locator.registerLazySingleton<UserRoleCubit>(
       () => UserRoleCubit(locator<GetClientRolesUseCase>()),
+    );
+
+    // Factory Cubit - Singleton
+    locator.registerLazySingleton<FactoryCubit>(
+      () => FactoryCubit(locator<GetClientFactoriesUseCase>()),
     );
 
     // Map BLoC - Factory (new instance per page)

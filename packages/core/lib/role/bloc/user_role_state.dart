@@ -1,37 +1,34 @@
 import 'package:core/core.dart';
-import 'package:core/role/domain/entities/user_role_page_entity.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class UserRoleState extends Equatable {
-  const UserRoleState();
+enum UserRoleStatus { initial, loading, success, failure }
+
+final class UserRoleState extends Equatable {
+  const UserRoleState({
+    this.status = UserRoleStatus.initial,
+    this.roles = const <UserRoleEntity>[],
+    this.failure,
+  });
+
+  final UserRoleStatus status;
+  final List<UserRoleEntity> roles;
+  final ApiFailure? failure;
+
+  UserRoleState copyWith({
+    UserRoleStatus? status,
+    List<UserRoleEntity>? roles,
+    ApiFailure? failure,
+    bool clearFailure = false,
+  }) {
+    return UserRoleState(
+      status: status ?? this.status,
+      roles: roles ?? this.roles,
+      failure: clearFailure ? null : (failure ?? this.failure),
+    );
+  }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [status, roles, failure];
 }
 
-class UserRoleInitial extends UserRoleState {
-  const UserRoleInitial();
-}
-
-class UserRoleLoading extends UserRoleState {
-  const UserRoleLoading();
-}
-
-class UserRoleLoadSuccess extends UserRoleState {
-  const UserRoleLoadSuccess(this.page);
-
-  final UserRolePageEntity page;
-
-  @override
-  List<Object?> get props => [page];
-}
-
-class UserRoleLoadFailure extends UserRoleState {
-  const UserRoleLoadFailure(this.failure);
-
-  final ApiFailure failure;
-
-  @override
-  List<Object?> get props => [failure];
-}
 

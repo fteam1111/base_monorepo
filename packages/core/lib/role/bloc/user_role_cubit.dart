@@ -5,19 +5,32 @@ import 'user_role_state.dart';
 
 class UserRoleCubit extends Cubit<UserRoleState> {
   UserRoleCubit(this._getClientRolesUseCase)
-      : super(const UserRoleInitial());
+      : super(const UserRoleState());
 
   final GetClientRolesUseCase _getClientRolesUseCase;
 
-  Future<void> loadRoles({int page = 1, int size = 10}) async {
-    emit(const UserRoleLoading());
+  Future<void> loadRoles({int? page, int? size}) async {
+    emit(state.copyWith(
+      status: UserRoleStatus.loading,
+      clearFailure: true,
+    ));
 
     final result = await _getClientRolesUseCase(page: page, size: size);
 
     result.fold(
-      (failure) => emit(UserRoleLoadFailure(failure)),
-      (pageEntity) => emit(UserRoleLoadSuccess(pageEntity)),
+      (failure) => emit(
+        state.copyWith(
+          status: UserRoleStatus.failure,
+          failure: failure,
+        ),
+      ),
+      (roles) => emit(
+        state.copyWith(
+          status: UserRoleStatus.success,
+          roles: roles,
+          clearFailure: true,
+        ),
+      ),
     );
   }
 }
-
