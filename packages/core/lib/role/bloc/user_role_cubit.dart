@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/role/domain/usecases/get_client_roles_usecase.dart';
 
-import 'user_role_state.dart';
+import 'package:core/role/bloc/user_role_state.dart';
 
 class UserRoleCubit extends Cubit<UserRoleState> {
   UserRoleCubit(this._getClientRolesUseCase)

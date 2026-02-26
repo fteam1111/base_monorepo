@@ -1,14 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/factory/bloc/factory_cubit.dart';
-import 'package:core/factory/data/datasources/remote/factory_remote_datasource.dart';
-import 'package:core/factory/data/repositories/factory_repository_impl.dart';
-import 'package:core/factory/domain/repositories/factory_repository.dart';
-import 'package:core/factory/domain/usecases/get_client_factories_usecase.dart';
-import 'package:core/role/bloc/user_role_cubit.dart';
-import 'package:core/role/data/datasources/remote/role_remote_datasource.dart';
-import 'package:core/role/data/repositories/user_role_repository_impl.dart';
-import 'package:core/role/domain/repositories/user_role_repository.dart';
-import 'package:core/role/domain/usecases/get_client_roles_usecase.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';

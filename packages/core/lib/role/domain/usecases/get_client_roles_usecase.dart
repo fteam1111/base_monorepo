@@ -1,6 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/role/domain/entities/user_role_entity.dart';
-import 'package:core/role/domain/repositories/user_role_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class GetClientRolesUseCase {

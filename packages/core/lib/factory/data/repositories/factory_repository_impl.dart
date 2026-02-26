@@ -1,10 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/model/base_response.dart';
-import 'package:core/factory/data/datasources/remote/factory_remote_datasource.dart';
-import 'package:core/factory/data/mappers/factory_mapper.dart';
-import 'package:core/factory/data/models/factory_model_dto.dart';
-import 'package:core/factory/domain/entities/factory_entity.dart';
-import 'package:core/factory/domain/repositories/factory_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class FactoryRepositoryImpl implements FactoryRepository {
@@ -15,7 +9,7 @@ class FactoryRepositoryImpl implements FactoryRepository {
   @override
   Future<Either<ApiFailure, List<FactoryEntity>>> getClientFactories() async {
     try {
-      final BaseResponse<List<FactoryModelDto>> response =
+      final response =
           await _remoteDataSource.getClientFactories();
 
       final items = response.data;
