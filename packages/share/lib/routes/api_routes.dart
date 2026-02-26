@@ -14,5 +14,11 @@ class ApiRoutes {
   static const String getUser = '$v1$clientType/users/me';
   static const String getUsers = '$v1$clientType/users';
 
+  // Role endpoints
+  static const String getRoles = '$v1$clientType/roles';
+
+  // Factory endpoints
+  static const String getFactories = '$v1$clientType/factories';
+
   static String userById(String id) => '$v1/user/$id';
 }

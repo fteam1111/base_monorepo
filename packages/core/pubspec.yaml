@@ -19,6 +19,7 @@ dependencies:
 
   # Network
   dio: ^5.9.0
+  retrofit: ^4.7.3
 
   # logger
   logger: ^2.6.2
@@ -29,6 +30,10 @@ dependencies:
   # env
   flutter_dotenv: ^6.0.0
 
+  # Shared routes (ApiRoutes)
+  share:
+    path: ../share
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,6 +41,7 @@ dev_dependencies:
   json_serializable: ^6.11.1
   build_runner: ^2.9.0
   freezed: ^3.2.3
+  retrofit_generator: ^10.0.6
 
 flutter:
 

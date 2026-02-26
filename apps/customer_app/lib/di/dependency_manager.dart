@@ -1,4 +1,14 @@
 import 'package:core/core.dart';
+import 'package:core/factory/bloc/factory_cubit.dart';
+import 'package:core/factory/data/datasources/remote/factory_remote_datasource.dart';
+import 'package:core/factory/data/repositories/factory_repository_impl.dart';
+import 'package:core/factory/domain/repositories/factory_repository.dart';
+import 'package:core/factory/domain/usecases/get_client_factories_usecase.dart';
+import 'package:core/role/bloc/user_role_cubit.dart';
+import 'package:core/role/data/datasources/remote/role_remote_datasource.dart';
+import 'package:core/role/data/repositories/user_role_repository_impl.dart';
+import 'package:core/role/domain/repositories/user_role_repository.dart';
+import 'package:core/role/domain/usecases/get_client_roles_usecase.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
@@ -78,6 +88,14 @@ class DependencyManager {
       () => AuthRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
+    locator.registerLazySingleton<RoleRemoteDataSource>(
+      () => RoleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
+    locator.registerLazySingleton<FactoryRemoteDataSource>(
+      () => FactoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
     // Repositories
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -90,6 +108,14 @@ class DependencyManager {
     // Locale Repository
     locator.registerLazySingleton<LocaleRepository>(
       () => LocaleRepositoryImpl(locator<LocaleStorage>()),
+    );
+
+    locator.registerLazySingleton<UserRoleRepository>(
+      () => UserRoleRepositoryImpl(locator<RoleRemoteDataSource>()),
+    );
+
+    locator.registerLazySingleton<FactoryRepository>(
+      () => FactoryRepositoryImpl(locator<FactoryRemoteDataSource>()),
     );
 
     // ==================== Domain Layer ====================
@@ -105,6 +131,14 @@ class DependencyManager {
 
     locator.registerLazySingleton<GetCurrentUserUseCase>(
       () => GetCurrentUserUseCase(locator<AuthRepository>()),
+    );
+
+    locator.registerLazySingleton<GetClientRolesUseCase>(
+      () => GetClientRolesUseCase(locator<UserRoleRepository>()),
+    );
+
+    locator.registerLazySingleton<GetClientFactoriesUseCase>(
+      () => GetClientFactoriesUseCase(locator<FactoryRepository>()),
     );
 
     // Localization Use Cases
@@ -170,6 +204,16 @@ class DependencyManager {
     // Theme Cubit - Singleton (persists theme selection)
     locator.registerLazySingleton<ThemeCubit>(
       () => ThemeCubit(locator<ThemeStorage>()),
+    );
+
+    // UserRole Cubit - Singleton
+    locator.registerLazySingleton<UserRoleCubit>(
+      () => UserRoleCubit(locator<GetClientRolesUseCase>()),
+    );
+
+    // Factory Cubit - Singleton
+    locator.registerLazySingleton<FactoryCubit>(
+      () => FactoryCubit(locator<GetClientFactoriesUseCase>()),
     );
 
     // Map BLoC - Factory (new instance per page)
