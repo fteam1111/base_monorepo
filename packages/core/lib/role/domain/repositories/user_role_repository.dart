@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/role/domain/entities/user_role_entity.dart';
 import 'package:dartz/dartz.dart';
 
 /// Repository interface cho module Role dùng chung toàn app.

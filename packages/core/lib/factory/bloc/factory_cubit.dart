@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/factory/domain/usecases/get_client_factories_usecase.dart';
 
-import 'factory_state.dart';
+import 'package:core/factory/bloc/factory_state.dart';
 
 class FactoryCubit extends Cubit<FactoryState> {
   FactoryCubit(this._getClientFactoriesUseCase)

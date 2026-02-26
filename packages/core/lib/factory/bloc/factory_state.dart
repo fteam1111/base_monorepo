@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/factory/domain/entities/factory_entity.dart';
 import 'package:equatable/equatable.dart';
 
 enum FactoryStatus { initial, loading, success, failure }
