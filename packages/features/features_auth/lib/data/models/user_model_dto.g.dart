@@ -13,7 +13,9 @@ _UserModelDto _$UserModelDtoFromJson(Map<String, dynamic> json) =>
       fullName: json['fullName'] as String,
       isActive: json['isActive'] as bool,
       role: UserRoleModelDto.fromJson(json['role'] as Map<String, dynamic>),
-      factory: json['factory'] as String?,
+      factory: json['factory'] == null
+          ? null
+          : FactoryModelDto.fromJson(json['factory'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserModelDtoToJson(_UserModelDto instance) =>

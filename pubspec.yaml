@@ -80,7 +80,7 @@ melos:
     gen_all:
       description: "[UNSAFE] Run build_runner for all packages in parallel"
       run: >
-        melos exec --concurrency=1 --depends-on=build_runner --
+        melos exec --depends-on=build_runner --
         dart run build_runner build --delete-conflicting-outputs
 
     gen_watch:

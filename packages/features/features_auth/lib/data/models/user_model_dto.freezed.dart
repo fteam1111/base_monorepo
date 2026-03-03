@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModelDto {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'email') String get email;@JsonKey(name: 'fullName') String get fullName;@JsonKey(name: 'isActive') bool get isActive;@JsonKey(name: 'role') UserRoleModelDto get role;@JsonKey(name: 'factory') String? get factory;
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'email') String get email;@JsonKey(name: 'fullName') String get fullName;@JsonKey(name: 'isActive') bool get isActive;@JsonKey(name: 'role') UserRoleModelDto get role;@JsonKey(name: 'factory') FactoryModelDto? get factory;
 /// Create a copy of UserModelDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $UserModelDtoCopyWith<$Res>  {
   factory $UserModelDtoCopyWith(UserModelDto value, $Res Function(UserModelDto) _then) = _$UserModelDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'email') String email,@JsonKey(name: 'fullName') String fullName,@JsonKey(name: 'isActive') bool isActive,@JsonKey(name: 'role') UserRoleModelDto role,@JsonKey(name: 'factory') String? factory
+@JsonKey(name: 'id') int id,@JsonKey(name: 'email') String email,@JsonKey(name: 'fullName') String fullName,@JsonKey(name: 'isActive') bool isActive,@JsonKey(name: 'role') UserRoleModelDto role,@JsonKey(name: 'factory') FactoryModelDto? factory
 });
 
 
-$UserRoleModelDtoCopyWith<$Res> get role;
+$UserRoleModelDtoCopyWith<$Res> get role;$FactoryModelDtoCopyWith<$Res>? get factory;
 
 }
 /// @nodoc
@@ -73,7 +73,7 @@ as String,fullName: null == fullName ? _self.fullName : fullName // ignore: cast
 as String,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
 as bool,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as UserRoleModelDto,factory: freezed == factory ? _self.factory : factory // ignore: cast_nullable_to_non_nullable
-as String?,
+as FactoryModelDto?,
   ));
 }
 /// Create a copy of UserModelDto
@@ -84,6 +84,18 @@ $UserRoleModelDtoCopyWith<$Res> get role {
   
   return $UserRoleModelDtoCopyWith<$Res>(_self.role, (value) {
     return _then(_self.copyWith(role: value));
+  });
+}/// Create a copy of UserModelDto
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FactoryModelDtoCopyWith<$Res>? get factory {
+    if (_self.factory == null) {
+    return null;
+  }
+
+  return $FactoryModelDtoCopyWith<$Res>(_self.factory!, (value) {
+    return _then(_self.copyWith(factory: value));
   });
 }
 }
@@ -167,7 +179,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  String? factory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  FactoryModelDto? factory)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModelDto() when $default != null:
 return $default(_that.id,_that.email,_that.fullName,_that.isActive,_that.role,_that.factory);case _:
@@ -188,7 +200,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.isActive,_that.role,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  String? factory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  FactoryModelDto? factory)  $default,) {final _that = this;
 switch (_that) {
 case _UserModelDto():
 return $default(_that.id,_that.email,_that.fullName,_that.isActive,_that.role,_that.factory);case _:
@@ -208,7 +220,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.isActive,_that.role,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  String? factory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String email, @JsonKey(name: 'fullName')  String fullName, @JsonKey(name: 'isActive')  bool isActive, @JsonKey(name: 'role')  UserRoleModelDto role, @JsonKey(name: 'factory')  FactoryModelDto? factory)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModelDto() when $default != null:
 return $default(_that.id,_that.email,_that.fullName,_that.isActive,_that.role,_that.factory);case _:
@@ -231,7 +243,7 @@ class _UserModelDto implements UserModelDto {
 @override@JsonKey(name: 'fullName') final  String fullName;
 @override@JsonKey(name: 'isActive') final  bool isActive;
 @override@JsonKey(name: 'role') final  UserRoleModelDto role;
-@override@JsonKey(name: 'factory') final  String? factory;
+@override@JsonKey(name: 'factory') final  FactoryModelDto? factory;
 
 /// Create a copy of UserModelDto
 /// with the given fields replaced by the non-null parameter values.
@@ -266,11 +278,11 @@ abstract mixin class _$UserModelDtoCopyWith<$Res> implements $UserModelDtoCopyWi
   factory _$UserModelDtoCopyWith(_UserModelDto value, $Res Function(_UserModelDto) _then) = __$UserModelDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'email') String email,@JsonKey(name: 'fullName') String fullName,@JsonKey(name: 'isActive') bool isActive,@JsonKey(name: 'role') UserRoleModelDto role,@JsonKey(name: 'factory') String? factory
+@JsonKey(name: 'id') int id,@JsonKey(name: 'email') String email,@JsonKey(name: 'fullName') String fullName,@JsonKey(name: 'isActive') bool isActive,@JsonKey(name: 'role') UserRoleModelDto role,@JsonKey(name: 'factory') FactoryModelDto? factory
 });
 
 
-@override $UserRoleModelDtoCopyWith<$Res> get role;
+@override $UserRoleModelDtoCopyWith<$Res> get role;@override $FactoryModelDtoCopyWith<$Res>? get factory;
 
 }
 /// @nodoc
@@ -291,7 +303,7 @@ as String,fullName: null == fullName ? _self.fullName : fullName // ignore: cast
 as String,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
 as bool,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as UserRoleModelDto,factory: freezed == factory ? _self.factory : factory // ignore: cast_nullable_to_non_nullable
-as String?,
+as FactoryModelDto?,
   ));
 }
 
@@ -303,6 +315,18 @@ $UserRoleModelDtoCopyWith<$Res> get role {
   
   return $UserRoleModelDtoCopyWith<$Res>(_self.role, (value) {
     return _then(_self.copyWith(role: value));
+  });
+}/// Create a copy of UserModelDto
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FactoryModelDtoCopyWith<$Res>? get factory {
+    if (_self.factory == null) {
+    return null;
+  }
+
+  return $FactoryModelDtoCopyWith<$Res>(_self.factory!, (value) {
+    return _then(_self.copyWith(factory: value));
   });
 }
 }

@@ -9,7 +9,11 @@ extension UserMapper on UserModelDto {
       fullName: StringValue(fullName),
       isActive: isActive,
       role: UserRoleEntity(id: role.id, name: role.name),
-      factory: factory,
+      factory: FactoryEntity(
+        id: factory?.id ?? -1,
+        name: factory?.name ?? '',
+        address: factory?.address ?? '',
+      ),
     );
   }
 }
