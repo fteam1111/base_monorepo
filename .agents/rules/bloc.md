@@ -1,0 +1,46 @@
+---
+trigger: always_on
+glob:
+description: Rules for implementing Flutter BLoC, Cubit, state management, and Domain Layer interaction.
+---
+# Flutter BLoC & Cubit Rules
+
+## 1) Choosing BLoC vs Cubit
+
+- **Cubit**: Use for **simple** screens/features where state changes are synchronous or do not require complex event transformation (debounce, throttle, switchMap).
+  - Examples: Toggle switch, Counter, Simple Form, basic data fetch.
+- **BLoC**: Use for complex flows that require **Event Transformation** or when state depends on a continuous stream of events.
+  - Examples: Search (debounce needed), Authentication (multiple sequential states), Infinite Scroll.
+
+## 2) Roles & Responsibilities (Both BLoC & Cubit)
+
+- **Manages UI State only**: Receives input (Event/method call) from UI, calls Domain Layer, emits new State.
+- **No Business Logic**: Business logic must live in **UseCases/Interactors**.
+- **Domain Communication**: Should only depend on **UseCases**. For very simple read-only cases, may call a Repository Interface directly.
+
+## 3) File Structure & Naming
+
+### BLoC
+- 3 files: `<feature>_bloc.dart`, `<feature>_event.dart`, `<feature>_state.dart`.
+- Naming: PascalCase — `FeatureBloc`, `FeatureEvent`, `FeatureState`.
+
+### Cubit
+- 2 files: `<feature>_cubit.dart`, `<feature>_state.dart` (no Event file).
+- Class: `FeatureCubit` extends `Cubit<FeatureState>`.
+- Methods: Public methods instead of Events (e.g. `void login()`, `void refresh()`).
+
+### State (Both)
+- Must fully describe the UI state. Prefer `sealed class` (Dart 3) or `freezed`.
+- Base states: `Initial`, `Loading`, `Success`, `Failure`.
+
+## 4) Dependency Injection
+
+- Inject **UseCase** via constructor.
+- Register in the `DependencyManager` module:
+  - `registerFactory`: For screen-scoped Cubit/Bloc (disposed when screen closes).
+  - `registerLazySingleton`: For global state.
+
+## 5) Handler Pattern (BLoC)
+
+- Use `on<Event>(_onEvent)`.
+- Keep handlers concise: call UseCase and map `Either<Failure, T>` to State.
