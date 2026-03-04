@@ -28,6 +28,7 @@ export 'package:design_system/widgets/components/custom_card.dart';
 export 'package:design_system/widgets/components/loading_more_indicator.dart';
 export 'package:design_system/widgets/components/scroll_list.dart';
 export 'package:design_system/widgets/components/scrollable_grid_view.dart';
+export 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 export 'package:design_system/widgets/responsive.dart';
 export 'package:design_system/widgets/upgrade/upgrade_alert_wrapper.dart';
 export 'package:design_system/widgets/upgrade/upgrader_localization_message.dart';

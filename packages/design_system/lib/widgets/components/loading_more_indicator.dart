@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class LoadingMoreIndicator extends StatefulWidget {

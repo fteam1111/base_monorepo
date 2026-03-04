@@ -63,10 +63,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get parkingHistoryTitle => 'History';
 
   @override
-  String get vehicleChargingAreaTitle => 'CHARGING AREA';
+  String get vehicleChargingAreaTitle => 'Pending Charging Maintenance';
 
   @override
-  String get vehicleChargingAreaSubtitle => 'BATTERY MAINTENANCE MANAGEMENT';
+  String get vehicleChargingAreaSubtitle =>
+      'Vehicles pending for more than 30 days';
 
   @override
   String get vehicleChargingSearchHint => 'Search by VIN...';
@@ -394,4 +395,77 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qrScannerHint => 'Place the QR code inside the frame';
+
+  @override
+  String vehicleChargingAgingWarning(int count) {
+    return 'There are $count vehicles with a high aging index that need to be processed';
+  }
+
+  @override
+  String get vehicleChargingFetchError => 'Unable to load vehicle list.';
+
+  @override
+  String get vehicleChargingEmptyTitle => 'ALL VEHICLES ARE STABLE';
+
+  @override
+  String get vehicleChargingEmptySubtitle =>
+      'No vehicles found with Aging index over 30 days requiring charging.';
+
+  @override
+  String vehicleChargingPriority(int number) {
+    return 'PRIORITY #$number';
+  }
+
+  @override
+  String get vehicleChargingMaintenaceActionHint =>
+      'TAP TO PERFORM MAINTENANCE';
+
+  @override
+  String get vehicleChargingMaintenanceRequestTitle =>
+      'BATTERY MAINTENANCE REQUEST';
+
+  @override
+  String get vehicleChargingCurrentAgingLabel => 'CURRENT AGING:';
+
+  @override
+  String get vehicleChargingMoveToChargeAction => 'TAKE VEHICLE TO CHARGE';
+
+  @override
+  String get vehicleChargingNoNeedAction => 'NO CHARGE NEEDED';
+
+  @override
+  String get vehicleChargingLocationLabel => 'CURRENT LOCATION';
+
+  @override
+  String get vehicleChargingTimeInAreaLabel => 'ENTER AREA';
+
+  @override
+  String agingDays(Object count) {
+    return '$count days';
+  }
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get dischargingStatusUpdated => 'STATUS UPDATED';
+
+  @override
+  String get dischargingVehicleStatus => 'VEHICLE STATUS:';
+
+  @override
+  String get dischargingInstruction =>
+      'PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.';
+
+  @override
+  String get dischargingVinLabel => 'VIN CODE';
+
+  @override
+  String get dischargingLocationLabel => 'ORIGINAL LOCATION';
+
+  @override
+  String get dischargingTimeLabel => 'TIME';
+
+  @override
+  String get dischargingCompleteAction => 'COMPLETE UPDATE';
 }

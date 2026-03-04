@@ -215,14 +215,38 @@ class AppRouter {
         ),
 
         // ==================== Vehicle Charging Routes ====================
-        GoRoute(
-          path: AppRoutes.vehicleChargingPath,
-          name: AppRoutes.vehicleCharging,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            name: AppRoutes.vehicleCharging,
-            child: const VehicleChargingPage(),
-          ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return BlocProvider(
+              create: (_) => locator<VehicleChargingBloc>()
+                ..add(const VehicleChargingStarted()),
+              child: child,
+            );
+          },
+          routes: [
+            GoRoute(
+              path: AppRoutes.vehicleChargingPath,
+              name: AppRoutes.vehicleCharging,
+              pageBuilder: (context, state) => _buildPageWithTransition(
+                key: state.pageKey,
+                name: AppRoutes.vehicleCharging,
+                child: const VehicleChargingPage(),
+              ),
+            ),
+            GoRoute(
+              path:
+                  '${AppRoutes.vehicleChargingPath}/${AppRoutes.dischargingResultPath}',
+              name: AppRoutes.dischargingResult,
+              pageBuilder: (context, state) {
+                final item = state.extra! as VehicleChargingEntity;
+                return _buildPageWithTransition(
+                  key: state.pageKey,
+                  name: AppRoutes.dischargingResult,
+                  child: DischargingResultPage(item: item),
+                );
+              },
+            ),
+          ],
         ),
 
         // ==================== QR Scanner Routes ====================

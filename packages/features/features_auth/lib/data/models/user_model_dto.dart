@@ -7,11 +7,11 @@ part 'user_model_dto.g.dart';
 @Freezed(toJson: true)
 abstract class UserModelDto with _$UserModelDto {
   const factory UserModelDto({
-    @JsonKey(name: 'id') required int id,
-    @JsonKey(name: 'email') required String email,
-    @JsonKey(name: 'fullName') required String fullName,
-    @JsonKey(name: 'isActive') required bool isActive,
-    @JsonKey(name: 'role') required UserRoleModelDto role,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'fullName') String? fullName,
+    @JsonKey(name: 'isActive') bool? isActive,
+    @JsonKey(name: 'role') UserRoleModelDto? role,
     @JsonKey(name: 'factory') FactoryModelDto? factory,
   }) = _UserModelDto;
 

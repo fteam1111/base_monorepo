@@ -3,6 +3,7 @@ import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_map/features_map.dart';
+import 'package:features_vehicle_charging/features_vehicle_charging.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -86,6 +87,10 @@ class DependencyManager {
     locator.registerLazySingleton<FactoryRemoteDataSource>(
       () => FactoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
+    locator.registerLazySingleton<VehicleChargingRemoteDataSource>(
+      () =>
+          VehicleChargingRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
 
     locator.registerLazySingleton<VehicleRemoteDataSource>(
       () => VehicleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
@@ -111,6 +116,11 @@ class DependencyManager {
 
     locator.registerLazySingleton<FactoryRepository>(
       () => FactoryRepositoryImpl(locator<FactoryRemoteDataSource>()),
+    );
+    locator.registerLazySingleton<VehicleChargingRepository>(
+      () => VehicleChargingRepositoryImpl(
+        locator<VehicleChargingRemoteDataSource>(),
+      ),
     );
 
     locator.registerLazySingleton<VehicleRepository>(
@@ -138,6 +148,12 @@ class DependencyManager {
 
     locator.registerLazySingleton<GetClientFactoriesUseCase>(
       () => GetClientFactoriesUseCase(locator<FactoryRepository>()),
+    );
+    locator.registerLazySingleton<GetVehicleChargingListUseCase>(
+      () => GetVehicleChargingListUseCase(locator<VehicleChargingRepository>()),
+    );
+    locator.registerLazySingleton<SendForDischargingUseCase>(
+      () => SendForDischargingUseCase(locator<VehicleChargingRepository>()),
     );
 
     locator.registerLazySingleton<GetVehicleBySerialUseCase>(
@@ -217,6 +233,15 @@ class DependencyManager {
     // Factory Cubit - Singleton
     locator.registerLazySingleton<FactoryCubit>(
       () => FactoryCubit(locator<GetClientFactoriesUseCase>()),
+    );
+
+    // Vehicle charging BLoC - Factory (new instance per page)
+    locator.registerFactory<VehicleChargingBloc>(
+      () => VehicleChargingBloc(
+        getVehicleChargingListUseCase: locator<GetVehicleChargingListUseCase>(),
+        authBloc: locator<AuthBloc>(),
+        sendForDischargingUseCase: locator<SendForDischargingUseCase>(),
+      ),
     );
 
     // Map BLoC - Factory (new instance per page)
