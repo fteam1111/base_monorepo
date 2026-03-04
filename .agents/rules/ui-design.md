@@ -53,16 +53,19 @@ Use the **extensions** in `packages/share/lib/extensions/context_ext.dart`:
 ### Theme & Colors
 - `context.textTheme` instead of `Theme.of(context).textTheme`
 - `context.colorScheme` instead of `Theme.of(context).colorScheme`
-- Custom tokens:
-  - Colors: `context.appColors.success`, `context.appColors.warning`
-  - Radius: `context.appRadius.r8`, `context.appRadius.r16`
-  - Spacing: `context.appSpacing.s8`, `context.appSpacing.s24`
-  - Typography: `context.appTypography.bodyMedium`
+- Custom tokens (accurate property names):
+  - Colors: `context.appColors.success`, `.warning`, `.info`, `.cardBackground`, `.border`, `.divider`
+  - Radius: `context.appRadius.button(12)`, `.card(20)`, `.input(20)`, `.dialog(20)`, `.chip(16)`, `.container(12)`
+  - Spacing (context-aware): `context.appSpacing.pageHorizontal`, `.cardPadding`, `.sectionSpacing`, `.listItemPadding`
+  - Spacing (static, no context): `AppSpacing.sm(16)`, `.md(24)`, `.xs(12)`, `.xxs(8)`, `.lg(32)`
+  - Radius (static): `AppRadius.button(12)`, `.card(20)`, `.full(999)`, `.pillShape(999)`
+  - Typography: `context.appTypography.bodyMedium`, `.titleLarge`, `.sectionHeader`, `.caption`
 
 ### Layout & Responsive
 - Screen size: `context.screenWidth`, `context.screenHeight`
 - Safe area: `context.statusBarHeight`, `context.bottomPadding`
-- Responsive checks: `context.isSmallScreen` (mobile), `context.isMediumScreen` (tablet)
+- Keyboard: `context.isKeyboardVisible`, `context.keyboardHeight`
+- Responsive checks: `context.isSmallScreen` (<600px), `context.isMediumScreen` (600-1024px), `context.isLargeScreen` (>=1024px)
 
 ### Localization
 - `context.l10n` instead of `AppLocalizations.of(context)!`
@@ -98,3 +101,55 @@ Use the **extensions** in `packages/share/lib/extensions/context_ext.dart`:
   // ❌ Avoid
   Column(children: [Text('A'), const SizedBox(height: 16), Text('B')])
   ```
+
+## 9) Design System Widgets — PHẢI dùng trước khi tự build
+
+`import 'package:design_system/design_system.dart';`
+
+| Widget | Dùng thay thế cho |
+|---|---|
+| `CustomCard` | `Card(...)` custom một mình |
+| `CustomAppBar` | `AppBar(...)` tự build (hỗ trợ `leadingType`, `subtitle`, `isDarkBackground`) |
+| `AppTextField` | `TextField(...)` raw; dùng `AppTextField.search(...)` cho search bar |
+| `AppDropdown` | `DropdownButton(...)` tự build |
+| `AppSegmentedTabBar` | `TabBar` style segment |
+| `AppIconContainer` | Icon trong container có styled background |
+| `AppLinearProgressIndicator` | `LinearProgressIndicator(...)` raw |
+| `ScrollList<T>` | `ListView.builder` + pull-to-refresh + shimmer tự build |
+| `ScrollableGridView` | `GridView.builder` + pagination tự build |
+| `LoadingMoreIndicator` | indicator cuối list khi load-more |
+| `Responsive` | in-line `MediaQuery` if/else cho layout |
+| `ResponsiveRowColumn` | `isRow ? Row(...) : Column(...)` inline |
+
+### `Responsive` Widget — Breakpoints
+
+```dart
+Responsive(
+  mobile: MobileLayout(),   // <= 480px
+  tablet: TabletLayout(),   // 481-800px
+  web: WebLayout(),         // 801-1050px
+  desktop: DesktopLayout(), // > 1050px (optional)
+)
+
+// Static helpers:
+Responsive.isMobile(context)   // <= 480
+Responsive.isTablet(context)   // 480-600
+Responsive.isDesktop(context)  // 600-800
+Responsive.isLargerThan(context, Breakpoint.tablet)
+```
+
+### `ScrollList<T>` — Khi cần list với pagination
+
+```dart
+ScrollList<VehicleEntity>(
+  controller: _scrollController,
+  isLoading: state.isLoading,
+  items: state.vehicles,
+  onRefresh: () async => _cubit.refresh(),
+  onLoadingMore: () => _cubit.loadMore(),
+  noRecordFoundWidget: const EmptyWidget(),
+  itemShimmerLoading: const ItemShimmer(),
+  itemBuilder: (context, index, item) => VehicleCard(vehicle: item),
+)
+```
+> `ScrollList` đã tích hợp sẵn `Throttle` (load-more) và `Debounce` (refresh).

@@ -44,3 +44,67 @@ description: Rules for implementing Flutter BLoC, Cubit, state management, and D
 
 - Use `on<Event>(_onEvent)`.
 - Keep handlers concise: call UseCase and map `Either<Failure, T>` to State.
+
+```dart
+// Example BLoC handler
+on<FetchDataEvent>(_onFetchData);
+
+Future<void> _onFetchData(FetchDataEvent event, Emitter<FeatureState> emit) async {
+  emit(FeatureLoadingState());
+  final result = await _fetchDataUseCase(NoParams()); // Assuming NoParams for simplicity
+  result.fold(
+    (failure) => emit(FeatureErrorState(message: failure.message)),
+    (data) => emit(FeatureLoadedState(data: data)),
+  );
+}
+```
+
+## 6) Concrete Either Fold Pattern (ApiFailure)
+
+Khi UseCase trả về `Either<ApiFailure, T>` (từ `packages/core`), luôn dùng `.fold()`:
+
+```dart
+// ✅ Cubit — simple fetch
+Future<void> loadVehicles() async {
+  emit(const VehicleListState.loading());
+  final result = await _getVehiclesUseCase(NoParams());
+  result.fold(
+    (failure) => emit(VehicleListState.failure(failure.nonTranslatedFailureMessage)),
+    (vehicles) => emit(VehicleListState.success(vehicles)),
+  );
+}
+
+// ✅ Cubit — specific failure handling
+Future<void> login(String username, String password) async {
+  emit(const LoginState.loading());
+  final result = await _loginUseCase(LoginParams(username, password));
+  result.fold(
+    (failure) {
+      failure.when(
+        invalidEmailAndPasswordCombination: () =>
+            emit(const LoginState.wrongCredentials()),
+        accountLocked: () => emit(const LoginState.accountLocked()),
+        noInternet: () => emit(const LoginState.noInternet()),
+        orElse: () =>
+            emit(LoginState.failure(failure.nonTranslatedFailureMessage)),
+      );
+    },
+    (_) => emit(const LoginState.success()),
+  );
+}
+
+// ✅ BLoC handler
+Future<void> _onFetchVehicle(
+  FetchVehicleEvent event,
+  Emitter<VehicleState> emit,
+) async {
+  emit(const VehicleState.loading());
+  final result = await _getVehicleUseCase(event.vehicleId);
+  result.fold(
+    (failure) => emit(VehicleState.failure(failure.nonTranslatedFailureMessage)),
+    (vehicle) => emit(VehicleState.success(vehicle)),
+  );
+}
+```
+
+> **Không throw exception ra ngoài BLoC/Cubit.** `ApiFailure.nonTranslatedFailureMessage` trả về message đã xử lý sẵn để hiển thị cho user.
