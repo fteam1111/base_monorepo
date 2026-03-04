@@ -64,7 +64,7 @@ void main() {
       expect(find.byType(QrScannerPage), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsNothing);
 
-      cubit.close();
+      await cubit.close();
     });
 
     testWidgets('shows CircularProgressIndicator when loading', (tester) async {
@@ -81,7 +81,7 @@ void main() {
       // Assert
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      cubit.close();
+      await cubit.close();
     });
 
     testWidgets('shows SnackBar on QrScanFailure state', (tester) async {
@@ -99,7 +99,7 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text('No internet connection'), findsOneWidget);
 
-      cubit.close();
+      await cubit.close();
     });
 
     testWidgets('shows SnackBar on QrScanInvalidVin state', (tester) async {
@@ -117,7 +117,7 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text('Mã VIN không hợp lệ'), findsOneWidget);
 
-      cubit.close();
+      await cubit.close();
     });
 
     testWidgets('calls onVehicleFound callback on QrScanSuccess', (
@@ -146,7 +146,7 @@ void main() {
       // Assert
       expect(receivedSerial, 'RPXS2LHHVSE258693');
 
-      cubit.close();
+      await cubit.close();
     });
   });
 }

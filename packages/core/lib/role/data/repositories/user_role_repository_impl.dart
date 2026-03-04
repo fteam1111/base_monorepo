@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/model/base_pagination_response.dart';
 import 'package:dartz/dartz.dart';
 
 class UserRoleRepositoryImpl implements UserRoleRepository {
@@ -13,8 +12,10 @@ class UserRoleRepositoryImpl implements UserRoleRepository {
     int? size,
   }) async {
     try {
-      final BasePaginationResponse<List<UserRoleModelDto>> response =
-          await _remoteDataSource.getClientRoles(page: page, size: size);
+      final response = await _remoteDataSource.getClientRoles(
+        page: page,
+        size: size,
+      );
 
       final pagination = response.data;
       final items = pagination?.data;
