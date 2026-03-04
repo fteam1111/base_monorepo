@@ -6,6 +6,7 @@ import 'package:customer_app/di/injector.dart';
 import 'package:customer_app/routes/app_router.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -17,32 +18,36 @@ import 'package:network/network.dart';
 import 'package:share/share.dart';
 import 'package:upgrader/upgrader.dart';
 
-// final _crashlytics = locator<FirebaseCrashlyticsService>().crashlytics;
+final _crashlytics = locator<FirebaseCrashlyticsService>().crashlytics;
 
-Future<void> initialSetup(
-  BaseConfig config,
-  // FirebaseOptions? firebaseOptions,
-) async {
+Future<void> initialSetup({
+  required BaseConfig config,
+  FirebaseOptions? firebaseOptions,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await DependencyManager.inject(config);
 
-  // await Firebase.initializeApp(options: firebaseOptions);
+  await Firebase.initializeApp(options: firebaseOptions);
+
+  // Ensure Crashlytics is enabled (useful for dev crash testing).
+  if (!kIsWeb) {
+    await _crashlytics.setCrashlyticsCollectionEnabled(true);
+  }
 
   // await locator<LocalNotificationService>().initFirebaseMessaging();
   // await locator<RemoteConfigService>().init();
 
   Bloc.observer = MyBlocObserver();
-
   if (kDebugMode) {
     await Upgrader.clearSavedSettings();
   } else {
     FlutterError.onError = (errorDetails) {
-      // _crashlytics.recordFlutterFatalError(errorDetails);
+      _crashlytics.recordFlutterFatalError(errorDetails);
     };
     PlatformDispatcher.instance.onError = (error, stack) {
       if (!kIsWeb) {
-        // _crashlytics.recordError(error, stack);
+        _crashlytics.recordError(error, stack);
 
         return true;
       }
