@@ -9,7 +9,7 @@ class UserEntity extends Equatable {
   final StringValue fullName;
   final bool isActive;
   final UserRoleEntity role;
-  final String? factory;
+  final FactoryEntity? factory;
 
   const UserEntity({
     required this.id,

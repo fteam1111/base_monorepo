@@ -3,6 +3,7 @@ import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_map/features_map.dart';
+import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -86,6 +87,10 @@ class DependencyManager {
       () => FactoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
+    locator.registerLazySingleton<VehicleRemoteDataSource>(
+      () => VehicleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
     // Repositories
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -106,6 +111,10 @@ class DependencyManager {
 
     locator.registerLazySingleton<FactoryRepository>(
       () => FactoryRepositoryImpl(locator<FactoryRemoteDataSource>()),
+    );
+
+    locator.registerLazySingleton<VehicleRepository>(
+      () => VehicleRepositoryImpl(locator<VehicleRemoteDataSource>()),
     );
 
     // ==================== Domain Layer ====================
@@ -129,6 +138,10 @@ class DependencyManager {
 
     locator.registerLazySingleton<GetClientFactoriesUseCase>(
       () => GetClientFactoriesUseCase(locator<FactoryRepository>()),
+    );
+
+    locator.registerLazySingleton<GetVehicleBySerialUseCase>(
+      () => GetVehicleBySerialUseCase(locator<VehicleRepository>()),
     );
 
     // Localization Use Cases
@@ -208,6 +221,11 @@ class DependencyManager {
 
     // Map BLoC - Factory (new instance per page)
     locator.registerFactory<MapBloc>(() => MapBloc());
+
+    // QR Scanner Cubit - Factory (new instance per page)
+    locator.registerFactory<QrScanCubit>(
+      () => QrScanCubit(locator<GetVehicleBySerialUseCase>()),
+    );
 
     // Deep Linking
     locator.registerLazySingleton(() => DeepLinkingService());

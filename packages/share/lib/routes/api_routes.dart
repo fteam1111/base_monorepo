@@ -20,5 +20,10 @@ class ApiRoutes {
   // Factory endpoints
   static const String getFactories = '$v1$clientType/factories';
 
+  // Vehicle endpoints
+  static const String _vehicles = '$v1$clientType/vehicles';
+  static const String getVehicles = _vehicles;
+  static const String vehicleBySerial = '$_vehicles/by-serial/{serialNumber}';
+
   static String userById(String id) => '$v1/user/$id';
 }
