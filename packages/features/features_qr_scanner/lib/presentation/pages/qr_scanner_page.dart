@@ -1,13 +1,23 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:share/share.dart';
+import 'package:features_qr_scanner/presentation/cubit/qr_scan_cubit.dart';
+import 'package:features_qr_scanner/presentation/cubit/qr_scan_state.dart';
 
+/// QR Scanner page.
+///
+/// Requires [QrScanCubit] to be provided via [BlocProvider] from the caller.
+/// [onVehicleFound] is called when a vehicle is successfully fetched.
 class QrScannerPage extends StatefulWidget {
-  const QrScannerPage({super.key});
+  const QrScannerPage({super.key, this.onVehicleFound});
+
+  final void Function(String serialNumber)? onVehicleFound;
 
   @override
   State<QrScannerPage> createState() => _QrScannerPageState();
@@ -34,17 +44,35 @@ class _QrScannerPageState extends State<QrScannerPage> {
   }
 
   Future<void> _onDetect(BarcodeCapture capture) async {
-    final barcodes = capture.barcodes;
-    if (barcodes.isEmpty) {
-      return;
-    }
-
-    final value = barcodes.first.rawValue;
-    if (value == null) {
-      return;
-    }
+    if (capture.barcodes.isEmpty) return;
+    final value = capture.barcodes.first.rawValue;
+    if (value == null) return;
 
     await _controller.stop();
+    if (!mounted) return;
+    unawaited(context.read<QrScanCubit>().onBarcodeDetected(value));
+  }
+
+  Future<void> _resumeScanner() async {
+    context.read<QrScanCubit>().reset();
+    await _controller.start();
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: context.colorScheme.error,
+          behavior: SnackBarBehavior.floating,
+          action: SnackBarAction(
+            label: 'Thử lại',
+            textColor: context.colorScheme.onError,
+            onPressed: _resumeScanner,
+          ),
+        ),
+      );
   }
 
   @override
@@ -52,46 +80,89 @@ class _QrScannerPageState extends State<QrScannerPage> {
     final typography = context.appTypography;
     final l10n = context.l10n;
 
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      appBar: CustomAppBar(
-        isDarkBackground: true,
+    return BlocListener<QrScanCubit, QrScanState>(
+      listener: (context, state) {
+        switch (state) {
+          case QrScanInvalidVin():
+            _showErrorSnackBar(state.message);
+            _resumeScanner();
+          case QrScanFailure():
+            _showErrorSnackBar(state.message);
+            _resumeScanner();
+          case QrScanSuccess():
+            widget.onVehicleFound?.call(state.vehicle.serialNumber);
+          case QrScanInitial() || QrScanLoading():
+            break;
+        }
+      },
+      child: Scaffold(
         backgroundColor: AppColors.backgroundDark,
-        shadowColor: Colors.transparent,
-        centerTitle: true,
-        titleWidget: Text(
-          l10n.qrScannerTitle,
-          style: typography.sectionHeader.copyWith(
-            color: AppColors.onBackgroundDark,
+        appBar: CustomAppBar(
+          isDarkBackground: true,
+          backgroundColor: AppColors.backgroundDark,
+          shadowColor: Colors.transparent,
+          centerTitle: true,
+          titleWidget: Text(
+            l10n.qrScannerTitle,
+            style: typography.sectionHeader.copyWith(
+              color: AppColors.onBackgroundDark,
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.appSpacing.pageHorizontal,
+            ),
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: _QrScannerViewport(
+                        controller: _controller,
+                        onDetect: _onDetect,
+                      ),
+                    ),
+                    const Gap(AppSpacing.small),
+                    Text(
+                      l10n.qrScannerHint,
+                      style: typography.bodyMedium.copyWith(
+                        color: AppColors.onBackgroundDark.withValues(
+                          alpha: 0.7,
+                        ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                const _LoadingOverlay(),
+              ],
+            ),
           ),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.appSpacing.pageHorizontal,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: _QrScannerViewport(
-                  controller: _controller,
-                  onDetect: _onDetect,
-                ),
-              ),
-              const Gap(AppSpacing.small),
-              Text(
-                l10n.qrScannerHint,
-                style: typography.bodyMedium.copyWith(
-                  color: AppColors.onBackgroundDark.withValues(alpha: 0.7),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      ),
+    );
+  }
+}
+
+/// Semi-transparent loading overlay shown while the API call is in progress.
+class _LoadingOverlay extends StatelessWidget {
+  const _LoadingOverlay();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<QrScanCubit, QrScanState>(
+      buildWhen: (previous, current) =>
+          previous is QrScanLoading != current is QrScanLoading,
+      builder: (context, state) {
+        if (state is! QrScanLoading) return const SizedBox.shrink();
+        return ColoredBox(
+          color: Colors.black.withValues(alpha: 0.5),
+          child: const Center(child: CircularProgressIndicator()),
+        );
+      },
     );
   }
 }

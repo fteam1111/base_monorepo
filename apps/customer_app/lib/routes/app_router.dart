@@ -232,7 +232,10 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             name: AppRoutes.qrScanner,
-            child: const QrScannerPage(),
+            child: BlocProvider(
+              create: (_) => locator<QrScanCubit>(),
+              child: const QrScannerPage(),
+            ),
           ),
         ),
       ],
