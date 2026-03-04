@@ -1,1 +1,34 @@
-{"flutter":{"platforms":{"android":{"buildConfigurations":{"src/dev":{"projectId":"monorepo-95bb5","appId":"1:732958581392:android:4b18dfff426e61680dae15","fileOutput":"android/app/src/dev/google-services.json"}}},"ios":{"buildConfigurations":{"Debug-dev":{"projectId":"monorepo-95bb5","appId":"1:732958581392:ios:b117ed2b086fddbb0dae15","uploadDebugSymbols":false,"fileOutput":"ios/Runner/Dev/GoogleService-Info.plist"}}},"dart":{"lib/config/firebase_options_development.dart":{"projectId":"monorepo-95bb5","configurations":{"android":"1:732958581392:android:4b18dfff426e61680dae15","ios":"1:732958581392:ios:b117ed2b086fddbb0dae15"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "buildConfigurations": {
+          "src/development": {
+            "projectId": "bike-tracker-f69df",
+            "appId": "1:573151758649:android:ec06ed634f42ee5493c0e8",
+            "fileOutput": "android/app/src/development/google-services.json"
+          }
+        }
+      },
+      "ios": {
+        "buildConfigurations": {
+          "Debug-dev": {
+            "projectId": "bike-tracker-f69df",
+            "appId": "1:573151758649:ios:3a393320d07cf06993c0e8",
+            "uploadDebugSymbols": true,
+            "fileOutput": "ios/Runner/Development/GoogleService-Info.plist"
+          }
+        }
+      },
+      "dart": {
+        "lib/config/firebase_options_development.dart": {
+          "projectId": "bike-tracker-f69df",
+          "configurations": {
+            "android": "1:573151758649:android:ec06ed634f42ee5493c0e8",
+            "ios": "1:573151758649:ios:3a393320d07cf06993c0e8"
+          }
+        }
+      }
+    }
+  }
+}
