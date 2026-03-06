@@ -10,6 +10,7 @@ variables:
   FLUTTER_IMAGE: "ghcr.io/cirruslabs/flutter:$FVM_VERSION"
   FVM_VERSION: "3.35.7"
   CUSTOMER_APP: "apps/customer_app"
+  ANDROID_SDK_ROOT: "/opt/android-sdk"
 
 analyze:
   stage: analyze
@@ -20,12 +21,15 @@ analyze:
     # FVM + melos chạy ở root
     - gem install bundler --no-document
     - dart pub global activate fvm
+    - export PATH="$PATH:$HOME/.pub-cache/bin"
     - fvm install $FVM_VERSION --skip-pub-get
     - fvm use $FVM_VERSION --force
     - dart pub global activate melos
     - melos bootstrap --no-select
     # Cài Fastlane ở customer_app (vì Gemfile nằm đó)
     - cd $CUSTOMER_APP && bundle install --quiet
+    - mkdir -p android
+    - echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
   script:
     - cd android && bundle exec fastlane ci_analyze
 
