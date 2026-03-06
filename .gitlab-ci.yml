@@ -66,7 +66,7 @@ cd_android:
     # Fastlane cần Gemfile ở customer_app
     - cd $CUSTOMER_APP && gem install bundler --no-document && bundle install --quiet
   script:
-    - cd $CUSTOMER_APP/android
+    - cd android
     - BUNDLE_GEMFILE=../Gemfile bundle exec fastlane android cd
       flavor:$FLAVOR
       version:$APP_VERSION
