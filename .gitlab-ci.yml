@@ -64,10 +64,10 @@ cd_android:
     - export PATH="$PATH:$HOME/.pub-cache/bin"
     - fvm install $FVM_VERSION --skip-pub-get && fvm use $FVM_VERSION --force
     # Fastlane cần Gemfile ở customer_app
-    - cd $CUSTOMER_APP && gem install bundler --no-document && bundle install
+    - cd $CUSTOMER_APP && gem install bundler --no-document && bundle install --quiet
   script:
-    - cd android
-    - bundle exec fastlane android cd
+    - cd $CUSTOMER_APP/android
+    - BUNDLE_GEMFILE=../Gemfile bundle exec fastlane android cd
       flavor:$FLAVOR
       version:$APP_VERSION
       build_number:$BUILD_NUMBER
