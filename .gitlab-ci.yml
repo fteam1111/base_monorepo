@@ -7,6 +7,7 @@ stages:
   - deploy
 
 variables:
+  FLUTTER_IMAGE: "ghcr.io/cirruslabs/flutter:$FVM_VERSION"
   FVM_VERSION: "3.35.7"
   CUSTOMER_APP: "apps/customer_app"
 
@@ -14,6 +15,7 @@ analyze:
   stage: analyze
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  image: $FLUTTER_IMAGE
   before_script:
     # FVM + melos chạy ở root
     - gem install bundler --no-document
