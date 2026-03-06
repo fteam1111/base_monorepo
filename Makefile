@@ -120,8 +120,8 @@ build_web_prod:
 fastlane_analyze:
 	@bundle exec fastlane ci_analyze
 
-fastlane_uat VERSION ?= 1.0.0 BUILD ?= 1:
+fastlane_uat:
 	@bundle exec fastlane cd_uat version:${VERSION} build_number:${BUILD}
 
-fastlane_prod VERSION ?= 1.0.0 BUILD ?= 1:
+fastlane_prod:
 	@bundle exec fastlane cd_prod version:${VERSION} build_number:${BUILD}
