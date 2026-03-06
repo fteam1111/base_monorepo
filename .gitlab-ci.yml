@@ -25,7 +25,7 @@ analyze:
     - fvm install $FVM_VERSION --skip-pub-get
     - fvm use $FVM_VERSION --force
     - dart pub global activate melos
-    - melos bootstrap --no-select
+    - melos bootstrap
     # Cài Fastlane ở customer_app (vì Gemfile nằm đó)
     - cd $CUSTOMER_APP && bundle install --quiet
     - mkdir -p android
