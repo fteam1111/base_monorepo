@@ -16,19 +16,6 @@
 default_platform(:android)
 
 platform :android do
-  REPO_ROOT = File.expand_path("../../..", __dir__)
-  # __dir__ = android/fastlane/
-  # ../../.. = bike_tracker/  (root repo)
-
-  desc "Static analysis toàn monorepo"
-  lane :ci_analyze do
-    Dir.chdir(REPO_ROOT) do # ← cd về root để chạy melos
-      sh("fvm dart pub global activate melos > /dev/null 2>&1 || true")
-      sh("melos bootstrap --no-select")
-      sh("melos exec --fail-fast -- fvm flutter analyze --fatal-infos --fatal-warnings")
-    end
-  end
-
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleRelease")

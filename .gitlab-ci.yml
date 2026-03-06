@@ -31,5 +31,6 @@ analyze:
     - mkdir -p android
     - echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
   script:
-    - cd android && bundle exec fastlane ci_analyze
+    - melos bootstrap
+    - make run_analyze
 
