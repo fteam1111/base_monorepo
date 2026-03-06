@@ -1,11 +1,19 @@
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
+
 stages:
-  - ci
+  - analyze
+  - test
+  - deploy
 
 variables:
   FVM_VERSION: "3.35.7"
   CUSTOMER_APP: "apps/customer_app"
 
 analyze:
+  stage: analyze
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   before_script:
     # FVM + melos chạy ở root
     - gem install bundler --no-document
