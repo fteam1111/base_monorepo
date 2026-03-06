@@ -7,47 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:573151758649:android:3a30ef429bfbc03993c0e8",
-        "android_client_info": {
-          "package_name": "com.example.bikeTracker"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDnesE1t7FzPb8E5J-rNYbHe7VgD_1jwQY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:573151758649:android:ec06ed634f42ee5493c0e8",
+        "mobilesdk_app_id": "1:573151758649:android:84e105c09ae6842c93c0e8",
         "android_client_info": {
           "package_name": "com.example.bikeTracker.dev"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDnesE1t7FzPb8E5J-rNYbHe7VgD_1jwQY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:573151758649:android:da235efca9d206b893c0e8",
-        "android_client_info": {
-          "package_name": "com.example.com"
         }
       },
       "oauth_client": [],

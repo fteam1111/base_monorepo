@@ -1,0 +1,21 @@
+stages:
+  - ci
+
+variables:
+  FVM_VERSION: "3.35.7"
+  CUSTOMER_APP: "apps/customer_app"
+
+analyze:
+  before_script:
+    # FVM + melos chạy ở root
+    - gem install bundler --no-document
+    - dart pub global activate fvm
+    - fvm install $FVM_VERSION --skip-pub-get
+    - fvm use $FVM_VERSION --force
+    - dart pub global activate melos
+    - melos bootstrap --no-select
+    # Cài Fastlane ở customer_app (vì Gemfile nằm đó)
+    - cd $CUSTOMER_APP && bundle install --quiet
+  script:
+    - cd android && bundle exec fastlane ci_analyze
+
