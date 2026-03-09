@@ -66,6 +66,7 @@ cd_android:
     # Fastlane cần Gemfile ở customer_app
     - cd $CUSTOMER_APP && gem install bundler --no-document && bundle install --quiet
   script:
+    - echo "APP_ID=${FIREBASE_ANDROID_DEV_APP_ID:-NOT_SET}"
     - cd android
     - BUNDLE_GEMFILE=../Gemfile bundle exec fastlane android cd
       flavor:$FLAVOR
