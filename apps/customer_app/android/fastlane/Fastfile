@@ -10,6 +10,7 @@ ENTRYPOINTS = {
 GRADLE_FLAVOR = { "dev" => "dev", "uat" => "uat", "prod" => "prd" }.freeze
 
 FIREBASE_APP_IDS = {
+  "dev"  => ENV["FIREBASE_ANDROID_DEV_APP_ID"],
   "uat"  => ENV["FIREBASE_ANDROID_UAT_APP_ID"],
   "prod" => ENV["FIREBASE_ANDROID_PROD_APP_ID"],
 }.freeze
