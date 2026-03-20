@@ -1,0 +1,52 @@
+name: features_auth
+description: Complete authentication feature module with domain, data, and presentation layers
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # User feature (for UserEntity in auth flows)
+  core:
+    path: ../../core
+  design_system:
+    path: ../../design_system
+  share:
+    path: ../../share
+  network:
+    path: ../../network
+  local_storage:
+    path: ../../local_storage
+
+  # State Management
+  flutter_bloc: ^9.1.1
+  bloc: ^9.1.0
+  equatable: ^2.0.7
+
+  # Functional Programming
+  dartz: ^0.10.1
+
+  # Network
+  dio: ^5.9.0
+  retrofit: ^4.7.3
+  json_annotation: ^4.9.0
+
+  webview_flutter: ^4.13.1
+  webview_flutter_wkwebview: ^3.23.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  mocktail: ^1.0.4
+  freezed: ^3.2.3
+  build_runner: ^2.9.0
+  json_serializable: ^6.11.1
+  retrofit_generator: ^10.0.6
+
+
+resolution: workspace

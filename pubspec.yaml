@@ -1,0 +1,90 @@
+name: monospace_base
+publish_to: none
+environment:
+  sdk: ^3.9.2
+workspace:
+  - packages/core
+  - packages/design_system
+  - packages/local_storage
+  - packages/localization
+  - packages/network
+  - packages/share
+  - apps/customer_app
+  - packages/features/features_auth
+  - packages/features/features_splash
+  - packages/features/features_dashboard
+  - packages/features/features_home
+  - packages/features/features_parking_history
+  - packages/features/features_vehicle
+  - packages/features/features_parking_location
+  - packages/features/features_delivery_order
+  - packages/features/features_vehicle_charging
+  - packages/features/features_map
+  - packages/features/features_qr_scanner
+
+dependencies:
+  # DI
+  get_it: ^8.2.0
+  injectable: ^2.3.2
+
+dev_dependencies:
+  melos: ^7.3.0
+
+  # Code Generation
+  json_serializable: ^6.11.1
+  injectable_generator: ^2.9.0
+  build_runner: ^2.9.0
+  freezed: ^3.2.3
+  flutter_gen_runner: ^5.12.0
+  flutter_localization: ^0.3.3
+
+melos:
+  scripts:
+    gen:core:
+      description: Generate core package first
+      run: >
+        melos exec --scope=core --
+        dart run build_runner build --delete-conflicting-outputs
+
+    gen:packages:
+      description: Generate shared packages after core
+      run: >
+        melos exec 
+        --scope=design_system,local_storage,localization,network,share
+        --
+        dart run build_runner build --delete-conflicting-outputs
+
+    gen:features:
+      description: Generate feature packages after shared packages
+      run: >
+        melos exec
+        --scope=features_auth,features_splash,features_dashboard,features_home,features_parking_history,features_vehicle,features_parking_location,features_delivery_order,features_vehicle_charging,features_map
+        --
+        dart run build_runner build --delete-conflicting-outputs
+
+    gen:app:
+      description: Generate app last
+      run: >
+        melos exec --scope=customer_app --
+        dart run build_runner build --delete-conflicting-outputs
+
+    gen:
+      description: Run build in correct dependency order
+      run: >
+        melos run gen:core &&
+        melos run gen:packages &&
+        melos run gen:features &&
+        melos run gen:app
+
+    # Giữ lại gen_all nếu cần nhưng đổi tên để tránh nhầm
+    gen_all:
+      description: "[UNSAFE] Run build_runner for all packages in parallel"
+      run: >
+        melos exec --depends-on=build_runner --
+        dart run build_runner build --delete-conflicting-outputs
+
+    gen_watch:
+      description: Run build_runner watch for all packages
+      run: >
+        melos exec --depends-on=build_runner --
+        dart run build_runner watch

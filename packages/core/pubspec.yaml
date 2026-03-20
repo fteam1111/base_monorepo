@@ -1,0 +1,50 @@
+name: core
+description: "A new Flutter package project."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dartz: ^0.10.0
+
+  # Support Freezed
+  json_annotation: ^4.9.0
+  equatable: ^2.0.7
+  freezed_annotation: ^3.1.0
+
+  # Network
+  dio: ^5.9.0
+  retrofit: ^4.7.3
+
+  # logger
+  logger: ^2.6.2
+
+  # intl
+  intl: ^0.20.2
+
+  # env
+  flutter_dotenv: ^6.0.0
+
+  # Shared routes (ApiRoutes)
+  share:
+    path: ../share
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  json_serializable: ^6.11.1
+  build_runner: ^2.9.0
+  freezed: ^3.2.3
+  retrofit_generator: ^10.0.6
+
+flutter:
+
+# Melos 7.x
+resolution: workspace

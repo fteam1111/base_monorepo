@@ -1,0 +1,43 @@
+name: design_system
+description: "A new Flutter package project."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  core:
+    path: ../core
+  local_storage:
+    path: ../local_storage
+  share:
+    path: ../share
+
+  # State Management
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+  gap: ^3.0.1
+  shimmer_animation: ^2.2.2+1
+
+  dropdown_button2: ^2.3.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+resolution: workspace
+
