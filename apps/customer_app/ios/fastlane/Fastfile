@@ -1,23 +1,56 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+CUSTOMER_APP = File.expand_path("../..", __dir__)
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+ENTRYPOINTS = {
+  "dev"  => "lib/main_dev.dart",
+  "uat"  => "lib/main_uat.dart",
+  "prod" => "lib/main_prod.dart",
+}.freeze
+
+FIREBASE_APP_IDS = {
+  "dev"  => ENV["FIREBASE_IOS_DEV_APP_ID"],
+  "uat"  => ENV["FIREBASE_IOS_UAT_APP_ID"],
+  "prod" => ENV["FIREBASE_IOS_PROD_APP_ID"],
+}.freeze
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Build IPA. Params: flavor, version, build_number"
+  lane :build do |options|
+    flavor = options[:flavor]
+
+    Dir.chdir("#{CUSTOMER_APP}/ios") do
+      sh("pod install --repo-update")
+    end
+
+    Dir.chdir(CUSTOMER_APP) do
+      sh("fvm flutter build ipa " \
+         "--flavor #{flavor} " \
+         "--target #{ENTRYPOINTS[flavor]} " \
+         "--release " \
+         "--build-name=#{options[:version]} " \
+         "--build-number=#{options[:build_number]} " \
+         "--export-options-plist=ios/ExportOptions/#{flavor}_ExportOptions.plist")
+    end
+  end
+
+  desc "Deploy IPA → Firebase"
+  lane :deploy do |options|
+    flavor   = options[:flavor]
+    ipa_path = Dir.glob("#{CUSTOMER_APP}/build/ios/ipa/*.ipa").first
+
+    firebase_app_distribution(
+      app:                FIREBASE_APP_IDS[flavor],
+      ipa_path:           ipa_path,
+      groups:             ENV["FIREBASE_TESTER_GROUPS"] || "qa-team",
+      release_notes:      sh("git log -1 --pretty=%B").strip,
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+    )
+  end
+
+  desc "Build + Deploy. Params: flavor, version, build_number"
+  lane :cd do |options|
+    build(options)
+    deploy(flavor: options[:flavor])
   end
 end

@@ -76,3 +76,28 @@ cd_android:
     name: "android-$CI_COMMIT_TAG"
     paths: ["$CUSTOMER_APP/build/app/outputs/flutter-apk/*.apk"]
     expire_in: 14 days
+
+cd_ios:
+  stage: deploy
+  tags: [macos]
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^(dev|prod)\.\d+\.\d+\.\d+-\d+$/'
+  before_script:
+    - *parse_tag
+    - *download_env
+    # FVM chạy ở root
+    - dart pub global activate fvm
+    - export PATH="$PATH:$HOME/.pub-cache/bin"
+    - fvm install $FVM_VERSION --skip-pub-get && fvm use $FVM_VERSION --force
+    # Fastlane + CocoaPods
+    - cd $CUSTOMER_APP && gem install bundler cocoapods --no-document && bundle install
+  script:
+    - cd ios
+    - BUNDLE_GEMFILE=../Gemfile bundle exec fastlane ios cd
+      flavor:$FLAVOR
+      version:$APP_VERSION
+      build_number:$BUILD_NUMBER
+  artifacts:
+    name: "ios-$CI_COMMIT_TAG"
+    paths: ["$CUSTOMER_APP/build/ios/ipa/*.ipa"]
+    expire_in: 14 days
