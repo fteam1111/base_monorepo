@@ -1,0 +1,77 @@
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
+
+stages:
+  - analyze
+  - test
+  - deploy
+
+variables:
+  FLUTTER_IMAGE: "ghcr.io/cirruslabs/flutter:$FVM_VERSION"
+  FVM_VERSION: "3.35.7"
+  CUSTOMER_APP: "apps/customer_app"
+  ANDROID_SDK_ROOT: "/opt/android-sdk"
+
+analyze:
+  stage: analyze
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  image: $FLUTTER_IMAGE
+  before_script:
+    # FVM + melos chạy ở root
+    - gem install bundler --no-document
+    - dart pub global activate fvm
+    - export PATH="$PATH:$HOME/.pub-cache/bin"
+    - fvm install $FVM_VERSION --skip-pub-get
+    - fvm use $FVM_VERSION --force
+    - dart pub global activate melos
+    # Cài Fastlane ở customer_app (vì Gemfile nằm đó)
+    - cd $CUSTOMER_APP && bundle install --quiet
+    - mkdir -p android
+    - echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+  script:
+    - cd $CI_PROJECT_DIR
+    - melos bootstrap
+    - make run_analyze
+
+.parse_tag: &parse_tag
+  - |
+    FLAVOR=$(echo $CI_COMMIT_TAG | cut -d'.' -f1)
+    REST=$(echo $CI_COMMIT_TAG | sed "s/^${FLAVOR}\\.//")
+    APP_VERSION=$(echo $REST | cut -d'-' -f1)
+    BUILD_NUMBER=$(echo $REST | cut -d'-' -f2)
+    echo "FLAVOR=$FLAVOR | VERSION=$APP_VERSION | BUILD=$BUILD_NUMBER"
+.download_env: &download_env
+  - |
+    FILE_ID=$(curl -sf -H "JOB-TOKEN: $CI_JOB_TOKEN" \
+      "$CI_API_V4_URL/projects/$CI_PROJECT_ID/secure_files" \
+      | python3 -c "import sys,json; \
+        files=json.load(sys.stdin); \
+        print(next(f['id'] for f in files if f['name']=='.env.$FLAVOR'))")
+    curl -sf -H "JOB-TOKEN: $CI_JOB_TOKEN" \
+      "$CI_API_V4_URL/projects/$CI_PROJECT_ID/secure_files/$FILE_ID/download" \
+      -o "$CUSTOMER_APP/.env.$FLAVOR"
+cd_android:
+  stage: deploy
+  image: $FLUTTER_IMAGE
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^(dev|prod)\.\d+\.\d+\.\d+-\d+$/'
+  before_script:
+    - *parse_tag
+    - *download_env
+    # FVM chạy ở root
+    - dart pub global activate fvm
+    - export PATH="$PATH:$HOME/.pub-cache/bin"
+    - fvm install $FVM_VERSION --skip-pub-get && fvm use $FVM_VERSION --force
+    # Fastlane cần Gemfile ở customer_app
+    - cd $CUSTOMER_APP && gem install bundler --no-document && bundle install --quiet
+  script:
+    - cd android
+    - bundle exec fastlane android cd
+      flavor:$FLAVOR
+      version:$APP_VERSION
+      build_number:$BUILD_NUMBER
+  artifacts:
+    name: "android-$CI_COMMIT_TAG"
+    paths: ["$CUSTOMER_APP/build/app/outputs/bundle/**/*.aab"]
+    expire_in: 14 days

@@ -1,0 +1,67 @@
+CUSTOMER_APP  = File.expand_path("../..", __dir__)
+
+ENTRYPOINTS = {
+  "dev"  => "lib/main_dev.dart",
+  "uat"  => "lib/main_uat.dart",
+  "prod" => "lib/main_prod.dart",
+}.freeze
+
+# Android gradle dùng "prd" cho flavor prod
+GRADLE_FLAVOR = { "dev" => "dev", "uat" => "uat", "prod" => "prd" }.freeze
+
+FIREBASE_APP_IDS = {
+  "uat"  => ENV["FIREBASE_ANDROID_UAT_APP_ID"],
+  "prod" => ENV["FIREBASE_ANDROID_PROD_APP_ID"],
+}.freeze
+
+default_platform(:android)
+
+platform :android do
+  desc "Build AAB. Params: flavor, version, build_number"
+  lane :build do |options|
+    flavor        = options[:flavor]
+    gradle_flavor = GRADLE_FLAVOR[flavor]
+
+    if ENV["ANDROID_KEYSTORE_BASE64"]
+      sh("echo $ANDROID_KEYSTORE_BASE64 | base64 --decode > /tmp/keystore.jks")
+      File.write("#{CUSTOMER_APP}/android/key.properties", <<~PROPS)
+        storeFile=/tmp/keystore.jks
+        storePassword=#{ENV["ANDROID_STORE_PASSWORD"]}
+        keyAlias=#{ENV["ANDROID_KEY_ALIAS"]}
+        keyPassword=#{ENV["ANDROID_KEY_PASSWORD"]}
+      PROPS
+    end
+
+    Dir.chdir(CUSTOMER_APP) do
+      sh("fvm flutter build appbundle " \
+         "--flavor #{gradle_flavor} " \
+         "--target #{ENTRYPOINTS[flavor]} " \
+         "--release " \
+         "--build-name=#{options[:version]} " \
+         "--build-number=#{options[:build_number]}")
+    end
+  end
+
+  desc "Deploy AAB → Firebase"
+  lane :deploy do |options|
+    flavor        = options[:flavor]
+    gradle_flavor = GRADLE_FLAVOR[flavor]
+    aab_path      = "#{CUSTOMER_APP}/build/app/outputs/bundle/" \
+                    "#{gradle_flavor}Release/app-#{gradle_flavor}-release.aab"
+
+    firebase_app_distribution(
+      app:                   FIREBASE_APP_IDS[flavor],
+      android_artifact_type: "AAB",
+      android_artifact_path: aab_path,
+      groups:                ENV["FIREBASE_TESTER_GROUPS"] || "qa-team",
+      release_notes:         sh("git log -1 --pretty=%B").strip,
+      firebase_cli_token:    ENV["FIREBASE_TOKEN"],
+    )
+  end
+
+  desc "Build + Deploy. Params: flavor, version, build_number"
+  lane :cd do |options|
+    build(options)
+    deploy(flavor: options[:flavor])
+  end
+end
