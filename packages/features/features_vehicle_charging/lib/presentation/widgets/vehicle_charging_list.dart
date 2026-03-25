@@ -1,5 +1,5 @@
 import 'package:design_system/design_system.dart';
-import 'package:features_vehicle_charging/presentation/pages/vehicle_charging_page.dart';
+import 'package:features_vehicle_charging/domain/entities/vehicle_charging_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
@@ -9,10 +9,16 @@ class VehicleChargingList extends StatefulWidget {
     super.key,
     required this.items,
     required this.onTapInfo,
+    required this.isLoading,
+    this.onRefresh,
+    this.onLoadMore,
   });
 
-  final List<VehicleChargingItemModel> items;
-  final void Function(VehicleChargingItemModel) onTapInfo;
+  final List<VehicleChargingEntity> items;
+  final void Function(VehicleChargingEntity) onTapInfo;
+  final bool isLoading;
+  final Future<void> Function()? onRefresh;
+  final VoidCallback? onLoadMore;
 
   @override
   State<VehicleChargingList> createState() => _VehicleChargingListState();
@@ -29,33 +35,39 @@ class _VehicleChargingListState extends State<VehicleChargingList> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
+    final colorScheme = context.colorScheme;
+    final spacing = context.appSpacing;
 
-    return ScrollList<VehicleChargingItemModel>(
+    return ScrollList<VehicleChargingEntity>(
       controller: _scrollController,
-      isLoading: false,
+      isLoading: widget.isLoading,
       items: widget.items,
+      onRefresh: widget.onRefresh,
+      onLoadingMore: widget.onLoadMore,
       header: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: context.appSpacing.pageHorizontal,
+          horizontal: spacing.pageHorizontal,
         ),
         child: const SizedBox.shrink(),
       ),
       itemBuilder: (context, index, item) {
         return Padding(
           padding: EdgeInsets.only(
-            left: context.appSpacing.pageHorizontal,
-            right: context.appSpacing.pageHorizontal,
-            bottom: index == widget.items.length - 1 ? AppSpacing.large : 0,
+            left: spacing.pageHorizontal,
+            right: spacing.pageHorizontal,
+            bottom: index == widget.items.length - 1
+                ? AppSpacing.sectionSpacing
+                : 0,
           ),
           child: _VehicleChargingCard(
             item: item,
+            priority: index + 1,
             onTapInfo: () => widget.onTapInfo(item),
             colorScheme: colorScheme,
           ),
         );
       },
-      separatorBuilder: (_, __) => const Gap(AppSpacing.sectionPadding),
+      separatorBuilder: (_, __) => const Gap(AppSpacing.listItemPadding),
       noRecordFoundWidget: const SizedBox.shrink(),
     );
   }
@@ -64,16 +76,21 @@ class _VehicleChargingListState extends State<VehicleChargingList> {
 class _VehicleChargingCard extends StatelessWidget {
   const _VehicleChargingCard({
     required this.item,
+    required this.priority,
     required this.onTapInfo,
     required this.colorScheme,
   });
 
-  final VehicleChargingItemModel item;
+  final VehicleChargingEntity item;
+  final int priority;
   final VoidCallback onTapInfo;
   final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
+    final typography = context.textTheme;
+    final colorScheme = context.colorScheme;
+
     return CustomCard(
       child: Column(
         children: [
@@ -95,7 +112,7 @@ class _VehicleChargingCard extends StatelessWidget {
                         Flexible(
                           child: Text(
                             item.vin,
-                            style: AppTypography.sectionHeader.copyWith(
+                            style: typography.titleMedium?.copyWith(
                               fontWeight: FontWeight.w800,
                             ),
                             overflow: TextOverflow.ellipsis,
@@ -103,29 +120,30 @@ class _VehicleChargingCard extends StatelessWidget {
                         ),
                         const Gap(AppSpacing.small),
                         _ChargingStatusChip(
-                          statusText: item.statusText,
-                          isCharging: item.isCharging,
+                          maxAgingDay: item.agingDays,
                           colorScheme: colorScheme,
                         ),
                       ],
                     ),
-
                     const Gap(AppSpacing.tiny),
                     Row(
                       children: [
                         Flexible(
                           child: Text(
-                            item.model,
-                            style: AppTypography.captionTextRegular(),
+                            context.l10n.vehicleChargingPriority(
+                              priority,
+                            ),
+                            style: typography.bodySmall,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const Gap(AppSpacing.small),
                         Flexible(
                           child: Text(
-                            item.station,
-                            style: AppTypography.captionTextBold(
+                            item.factoryName,
+                            style: typography.bodySmall?.copyWith(
                               color: colorScheme.primary,
+                              fontWeight: FontWeight.bold,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -142,10 +160,10 @@ class _VehicleChargingCard extends StatelessWidget {
           const Gap(AppSpacing.medium),
           Row(
             children: [
-              const Icon(
-                Icons.schedule,
-                size: AppSpacing.iconButton,
-                color: AppColors.tertiaryDark,
+              const AppIconContainer(
+                icon: Icon(Icons.location_on_outlined),
+                size: AppSpacing.extraLarge,
+                borderRadius: AppRadius.sm,
               ),
               const Gap(AppSpacing.small),
               Expanded(
@@ -153,13 +171,13 @@ class _VehicleChargingCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      context.l10n.entryTime,
-                      style: AppTypography.captionTextRegular(),
+                      context.l10n.vehicleChargingLocationLabel,
+                      style: typography.bodySmall,
                     ),
                     const Gap(AppSpacing.xxxs),
                     Text(
-                      item.timeIn,
-                      style: AppTypography.bodyMedium.copyWith(
+                      item.factoryName,
+                      style: typography.bodySmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -167,15 +185,65 @@ class _VehicleChargingCard extends StatelessWidget {
                 ),
               ),
               const Gap(AppSpacing.small),
-              InkResponse(
-                onTap: onTapInfo,
-                radius: AppSpacing.xl,
-                child: const AppIconContainer(
-                  backgroundColor: AppColors.backgroundLight,
-                  icon: Icon(Icons.info_outline, color: AppColors.tertiaryDark),
+              const AppIconContainer(
+                icon: Icon(Icons.schedule),
+                size: AppSpacing.extraLarge,
+                borderRadius: AppRadius.sm,
+              ),
+              const Gap(AppSpacing.small),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.l10n.vehicleChargingTimeInAreaLabel,
+                      style: typography.bodySmall,
+                    ),
+                    const Gap(AppSpacing.xxxs),
+                    Text(
+                      item.warehouseImportedAt,
+                      style: typography.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
+          ),
+          const Gap(AppSpacing.medium),
+          InkWell(
+            onTap: onTapInfo,
+            borderRadius: BorderRadius.circular(AppRadius.card),
+            child: CustomCard(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.large,
+                vertical: AppSpacing.small,
+              ),
+              backgroundColor: colorScheme.primary.withValues(
+                alpha: 0.05,
+              ),
+              borderColor: Colors.transparent,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.l10n.vehicleChargingMaintenaceActionHint,
+                    style: typography.labelMedium?.copyWith(
+                      color: colorScheme.primary,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  Icon(
+                    Icons.chevron_right,
+                    color: colorScheme.primary,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -185,18 +253,16 @@ class _VehicleChargingCard extends StatelessWidget {
 
 class _ChargingStatusChip extends StatelessWidget {
   const _ChargingStatusChip({
-    required this.statusText,
-    required this.isCharging,
+    required this.maxAgingDay,
     required this.colorScheme,
   });
 
-  final String statusText;
-  final bool isCharging;
+  final int maxAgingDay;
   final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
-    final bg = colorScheme.primary.withValues(alpha: 0.08);
+    final bg = colorScheme.error.withValues(alpha: 0.08);
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -205,27 +271,20 @@ class _ChargingStatusChip extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: bg,
-        borderRadius: BorderRadius.circular(AppRadius.badgeLarge),
-        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.15)),
+        borderRadius: BorderRadius.circular(AppRadius.chip),
+        border: Border.all(
+          color: colorScheme.error.withValues(alpha: 0.15),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            AppIcons.icLightning,
-            package: AppAssets.package,
-            height: AppSpacing.iconXS,
-            width: AppSpacing.iconXS,
-            color: colorScheme.primary,
-          ),
-          const Gap(AppSpacing.tiny),
           Text(
-            statusText,
-            style: AppTypography.labelSmall.copyWith(
-              color: colorScheme.primary,
+            'Aging: ${context.l10n.agingDays(maxAgingDay)}',
+            style: context.textTheme.labelSmall?.copyWith(
+              color: colorScheme.error,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.3,
-              fontStyle: FontStyle.italic,
             ),
           ),
         ],

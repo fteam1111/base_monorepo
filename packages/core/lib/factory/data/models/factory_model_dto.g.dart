@@ -8,9 +8,9 @@ part of 'factory_model_dto.dart';
 
 _FactoryModelDto _$FactoryModelDtoFromJson(Map<String, dynamic> json) =>
     _FactoryModelDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      address: json['address'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      address: json['address'] as String?,
     );
 
 Map<String, dynamic> _$FactoryModelDtoToJson(_FactoryModelDto instance) =>

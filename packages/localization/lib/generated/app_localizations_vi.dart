@@ -63,10 +63,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get parkingHistoryTitle => 'Lịch sử';
 
   @override
-  String get vehicleChargingAreaTitle => 'KHU SẠC XẢ';
+  String get vehicleChargingAreaTitle => 'Xe cần bảo dưỡng sạc';
 
   @override
-  String get vehicleChargingAreaSubtitle => 'QUẢN LÝ BẢO DƯỠNG PIN';
+  String get vehicleChargingAreaSubtitle => 'Danh sách xe Aging > 30 ngày';
 
   @override
   String get vehicleChargingSearchHint => 'Tìm theo mã VIN...';
@@ -159,7 +159,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get batteryCapacity => 'Dung lượng pin';
 
   @override
-  String get aging => 'Aging';
+  String get aging => 'Ngày';
 
   @override
   String get currentLocation => 'Vị trí hiện tại';
@@ -394,4 +394,76 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get qrScannerHint => 'Đưa mã QR vào khung quét';
+
+  @override
+  String vehicleChargingAgingWarning(int count) {
+    return 'Cần xử lý $count phương tiện có chỉ số aging cao';
+  }
+
+  @override
+  String get vehicleChargingFetchError => 'Không thể tải danh sách xe.';
+
+  @override
+  String get vehicleChargingEmptyTitle => 'TẤT CẢ XE ĐỀU ỔN ĐỊNH';
+
+  @override
+  String get vehicleChargingEmptySubtitle =>
+      'Không tìm thấy xe nào có số ngày trên 30 ngày cần sạc xả.';
+
+  @override
+  String vehicleChargingPriority(int number) {
+    return 'ƯU TIÊN #$number';
+  }
+
+  @override
+  String get vehicleChargingMaintenaceActionHint =>
+      'NHẤN ĐỂ THAO TÁC BẢO DƯỠNG';
+
+  @override
+  String get vehicleChargingMaintenanceRequestTitle => 'YÊU CẦU BẢO DƯỠNG PIN';
+
+  @override
+  String get vehicleChargingCurrentAgingLabel => 'SỐ NGÀY HIỆN TẠI:';
+
+  @override
+  String get vehicleChargingMoveToChargeAction => 'MANG XE ĐI SẠC';
+
+  @override
+  String get vehicleChargingNoNeedAction => 'KHÔNG CẦN MANG XE';
+
+  @override
+  String get vehicleChargingLocationLabel => 'VỊ TRÍ HIỆN TẠI';
+
+  @override
+  String get vehicleChargingTimeInAreaLabel => 'VÀO KHU TP';
+
+  @override
+  String agingDays(Object count) {
+    return '$count ngày';
+  }
+
+  @override
+  String get back => 'Quay lại';
+
+  @override
+  String get dischargingStatusUpdated => 'ĐÃ CẬP NHẬT TRẠNG THÁI';
+
+  @override
+  String get dischargingVehicleStatus => 'TRẠNG THÁI XE:';
+
+  @override
+  String get dischargingInstruction =>
+      'VUI LÒNG MANG XE ĐẾN KHU VỰC SẠC XẢ ĐỂ TIẾP TỤC QUY TRÌNH BẢO DƯỠNG.';
+
+  @override
+  String get dischargingVinLabel => 'MÃ VIN';
+
+  @override
+  String get dischargingLocationLabel => 'VỊ TRÍ BAN ĐẦU';
+
+  @override
+  String get dischargingTimeLabel => 'THỜI GIAN';
+
+  @override
+  String get dischargingCompleteAction => 'HOÀN THÀNH CẬP NHẬT';
 }

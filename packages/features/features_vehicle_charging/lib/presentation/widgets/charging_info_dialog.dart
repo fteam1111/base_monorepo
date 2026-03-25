@@ -1,91 +1,104 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_vehicle_charging/domain/entities/vehicle_charging_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/share.dart';
-import 'package:features_vehicle_charging/presentation/pages/vehicle_charging_page.dart';
 
 class ChargingInfoDialog extends StatelessWidget {
   const ChargingInfoDialog({super.key, required this.item});
 
-  final VehicleChargingItemModel item;
+  final VehicleChargingEntity item;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
+    final colorScheme = context.colorScheme;
+    final spacing = context.appSpacing;
+    final radius = context.appRadius;
     final maxHeight = context.screenHeight * 0.8;
 
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
+        borderRadius: BorderRadius.circular(radius.dialog),
       ),
       child: ConstrainedBox(
         constraints: BoxConstraints(maxHeight: maxHeight),
         child: Padding(
-          padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
+          padding: EdgeInsets.all(spacing.pageHorizontal),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AppIconContainer(
-                size: AppSpacing.gigantic,
-                icon: Image.asset(
-                  AppIcons.icLightning,
-                  package: AppAssets.package,
-                  height: AppSpacing.huge,
-                  width: AppSpacing.huge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      context.l10n.vehicleChargingMaintenanceRequestTitle,
+                      style: AppTypography.titleMedium,
+                    ),
+                  ),
+                  const CloseButton(),
+                ],
+              ),
+              const Gap(AppSpacing.sectionSpacing),
+              CustomCard(
+                backgroundColor: colorScheme.primary.withValues(alpha: 0.05),
+                elevation: 0,
+                shadowColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    InfoRow(
+                      label: '${context.l10n.vinIdentifier.toUpperCase()}:',
+                      value: item.vin,
+                      valueColor: colorScheme.primary,
+                    ),
+                    const Gap(AppSpacing.small),
+                    InfoRow(
+                      label: context.l10n.vehicleChargingCurrentAgingLabel,
+                      value: context.l10n.agingDays(item.agingDays),
+                      valueColor: colorScheme.error,
+                    ),
+                  ],
                 ),
-                borderColor: Colors.transparent,
-                borderRadius: AppRadius.avatarCircle,
               ),
-              const Gap(AppSpacing.medium),
-              Text(
-                context.l10n.vehicleChargingInfoTitle,
-                style: AppTypography.sectionHeader.copyWith(
-                  fontStyle: FontStyle.italic,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Gap(AppSpacing.small),
-              Text(
-                context.l10n.vehicleChargingInfoSubtitle,
-                style: AppTypography.labelMedium.copyWith(
-                  color: AppColors.secondaryLight,
-                  letterSpacing: 0.8,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                item.vin,
-                style: AppTypography.titleMedium.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.3,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Gap(AppSpacing.large),
-              InfoRow(
-                label: context.l10n.vehicleChargingInfoStatusLabel,
-                value: item.statusText,
-                valueColor: colorScheme.primary,
-              ),
-              InfoRow(
-                label: context.l10n.vehicleChargingInfoSubAreaLabel,
-                value: item.station,
-              ),
-              InfoRow(
-                label: context.l10n.vehicleChargingInfoCheckAgingDateLabel,
-                value: item.checkAgingDate,
-              ),
-              const Gap(AppSpacing.mediumLarge),
+              const Gap(AppSpacing.sectionSpacing),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => AppRoutes.navigateBack(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.neutral20,
-                    foregroundColor: AppColors.neutral100,
+                    backgroundColor: colorScheme.primary,
+                    foregroundColor: colorScheme.onPrimary,
                   ),
-                  child: Text(context.l10n.vehicleChargingCloseInfo),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    AppRoutes.navigateToDischargingResult(
+                      context,
+                      extra: item,
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.bolt),
+                      const Gap(8),
+                      Text(context.l10n.vehicleChargingMoveToChargeAction),
+                    ],
+                  ),
+                ),
+              ),
+              const Gap(AppSpacing.small),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: TextButton.styleFrom(
+                    side: BorderSide(color: colorScheme.outline),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.button),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                  ),
+                  child: Text(context.l10n.vehicleChargingNoNeedAction),
                 ),
               ),
             ],
@@ -110,38 +123,34 @@ class InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
+    final colorScheme = context.colorScheme;
+    final typography = context.textTheme;
+    final spacing = context.appSpacing;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.small,
-        vertical: AppSpacing.small,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              label,
-              style: AppTypography.labelSmall.copyWith(
-                color: AppColors.secondaryLight,
-                letterSpacing: 0.8,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Flexible(
+          child: Text(
+            label,
+            style: typography.labelSmall?.copyWith(
+              color: colorScheme.secondary,
+              letterSpacing: 0.8,
             ),
           ),
-          const Gap(AppSpacing.small),
-          Text(
+        ),
+        Gap(spacing.listItemPadding / 2),
+        Flexible(
+          child: Text(
             value,
-            style: AppTypography.titleSmall.copyWith(
+            style: typography.titleSmall?.copyWith(
               fontWeight: FontWeight.w700,
               color: valueColor ?? colorScheme.onSurface,
             ),
+            textAlign: TextAlign.right,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

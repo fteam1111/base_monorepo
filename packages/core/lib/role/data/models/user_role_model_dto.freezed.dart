@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserRoleModelDto {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'name') String get name;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;
 /// Create a copy of UserRoleModelDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserRoleModelDtoCopyWith<$Res>  {
   factory $UserRoleModelDtoCopyWith(UserRoleModelDto value, $Res Function(UserRoleModelDto) _then) = _$UserRoleModelDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name
 });
 
 
@@ -65,11 +65,11 @@ class _$UserRoleModelDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserRoleModelDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserRoleModelDto() when $default != null:
 return $default(_that.id,_that.name);case _:
@@ -175,7 +175,7 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name)  $default,) {final _that = this;
 switch (_that) {
 case _UserRoleModelDto():
 return $default(_that.id,_that.name);case _:
@@ -195,7 +195,7 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name)?  $default,) {final _that = this;
 switch (_that) {
 case _UserRoleModelDto() when $default != null:
 return $default(_that.id,_that.name);case _:
@@ -210,11 +210,11 @@ return $default(_that.id,_that.name);case _:
 @JsonSerializable()
 
 class _UserRoleModelDto implements UserRoleModelDto {
-  const _UserRoleModelDto({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'name') required this.name});
+  const _UserRoleModelDto({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name});
   factory _UserRoleModelDto.fromJson(Map<String, dynamic> json) => _$UserRoleModelDtoFromJson(json);
 
-@override@JsonKey(name: 'id') final  int id;
-@override@JsonKey(name: 'name') final  String name;
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'name') final  String? name;
 
 /// Create a copy of UserRoleModelDto
 /// with the given fields replaced by the non-null parameter values.
@@ -249,7 +249,7 @@ abstract mixin class _$UserRoleModelDtoCopyWith<$Res> implements $UserRoleModelD
   factory _$UserRoleModelDtoCopyWith(_UserRoleModelDto value, $Res Function(_UserRoleModelDto) _then) = __$UserRoleModelDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name
 });
 
 
@@ -266,11 +266,11 @@ class __$UserRoleModelDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserRoleModelDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,}) {
   return _then(_UserRoleModelDto(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
