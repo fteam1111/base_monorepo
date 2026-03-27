@@ -193,10 +193,7 @@ class _DeliveryOrderItem extends StatelessWidget {
         deadline: formattedDeadline,
         progress: item.progress,
         onTap: () {
-          AppRoutes.navigateToDeliveryOrderDetail(
-            context,
-            deliveryOrderId: item.id,
-          );
+          AppRoutes.navigateToDeliveryOrderDetail(context, deliveryOrder: item);
         },
       ),
     );

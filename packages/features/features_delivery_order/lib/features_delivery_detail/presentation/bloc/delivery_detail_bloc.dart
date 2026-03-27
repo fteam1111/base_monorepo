@@ -30,19 +30,19 @@ class DeliveryDetailBloc
     emit(
       state.copyWith(
         status: DeliveryDetailStatus.loading,
-        deliveryOrderId: event.deliveryOrderId,
+        deliveryOrder: event.deliveryOrder,
         failure: null,
       ),
     );
 
-    await _fetchVehicles(emit: emit, deliveryOrderId: event.deliveryOrderId);
+    await _fetchVehicles(emit: emit, deliveryOrderId: event.deliveryOrder.id);
   }
 
   Future<void> _onRefreshVehiclesRequested(
     DeliveryDetailRefreshVehiclesRequested event,
     Emitter<DeliveryDetailState> emit,
   ) async {
-    final doId = state.deliveryOrderId;
+    final doId = state.deliveryOrder?.id;
     if (doId == null) return;
 
     await _fetchVehicles(emit: emit, deliveryOrderId: doId);
@@ -52,7 +52,7 @@ class DeliveryDetailBloc
     DeliveryDetailAddVehicleRequested event,
     Emitter<DeliveryDetailState> emit,
   ) async {
-    final doId = state.deliveryOrderId;
+    final doId = state.deliveryOrder?.id;
     if (doId == null) return;
 
     emit(state.copyWith(addVehicleStatus: AddVehicleStatus.loading));

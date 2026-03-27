@@ -98,9 +98,9 @@ class AppRoutes {
 
   static void navigateToDeliveryOrderDetail(
     BuildContext context, {
-    required int deliveryOrderId,
+    required Object deliveryOrder,
   }) {
-    context.push(doDetailPath, extra: deliveryOrderId);
+    context.push(doDetailPath, extra: deliveryOrder);
   }
 
   static void navigateToFactoryMap(BuildContext context) {

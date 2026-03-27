@@ -219,15 +219,13 @@ class AppRouter {
           path: AppRoutes.doDetailPath,
           name: AppRoutes.doDetail,
           pageBuilder: (context, state) {
-            final deliveryOrderId = state.extra! as int;
+            final deliveryOrder = state.extra! as DeliveryOrderEntity;
             return _buildPageWithTransition(
               key: state.pageKey,
               name: AppRoutes.doDetail,
               child: BlocProvider(
                 create: (_) => locator<DeliveryDetailBloc>()
-                  ..add(
-                    DeliveryDetailStarted(deliveryOrderId: deliveryOrderId),
-                  ),
+                  ..add(DeliveryDetailStarted(deliveryOrder: deliveryOrder)),
                 child: const DeliveryDetailPage(),
               ),
             );

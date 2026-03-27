@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'package:features_delivery_order/domain/entities/delivery_order_entity.dart';
+
 /// Events for [DeliveryDetailBloc].
 abstract class DeliveryDetailEvent extends Equatable {
   const DeliveryDetailEvent();
@@ -10,12 +12,12 @@ abstract class DeliveryDetailEvent extends Equatable {
 
 /// Initial load of delivery order detail and its vehicles.
 class DeliveryDetailStarted extends DeliveryDetailEvent {
-  const DeliveryDetailStarted({required this.deliveryOrderId});
+  const DeliveryDetailStarted({required this.deliveryOrder});
 
-  final int deliveryOrderId;
+  final DeliveryOrderEntity deliveryOrder;
 
   @override
-  List<Object?> get props => [deliveryOrderId];
+  List<Object?> get props => [deliveryOrder];
 }
 
 /// Request to add a vehicle to the delivery order.

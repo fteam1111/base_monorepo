@@ -114,10 +114,10 @@ class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
             const Gap(AppSpacing.paddingSM),
             ElevatedButton(
               onPressed: () {
-                final doId = state.deliveryOrderId;
-                if (doId != null) {
+                final d0 = state.deliveryOrder;
+                if (d0 != null) {
                   context.read<DeliveryDetailBloc>().add(
-                    DeliveryDetailStarted(deliveryOrderId: doId),
+                    DeliveryDetailStarted(deliveryOrder: d0),
                   );
                 }
               },
@@ -139,16 +139,16 @@ class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
               children: [
                 if (doEntity != null)
                   DeliveryDetailHeaderCard(
-                    customerName: doEntity.storeName ?? '',
+                    customerName: doEntity.storeName,
                     modelName: doEntity.items.isNotEmpty
                         ? doEntity.items.first.vehicleModel
-                        : '',
+                        : null,
                     colorCode: doEntity.items.isNotEmpty
                         ? doEntity.items.first.color
-                        : '',
+                        : null,
                     colorName: doEntity.items.isNotEmpty
                         ? doEntity.items.first.color
-                        : '',
+                        : null,
                     currentProgress: doEntity.fulfilledQuantity,
                     totalQuantity: doEntity.totalQuantity,
                   ),

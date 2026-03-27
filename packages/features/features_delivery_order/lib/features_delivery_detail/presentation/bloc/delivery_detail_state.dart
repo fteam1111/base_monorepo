@@ -13,7 +13,6 @@ enum AddVehicleStatus { initial, loading, success, failure }
 class DeliveryDetailState extends Equatable {
   const DeliveryDetailState({
     this.status = DeliveryDetailStatus.initial,
-    this.deliveryOrderId,
     this.deliveryOrder,
     this.vehicles = const [],
     this.failure,
@@ -22,7 +21,6 @@ class DeliveryDetailState extends Equatable {
   });
 
   final DeliveryDetailStatus status;
-  final int? deliveryOrderId;
   final DeliveryOrderEntity? deliveryOrder;
   final List<DeliveryOrderVehicleEntity> vehicles;
   final ApiFailure? failure;
@@ -32,7 +30,6 @@ class DeliveryDetailState extends Equatable {
   @override
   List<Object?> get props => [
     status,
-    deliveryOrderId,
     deliveryOrder,
     vehicles,
     failure,
@@ -42,7 +39,6 @@ class DeliveryDetailState extends Equatable {
 
   DeliveryDetailState copyWith({
     DeliveryDetailStatus? status,
-    int? deliveryOrderId,
     DeliveryOrderEntity? deliveryOrder,
     List<DeliveryOrderVehicleEntity>? vehicles,
     ApiFailure? failure,
@@ -51,7 +47,6 @@ class DeliveryDetailState extends Equatable {
   }) {
     return DeliveryDetailState(
       status: status ?? this.status,
-      deliveryOrderId: deliveryOrderId ?? this.deliveryOrderId,
       deliveryOrder: deliveryOrder ?? this.deliveryOrder,
       vehicles: vehicles ?? this.vehicles,
       failure: failure ?? this.failure,
