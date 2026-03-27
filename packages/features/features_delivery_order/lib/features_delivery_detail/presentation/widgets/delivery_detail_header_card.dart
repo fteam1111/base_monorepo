@@ -163,7 +163,7 @@ class DeliveryDetailHeaderCard extends StatelessWidget {
             Flexible(
               child: Text(
                 item.value,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: isRight ? TextAlign.right : TextAlign.left,
                 style:

@@ -1,6 +1,7 @@
 import 'package:core/model/base_pagination_response.dart';
 import 'package:core/model/base_response.dart';
 import 'package:dio/dio.dart';
+import 'package:features_delivery_order/data/models/client_vehicle_dto.dart';
 import 'package:features_delivery_order/data/models/delivery_order_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -38,4 +39,15 @@ abstract class DeliveryOrderRemoteDataSource {
     @Path('deliveryOrderId') int deliveryOrderId,
     @Body() AddVehicleToDeliveryOrderRequestDto body,
   );
+
+  /// GET /api/v1/client/vehicles
+  @GET(ApiRoutes.vehicles)
+  Future<BasePaginationResponse<List<ClientVehicleDto>>> getClientVehicles({
+    @Query('page') required int page,
+    @Query('size') required int size,
+    @Query('serial_number') String? serialNumber,
+    @Query('color') String? color,
+    @Query('model') String? model,
+    @Query('isUnassigned') bool? isUnassigned,
+  });
 }

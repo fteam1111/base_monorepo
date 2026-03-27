@@ -7,12 +7,14 @@ export 'data/mappers/delivery_order_mapper.dart';
 export 'data/repositories/delivery_order_repository_impl.dart';
 
 // Domain layer
+export 'domain/entities/client_vehicle_entity.dart';
 export 'domain/entities/delivery_order_entity.dart';
 export 'domain/entities/delivery_order_vehicle_entity.dart';
 export 'domain/repositories/delivery_order_repository.dart';
+export 'domain/usecases/add_vehicle_to_delivery_order_usecase.dart';
+export 'domain/usecases/get_client_vehicles_usecase.dart';
 export 'domain/usecases/get_delivery_order_list_usecase.dart';
 export 'domain/usecases/get_delivery_order_vehicles_usecase.dart';
-export 'domain/usecases/add_vehicle_to_delivery_order_usecase.dart';
 
 // Presentation layer - Delivery List
 export 'features_delivery_list/presentation/bloc/delivery_list_bloc.dart';

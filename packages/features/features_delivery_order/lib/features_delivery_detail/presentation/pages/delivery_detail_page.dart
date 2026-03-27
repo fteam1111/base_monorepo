@@ -5,8 +5,8 @@ import 'package:features_delivery_order/features_delivery_detail/presentation/bl
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_detail_header_card.dart';
-import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_filter_section.dart';
-import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_vin_item_card.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_in_do_vehicle_section.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_suggested_vehicle_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -20,8 +20,28 @@ class DeliveryDetailPage extends StatefulWidget {
   State<DeliveryDetailPage> createState() => _DeliveryDetailPageState();
 }
 
-class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
-  final double _spacingBottomList = 20;
+class _DeliveryDetailPageState extends State<DeliveryDetailPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        context.read<DeliveryDetailBloc>().add(
+          DeliveryDetailTabChanged(_tabController.index),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,90 +150,112 @@ class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
 
     final doEntity = state.deliveryOrder;
 
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              children: [
-                if (doEntity != null)
-                  DeliveryDetailHeaderCard(
-                    customerName: doEntity.storeName,
-                    modelName: doEntity.items.isNotEmpty
-                        ? doEntity.items.first.vehicleModel
-                        : null,
-                    colorCode: doEntity.items.isNotEmpty
-                        ? doEntity.items.first.color
-                        : null,
-                    colorName: doEntity.items.isNotEmpty
-                        ? doEntity.items.first.color
-                        : null,
-                    currentProgress: doEntity.fulfilledQuantity,
-                    totalQuantity: doEntity.totalQuantity,
+    return Column(
+      children: [
+        if (doEntity != null) ...[
+          Padding(
+            padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
+            child: DeliveryDetailHeaderCard(
+              customerName: doEntity.storeName,
+              modelName: doEntity.items.isNotEmpty
+                  ? doEntity.items.first.vehicleModel
+                  : null,
+              colorCode: doEntity.items.isNotEmpty
+                  ? doEntity.items.first.color
+                  : null,
+              colorName: doEntity.items.isNotEmpty
+                  ? doEntity.items.first.color
+                  : null,
+              currentProgress: doEntity.fulfilledQuantity,
+              totalQuantity: doEntity.totalQuantity,
+            ),
+          ),
+        ],
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.appSpacing.pageHorizontal,
+          ),
+          child: Container(
+            height: 48,
+            decoration: BoxDecoration(
+              color: context.colorScheme.onSurfaceVariant.withValues(
+                alpha: 0.1,
+              ), // Light grey pill background
+              borderRadius: BorderRadius.circular(AppRadius.button),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              dividerColor: Colors.transparent,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorPadding: const EdgeInsets.all(4),
+              indicator: BoxDecoration(
+                color: context.colorScheme.surface,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
                   ),
-                Gap(context.appSpacing.cardPadding),
-                const DeliveryFilterSection(),
-                Gap(context.appSpacing.cardPadding),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.layers_outlined,
-                          color: context.colorScheme.onSurface,
-                        ),
-                        const Gap(AppSpacing.paddingXXXS),
-                        Text(
-                          context.l10n.deliveryOrderPickupGuideTitle,
-                          style: context.appTypography.titleMedium.copyWith(
+                ],
+              ),
+              labelColor: context.colorScheme.primary,
+              unselectedLabelColor: context.colorScheme.onSurfaceVariant,
+              labelStyle: context.appTypography.labelLarge.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              unselectedLabelStyle: context.appTypography.labelLarge.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              tabs: [
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.dashboard_customize_outlined, size: 20),
+                      const Gap(4),
+                      Expanded(
+                        child: Text(
+                          context.l10n.deliveryOrderSuggestedVehiclesTab,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: context.appTypography.labelLarge.copyWith(
                             fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic,
-                            color: context.colorScheme.onSurface,
                           ),
                         ),
-                      ],
-                    ),
-                    Text(
-                      context.l10n.resultsCount(vehicles.length),
-                      style: context.appTypography.labelSmall.copyWith(
-                        color: context.colorScheme.onSurfaceVariant.withValues(
-                          alpha: 0.5,
-                        ),
-                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.checklist, size: 20),
+                      const Gap(4),
+                      Expanded(
+                        child: Text(
+                          context.l10n.deliveryOrderAssignedVehiclesTab,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
         ),
-        SliverPadding(
-          padding: EdgeInsets.fromLTRB(
-            AppSpacing.medium,
-            AppSpacing.none,
-            AppSpacing.medium,
-            _spacingBottomList,
-          ),
-          sliver: SliverList.separated(
-            itemCount: vehicles.length,
-            separatorBuilder: (context, index) =>
-                const Gap(AppSpacing.paddingSM),
-            itemBuilder: (context, index) {
-              final vehicle = vehicles[index];
-              return DeliveryVinItemCard(
-                vinCode: vehicle.serialNumber,
-                modelName: vehicle.model,
-                colorName: vehicle.color,
-                area: '',
-                position: '',
-                fifoNumber: index + 1,
-                warehouseDate: vehicle.warehouseImportedAt ?? '',
-                colorValue: Colors.blue,
-              );
-            },
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              DeliverySuggestedVehicleSection(),
+              DeliveryInDoVehicleSection(),
+            ],
           ),
         ),
       ],

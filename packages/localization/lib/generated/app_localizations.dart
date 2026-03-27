@@ -629,7 +629,7 @@ abstract class AppLocalizations {
   /// No description provided for @locationFormat.
   ///
   /// In en, this message translates to:
-  /// **'Area {area} - Position {position}'**
+  /// **'{area} - {position}'**
   String locationFormat(Object area, Object position);
 
   /// No description provided for @deliveryOrderDeadlineLabel.
@@ -937,6 +937,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'COMPLETE UPDATE'**
   String get dischargingCompleteAction;
+
+  /// No description provided for @deliveryOrderSuggestedVehiclesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'PICKUP GUIDE'**
+  String get deliveryOrderSuggestedVehiclesTab;
+
+  /// No description provided for @deliveryOrderAssignedVehiclesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLES IN DO'**
+  String get deliveryOrderAssignedVehiclesTab;
 }
 
 class _AppLocalizationsDelegate

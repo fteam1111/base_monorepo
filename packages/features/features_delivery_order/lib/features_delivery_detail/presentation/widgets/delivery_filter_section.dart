@@ -1,5 +1,9 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_bloc.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:share/share.dart';
 
@@ -11,8 +15,15 @@ class DeliveryFilterSection extends StatefulWidget {
 }
 
 class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
-  String? _selectedModel;
-  String? _selectedColor;
+  String? _selectedModel = 'all';
+  String? _selectedColor = 'all';
+  final Debounce _debounce = Debounce(delay: const Duration(milliseconds: 500));
+
+  @override
+  void dispose() {
+    _debounce.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +65,17 @@ class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
           const Gap(AppSpacing.paddingSM),
           AppTextField.search(
             hintText: context.l10n.findVinCode,
+            onChanged: (value) {
+              _debounce(() {
+                if (!mounted) return;
+                context.read<DeliveryDetailBloc>().add(
+                  DeliveryDetailVinFilterChanged(value),
+                );
+                context.read<DeliveryDetailBloc>().add(
+                  const DeliveryDetailSuggestedVehiclesRequested(),
+                );
+              });
+            },
           ),
           const Gap(AppSpacing.paddingSM),
           Row(
@@ -65,6 +87,14 @@ class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
                   items: modelItems,
                   onChanged: (value) {
                     setState(() => _selectedModel = value);
+                    context.read<DeliveryDetailBloc>().add(
+                      DeliveryDetailModelFilterChanged(
+                        value == 'all' ? null : value,
+                      ),
+                    );
+                    context.read<DeliveryDetailBloc>().add(
+                      const DeliveryDetailSuggestedVehiclesRequested(),
+                    );
                   },
                 ),
               ),
@@ -76,6 +106,14 @@ class _DeliveryFilterSectionState extends State<DeliveryFilterSection> {
                   items: colorItems,
                   onChanged: (value) {
                     setState(() => _selectedColor = value);
+                    context.read<DeliveryDetailBloc>().add(
+                      DeliveryDetailColorFilterChanged(
+                        value == 'all' ? null : value,
+                      ),
+                    );
+                    context.read<DeliveryDetailBloc>().add(
+                      const DeliveryDetailSuggestedVehiclesRequested(),
+                    );
                   },
                 ),
               ),

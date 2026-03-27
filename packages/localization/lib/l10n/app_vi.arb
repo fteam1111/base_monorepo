@@ -89,7 +89,7 @@
   "deliveryOrderPickupGuideTitle": "HƯỚNG DẪN LẤY XE",
   "fifoBadge": "FIFO #{number}",
   "deliveryOrderFifo": "FIFO #{number}",
-  "locationFormat": "Khu {area} - Vị trí {position}",
+  "locationFormat": "{area} - {position}",
   "deliveryOrderTitlePrefix": "DO: {code}",
   "allWithCount": "TẤT CẢ ({count})",
   "preparingWithCount": "ĐANG CHUẨN BỊ ({count})",
@@ -167,5 +167,7 @@
   "dischargingVinLabel": "MÃ VIN",
   "dischargingLocationLabel": "VỊ TRÍ BAN ĐẦU",
   "dischargingTimeLabel": "THỜI GIAN",
-  "dischargingCompleteAction": "HOÀN THÀNH CẬP NHẬT"
+  "dischargingCompleteAction": "HOÀN THÀNH CẬP NHẬT",
+  "deliveryOrderSuggestedVehiclesTab": "HƯỚNG DẪN LẤY XE",
+  "deliveryOrderAssignedVehiclesTab": "DANH SÁCH XE TRONG DO"
 }

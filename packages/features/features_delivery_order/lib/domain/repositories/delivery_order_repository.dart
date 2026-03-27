@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
+import 'package:features_delivery_order/domain/entities/client_vehicle_entity.dart';
 import 'package:features_delivery_order/domain/entities/delivery_order_entity.dart';
 import 'package:features_delivery_order/domain/entities/delivery_order_vehicle_entity.dart';
 
@@ -20,5 +21,15 @@ abstract class DeliveryOrderRepository {
   Future<Either<ApiFailure, DeliveryOrderEntity>> addVehicleToDeliveryOrder({
     required int deliveryOrderId,
     required String vehicleId,
+  });
+
+  /// Fetches client vehicles for pick-up guidance.
+  Future<Either<ApiFailure, List<ClientVehicleEntity>>> getClientVehicles({
+    required int page,
+    required int size,
+    String? serialNumber,
+    String? color,
+    String? model,
+    bool? isUnassigned,
   });
 }

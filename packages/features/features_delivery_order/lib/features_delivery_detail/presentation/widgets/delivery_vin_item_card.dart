@@ -13,7 +13,6 @@ class DeliveryVinItemCard extends StatelessWidget {
     required this.position,
     required this.fifoNumber,
     required this.warehouseDate,
-    required this.colorValue,
   });
 
   final String vinCode;
@@ -23,7 +22,6 @@ class DeliveryVinItemCard extends StatelessWidget {
   final String position;
   final int fifoNumber;
   final String warehouseDate;
-  final Color colorValue;
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +87,11 @@ class DeliveryVinItemCard extends StatelessWidget {
                           ),
                         ),
                         const Gap(AppSpacing.paddingXS),
-                        Container(
-                          width: 4,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: context.colorScheme.onSurfaceVariant
-                                .withValues(alpha: 0.3),
-                            shape: BoxShape.circle,
-                          ),
+                        Icon(
+                          Icons.circle,
+                          size: 8,
+                          color: context.appColors.border,
                         ),
-                        const Gap(AppSpacing.paddingXS),
-                        Icon(Icons.circle, size: 8, color: colorValue),
                         const Gap(AppSpacing.paddingXXXS),
                         Text(
                           colorName.toUpperCase(),
@@ -118,7 +110,7 @@ class DeliveryVinItemCard extends StatelessWidget {
           const Gap(AppSpacing.paddingMD),
           Row(
             children: [
-              Expanded(
+              Flexible(
                 child: Row(
                   children: [
                     Icon(
@@ -141,18 +133,16 @@ class DeliveryVinItemCard extends StatelessWidget {
                 ),
               ),
               const Gap(AppSpacing.paddingSM),
-              Flexible(
-                child: Text(
-                  context.l10n.warehouse(warehouseDate),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.end,
-                  style: context.appTypography.labelSmall.copyWith(
-                    color: context.colorScheme.onSurfaceVariant.withValues(
-                      alpha: 0.5,
-                    ),
-                    fontStyle: FontStyle.italic,
+              Text(
+                context.l10n.warehouse(warehouseDate),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.end,
+                style: context.appTypography.labelSmall.copyWith(
+                  color: context.colorScheme.onSurfaceVariant.withValues(
+                    alpha: 0.5,
                   ),
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ],

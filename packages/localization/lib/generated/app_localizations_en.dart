@@ -290,7 +290,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String locationFormat(Object area, Object position) {
-    return 'Area $area - Position $position';
+    return '$area - $position';
   }
 
   @override
@@ -471,4 +471,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dischargingCompleteAction => 'COMPLETE UPDATE';
+
+  @override
+  String get deliveryOrderSuggestedVehiclesTab => 'PICKUP GUIDE';
+
+  @override
+  String get deliveryOrderAssignedVehiclesTab => 'VEHICLES IN DO';
 }

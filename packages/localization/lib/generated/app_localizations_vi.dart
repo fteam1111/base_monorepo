@@ -289,7 +289,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String locationFormat(Object area, Object position) {
-    return 'Khu $area - Vị trí $position';
+    return '$area - $position';
   }
 
   @override
@@ -469,4 +469,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get dischargingCompleteAction => 'HOÀN THÀNH CẬP NHẬT';
+
+  @override
+  String get deliveryOrderSuggestedVehiclesTab => 'HƯỚNG DẪN LẤY XE';
+
+  @override
+  String get deliveryOrderAssignedVehiclesTab => 'DANH SÁCH XE TRONG DO';
 }

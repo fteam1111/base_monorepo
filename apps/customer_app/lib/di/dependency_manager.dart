@@ -181,6 +181,9 @@ class DependencyManager {
       () =>
           AddVehicleToDeliveryOrderUseCase(locator<DeliveryOrderRepository>()),
     );
+    locator.registerLazySingleton<GetClientVehiclesUseCase>(
+      () => GetClientVehiclesUseCase(locator<DeliveryOrderRepository>()),
+    );
 
     // Localization Use Cases
     locator.registerLazySingleton<GetSavedLocaleUseCase>(
@@ -280,6 +283,7 @@ class DependencyManager {
             locator<GetDeliveryOrderVehiclesUseCase>(),
         addVehicleToDeliveryOrderUseCase:
             locator<AddVehicleToDeliveryOrderUseCase>(),
+        getClientVehiclesUseCase: locator<GetClientVehiclesUseCase>(),
       ),
     );
 

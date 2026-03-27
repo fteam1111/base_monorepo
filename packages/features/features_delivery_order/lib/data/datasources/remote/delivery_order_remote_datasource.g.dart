@@ -143,6 +143,60 @@ class _DeliveryOrderRemoteDataSource implements DeliveryOrderRemoteDataSource {
     return _value;
   }
 
+  @override
+  Future<BasePaginationResponse<List<ClientVehicleDto>>> getClientVehicles({
+    required int page,
+    required int size,
+    String? serialNumber,
+    String? color,
+    String? model,
+    bool? isUnassigned,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'size': size,
+      r'serial_number': serialNumber,
+      r'color': color,
+      r'model': model,
+      r'isUnassigned': isUnassigned,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options =
+        _setStreamType<BasePaginationResponse<List<ClientVehicleDto>>>(
+          Options(method: 'GET', headers: _headers, extra: _extra)
+              .compose(
+                _dio.options,
+                '/api/v1/client/vehicles',
+                queryParameters: queryParameters,
+                data: _data,
+              )
+              .copyWith(
+                baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
+              ),
+        );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BasePaginationResponse<List<ClientVehicleDto>> _value;
+    try {
+      _value = BasePaginationResponse<List<ClientVehicleDto>>.fromJson(
+        _result.data!,
+        (json) => json is List<dynamic>
+            ? json
+                  .map<ClientVehicleDto>(
+                    (i) => ClientVehicleDto.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
+            : List.empty(),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
