@@ -75,6 +75,7 @@
   "factoryMapTitle": "Sơ đồ nhà máy",
   "exportWaitingAreaSubtitle": "Khu chờ xuất",
   "deliveryOrderCodeLabel": "MÃ LỆNH GIAO HÀNG",
+  "deliveryOrderStatusPending": "CHỜ XỬ LÝ",
   "deliveryOrderStatusPreparing": "ĐANG CHUẨN BỊ",
   "deliveryOrderStatusReady": "SẴN SÀNG",
   "deliveryOrderFilterAll": "TẤT CẢ",

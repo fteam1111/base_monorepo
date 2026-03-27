@@ -24,7 +24,6 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
   @override
   void initState() {
     super.initState();
-    context.read<VehicleChargingBloc>().add(const VehicleChargingStarted());
     _searchController.addListener(_onSearchChanged);
   }
 
@@ -47,6 +46,7 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
       body: BlocBuilder<VehicleChargingBloc, VehicleChargingState>(
         builder: (context, state) {
           final query = _searchController.text.trim().toLowerCase();
+
           final filteredVehicles = query.isEmpty
               ? state.vehicles
               : state.vehicles
@@ -89,7 +89,7 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
               onRefresh: () async {
                 final bloc = context.read<VehicleChargingBloc>();
                 bloc.add(const VehicleChargingRefreshRequested());
-                
+
                 // Wait until status is no longer loading
                 await bloc.stream.firstWhere(
                   (s) => s.status != VehicleChargingStatus.loading,

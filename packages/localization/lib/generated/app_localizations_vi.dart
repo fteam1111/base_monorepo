@@ -240,6 +240,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Khu chờ xuất';
 
   @override
+  String get deliveryOrderStatusPending => 'CHỜ XỬ LÝ';
+
+  @override
   String get deliveryOrderStatusPreparing => 'ĐANG CHUẨN BỊ';
 
   @override

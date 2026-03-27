@@ -74,6 +74,7 @@
   "confirmParkingSelection": "Confirm parking slot reservation",
   "factoryMapTitle": "Factory map",
   "exportWaitingAreaSubtitle": "Export waiting area",
+  "deliveryOrderStatusPending": "PENDING",
   "deliveryOrderStatusPreparing": "PREPARING",
   "deliveryOrderStatusReady": "READY",
   "all": "ALL",

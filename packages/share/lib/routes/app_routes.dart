@@ -96,8 +96,11 @@ class AppRoutes {
     context.push(doListPath);
   }
 
-  static void navigateToDeliveryOrderDetail(BuildContext context) {
-    context.push(doDetailPath);
+  static void navigateToDeliveryOrderDetail(
+    BuildContext context, {
+    required int deliveryOrderId,
+  }) {
+    context.push(doDetailPath, extra: deliveryOrderId);
   }
 
   static void navigateToFactoryMap(BuildContext context) {
@@ -112,10 +115,7 @@ class AppRoutes {
     BuildContext context, {
     required Object extra,
   }) {
-    context.push(
-      '$vehicleChargingPath/$dischargingResultPath',
-      extra: extra,
-    );
+    context.push('$vehicleChargingPath/$dischargingResultPath', extra: extra);
   }
 
   /// Navigate back

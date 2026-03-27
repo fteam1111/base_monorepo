@@ -1,6 +1,7 @@
 name: features_delivery_order
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -10,13 +11,44 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  core:
+    path: ../../core
+  design_system:
+    path: ../../design_system
+  share:
+    path: ../../share
+  network:
+    path: ../../network
+  local_storage:
+    path: ../../local_storage
+  features_auth:
+    path: ../features_auth
+
   gap: ^3.0.1
+  retrofit: ^4.7.3
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+  dartz: ^0.10.1
+  flutter_bloc: ^9.1.1
+  bloc: ^9.1.0
+  bloc_concurrency: ^0.3.0
+  injectable: ^2.5.0
+  get_it: ^8.0.2
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^5.0.0
+  freezed: ^3.2.3
+  build_runner: ^2.9.0
+  json_serializable: ^6.11.1
+  retrofit_generator: ^10.0.6
+  injectable_generator: ^2.6.2
 
 flutter:
+
 
 resolution: workspace

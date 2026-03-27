@@ -241,6 +241,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Export waiting area';
 
   @override
+  String get deliveryOrderStatusPending => 'PENDING';
+
+  @override
   String get deliveryOrderStatusPreparing => 'PREPARING';
 
   @override

@@ -542,6 +542,12 @@ abstract class AppLocalizations {
   /// **'Export waiting area'**
   String get exportWaitingAreaSubtitle;
 
+  /// No description provided for @deliveryOrderStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'PENDING'**
+  String get deliveryOrderStatusPending;
+
   /// No description provided for @deliveryOrderStatusPreparing.
   ///
   /// In en, this message translates to:

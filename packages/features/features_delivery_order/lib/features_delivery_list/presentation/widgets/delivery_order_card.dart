@@ -1,41 +1,8 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_delivery_order/domain/entities/delivery_order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/share.dart';
-
-enum DeliveryOrderStatus {
-  preparing,
-  ready;
-
-  String label(BuildContext context) {
-    final l10n = context.l10n;
-
-    switch (this) {
-      case DeliveryOrderStatus.preparing:
-        return l10n.deliveryOrderStatusPreparing;
-      case DeliveryOrderStatus.ready:
-        return l10n.deliveryOrderStatusReady;
-    }
-  }
-
-  Color labelColor(BuildContext context) {
-    switch (this) {
-      case DeliveryOrderStatus.preparing:
-        return context.colorScheme.primary;
-      case DeliveryOrderStatus.ready:
-        return AppColors.successLight;
-    }
-  }
-
-  Color backgroundLabel(BuildContext context) {
-    switch (this) {
-      case DeliveryOrderStatus.preparing:
-        return context.colorScheme.primary.withValues(alpha: 0.1);
-      case DeliveryOrderStatus.ready:
-        return AppColors.successLight.withValues(alpha: 0.1);
-    }
-  }
-}
 
 class DeliveryOrderCard extends StatelessWidget {
   const DeliveryOrderCard({
@@ -43,8 +10,8 @@ class DeliveryOrderCard extends StatelessWidget {
     required this.doCode,
     required this.status,
     required this.modelName,
-    required this.colorCode,
-    required this.colorName,
+    this.colorCode,
+    this.colorName,
     required this.quantity,
     required this.deadline,
     required this.progress,
@@ -54,12 +21,25 @@ class DeliveryOrderCard extends StatelessWidget {
   final String doCode;
   final DeliveryOrderStatus status;
   final String modelName;
-  final String colorCode;
-  final String colorName;
+  final String? colorCode;
+  final String? colorName;
   final int quantity;
   final String deadline;
   final double progress;
   final VoidCallback? onTap;
+
+  bool get _hasColorInfo =>
+      (colorCode != null && colorCode!.isNotEmpty) ||
+      (colorName != null && colorName!.isNotEmpty);
+
+  String get _colorDisplayText {
+    final code = colorCode ?? '';
+    final name = colorName ?? '';
+    if (code.isNotEmpty && name.isNotEmpty) {
+      return '$code ($name)';
+    }
+    return code.isNotEmpty ? code : name;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,14 +148,15 @@ class DeliveryOrderCard extends StatelessWidget {
                 ),
               ),
               const Gap(AppSpacing.paddingXS),
-              Expanded(
-                child: _buildDetailCol(
-                  context,
-                  context.l10n.deliveryOrderColorLabel,
-                  textAlign: TextAlign.end,
-                  child: _buildCardValue(context, '$colorCode ($colorName)'),
+              if (_hasColorInfo)
+                Expanded(
+                  child: _buildDetailCol(
+                    context,
+                    context.l10n.deliveryOrderColorLabel,
+                    textAlign: TextAlign.end,
+                    child: _buildCardValue(context, _colorDisplayText),
+                  ),
                 ),
-              ),
             ],
           ),
           Divider(
@@ -259,6 +240,7 @@ class DeliveryOrderCard extends StatelessWidget {
         crossAxisAlignment: isEnd
             ? CrossAxisAlignment.end
             : CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             label,

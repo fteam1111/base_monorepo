@@ -9,7 +9,6 @@ workspace:
   - packages/localization
   - packages/network
   - packages/share
-  - apps/customer_app
   - packages/features/features_auth
   - packages/features/features_splash
   - packages/features/features_dashboard
@@ -21,6 +20,7 @@ workspace:
   - packages/features/features_vehicle_charging
   - packages/features/features_map
   - packages/features/features_qr_scanner
+  - apps/customer_app
 
 dependencies:
   # DI
@@ -79,9 +79,7 @@ melos:
     # Giữ lại gen_all nếu cần nhưng đổi tên để tránh nhầm
     gen_all:
       description: "[UNSAFE] Run build_runner for all packages in parallel"
-      run: >
-        melos exec --depends-on=build_runner --
-        dart run build_runner build --delete-conflicting-outputs
+      run: melos exec --depends-on=build_runner --concurrency=1 -- dart run build_runner build --delete-conflicting-outputs
 
     gen_watch:
       description: Run build_runner watch for all packages
