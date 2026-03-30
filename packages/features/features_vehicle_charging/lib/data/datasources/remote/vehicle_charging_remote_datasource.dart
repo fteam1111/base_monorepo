@@ -17,8 +17,8 @@ abstract class VehicleChargingRemoteDataSource {
     @Named('baseUrl') String? baseUrl,
   }) = _VehicleChargingRemoteDataSource;
 
-  @GET(ApiRoutes.vehicles)
-  Future<BasePaginationResponse<List<VehicleModelDto>>> getClientVehicles({
+  @GET(ApiRoutes.vehiclesNeedingCharge)
+  Future<BasePaginationResponse<List<VehicleChargingDto>>> getClientVehicles({
     @Query('page') int? page,
     @Query('size') int? size,
     @Query('serialNumber') String? serialNumber,
@@ -26,8 +26,7 @@ abstract class VehicleChargingRemoteDataSource {
   });
 
   @POST(ApiRoutes.sendForDischarging)
-  Future<BaseResponse<VehicleModelDto>> sendForDischarging(
+  Future<BaseResponse<VehicleChargingDto>> sendForDischarging(
     @Path('id') int vehicleId,
   );
 }
-

@@ -24,6 +24,10 @@ class VehicleChargingBloc
        super(const VehicleChargingState()) {
     on<VehicleChargingStarted>(_onStarted);
     on<VehicleChargingRefreshRequested>(_onRefreshRequested);
+    on<VehicleChargingSearchRequested>(
+      _onSearchRequested,
+      transformer: restartable(),
+    );
     on<VehicleChargingLoadMoreRequested>(
       _onLoadMoreRequested,
       transformer: droppable(),
@@ -57,6 +61,7 @@ class VehicleChargingBloc
       state.copyWith(
         status: VehicleChargingStatus.loading,
         failure: null,
+        searchQuery: event.serialNumber ?? '',
       ),
     );
 
@@ -68,11 +73,45 @@ class VehicleChargingBloc
     );
   }
 
+  Future<void> _onSearchRequested(
+    VehicleChargingSearchRequested event,
+    Emitter<VehicleChargingState> emit,
+  ) async {
+    if (event.query == state.searchQuery &&
+        state.status != VehicleChargingStatus.loading &&
+        state.status != VehicleChargingStatus.initial) {
+      return;
+    }
+
+    emit(
+      state.copyWith(
+        searchQuery: event.query,
+        status: VehicleChargingStatus.loading,
+        vehicles: [],
+        hasReachedMax: false,
+        page: 1,
+        failure: null,
+      ),
+    );
+
+    await _fetchVehicles(
+      emit: emit,
+      page: 1,
+      serialNumber: event.query,
+      isRefresh: true,
+    );
+  }
+
   Future<void> _onRefreshRequested(
     VehicleChargingRefreshRequested event,
     Emitter<VehicleChargingState> emit,
   ) async {
-    await _fetchVehicles(emit: emit, page: 1, isRefresh: true);
+    await _fetchVehicles(
+      emit: emit,
+      page: 1,
+      serialNumber: state.searchQuery,
+      isRefresh: true,
+    );
   }
 
   Future<void> _onLoadMoreRequested(
@@ -84,7 +123,12 @@ class VehicleChargingBloc
     final nextPage = state.page + 1;
     emit(state.copyWith(status: VehicleChargingStatus.loading));
 
-    await _fetchVehicles(emit: emit, page: nextPage, isRefresh: false);
+    await _fetchVehicles(
+      emit: emit,
+      page: nextPage,
+      serialNumber: state.searchQuery,
+      isRefresh: false,
+    );
   }
 
   Future<void> _onDischargeRequested(
@@ -127,10 +171,7 @@ class VehicleChargingBloc
 
     result.fold(
       (failure) => emit(
-        state.copyWith(
-          status: VehicleChargingStatus.failure,
-          failure: failure,
-        ),
+        state.copyWith(status: VehicleChargingStatus.failure, failure: failure),
       ),
       (vehicles) {
         final allVehicles = isRefresh

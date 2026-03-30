@@ -45,9 +45,7 @@ class _VehicleChargingListState extends State<VehicleChargingList> {
       onRefresh: widget.onRefresh,
       onLoadingMore: widget.onLoadMore,
       header: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: spacing.pageHorizontal,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: spacing.pageHorizontal),
         child: const SizedBox.shrink(),
       ),
       itemBuilder: (context, index, item) {
@@ -130,9 +128,7 @@ class _VehicleChargingCard extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            context.l10n.vehicleChargingPriority(
-                              priority,
-                            ),
+                            context.l10n.vehicleChargingPriority(priority),
                             style: typography.bodySmall,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -176,7 +172,7 @@ class _VehicleChargingCard extends StatelessWidget {
                     ),
                     const Gap(AppSpacing.xxxs),
                     Text(
-                      item.factoryName,
+                      '${item.parkingZoneName} - ${item.parkingLotName}',
                       style: typography.bodySmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
@@ -221,9 +217,7 @@ class _VehicleChargingCard extends StatelessWidget {
                 horizontal: AppSpacing.large,
                 vertical: AppSpacing.small,
               ),
-              backgroundColor: colorScheme.primary.withValues(
-                alpha: 0.05,
-              ),
+              backgroundColor: colorScheme.primary.withValues(alpha: 0.05),
               borderColor: Colors.transparent,
               elevation: 0,
               shadowColor: Colors.transparent,
@@ -237,10 +231,7 @@ class _VehicleChargingCard extends StatelessWidget {
                       fontStyle: FontStyle.italic,
                     ),
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: colorScheme.primary,
-                  ),
+                  Icon(Icons.chevron_right, color: colorScheme.primary),
                 ],
               ),
             ),
@@ -272,9 +263,7 @@ class _ChargingStatusChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(AppRadius.chip),
-        border: Border.all(
-          color: colorScheme.error.withValues(alpha: 0.15),
-        ),
+        border: Border.all(color: colorScheme.error.withValues(alpha: 0.15)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

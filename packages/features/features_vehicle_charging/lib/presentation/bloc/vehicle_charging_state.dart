@@ -13,6 +13,7 @@ class VehicleChargingState extends Equatable {
     this.failure,
     this.page = 1,
     this.hasReachedMax = false,
+    this.searchQuery = '',
     this.dischargeStatus = DischargeStatus.initial,
     this.lastDischargedVehicle,
     this.dischargeFailure,
@@ -23,21 +24,23 @@ class VehicleChargingState extends Equatable {
   final ApiFailure? failure;
   final int page;
   final bool hasReachedMax;
+  final String searchQuery;
   final DischargeStatus dischargeStatus;
   final VehicleChargingEntity? lastDischargedVehicle;
   final ApiFailure? dischargeFailure;
 
   @override
   List<Object?> get props => [
-        status,
-        vehicles,
-        failure,
-        page,
-        hasReachedMax,
-        dischargeStatus,
-        lastDischargedVehicle,
-        dischargeFailure,
-      ];
+    status,
+    vehicles,
+    failure,
+    page,
+    hasReachedMax,
+    searchQuery,
+    dischargeStatus,
+    lastDischargedVehicle,
+    dischargeFailure,
+  ];
 
   VehicleChargingState copyWith({
     VehicleChargingStatus? status,
@@ -45,6 +48,7 @@ class VehicleChargingState extends Equatable {
     ApiFailure? failure,
     int? page,
     bool? hasReachedMax,
+    String? searchQuery,
     DischargeStatus? dischargeStatus,
     VehicleChargingEntity? lastDischargedVehicle,
     ApiFailure? dischargeFailure,
@@ -55,6 +59,7 @@ class VehicleChargingState extends Equatable {
       failure: failure ?? this.failure,
       page: page ?? this.page,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      searchQuery: searchQuery ?? this.searchQuery,
       dischargeStatus: dischargeStatus ?? this.dischargeStatus,
       lastDischargedVehicle:
           lastDischargedVehicle ?? this.lastDischargedVehicle,

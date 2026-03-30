@@ -70,11 +70,7 @@ class ChargingInfoDialog extends StatelessWidget {
                     foregroundColor: colorScheme.onPrimary,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
-                    AppRoutes.navigateToDischargingResult(
-                      context,
-                      extra: item,
-                    );
+                    Navigator.pop(context, true);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

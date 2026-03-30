@@ -21,26 +21,26 @@
   "vehicleChargingAreaTitle": "Pending Charging Maintenance",
   "vehicleChargingAreaSubtitle": "Vehicles pending for more than 30 days",
   "vehicleChargingSearchHint": "Search by VIN...",
-  "vehicleChargingInfoTitle": "CHARGING INFO",
-  "vehicleChargingInfoSubtitle": "VEHICLE DETAILS",
-  "vehicleChargingInfoStatusLabel": "STATUS",
-  "vehicleChargingInfoSubAreaLabel": "SUB AREA",
-  "vehicleChargingInfoCheckAgingDateLabel": "CHECK AGING DATE",
-  "vehicleChargingCloseInfo": "CLOSE INFO",
+  "vehicleChargingInfoTitle": "Charging info",
+  "vehicleChargingInfoSubtitle": "Vehicle details",
+  "vehicleChargingInfoStatusLabel": "Status",
+  "vehicleChargingInfoSubAreaLabel": "Sub area",
+  "vehicleChargingInfoCheckAgingDateLabel": "Check aging date",
+  "vehicleChargingCloseInfo": "Close info",
   "enterVinToViewHistory": "Enter VIN to view history",
   "map": "Map",
   "doList": "DO list",
   "deliveryOrderListTitle": "DO List",
-  "deliveryOrderBatchTitle": "BATCH DELIVERY ORDERS",
-  "customer": "CUSTOMER",
-  "progress": "PROGRESS",
-  "filterList": "LIST FILTER",
+  "deliveryOrderBatchTitle": "Batch delivery orders",
+  "customer": "Customer",
+  "progress": "Progress",
+  "filterList": "List filter",
   "findVinCode": "Search VIN...",
-  "allModels": "ALL MODELS",
-  "allColors": "ALL COLORS",
-  "pickUpGuide": "PICKUP GUIDE",
-  "results": "{count} RESULTS",
-  "resultsCount": "{count} RESULTS",
+  "allModels": "All models",
+  "allColors": "All colors",
+  "pickUpGuide": "Pickup guide",
+  "results": "{count} Results",
+  "resultsCount": "{count} Results",
   "warehouse": "Warehouse entry: {date}",
   "charging": "Charging",
   "vehicleDetailTitle": "Vehicle details",
@@ -74,26 +74,26 @@
   "confirmParkingSelection": "Confirm parking slot reservation",
   "factoryMapTitle": "Factory map",
   "exportWaitingAreaSubtitle": "Export waiting area",
-  "deliveryOrderStatusPending": "PENDING",
-  "deliveryOrderStatusPreparing": "PREPARING",
-  "deliveryOrderStatusReady": "READY",
-  "all": "ALL",
-  "allWithCount": "ALL ({count})",
-  "preparingWithCount": "PREPARING ({count})",
-  "readyWithCount": "READY ({count})",
-  "unitVehicle": "VEHICLES",
-  "unitUnit": "UNITS",
-  "deliveryOrderCodeLabel": "DELIVERY ORDER CODE",
-  "deliveryOrderVehicleModelLabel": "VEHICLE MODEL",
-  "deliveryOrderColorLabel": "COLOR",
-  "deliveryOrderQuantityLabel": "QUANTITY",
-  "deliveryOrderQuantityUnit": "UNITS",
+  "deliveryOrderStatusPending": "Pending",
+  "deliveryOrderStatusPreparing": "Preparing",
+  "deliveryOrderStatusReady": "Ready",
+  "all": "All",
+  "allWithCount": "All ({count})",
+  "preparingWithCount": "Preparing ({count})",
+  "readyWithCount": "Ready ({count})",
+  "unitVehicle": "Vehicles",
+  "unitUnit": "Units",
+  "deliveryOrderCodeLabel": "Delivery order code",
+  "deliveryOrderVehicleModelLabel": "Vehicle model",
+  "deliveryOrderColorLabel": "Color",
+  "deliveryOrderQuantityLabel": "Quantity",
+  "deliveryOrderQuantityUnit": "Units",
   "locationFormat": "{area} - {position}",
-  "deliveryOrderDeadlineLabel": "DEADLINE",
-  "deliveryOrderCompletionProgressLabel": "COMPLETION PROGRESS",
+  "deliveryOrderDeadlineLabel": "Deadline",
+  "deliveryOrderCompletionProgressLabel": "Completion progress",
   "deliveryOrderDetailTitle": "DO: {code}",
-  "deliveryOrderPickupGuideTitle": "PICKUP GUIDE",
-  "fifoBadge": "FIFO #{number}",
+  "deliveryOrderPickupGuideTitle": "Pickup guide",
+  "fifoBadge": "Fifo #{number}",
   "errorExceedingLength": "Giá trị vượt quá độ dài tối đa cho phép ({max} ký tự)",
   "@errorExceedingLength": {
     "placeholders": {
@@ -142,9 +142,9 @@
     }
   },
   "vehicleChargingFetchError": "Unable to load vehicle list.",
-  "vehicleChargingEmptyTitle": "ALL VEHICLES ARE STABLE",
+  "vehicleChargingEmptyTitle": "All vehicles are stable",
   "vehicleChargingEmptySubtitle": "No vehicles found with Aging index over 30 days requiring charging.",
-  "vehicleChargingPriority": "PRIORITY #{number}",
+  "vehicleChargingPriority": "Priority #{number}",
   "@vehicleChargingPriority": {
     "placeholders": {
       "number": {
@@ -152,64 +152,79 @@
       }
     }
   },
-  "vehicleChargingMaintenaceActionHint": "TAP TO PERFORM MAINTENANCE",
-  "vehicleChargingMaintenanceRequestTitle": "BATTERY MAINTENANCE REQUEST",
-  "vehicleChargingCurrentAgingLabel": "CURRENT AGING:",
-  "vehicleChargingMoveToChargeAction": "TAKE VEHICLE TO CHARGE",
-  "vehicleChargingNoNeedAction": "NO CHARGE NEEDED",
-  "vehicleChargingLocationLabel": "CURRENT LOCATION",
-  "vehicleChargingTimeInAreaLabel": "ENTER AREA",
+  "vehicleChargingMaintenaceActionHint": "Tap to perform maintenance",
+  "vehicleChargingMaintenanceRequestTitle": "Battery maintenance request",
+  "vehicleChargingCurrentAgingLabel": "Current aging:",
+  "vehicleChargingMoveToChargeAction": "Take vehicle to charge",
+  "vehicleChargingNoNeedAction": "No charge needed",
+  "vehicleChargingLocationLabel": "Current location",
+  "vehicleChargingTimeInAreaLabel": "Enter area",
   "agingDays": "{count} days",
   "back": "Back",
-  "dischargingStatusUpdated": "STATUS UPDATED",
-  "dischargingVehicleStatus": "VEHICLE STATUS:",
-  "dischargingInstruction": "PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.",
-  "dischargingVinLabel": "VIN CODE",
-  "dischargingLocationLabel": "ORIGINAL LOCATION",
-  "dischargingTimeLabel": "TIME",
-  "dischargingCompleteAction": "COMPLETE UPDATE",
-  "deliveryOrderSuggestedVehiclesTab": "PICKUP GUIDE",
-  "deliveryOrderAssignedVehiclesTab": "VEHICLES IN DO",
+  "dischargingStatusUpdated": "Status updated",
+  "dischargingVehicleStatus": "Vehicle status:",
+  "dischargingInstruction": "Please bring the vehicle to the charge/discharge area to continue the maintenance process.",
+  "dischargingVinLabel": "Vin code",
+  "dischargingLocationLabel": "Original location",
+  "dischargingTimeLabel": "Time",
+  "dischargingCompleteAction": "Complete update",
+  "deliveryOrderSuggestedVehiclesTab": "Pickup guide",
+  "deliveryOrderAssignedVehiclesTab": "Vehicles in DO",
   "noData": "No data available",
   "vehicleAddedSuccess": "Vehicle added successfully",
   "vehicleAddFailed": "Failed to add vehicle",
-
-  "scanConfirmTitle": "CONFIRM VEHICLE",
+  "scanConfirmTitle": "Confirm vehicle",
   "scanConfirmMessage": "Confirm pickup vehicle {vin} at {zone}?",
   "@scanConfirmMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "zone": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "zone": {
+        "type": "String"
+      }
     }
   },
-  "scanConfirmAction": "CONFIRM & SCAN",
-  "scanMatchTitle": "CONFIRM ADD TO DO",
+  "scanConfirmAction": "Confirm & scan",
+  "scanMatchTitle": "Confirm add to DO",
   "scanMatchMessage": "Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?",
   "@scanMatchMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanMatchAction": "CONFIRM",
-  "scanCompatibleTitle": "DIFFERENT VEHICLE",
+  "scanMatchAction": "Confirm",
+  "scanCompatibleTitle": "Different vehicle",
   "scanCompatibleMessage": "Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.",
   "@scanCompatibleMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanCompatibleAction": "AGREE - ADD TO DO",
-  "scanIncompatibleTitle": "NOT COMPATIBLE",
+  "scanCompatibleAction": "Agree - add to DO",
+  "scanIncompatibleTitle": "Not compatible",
   "scanIncompatibleMessage": "Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.",
   "@scanIncompatibleMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanBackToList": "OK - BACK TO LIST",
-  "cancelBackToList": "CANCEL - BACK TO LIST",
-  "cancelAction": "CANCEL"
+  "scanBackToList": "Ok - back to list",
+  "cancelBackToList": "Cancel - back to list",
+  "cancelAction": "Cancel"
 }

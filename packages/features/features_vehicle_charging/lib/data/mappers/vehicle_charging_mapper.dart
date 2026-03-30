@@ -1,7 +1,7 @@
 import 'package:features_vehicle_charging/data/models/vehicle_charging_dto.dart';
 import 'package:features_vehicle_charging/domain/entities/vehicle_charging_entity.dart';
 
-extension VehicleChargingMapper on VehicleModelDto {
+extension VehicleChargingMapper on VehicleChargingDto {
   VehicleChargingEntity toEntity() {
     return VehicleChargingEntity(
       id: id ?? 0,
@@ -12,7 +12,8 @@ extension VehicleChargingMapper on VehicleModelDto {
       warehouseImportedAt: warehouseImportedAt ?? '',
       storageDays: storageDays ?? 0,
       factoryName: factory?.name ?? '',
+      parkingZoneName: parkingLot?.parkingZone?.name ?? '',
+      parkingLotName: parkingLot?.name ?? '',
     );
   }
 }
-

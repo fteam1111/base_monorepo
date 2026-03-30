@@ -21,7 +21,7 @@ class _VehicleChargingRemoteDataSource
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BasePaginationResponse<List<VehicleModelDto>>> getClientVehicles({
+  Future<BasePaginationResponse<List<VehicleChargingDto>>> getClientVehicles({
     int? page,
     int? size,
     String? serialNumber,
@@ -38,11 +38,11 @@ class _VehicleChargingRemoteDataSource
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options =
-        _setStreamType<BasePaginationResponse<List<VehicleModelDto>>>(
+        _setStreamType<BasePaginationResponse<List<VehicleChargingDto>>>(
           Options(method: 'GET', headers: _headers, extra: _extra)
               .compose(
                 _dio.options,
-                '/api/v1/client/vehicles',
+                '/api/v1/client/vehicles/needing-charge',
                 queryParameters: queryParameters,
                 data: _data,
               )
@@ -51,14 +51,15 @@ class _VehicleChargingRemoteDataSource
               ),
         );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BasePaginationResponse<List<VehicleModelDto>> _value;
+    late BasePaginationResponse<List<VehicleChargingDto>> _value;
     try {
-      _value = BasePaginationResponse<List<VehicleModelDto>>.fromJson(
+      _value = BasePaginationResponse<List<VehicleChargingDto>>.fromJson(
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                  .map<VehicleModelDto>(
-                    (i) => VehicleModelDto.fromJson(i as Map<String, dynamic>),
+                  .map<VehicleChargingDto>(
+                    (i) =>
+                        VehicleChargingDto.fromJson(i as Map<String, dynamic>),
                   )
                   .toList()
             : List.empty(),
@@ -71,14 +72,14 @@ class _VehicleChargingRemoteDataSource
   }
 
   @override
-  Future<BaseResponse<VehicleModelDto>> sendForDischarging(
+  Future<BaseResponse<VehicleChargingDto>> sendForDischarging(
     int vehicleId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponse<VehicleModelDto>>(
+    final _options = _setStreamType<BaseResponse<VehicleChargingDto>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -89,11 +90,11 @@ class _VehicleChargingRemoteDataSource
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<VehicleModelDto> _value;
+    late BaseResponse<VehicleChargingDto> _value;
     try {
-      _value = BaseResponse<VehicleModelDto>.fromJson(
+      _value = BaseResponse<VehicleChargingDto>.fromJson(
         _result.data!,
-        (json) => VehicleModelDto.fromJson(json as Map<String, dynamic>),
+        (json) => VehicleChargingDto.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);

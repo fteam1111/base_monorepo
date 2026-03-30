@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_vehicle_charging/domain/entities/vehicle_charging_entity.dart';
 import 'package:features_vehicle_charging/presentation/bloc/vehicle_charging_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
+import 'package:share/routes/app_routes.dart';
 
 class VehicleChargingPage extends StatefulWidget {
   const VehicleChargingPage({super.key});
@@ -20,6 +22,7 @@ class VehicleChargingPage extends StatefulWidget {
 
 class _VehicleChargingPageState extends State<VehicleChargingPage> {
   final _searchController = TextEditingController();
+  final _debounce = Debounce(delay: const Duration(milliseconds: 500));
 
   @override
   void initState() {
@@ -32,6 +35,7 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
     _searchController
       ..removeListener(_onSearchChanged)
       ..dispose();
+    _debounce.dispose();
     super.dispose();
   }
 
@@ -45,15 +49,6 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
       ),
       body: BlocBuilder<VehicleChargingBloc, VehicleChargingState>(
         builder: (context, state) {
-          final query = _searchController.text.trim().toLowerCase();
-
-          final filteredVehicles = query.isEmpty
-              ? state.vehicles
-              : state.vehicles
-                    .where((v) => v.vin.toLowerCase().contains(query))
-                    .toList();
-          final filteredCount = filteredVehicles.length;
-
           final isInitialLoading =
               state.status == VehicleChargingStatus.loading &&
               state.vehicles.isEmpty;
@@ -79,11 +74,11 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
                 textAlign: TextAlign.center,
               ),
             );
-          } else if (filteredVehicles.isEmpty) {
+          } else if (state.vehicles.isEmpty) {
             content = const _VehicleChargingEmptyView();
           } else {
             content = VehicleChargingList(
-              items: filteredVehicles,
+              items: state.vehicles,
               isLoading: isLoadingMore,
               onTapInfo: (item) => _showChargingInfoDialog(context, item),
               onRefresh: () async {
@@ -105,7 +100,9 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
 
           return Column(
             children: [
-              _VehicleChargingWarningBanner(totalNeedHandle: filteredCount),
+              _VehicleChargingWarningBanner(
+                totalNeedHandle: state.vehicles.length,
+              ),
               VehicleChargingSearchBar(controller: _searchController),
               Expanded(child: content),
             ],
@@ -119,16 +116,30 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
     BuildContext context,
     VehicleChargingEntity item,
   ) async {
-    return showDialog<void>(
+    final shouldDischarge = await showDialog<bool>(
       context: context,
       builder: (dialogContext) {
         return ChargingInfoDialog(item: item);
       },
     );
+
+    if (shouldDischarge == true && context.mounted) {
+      await AppRoutes.navigateToDischargingResult(context, extra: item);
+      if (context.mounted) {
+        context.read<VehicleChargingBloc>().add(
+          const VehicleChargingRefreshRequested(),
+        );
+      }
+    }
   }
 
   void _onSearchChanged() {
-    setState(() {});
+    _debounce(() {
+      if (!mounted) return;
+      context.read<VehicleChargingBloc>().add(
+        VehicleChargingSearchRequested(_searchController.text.trim()),
+      );
+    });
   }
 }
 

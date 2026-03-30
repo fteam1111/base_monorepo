@@ -21,26 +21,26 @@
   "vehicleChargingAreaTitle": "Xe cần bảo dưỡng sạc",
   "vehicleChargingAreaSubtitle": "Danh sách xe Aging > 30 ngày",
   "vehicleChargingSearchHint": "Tìm theo mã VIN...",
-  "vehicleChargingInfoTitle": "THÔNG TIN SẠC XẢ",
-  "vehicleChargingInfoSubtitle": "CHI TIẾT PHƯƠNG TIỆN",
-  "vehicleChargingInfoStatusLabel": "TRẠNG THÁI",
-  "vehicleChargingInfoSubAreaLabel": "KHU VỰC CON",
-  "vehicleChargingInfoCheckAgingDateLabel": "NGÀY CHECK AGING",
-  "vehicleChargingCloseInfo": "ĐÓNG THÔNG TIN",
+  "vehicleChargingInfoTitle": "Thông tin sạc xả",
+  "vehicleChargingInfoSubtitle": "Chi tiết phương tiện",
+  "vehicleChargingInfoStatusLabel": "Trạng thái",
+  "vehicleChargingInfoSubAreaLabel": "Khu vực con",
+  "vehicleChargingInfoCheckAgingDateLabel": "Ngày check aging",
+  "vehicleChargingCloseInfo": "Đóng thông tin",
   "enterVinToViewHistory": "Nhập mã VIN để xem lịch sử thao tác",
   "map": "Bản đồ",
   "doList": "Danh sách DO",
   "deliveryOrderListTitle": "Danh sách DO",
-  "deliveryOrderBatchTitle": "LỆNH GIAO HÀNG THEO ĐỢT",
-  "customer": "KHÁCH HÀNG",
-  "progress": "TIẾN ĐỘ",
-  "filterList": "BỘ LỌC DANH SÁCH",
+  "deliveryOrderBatchTitle": "Lệnh giao hàng theo đợt",
+  "customer": "Khách hàng",
+  "progress": "Tiến độ",
+  "filterList": "Bộ lọc danh sách",
   "findVinCode": "Tìm theo mã VIN...",
-  "allModels": "TẤT CẢ MODEL",
-  "allColors": "TẤT CẢ MÀU",
-  "pickUpGuide": "HƯỚNG DẪN LẤY XE",
-  "results": "{count} KẾT QUẢ",
-  "resultsCount": "{count} KẾT QUẢ",
+  "allModels": "Tất cả model",
+  "allColors": "Tất cả màu",
+  "pickUpGuide": "Hướng dẫn lấy xe",
+  "results": "{count} Kết quả",
+  "resultsCount": "{count} Kết quả",
   "warehouse": "Nhập kho: {date}",
   "charging": "Sạc xe",
   "vehicleDetailTitle": "Chi tiết phương tiện",
@@ -74,24 +74,24 @@
   "confirmParkingSelection": "Xác nhận giữ ô đỗ xe",
   "factoryMapTitle": "Sơ đồ nhà máy",
   "exportWaitingAreaSubtitle": "Khu chờ xuất",
-  "deliveryOrderCodeLabel": "MÃ LỆNH GIAO HÀNG",
-  "deliveryOrderStatusPending": "CHỜ XỬ LÝ",
-  "deliveryOrderStatusPreparing": "ĐANG CHUẨN BỊ",
-  "deliveryOrderStatusReady": "SẴN SÀNG",
-  "deliveryOrderFilterAll": "TẤT CẢ",
-  "deliveryOrderVehicleModelLabel": "MODEL XE",
-  "deliveryOrderColorLabel": "MÀU SẮC",
-  "deliveryOrderQuantityLabel": "SỐ LƯỢNG",
-  "deliveryOrderQuantityUnit": "CHIẾC",
-  "deliveryOrderDeadlineLabel": "DEADLINE",
-  "deliveryOrderCompletionProgressLabel": "TIẾN ĐỘ HOÀN THÀNH",
+  "deliveryOrderCodeLabel": "Mã lệnh giao hàng",
+  "deliveryOrderStatusPending": "Chờ xử lý",
+  "deliveryOrderStatusPreparing": "Đang chuẩn bị",
+  "deliveryOrderStatusReady": "Sẵn sàng",
+  "deliveryOrderFilterAll": "Tất cả",
+  "deliveryOrderVehicleModelLabel": "Model xe",
+  "deliveryOrderColorLabel": "Màu sắc",
+  "deliveryOrderQuantityLabel": "Số lượng",
+  "deliveryOrderQuantityUnit": "Chiếc",
+  "deliveryOrderDeadlineLabel": "Deadline",
+  "deliveryOrderCompletionProgressLabel": "Tiến độ hoàn thành",
   "deliveryOrderDetailTitle": "DO: {code}",
-  "deliveryOrderPickupGuideTitle": "HƯỚNG DẪN LẤY XE",
-  "fifoBadge": "FIFO #{number}",
+  "deliveryOrderPickupGuideTitle": "Hướng dẫn lấy xe",
+  "fifoBadge": "Fifo #{number}",
   "locationFormat": "{area} - {position}",
-  "allWithCount": "TẤT CẢ ({count})",
-  "preparingWithCount": "ĐANG CHUẨN BỊ ({count})",
-  "readyWithCount": "SẴN SÀNG ({count})",
+  "allWithCount": "Tất cả ({count})",
+  "preparingWithCount": "Đang chuẩn bị ({count})",
+  "readyWithCount": "Sẵn sàng ({count})",
   "errorExceedingLength": "Giá trị vượt quá độ dài tối đa cho phép ({max} ký tự)",
   "@errorExceedingLength": {
     "placeholders": {
@@ -140,9 +140,9 @@
     }
   },
   "vehicleChargingFetchError": "Không thể tải danh sách xe.",
-  "vehicleChargingEmptyTitle": "TẤT CẢ XE ĐỀU ỔN ĐỊNH",
+  "vehicleChargingEmptyTitle": "Tất cả xe đều ổn định",
   "vehicleChargingEmptySubtitle": "Không tìm thấy xe nào có số ngày trên 30 ngày cần sạc xả.",
-  "vehicleChargingPriority": "ƯU TIÊN #{number}",
+  "vehicleChargingPriority": "Ưu tiên #{number}",
   "@vehicleChargingPriority": {
     "placeholders": {
       "number": {
@@ -150,64 +150,79 @@
       }
     }
   },
-  "vehicleChargingMaintenaceActionHint": "NHẤN ĐỂ THAO TÁC BẢO DƯỠNG",
-  "vehicleChargingMaintenanceRequestTitle": "YÊU CẦU BẢO DƯỠNG PIN",
-  "vehicleChargingCurrentAgingLabel": "SỐ NGÀY HIỆN TẠI:",
-  "vehicleChargingMoveToChargeAction": "MANG XE ĐI SẠC",
-  "vehicleChargingNoNeedAction": "KHÔNG CẦN MANG XE",
-  "vehicleChargingLocationLabel": "VỊ TRÍ HIỆN TẠI",
-  "vehicleChargingTimeInAreaLabel": "VÀO KHU TP",
+  "vehicleChargingMaintenaceActionHint": "Nhấn để thao tác bảo dưỡng",
+  "vehicleChargingMaintenanceRequestTitle": "Yêu cầu bảo dưỡng pin",
+  "vehicleChargingCurrentAgingLabel": "Số ngày hiện tại:",
+  "vehicleChargingMoveToChargeAction": "Mang xe đi sạc",
+  "vehicleChargingNoNeedAction": "Không cần mang xe",
+  "vehicleChargingLocationLabel": "Vị trí hiện tại",
+  "vehicleChargingTimeInAreaLabel": "Vào khu tp",
   "agingDays": "{count} ngày",
   "back": "Quay lại",
-  "dischargingStatusUpdated": "ĐÃ CẬP NHẬT TRẠNG THÁI",
-  "dischargingVehicleStatus": "TRẠNG THÁI XE:",
-  "dischargingInstruction": "VUI LÒNG MANG XE ĐẾN KHU VỰC SẠC XẢ ĐỂ TIẾP TỤC QUY TRÌNH BẢO DƯỠNG.",
-  "dischargingVinLabel": "MÃ VIN",
-  "dischargingLocationLabel": "VỊ TRÍ BAN ĐẦU",
-  "dischargingTimeLabel": "THỜI GIAN",
-  "dischargingCompleteAction": "HOÀN THÀNH CẬP NHẬT",
-  "deliveryOrderSuggestedVehiclesTab": "HƯỚNG DẪN LẤY XE",
-  "deliveryOrderAssignedVehiclesTab": "DANH SÁCH XE TRONG DO",
+  "dischargingStatusUpdated": "Đã cập nhật trạng thái",
+  "dischargingVehicleStatus": "Trạng thái xe:",
+  "dischargingInstruction": "Vui lòng mang xe đến khu vực sạc xả để tiếp tục quy trình bảo dưỡng.",
+  "dischargingVinLabel": "Mã vin",
+  "dischargingLocationLabel": "Vị trí ban đầu",
+  "dischargingTimeLabel": "Thời gian",
+  "dischargingCompleteAction": "Hoàn thành cập nhật",
+  "deliveryOrderSuggestedVehiclesTab": "Hướng dẫn lấy xe",
+  "deliveryOrderAssignedVehiclesTab": "Danh sách xe trong DO",
   "noData": "Không có dữ liệu",
   "vehicleAddedSuccess": "Thêm xe thành công",
   "vehicleAddFailed": "Thêm xe thất bại",
-
-  "scanConfirmTitle": "XÁC NHẬN CHỌN XE",
+  "scanConfirmTitle": "Xác nhận chọn xe",
   "scanConfirmMessage": "Xác nhận lấy xe {vin} tại {zone}?",
   "@scanConfirmMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "zone": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "zone": {
+        "type": "String"
+      }
     }
   },
-  "scanConfirmAction": "XÁC NHẬN & QUÉT MÃ",
-  "scanMatchTitle": "XÁC NHẬN ĐƯA XE VÀO DO",
+  "scanConfirmAction": "Xác nhận & quét mã",
+  "scanMatchTitle": "Xác nhận đưa xe vào DO",
   "scanMatchMessage": "Xe {vin} trùng khớp với xe đã chọn. Bạn có muốn đưa xe này vào DO {doCode} không?",
   "@scanMatchMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanMatchAction": "XÁC NHẬN",
-  "scanCompatibleTitle": "PHÁT HIỆN XE KHÁC",
+  "scanMatchAction": "Xác nhận",
+  "scanCompatibleTitle": "Phát hiện xe khác",
   "scanCompatibleMessage": "Bạn vừa scan xe {vin}, không trùng với xe đã chọn. Tuy nhiên xe này phù hợp với DO {doCode}.",
   "@scanCompatibleMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanCompatibleAction": "ĐỒNG Ý - ĐƯA XE VÀO DO",
-  "scanIncompatibleTitle": "XE KHÔNG PHÙ HỢP DO",
+  "scanCompatibleAction": "Đồng ý - đưa xe vào DO",
+  "scanIncompatibleTitle": "Xe không phù hợp DO",
   "scanIncompatibleMessage": "Bạn vừa scan xe {vin}. Xe này không phù hợp (sai model/màu) với DO {doCode}.",
   "@scanIncompatibleMessage": {
     "placeholders": {
-      "vin": {"type": "String"},
-      "doCode": {"type": "String"}
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
     }
   },
-  "scanBackToList": "OK - QUAY LẠI DANH SÁCH",
-  "cancelBackToList": "HỦY - QUAY LẠI DANH SÁCH",
-  "cancelAction": "HỦY BỎ"
+  "scanBackToList": "Ok - quay lại danh sách",
+  "cancelBackToList": "Hủy - quay lại danh sách",
+  "cancelAction": "Hủy bỏ"
 }

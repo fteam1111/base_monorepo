@@ -4,8 +4,8 @@ part 'vehicle_charging_dto.freezed.dart';
 part 'vehicle_charging_dto.g.dart';
 
 @freezed
-abstract class VehicleModelDto with _$VehicleModelDto {
-  const factory VehicleModelDto({
+abstract class VehicleChargingDto with _$VehicleChargingDto {
+  const factory VehicleChargingDto({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'serialNumber') String? serialNumber,
     @JsonKey(name: 'materialCode') String? materialCode,
@@ -18,22 +18,54 @@ abstract class VehicleModelDto with _$VehicleModelDto {
     @JsonKey(name: 'exportedAt') String? exportedAt,
     @JsonKey(name: 'storageDays') int? storageDays,
     @JsonKey(name: 'qcDefectDescription') String? qcDefectDescription,
-    @JsonKey(name: 'factory') VehicleFactoryModelDto? factory,
-  }) = _VehicleModelDto;
+    @JsonKey(name: 'factory') VehicleChargingFactoryDto? factory,
+    @JsonKey(name: 'parkingLot') VehicleChargingParkingLotDto? parkingLot,
+  }) = _VehicleChargingDto;
 
-  factory VehicleModelDto.fromJson(Map<String, dynamic> json) =>
-      _$VehicleModelDtoFromJson(json);
+  factory VehicleChargingDto.fromJson(Map<String, dynamic> json) =>
+      _$VehicleChargingDtoFromJson(json);
 }
 
 @freezed
-abstract class VehicleFactoryModelDto with _$VehicleFactoryModelDto {
-  const factory VehicleFactoryModelDto({
+abstract class VehicleChargingFactoryDto with _$VehicleChargingFactoryDto {
+  const factory VehicleChargingFactoryDto({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'address') String? address,
-  }) = _VehicleFactoryModelDto;
+  }) = _VehicleChargingFactoryDto;
 
-  factory VehicleFactoryModelDto.fromJson(Map<String, dynamic> json) =>
-      _$VehicleFactoryModelDtoFromJson(json);
+  factory VehicleChargingFactoryDto.fromJson(Map<String, dynamic> json) =>
+      _$VehicleChargingFactoryDtoFromJson(json);
 }
 
+@freezed
+abstract class VehicleChargingParkingZoneDto
+    with _$VehicleChargingParkingZoneDto {
+  const factory VehicleChargingParkingZoneDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'isActive') bool? isActive,
+    @JsonKey(name: 'factoryId') int? factoryId,
+  }) = _VehicleChargingParkingZoneDto;
+
+  factory VehicleChargingParkingZoneDto.fromJson(Map<String, dynamic> json) =>
+      _$VehicleChargingParkingZoneDtoFromJson(json);
+}
+
+@freezed
+abstract class VehicleChargingParkingLotDto
+    with _$VehicleChargingParkingLotDto {
+  const factory VehicleChargingParkingLotDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'parkingZoneId') int? parkingZoneId,
+    @JsonKey(name: 'parkingZone') VehicleChargingParkingZoneDto? parkingZone,
+    @JsonKey(name: 'maxCapacity') int? maxCapacity,
+    @JsonKey(name: 'currentOccupied') int? currentOccupied,
+  }) = _VehicleChargingParkingLotDto;
+
+  factory VehicleChargingParkingLotDto.fromJson(Map<String, dynamic> json) =>
+      _$VehicleChargingParkingLotDtoFromJson(json);
+}

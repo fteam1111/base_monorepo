@@ -227,37 +227,37 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleChargingInfoTitle.
   ///
   /// In en, this message translates to:
-  /// **'CHARGING INFO'**
+  /// **'Charging info'**
   String get vehicleChargingInfoTitle;
 
   /// No description provided for @vehicleChargingInfoSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLE DETAILS'**
+  /// **'Vehicle details'**
   String get vehicleChargingInfoSubtitle;
 
   /// No description provided for @vehicleChargingInfoStatusLabel.
   ///
   /// In en, this message translates to:
-  /// **'STATUS'**
+  /// **'Status'**
   String get vehicleChargingInfoStatusLabel;
 
   /// No description provided for @vehicleChargingInfoSubAreaLabel.
   ///
   /// In en, this message translates to:
-  /// **'SUB AREA'**
+  /// **'Sub area'**
   String get vehicleChargingInfoSubAreaLabel;
 
   /// No description provided for @vehicleChargingInfoCheckAgingDateLabel.
   ///
   /// In en, this message translates to:
-  /// **'CHECK AGING DATE'**
+  /// **'Check aging date'**
   String get vehicleChargingInfoCheckAgingDateLabel;
 
   /// No description provided for @vehicleChargingCloseInfo.
   ///
   /// In en, this message translates to:
-  /// **'CLOSE INFO'**
+  /// **'Close info'**
   String get vehicleChargingCloseInfo;
 
   /// No description provided for @enterVinToViewHistory.
@@ -287,25 +287,25 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryOrderBatchTitle.
   ///
   /// In en, this message translates to:
-  /// **'BATCH DELIVERY ORDERS'**
+  /// **'Batch delivery orders'**
   String get deliveryOrderBatchTitle;
 
   /// No description provided for @customer.
   ///
   /// In en, this message translates to:
-  /// **'CUSTOMER'**
+  /// **'Customer'**
   String get customer;
 
   /// No description provided for @progress.
   ///
   /// In en, this message translates to:
-  /// **'PROGRESS'**
+  /// **'Progress'**
   String get progress;
 
   /// No description provided for @filterList.
   ///
   /// In en, this message translates to:
-  /// **'LIST FILTER'**
+  /// **'List filter'**
   String get filterList;
 
   /// No description provided for @findVinCode.
@@ -317,31 +317,31 @@ abstract class AppLocalizations {
   /// No description provided for @allModels.
   ///
   /// In en, this message translates to:
-  /// **'ALL MODELS'**
+  /// **'All models'**
   String get allModels;
 
   /// No description provided for @allColors.
   ///
   /// In en, this message translates to:
-  /// **'ALL COLORS'**
+  /// **'All colors'**
   String get allColors;
 
   /// No description provided for @pickUpGuide.
   ///
   /// In en, this message translates to:
-  /// **'PICKUP GUIDE'**
+  /// **'Pickup guide'**
   String get pickUpGuide;
 
   /// No description provided for @results.
   ///
   /// In en, this message translates to:
-  /// **'{count} RESULTS'**
+  /// **'{count} Results'**
   String results(Object count);
 
   /// No description provided for @resultsCount.
   ///
   /// In en, this message translates to:
-  /// **'{count} RESULTS'**
+  /// **'{count} Results'**
   String resultsCount(Object count);
 
   /// No description provided for @warehouse.
@@ -545,85 +545,85 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryOrderStatusPending.
   ///
   /// In en, this message translates to:
-  /// **'PENDING'**
+  /// **'Pending'**
   String get deliveryOrderStatusPending;
 
   /// No description provided for @deliveryOrderStatusPreparing.
   ///
   /// In en, this message translates to:
-  /// **'PREPARING'**
+  /// **'Preparing'**
   String get deliveryOrderStatusPreparing;
 
   /// No description provided for @deliveryOrderStatusReady.
   ///
   /// In en, this message translates to:
-  /// **'READY'**
+  /// **'Ready'**
   String get deliveryOrderStatusReady;
 
   /// No description provided for @all.
   ///
   /// In en, this message translates to:
-  /// **'ALL'**
+  /// **'All'**
   String get all;
 
   /// No description provided for @allWithCount.
   ///
   /// In en, this message translates to:
-  /// **'ALL ({count})'**
+  /// **'All ({count})'**
   String allWithCount(Object count);
 
   /// No description provided for @preparingWithCount.
   ///
   /// In en, this message translates to:
-  /// **'PREPARING ({count})'**
+  /// **'Preparing ({count})'**
   String preparingWithCount(Object count);
 
   /// No description provided for @readyWithCount.
   ///
   /// In en, this message translates to:
-  /// **'READY ({count})'**
+  /// **'Ready ({count})'**
   String readyWithCount(Object count);
 
   /// No description provided for @unitVehicle.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLES'**
+  /// **'Vehicles'**
   String get unitVehicle;
 
   /// No description provided for @unitUnit.
   ///
   /// In en, this message translates to:
-  /// **'UNITS'**
+  /// **'Units'**
   String get unitUnit;
 
   /// No description provided for @deliveryOrderCodeLabel.
   ///
   /// In en, this message translates to:
-  /// **'DELIVERY ORDER CODE'**
+  /// **'Delivery order code'**
   String get deliveryOrderCodeLabel;
 
   /// No description provided for @deliveryOrderVehicleModelLabel.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLE MODEL'**
+  /// **'Vehicle model'**
   String get deliveryOrderVehicleModelLabel;
 
   /// No description provided for @deliveryOrderColorLabel.
   ///
   /// In en, this message translates to:
-  /// **'COLOR'**
+  /// **'Color'**
   String get deliveryOrderColorLabel;
 
   /// No description provided for @deliveryOrderQuantityLabel.
   ///
   /// In en, this message translates to:
-  /// **'QUANTITY'**
+  /// **'Quantity'**
   String get deliveryOrderQuantityLabel;
 
   /// No description provided for @deliveryOrderQuantityUnit.
   ///
   /// In en, this message translates to:
-  /// **'UNITS'**
+  /// **'Units'**
   String get deliveryOrderQuantityUnit;
 
   /// No description provided for @locationFormat.
@@ -635,13 +635,13 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryOrderDeadlineLabel.
   ///
   /// In en, this message translates to:
-  /// **'DEADLINE'**
+  /// **'Deadline'**
   String get deliveryOrderDeadlineLabel;
 
   /// No description provided for @deliveryOrderCompletionProgressLabel.
   ///
   /// In en, this message translates to:
-  /// **'COMPLETION PROGRESS'**
+  /// **'Completion progress'**
   String get deliveryOrderCompletionProgressLabel;
 
   /// No description provided for @deliveryOrderDetailTitle.
@@ -653,13 +653,13 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryOrderPickupGuideTitle.
   ///
   /// In en, this message translates to:
-  /// **'PICKUP GUIDE'**
+  /// **'Pickup guide'**
   String get deliveryOrderPickupGuideTitle;
 
   /// No description provided for @fifoBadge.
   ///
   /// In en, this message translates to:
-  /// **'FIFO #{number}'**
+  /// **'Fifo #{number}'**
   String fifoBadge(Object number);
 
   /// No description provided for @errorExceedingLength.
@@ -827,7 +827,7 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleChargingEmptyTitle.
   ///
   /// In en, this message translates to:
-  /// **'ALL VEHICLES ARE STABLE'**
+  /// **'All vehicles are stable'**
   String get vehicleChargingEmptyTitle;
 
   /// No description provided for @vehicleChargingEmptySubtitle.
@@ -839,49 +839,49 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleChargingPriority.
   ///
   /// In en, this message translates to:
-  /// **'PRIORITY #{number}'**
+  /// **'Priority #{number}'**
   String vehicleChargingPriority(int number);
 
   /// No description provided for @vehicleChargingMaintenaceActionHint.
   ///
   /// In en, this message translates to:
-  /// **'TAP TO PERFORM MAINTENANCE'**
+  /// **'Tap to perform maintenance'**
   String get vehicleChargingMaintenaceActionHint;
 
   /// No description provided for @vehicleChargingMaintenanceRequestTitle.
   ///
   /// In en, this message translates to:
-  /// **'BATTERY MAINTENANCE REQUEST'**
+  /// **'Battery maintenance request'**
   String get vehicleChargingMaintenanceRequestTitle;
 
   /// No description provided for @vehicleChargingCurrentAgingLabel.
   ///
   /// In en, this message translates to:
-  /// **'CURRENT AGING:'**
+  /// **'Current aging:'**
   String get vehicleChargingCurrentAgingLabel;
 
   /// No description provided for @vehicleChargingMoveToChargeAction.
   ///
   /// In en, this message translates to:
-  /// **'TAKE VEHICLE TO CHARGE'**
+  /// **'Take vehicle to charge'**
   String get vehicleChargingMoveToChargeAction;
 
   /// No description provided for @vehicleChargingNoNeedAction.
   ///
   /// In en, this message translates to:
-  /// **'NO CHARGE NEEDED'**
+  /// **'No charge needed'**
   String get vehicleChargingNoNeedAction;
 
   /// No description provided for @vehicleChargingLocationLabel.
   ///
   /// In en, this message translates to:
-  /// **'CURRENT LOCATION'**
+  /// **'Current location'**
   String get vehicleChargingLocationLabel;
 
   /// No description provided for @vehicleChargingTimeInAreaLabel.
   ///
   /// In en, this message translates to:
-  /// **'ENTER AREA'**
+  /// **'Enter area'**
   String get vehicleChargingTimeInAreaLabel;
 
   /// No description provided for @agingDays.
@@ -899,55 +899,55 @@ abstract class AppLocalizations {
   /// No description provided for @dischargingStatusUpdated.
   ///
   /// In en, this message translates to:
-  /// **'STATUS UPDATED'**
+  /// **'Status updated'**
   String get dischargingStatusUpdated;
 
   /// No description provided for @dischargingVehicleStatus.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLE STATUS:'**
+  /// **'Vehicle status:'**
   String get dischargingVehicleStatus;
 
   /// No description provided for @dischargingInstruction.
   ///
   /// In en, this message translates to:
-  /// **'PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.'**
+  /// **'Please bring the vehicle to the charge/discharge area to continue the maintenance process.'**
   String get dischargingInstruction;
 
   /// No description provided for @dischargingVinLabel.
   ///
   /// In en, this message translates to:
-  /// **'VIN CODE'**
+  /// **'Vin code'**
   String get dischargingVinLabel;
 
   /// No description provided for @dischargingLocationLabel.
   ///
   /// In en, this message translates to:
-  /// **'ORIGINAL LOCATION'**
+  /// **'Original location'**
   String get dischargingLocationLabel;
 
   /// No description provided for @dischargingTimeLabel.
   ///
   /// In en, this message translates to:
-  /// **'TIME'**
+  /// **'Time'**
   String get dischargingTimeLabel;
 
   /// No description provided for @dischargingCompleteAction.
   ///
   /// In en, this message translates to:
-  /// **'COMPLETE UPDATE'**
+  /// **'Complete update'**
   String get dischargingCompleteAction;
 
   /// No description provided for @deliveryOrderSuggestedVehiclesTab.
   ///
   /// In en, this message translates to:
-  /// **'PICKUP GUIDE'**
+  /// **'Pickup guide'**
   String get deliveryOrderSuggestedVehiclesTab;
 
   /// No description provided for @deliveryOrderAssignedVehiclesTab.
   ///
   /// In en, this message translates to:
-  /// **'VEHICLES IN DO'**
+  /// **'Vehicles in DO'**
   String get deliveryOrderAssignedVehiclesTab;
 
   /// No description provided for @noData.
@@ -971,7 +971,7 @@ abstract class AppLocalizations {
   /// No description provided for @scanConfirmTitle.
   ///
   /// In en, this message translates to:
-  /// **'CONFIRM VEHICLE'**
+  /// **'Confirm vehicle'**
   String get scanConfirmTitle;
 
   /// No description provided for @scanConfirmMessage.
@@ -983,13 +983,13 @@ abstract class AppLocalizations {
   /// No description provided for @scanConfirmAction.
   ///
   /// In en, this message translates to:
-  /// **'CONFIRM & SCAN'**
+  /// **'Confirm & scan'**
   String get scanConfirmAction;
 
   /// No description provided for @scanMatchTitle.
   ///
   /// In en, this message translates to:
-  /// **'CONFIRM ADD TO DO'**
+  /// **'Confirm add to DO'**
   String get scanMatchTitle;
 
   /// No description provided for @scanMatchMessage.
@@ -1001,13 +1001,13 @@ abstract class AppLocalizations {
   /// No description provided for @scanMatchAction.
   ///
   /// In en, this message translates to:
-  /// **'CONFIRM'**
+  /// **'Confirm'**
   String get scanMatchAction;
 
   /// No description provided for @scanCompatibleTitle.
   ///
   /// In en, this message translates to:
-  /// **'DIFFERENT VEHICLE'**
+  /// **'Different vehicle'**
   String get scanCompatibleTitle;
 
   /// No description provided for @scanCompatibleMessage.
@@ -1019,13 +1019,13 @@ abstract class AppLocalizations {
   /// No description provided for @scanCompatibleAction.
   ///
   /// In en, this message translates to:
-  /// **'AGREE - ADD TO DO'**
+  /// **'Agree - add to DO'**
   String get scanCompatibleAction;
 
   /// No description provided for @scanIncompatibleTitle.
   ///
   /// In en, this message translates to:
-  /// **'NOT COMPATIBLE'**
+  /// **'Not compatible'**
   String get scanIncompatibleTitle;
 
   /// No description provided for @scanIncompatibleMessage.
@@ -1037,19 +1037,19 @@ abstract class AppLocalizations {
   /// No description provided for @scanBackToList.
   ///
   /// In en, this message translates to:
-  /// **'OK - BACK TO LIST'**
+  /// **'Ok - back to list'**
   String get scanBackToList;
 
   /// No description provided for @cancelBackToList.
   ///
   /// In en, this message translates to:
-  /// **'CANCEL - BACK TO LIST'**
+  /// **'Cancel - back to list'**
   String get cancelBackToList;
 
   /// No description provided for @cancelAction.
   ///
   /// In en, this message translates to:
-  /// **'CANCEL'**
+  /// **'Cancel'**
   String get cancelAction;
 }
 

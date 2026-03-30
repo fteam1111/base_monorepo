@@ -8,6 +8,8 @@ class VehicleChargingEntity {
     required this.warehouseImportedAt,
     required this.storageDays,
     required this.factoryName,
+    required this.parkingLotName,
+    required this.parkingZoneName,
   });
 
   final int id;
@@ -18,6 +20,8 @@ class VehicleChargingEntity {
   final String warehouseImportedAt;
   final int storageDays;
   final String factoryName;
+  final String parkingLotName;
+  final String parkingZoneName;
 
   /// Aging days is equivalent to storage days in current API.
   int get agingDays => storageDays;
@@ -31,6 +35,8 @@ class VehicleChargingEntity {
     String? warehouseImportedAt,
     int? storageDays,
     String? factoryName,
+    String? parkingLotName,
+    String? parkingZoneName,
   }) {
     return VehicleChargingEntity(
       id: id ?? this.id,
@@ -41,6 +47,8 @@ class VehicleChargingEntity {
       warehouseImportedAt: warehouseImportedAt ?? this.warehouseImportedAt,
       storageDays: storageDays ?? this.storageDays,
       factoryName: factoryName ?? this.factoryName,
+      parkingLotName: parkingLotName ?? this.parkingLotName,
+      parkingZoneName: parkingZoneName ?? this.parkingZoneName,
     );
   }
 }

@@ -6,8 +6,8 @@ part of 'vehicle_charging_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_VehicleModelDto _$VehicleModelDtoFromJson(Map<String, dynamic> json) =>
-    _VehicleModelDto(
+_VehicleChargingDto _$VehicleChargingDtoFromJson(Map<String, dynamic> json) =>
+    _VehicleChargingDto(
       id: (json['id'] as num?)?.toInt(),
       serialNumber: json['serialNumber'] as String?,
       materialCode: json['materialCode'] as String?,
@@ -22,12 +22,17 @@ _VehicleModelDto _$VehicleModelDtoFromJson(Map<String, dynamic> json) =>
       qcDefectDescription: json['qcDefectDescription'] as String?,
       factory: json['factory'] == null
           ? null
-          : VehicleFactoryModelDto.fromJson(
+          : VehicleChargingFactoryDto.fromJson(
               json['factory'] as Map<String, dynamic>,
+            ),
+      parkingLot: json['parkingLot'] == null
+          ? null
+          : VehicleChargingParkingLotDto.fromJson(
+              json['parkingLot'] as Map<String, dynamic>,
             ),
     );
 
-Map<String, dynamic> _$VehicleModelDtoToJson(_VehicleModelDto instance) =>
+Map<String, dynamic> _$VehicleChargingDtoToJson(_VehicleChargingDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'serialNumber': instance.serialNumber,
@@ -42,20 +47,69 @@ Map<String, dynamic> _$VehicleModelDtoToJson(_VehicleModelDto instance) =>
       'storageDays': instance.storageDays,
       'qcDefectDescription': instance.qcDefectDescription,
       'factory': instance.factory,
+      'parkingLot': instance.parkingLot,
     };
 
-_VehicleFactoryModelDto _$VehicleFactoryModelDtoFromJson(
+_VehicleChargingFactoryDto _$VehicleChargingFactoryDtoFromJson(
   Map<String, dynamic> json,
-) => _VehicleFactoryModelDto(
+) => _VehicleChargingFactoryDto(
   id: (json['id'] as num?)?.toInt(),
   name: json['name'] as String?,
   address: json['address'] as String?,
 );
 
-Map<String, dynamic> _$VehicleFactoryModelDtoToJson(
-  _VehicleFactoryModelDto instance,
+Map<String, dynamic> _$VehicleChargingFactoryDtoToJson(
+  _VehicleChargingFactoryDto instance,
 ) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
   'address': instance.address,
+};
+
+_VehicleChargingParkingZoneDto _$VehicleChargingParkingZoneDtoFromJson(
+  Map<String, dynamic> json,
+) => _VehicleChargingParkingZoneDto(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+  description: json['description'] as String?,
+  isActive: json['isActive'] as bool?,
+  factoryId: (json['factoryId'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$VehicleChargingParkingZoneDtoToJson(
+  _VehicleChargingParkingZoneDto instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'description': instance.description,
+  'isActive': instance.isActive,
+  'factoryId': instance.factoryId,
+};
+
+_VehicleChargingParkingLotDto _$VehicleChargingParkingLotDtoFromJson(
+  Map<String, dynamic> json,
+) => _VehicleChargingParkingLotDto(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+  description: json['description'] as String?,
+  parkingZoneId: (json['parkingZoneId'] as num?)?.toInt(),
+  parkingZone: json['parkingZone'] == null
+      ? null
+      : VehicleChargingParkingZoneDto.fromJson(
+          json['parkingZone'] as Map<String, dynamic>,
+        ),
+  maxCapacity: (json['maxCapacity'] as num?)?.toInt(),
+  currentOccupied: (json['currentOccupied'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$VehicleChargingParkingLotDtoToJson(
+  _VehicleChargingParkingLotDto instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'description': instance.description,
+  'parkingZoneId': instance.parkingZoneId,
+  'parkingZone': instance.parkingZone,
+  'maxCapacity': instance.maxCapacity,
+  'currentOccupied': instance.currentOccupied,
 };

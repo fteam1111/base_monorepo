@@ -72,22 +72,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get vehicleChargingSearchHint => 'Tìm theo mã VIN...';
 
   @override
-  String get vehicleChargingInfoTitle => 'THÔNG TIN SẠC XẢ';
+  String get vehicleChargingInfoTitle => 'Thông tin sạc xả';
 
   @override
-  String get vehicleChargingInfoSubtitle => 'CHI TIẾT PHƯƠNG TIỆN';
+  String get vehicleChargingInfoSubtitle => 'Chi tiết phương tiện';
 
   @override
-  String get vehicleChargingInfoStatusLabel => 'TRẠNG THÁI';
+  String get vehicleChargingInfoStatusLabel => 'Trạng thái';
 
   @override
-  String get vehicleChargingInfoSubAreaLabel => 'KHU VỰC CON';
+  String get vehicleChargingInfoSubAreaLabel => 'Khu vực con';
 
   @override
-  String get vehicleChargingInfoCheckAgingDateLabel => 'NGÀY CHECK AGING';
+  String get vehicleChargingInfoCheckAgingDateLabel => 'Ngày check aging';
 
   @override
-  String get vehicleChargingCloseInfo => 'ĐÓNG THÔNG TIN';
+  String get vehicleChargingCloseInfo => 'Đóng thông tin';
 
   @override
   String get enterVinToViewHistory => 'Nhập mã VIN để xem lịch sử thao tác';
@@ -102,37 +102,37 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deliveryOrderListTitle => 'Danh sách DO';
 
   @override
-  String get deliveryOrderBatchTitle => 'LỆNH GIAO HÀNG THEO ĐỢT';
+  String get deliveryOrderBatchTitle => 'Lệnh giao hàng theo đợt';
 
   @override
-  String get customer => 'KHÁCH HÀNG';
+  String get customer => 'Khách hàng';
 
   @override
-  String get progress => 'TIẾN ĐỘ';
+  String get progress => 'Tiến độ';
 
   @override
-  String get filterList => 'BỘ LỌC DANH SÁCH';
+  String get filterList => 'Bộ lọc danh sách';
 
   @override
   String get findVinCode => 'Tìm theo mã VIN...';
 
   @override
-  String get allModels => 'TẤT CẢ MODEL';
+  String get allModels => 'Tất cả model';
 
   @override
-  String get allColors => 'TẤT CẢ MÀU';
+  String get allColors => 'Tất cả màu';
 
   @override
-  String get pickUpGuide => 'HƯỚNG DẪN LẤY XE';
+  String get pickUpGuide => 'Hướng dẫn lấy xe';
 
   @override
   String results(Object count) {
-    return '$count KẾT QUẢ';
+    return '$count Kết quả';
   }
 
   @override
   String resultsCount(Object count) {
-    return '$count KẾT QUẢ';
+    return '$count Kết quả';
   }
 
   @override
@@ -240,52 +240,52 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Khu chờ xuất';
 
   @override
-  String get deliveryOrderStatusPending => 'CHỜ XỬ LÝ';
+  String get deliveryOrderStatusPending => 'Chờ xử lý';
 
   @override
-  String get deliveryOrderStatusPreparing => 'ĐANG CHUẨN BỊ';
+  String get deliveryOrderStatusPreparing => 'Đang chuẩn bị';
 
   @override
-  String get deliveryOrderStatusReady => 'SẴN SÀNG';
+  String get deliveryOrderStatusReady => 'Sẵn sàng';
 
   @override
-  String get all => 'ALL';
+  String get all => 'All';
 
   @override
   String allWithCount(Object count) {
-    return 'TẤT CẢ ($count)';
+    return 'Tất cả ($count)';
   }
 
   @override
   String preparingWithCount(Object count) {
-    return 'ĐANG CHUẨN BỊ ($count)';
+    return 'Đang chuẩn bị ($count)';
   }
 
   @override
   String readyWithCount(Object count) {
-    return 'SẴN SÀNG ($count)';
+    return 'Sẵn sàng ($count)';
   }
 
   @override
-  String get unitVehicle => 'VEHICLES';
+  String get unitVehicle => 'Vehicles';
 
   @override
-  String get unitUnit => 'UNITS';
+  String get unitUnit => 'Units';
 
   @override
-  String get deliveryOrderCodeLabel => 'MÃ LỆNH GIAO HÀNG';
+  String get deliveryOrderCodeLabel => 'Mã lệnh giao hàng';
 
   @override
-  String get deliveryOrderVehicleModelLabel => 'MODEL XE';
+  String get deliveryOrderVehicleModelLabel => 'Model xe';
 
   @override
-  String get deliveryOrderColorLabel => 'MÀU SẮC';
+  String get deliveryOrderColorLabel => 'Màu sắc';
 
   @override
-  String get deliveryOrderQuantityLabel => 'SỐ LƯỢNG';
+  String get deliveryOrderQuantityLabel => 'Số lượng';
 
   @override
-  String get deliveryOrderQuantityUnit => 'CHIẾC';
+  String get deliveryOrderQuantityUnit => 'Chiếc';
 
   @override
   String locationFormat(Object area, Object position) {
@@ -293,10 +293,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get deliveryOrderDeadlineLabel => 'DEADLINE';
+  String get deliveryOrderDeadlineLabel => 'Deadline';
 
   @override
-  String get deliveryOrderCompletionProgressLabel => 'TIẾN ĐỘ HOÀN THÀNH';
+  String get deliveryOrderCompletionProgressLabel => 'Tiến độ hoàn thành';
 
   @override
   String deliveryOrderDetailTitle(Object code) {
@@ -304,11 +304,11 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get deliveryOrderPickupGuideTitle => 'HƯỚNG DẪN LẤY XE';
+  String get deliveryOrderPickupGuideTitle => 'Hướng dẫn lấy xe';
 
   @override
   String fifoBadge(Object number) {
-    return 'FIFO #$number';
+    return 'Fifo #$number';
   }
 
   @override
@@ -407,7 +407,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get vehicleChargingFetchError => 'Không thể tải danh sách xe.';
 
   @override
-  String get vehicleChargingEmptyTitle => 'TẤT CẢ XE ĐỀU ỔN ĐỊNH';
+  String get vehicleChargingEmptyTitle => 'Tất cả xe đều ổn định';
 
   @override
   String get vehicleChargingEmptySubtitle =>
@@ -415,30 +415,30 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String vehicleChargingPriority(int number) {
-    return 'ƯU TIÊN #$number';
+    return 'Ưu tiên #$number';
   }
 
   @override
   String get vehicleChargingMaintenaceActionHint =>
-      'NHẤN ĐỂ THAO TÁC BẢO DƯỠNG';
+      'Nhấn để thao tác bảo dưỡng';
 
   @override
-  String get vehicleChargingMaintenanceRequestTitle => 'YÊU CẦU BẢO DƯỠNG PIN';
+  String get vehicleChargingMaintenanceRequestTitle => 'Yêu cầu bảo dưỡng pin';
 
   @override
-  String get vehicleChargingCurrentAgingLabel => 'SỐ NGÀY HIỆN TẠI:';
+  String get vehicleChargingCurrentAgingLabel => 'Số ngày hiện tại:';
 
   @override
-  String get vehicleChargingMoveToChargeAction => 'MANG XE ĐI SẠC';
+  String get vehicleChargingMoveToChargeAction => 'Mang xe đi sạc';
 
   @override
-  String get vehicleChargingNoNeedAction => 'KHÔNG CẦN MANG XE';
+  String get vehicleChargingNoNeedAction => 'Không cần mang xe';
 
   @override
-  String get vehicleChargingLocationLabel => 'VỊ TRÍ HIỆN TẠI';
+  String get vehicleChargingLocationLabel => 'Vị trí hiện tại';
 
   @override
-  String get vehicleChargingTimeInAreaLabel => 'VÀO KHU TP';
+  String get vehicleChargingTimeInAreaLabel => 'Vào khu tp';
 
   @override
   String agingDays(Object count) {
@@ -449,32 +449,32 @@ class AppLocalizationsVi extends AppLocalizations {
   String get back => 'Quay lại';
 
   @override
-  String get dischargingStatusUpdated => 'ĐÃ CẬP NHẬT TRẠNG THÁI';
+  String get dischargingStatusUpdated => 'Đã cập nhật trạng thái';
 
   @override
-  String get dischargingVehicleStatus => 'TRẠNG THÁI XE:';
+  String get dischargingVehicleStatus => 'Trạng thái xe:';
 
   @override
   String get dischargingInstruction =>
-      'VUI LÒNG MANG XE ĐẾN KHU VỰC SẠC XẢ ĐỂ TIẾP TỤC QUY TRÌNH BẢO DƯỠNG.';
+      'Vui lòng mang xe đến khu vực sạc xả để tiếp tục quy trình bảo dưỡng.';
 
   @override
-  String get dischargingVinLabel => 'MÃ VIN';
+  String get dischargingVinLabel => 'Mã vin';
 
   @override
-  String get dischargingLocationLabel => 'VỊ TRÍ BAN ĐẦU';
+  String get dischargingLocationLabel => 'Vị trí ban đầu';
 
   @override
-  String get dischargingTimeLabel => 'THỜI GIAN';
+  String get dischargingTimeLabel => 'Thời gian';
 
   @override
-  String get dischargingCompleteAction => 'HOÀN THÀNH CẬP NHẬT';
+  String get dischargingCompleteAction => 'Hoàn thành cập nhật';
 
   @override
-  String get deliveryOrderSuggestedVehiclesTab => 'HƯỚNG DẪN LẤY XE';
+  String get deliveryOrderSuggestedVehiclesTab => 'Hướng dẫn lấy xe';
 
   @override
-  String get deliveryOrderAssignedVehiclesTab => 'DANH SÁCH XE TRONG DO';
+  String get deliveryOrderAssignedVehiclesTab => 'Danh sách xe trong DO';
 
   @override
   String get noData => 'Không có dữ liệu';
@@ -486,7 +486,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get vehicleAddFailed => 'Thêm xe thất bại';
 
   @override
-  String get scanConfirmTitle => 'XÁC NHẬN CHỌN XE';
+  String get scanConfirmTitle => 'Xác nhận chọn xe';
 
   @override
   String scanConfirmMessage(String vin, String zone) {
@@ -494,10 +494,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get scanConfirmAction => 'XÁC NHẬN & QUÉT MÃ';
+  String get scanConfirmAction => 'Xác nhận & quét mã';
 
   @override
-  String get scanMatchTitle => 'XÁC NHẬN ĐƯA XE VÀO DO';
+  String get scanMatchTitle => 'Xác nhận đưa xe vào DO';
 
   @override
   String scanMatchMessage(String vin, String doCode) {
@@ -505,10 +505,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get scanMatchAction => 'XÁC NHẬN';
+  String get scanMatchAction => 'Xác nhận';
 
   @override
-  String get scanCompatibleTitle => 'PHÁT HIỆN XE KHÁC';
+  String get scanCompatibleTitle => 'Phát hiện xe khác';
 
   @override
   String scanCompatibleMessage(String vin, String doCode) {
@@ -516,10 +516,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get scanCompatibleAction => 'ĐỒNG Ý - ĐƯA XE VÀO DO';
+  String get scanCompatibleAction => 'Đồng ý - đưa xe vào DO';
 
   @override
-  String get scanIncompatibleTitle => 'XE KHÔNG PHÙ HỢP DO';
+  String get scanIncompatibleTitle => 'Xe không phù hợp DO';
 
   @override
   String scanIncompatibleMessage(String vin, String doCode) {
@@ -527,11 +527,11 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get scanBackToList => 'OK - QUAY LẠI DANH SÁCH';
+  String get scanBackToList => 'Ok - quay lại danh sách';
 
   @override
-  String get cancelBackToList => 'HỦY - QUAY LẠI DANH SÁCH';
+  String get cancelBackToList => 'Hủy - quay lại danh sách';
 
   @override
-  String get cancelAction => 'HỦY BỎ';
+  String get cancelAction => 'Hủy bỏ';
 }

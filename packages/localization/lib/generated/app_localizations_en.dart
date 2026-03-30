@@ -73,22 +73,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get vehicleChargingSearchHint => 'Search by VIN...';
 
   @override
-  String get vehicleChargingInfoTitle => 'CHARGING INFO';
+  String get vehicleChargingInfoTitle => 'Charging info';
 
   @override
-  String get vehicleChargingInfoSubtitle => 'VEHICLE DETAILS';
+  String get vehicleChargingInfoSubtitle => 'Vehicle details';
 
   @override
-  String get vehicleChargingInfoStatusLabel => 'STATUS';
+  String get vehicleChargingInfoStatusLabel => 'Status';
 
   @override
-  String get vehicleChargingInfoSubAreaLabel => 'SUB AREA';
+  String get vehicleChargingInfoSubAreaLabel => 'Sub area';
 
   @override
-  String get vehicleChargingInfoCheckAgingDateLabel => 'CHECK AGING DATE';
+  String get vehicleChargingInfoCheckAgingDateLabel => 'Check aging date';
 
   @override
-  String get vehicleChargingCloseInfo => 'CLOSE INFO';
+  String get vehicleChargingCloseInfo => 'Close info';
 
   @override
   String get enterVinToViewHistory => 'Enter VIN to view history';
@@ -103,37 +103,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deliveryOrderListTitle => 'DO List';
 
   @override
-  String get deliveryOrderBatchTitle => 'BATCH DELIVERY ORDERS';
+  String get deliveryOrderBatchTitle => 'Batch delivery orders';
 
   @override
-  String get customer => 'CUSTOMER';
+  String get customer => 'Customer';
 
   @override
-  String get progress => 'PROGRESS';
+  String get progress => 'Progress';
 
   @override
-  String get filterList => 'LIST FILTER';
+  String get filterList => 'List filter';
 
   @override
   String get findVinCode => 'Search VIN...';
 
   @override
-  String get allModels => 'ALL MODELS';
+  String get allModels => 'All models';
 
   @override
-  String get allColors => 'ALL COLORS';
+  String get allColors => 'All colors';
 
   @override
-  String get pickUpGuide => 'PICKUP GUIDE';
+  String get pickUpGuide => 'Pickup guide';
 
   @override
   String results(Object count) {
-    return '$count RESULTS';
+    return '$count Results';
   }
 
   @override
   String resultsCount(Object count) {
-    return '$count RESULTS';
+    return '$count Results';
   }
 
   @override
@@ -241,52 +241,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Export waiting area';
 
   @override
-  String get deliveryOrderStatusPending => 'PENDING';
+  String get deliveryOrderStatusPending => 'Pending';
 
   @override
-  String get deliveryOrderStatusPreparing => 'PREPARING';
+  String get deliveryOrderStatusPreparing => 'Preparing';
 
   @override
-  String get deliveryOrderStatusReady => 'READY';
+  String get deliveryOrderStatusReady => 'Ready';
 
   @override
-  String get all => 'ALL';
+  String get all => 'All';
 
   @override
   String allWithCount(Object count) {
-    return 'ALL ($count)';
+    return 'All ($count)';
   }
 
   @override
   String preparingWithCount(Object count) {
-    return 'PREPARING ($count)';
+    return 'Preparing ($count)';
   }
 
   @override
   String readyWithCount(Object count) {
-    return 'READY ($count)';
+    return 'Ready ($count)';
   }
 
   @override
-  String get unitVehicle => 'VEHICLES';
+  String get unitVehicle => 'Vehicles';
 
   @override
-  String get unitUnit => 'UNITS';
+  String get unitUnit => 'Units';
 
   @override
-  String get deliveryOrderCodeLabel => 'DELIVERY ORDER CODE';
+  String get deliveryOrderCodeLabel => 'Delivery order code';
 
   @override
-  String get deliveryOrderVehicleModelLabel => 'VEHICLE MODEL';
+  String get deliveryOrderVehicleModelLabel => 'Vehicle model';
 
   @override
-  String get deliveryOrderColorLabel => 'COLOR';
+  String get deliveryOrderColorLabel => 'Color';
 
   @override
-  String get deliveryOrderQuantityLabel => 'QUANTITY';
+  String get deliveryOrderQuantityLabel => 'Quantity';
 
   @override
-  String get deliveryOrderQuantityUnit => 'UNITS';
+  String get deliveryOrderQuantityUnit => 'Units';
 
   @override
   String locationFormat(Object area, Object position) {
@@ -294,10 +294,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get deliveryOrderDeadlineLabel => 'DEADLINE';
+  String get deliveryOrderDeadlineLabel => 'Deadline';
 
   @override
-  String get deliveryOrderCompletionProgressLabel => 'COMPLETION PROGRESS';
+  String get deliveryOrderCompletionProgressLabel => 'Completion progress';
 
   @override
   String deliveryOrderDetailTitle(Object code) {
@@ -305,11 +305,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get deliveryOrderPickupGuideTitle => 'PICKUP GUIDE';
+  String get deliveryOrderPickupGuideTitle => 'Pickup guide';
 
   @override
   String fifoBadge(Object number) {
-    return 'FIFO #$number';
+    return 'Fifo #$number';
   }
 
   @override
@@ -408,7 +408,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get vehicleChargingFetchError => 'Unable to load vehicle list.';
 
   @override
-  String get vehicleChargingEmptyTitle => 'ALL VEHICLES ARE STABLE';
+  String get vehicleChargingEmptyTitle => 'All vehicles are stable';
 
   @override
   String get vehicleChargingEmptySubtitle =>
@@ -416,31 +416,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String vehicleChargingPriority(int number) {
-    return 'PRIORITY #$number';
+    return 'Priority #$number';
   }
 
   @override
   String get vehicleChargingMaintenaceActionHint =>
-      'TAP TO PERFORM MAINTENANCE';
+      'Tap to perform maintenance';
 
   @override
   String get vehicleChargingMaintenanceRequestTitle =>
-      'BATTERY MAINTENANCE REQUEST';
+      'Battery maintenance request';
 
   @override
-  String get vehicleChargingCurrentAgingLabel => 'CURRENT AGING:';
+  String get vehicleChargingCurrentAgingLabel => 'Current aging:';
 
   @override
-  String get vehicleChargingMoveToChargeAction => 'TAKE VEHICLE TO CHARGE';
+  String get vehicleChargingMoveToChargeAction => 'Take vehicle to charge';
 
   @override
-  String get vehicleChargingNoNeedAction => 'NO CHARGE NEEDED';
+  String get vehicleChargingNoNeedAction => 'No charge needed';
 
   @override
-  String get vehicleChargingLocationLabel => 'CURRENT LOCATION';
+  String get vehicleChargingLocationLabel => 'Current location';
 
   @override
-  String get vehicleChargingTimeInAreaLabel => 'ENTER AREA';
+  String get vehicleChargingTimeInAreaLabel => 'Enter area';
 
   @override
   String agingDays(Object count) {
@@ -451,32 +451,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
-  String get dischargingStatusUpdated => 'STATUS UPDATED';
+  String get dischargingStatusUpdated => 'Status updated';
 
   @override
-  String get dischargingVehicleStatus => 'VEHICLE STATUS:';
+  String get dischargingVehicleStatus => 'Vehicle status:';
 
   @override
   String get dischargingInstruction =>
-      'PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.';
+      'Please bring the vehicle to the charge/discharge area to continue the maintenance process.';
 
   @override
-  String get dischargingVinLabel => 'VIN CODE';
+  String get dischargingVinLabel => 'Vin code';
 
   @override
-  String get dischargingLocationLabel => 'ORIGINAL LOCATION';
+  String get dischargingLocationLabel => 'Original location';
 
   @override
-  String get dischargingTimeLabel => 'TIME';
+  String get dischargingTimeLabel => 'Time';
 
   @override
-  String get dischargingCompleteAction => 'COMPLETE UPDATE';
+  String get dischargingCompleteAction => 'Complete update';
 
   @override
-  String get deliveryOrderSuggestedVehiclesTab => 'PICKUP GUIDE';
+  String get deliveryOrderSuggestedVehiclesTab => 'Pickup guide';
 
   @override
-  String get deliveryOrderAssignedVehiclesTab => 'VEHICLES IN DO';
+  String get deliveryOrderAssignedVehiclesTab => 'Vehicles in DO';
 
   @override
   String get noData => 'No data available';
@@ -488,7 +488,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get vehicleAddFailed => 'Failed to add vehicle';
 
   @override
-  String get scanConfirmTitle => 'CONFIRM VEHICLE';
+  String get scanConfirmTitle => 'Confirm vehicle';
 
   @override
   String scanConfirmMessage(String vin, String zone) {
@@ -496,10 +496,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get scanConfirmAction => 'CONFIRM & SCAN';
+  String get scanConfirmAction => 'Confirm & scan';
 
   @override
-  String get scanMatchTitle => 'CONFIRM ADD TO DO';
+  String get scanMatchTitle => 'Confirm add to DO';
 
   @override
   String scanMatchMessage(String vin, String doCode) {
@@ -507,10 +507,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get scanMatchAction => 'CONFIRM';
+  String get scanMatchAction => 'Confirm';
 
   @override
-  String get scanCompatibleTitle => 'DIFFERENT VEHICLE';
+  String get scanCompatibleTitle => 'Different vehicle';
 
   @override
   String scanCompatibleMessage(String vin, String doCode) {
@@ -518,10 +518,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get scanCompatibleAction => 'AGREE - ADD TO DO';
+  String get scanCompatibleAction => 'Agree - add to DO';
 
   @override
-  String get scanIncompatibleTitle => 'NOT COMPATIBLE';
+  String get scanIncompatibleTitle => 'Not compatible';
 
   @override
   String scanIncompatibleMessage(String vin, String doCode) {
@@ -529,11 +529,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get scanBackToList => 'OK - BACK TO LIST';
+  String get scanBackToList => 'Ok - back to list';
 
   @override
-  String get cancelBackToList => 'CANCEL - BACK TO LIST';
+  String get cancelBackToList => 'Cancel - back to list';
 
   @override
-  String get cancelAction => 'CANCEL';
+  String get cancelAction => 'Cancel';
 }

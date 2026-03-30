@@ -111,11 +111,14 @@ class AppRoutes {
     context.push(qrScannerPath);
   }
 
-  static void navigateToDischargingResult(
+  static Future<T?> navigateToDischargingResult<T>(
     BuildContext context, {
     required Object extra,
   }) {
-    context.push('$vehicleChargingPath/$dischargingResultPath', extra: extra);
+    return context.push<T>(
+      '$vehicleChargingPath/$dischargingResultPath',
+      extra: extra,
+    );
   }
 
   /// Navigate back

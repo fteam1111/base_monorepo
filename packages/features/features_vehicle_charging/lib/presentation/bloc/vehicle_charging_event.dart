@@ -20,6 +20,15 @@ class VehicleChargingRefreshRequested extends VehicleChargingEvent {
   const VehicleChargingRefreshRequested();
 }
 
+class VehicleChargingSearchRequested extends VehicleChargingEvent {
+  const VehicleChargingSearchRequested(this.query);
+
+  final String query;
+
+  @override
+  List<Object?> get props => [query];
+}
+
 class VehicleChargingLoadMoreRequested extends VehicleChargingEvent {
   const VehicleChargingLoadMoreRequested();
 }
@@ -32,4 +41,3 @@ class VehicleChargingDischargeRequested extends VehicleChargingEvent {
   @override
   List<Object?> get props => [vehicleId];
 }
-
