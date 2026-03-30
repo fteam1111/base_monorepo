@@ -13,6 +13,7 @@ class DeliveryVinItemCard extends StatelessWidget {
     required this.position,
     required this.fifoNumber,
     required this.warehouseDate,
+    this.isDisabled = false,
   });
 
   final String vinCode;
@@ -22,10 +23,11 @@ class DeliveryVinItemCard extends StatelessWidget {
   final String position;
   final int fifoNumber;
   final String warehouseDate;
+  final bool isDisabled;
 
   @override
   Widget build(BuildContext context) {
-    return CustomCard(
+    final card = CustomCard(
       child: Column(
         children: [
           Row(
@@ -168,5 +170,7 @@ class DeliveryVinItemCard extends StatelessWidget {
         ],
       ),
     );
+
+    return isDisabled ? Opacity(opacity: 0.5, child: card) : card;
   }
 }

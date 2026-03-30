@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:features_delivery_order/domain/entities/client_vehicle_entity.dart';
+import 'package:features_delivery_order/domain/entities/delivery_order_status.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_bloc.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
@@ -100,6 +101,12 @@ class _DeliverySuggestedVehicleSectionState
         final isLoading =
             state.suggestedVehiclesStatus == DeliveryDetailStatus.loading;
 
+        final isReady =
+            state.deliveryOrder?.status.toUpperCase() ==
+                DeliveryOrderStatus.ready.apiValue ||
+            (state.deliveryOrder?.fulfilledQuantity ?? 0) >=
+                (state.deliveryOrder?.totalQuantity ?? 1);
+
         final header = Padding(
           padding: EdgeInsets.fromLTRB(
             context.appSpacing.pageHorizontal,
@@ -157,6 +164,9 @@ class _DeliverySuggestedVehicleSectionState
               const DeliveryDetailSuggestedVehiclesRequested(),
             );
           },
+          footer: SizedBox(
+            height: context.bottomPadding + AppSpacing.paddingXL,
+          ),
           noRecordFoundWidget: Padding(
             padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
             child: Center(
@@ -185,15 +195,16 @@ class _DeliverySuggestedVehicleSectionState
                 horizontal: context.appSpacing.pageHorizontal,
               ),
               child: GestureDetector(
-                onTap: () => _onVehicleTap(vehicle),
+                onTap: isReady ? null : () => _onVehicleTap(vehicle),
                 child: DeliveryVinItemCard(
                   vinCode: vehicle.serialNumber,
                   modelName: vehicle.model,
                   colorName: vehicle.color,
-                  area: vehicle.zone ?? '',
-                  position: '',
+                  area: vehicle.parkingZoneName ?? '',
+                  position: vehicle.parkingLotName ?? '',
                   fifoNumber: index + 1,
                   warehouseDate: vehicle.date ?? '',
+                  isDisabled: isReady,
                 ),
               ),
             );

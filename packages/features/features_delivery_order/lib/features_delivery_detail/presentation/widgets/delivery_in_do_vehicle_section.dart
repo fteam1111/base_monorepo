@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:features_delivery_order/domain/entities/delivery_order_vehicle_entity.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_bloc.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_vin_item_card.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +86,14 @@ class _DeliveryInDoVehicleSectionState
           isLoading: isLoading,
           items: vehicles,
           header: header,
+          onRefresh: () async {
+            context.read<DeliveryDetailBloc>().add(
+              const DeliveryDetailRefreshVehiclesRequested(),
+            );
+          },
+          footer: SizedBox(
+            height: context.bottomPadding + AppSpacing.paddingXL,
+          ),
           noRecordFoundWidget: Padding(
             padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
             child: Center(

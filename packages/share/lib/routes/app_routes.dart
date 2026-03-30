@@ -96,11 +96,11 @@ class AppRoutes {
     context.push(doListPath);
   }
 
-  static void navigateToDeliveryOrderDetail(
+  static Future<T?> navigateToDeliveryOrderDetail<T>(
     BuildContext context, {
     required Object deliveryOrder,
   }) {
-    context.push(doDetailPath, extra: deliveryOrder);
+    return context.push<T>(doDetailPath, extra: deliveryOrder);
   }
 
   static void navigateToFactoryMap(BuildContext context) {

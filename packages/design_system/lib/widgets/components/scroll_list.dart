@@ -25,6 +25,7 @@ class ScrollList<T> extends StatefulWidget {
     required this.controller,
     this.itemShimmerLoading,
     this.header,
+    this.footer,
     this.onRefresh,
     this.onLoadingMore,
     this.dismissOnDrag = false,
@@ -50,6 +51,9 @@ class ScrollList<T> extends StatefulWidget {
 
   /// Header sliver tùy chọn nằm phía trên danh sách.
   final Widget? header;
+
+  /// Footer sliver tùy chọn nằm phía dưới cùng danh sách.
+  final Widget? footer;
 
   /// Widget shimmer tùy chỉnh cho từng item khi load lần đầu.
   final Widget? itemShimmerLoading;
@@ -237,6 +241,9 @@ class _ScrollListState<T> extends State<ScrollList<T>> {
             _buildEmptySliver()
           else
             ..._buildDataSlivers(context),
+
+          // Hiển thị Footer nếu có.
+          if (widget.footer != null) SliverToBoxAdapter(child: widget.footer),
         ],
       ),
     );

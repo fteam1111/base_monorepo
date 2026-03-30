@@ -142,6 +142,9 @@ class _DeliveryOrderListBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.paddingSM),
             child: SizedBox.shrink(),
           ),
+          footer: SizedBox(
+            height: context.bottomPadding + AppSpacing.paddingXL,
+          ),
           itemBuilder: (context, index, item) {
             return _DeliveryOrderItem(item: item);
           },
@@ -191,8 +194,16 @@ class _DeliveryOrderItem extends StatelessWidget {
         quantity: item.totalQuantity,
         deadline: formattedDeadline,
         progress: item.progress,
-        onTap: () {
-          AppRoutes.navigateToDeliveryOrderDetail(context, deliveryOrder: item);
+        onTap: () async {
+          await AppRoutes.navigateToDeliveryOrderDetail(
+            context,
+            deliveryOrder: item,
+          );
+          if (context.mounted) {
+            context.read<DeliveryListBloc>().add(
+              const DeliveryListRefreshRequested(),
+            );
+          }
         },
       ),
     );
