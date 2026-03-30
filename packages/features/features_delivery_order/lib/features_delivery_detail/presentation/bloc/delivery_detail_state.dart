@@ -10,6 +10,27 @@ enum DeliveryDetailStatus { initial, loading, success, failure }
 /// Status for the add-vehicle action.
 enum AddVehicleStatus { initial, loading, success, failure }
 
+/// Verification result after scanning a VIN and comparing to DO.
+enum ScanVerificationStatus {
+  /// No scan in progress.
+  initial,
+
+  /// Looking up vehicle by serial number.
+  loading,
+
+  /// Scanned VIN matches the selected vehicle exactly.
+  exactMatch,
+
+  /// Different vehicle but model+color is compatible with DO.
+  compatibleMatch,
+
+  /// Vehicle model/color does not match any DO item.
+  incompatible,
+
+  /// API call to look up vehicle failed.
+  failure,
+}
+
 /// State for [DeliveryDetailBloc].
 class DeliveryDetailState extends Equatable {
   const DeliveryDetailState({
@@ -26,6 +47,9 @@ class DeliveryDetailState extends Equatable {
     this.vinFilter,
     this.modelFilter,
     this.colorFilter,
+    this.scanVerificationStatus = ScanVerificationStatus.initial,
+    this.scannedVehicle,
+    this.scanFailure,
   });
 
   final DeliveryDetailStatus status;
@@ -43,6 +67,11 @@ class DeliveryDetailState extends Equatable {
   final String? modelFilter;
   final String? colorFilter;
 
+  /// Scan verification fields.
+  final ScanVerificationStatus scanVerificationStatus;
+  final ClientVehicleEntity? scannedVehicle;
+  final ApiFailure? scanFailure;
+
   @override
   List<Object?> get props => [
     status,
@@ -58,6 +87,9 @@ class DeliveryDetailState extends Equatable {
     vinFilter,
     modelFilter,
     colorFilter,
+    scanVerificationStatus,
+    scannedVehicle,
+    scanFailure,
   ];
 
   DeliveryDetailState copyWith({
@@ -74,6 +106,9 @@ class DeliveryDetailState extends Equatable {
     String? Function()? vinFilter,
     String? Function()? modelFilter,
     String? Function()? colorFilter,
+    ScanVerificationStatus? scanVerificationStatus,
+    ClientVehicleEntity? Function()? scannedVehicle,
+    ApiFailure? Function()? scanFailure,
   }) {
     return DeliveryDetailState(
       status: status ?? this.status,
@@ -91,6 +126,12 @@ class DeliveryDetailState extends Equatable {
       vinFilter: vinFilter != null ? vinFilter() : this.vinFilter,
       modelFilter: modelFilter != null ? modelFilter() : this.modelFilter,
       colorFilter: colorFilter != null ? colorFilter() : this.colorFilter,
+      scanVerificationStatus:
+          scanVerificationStatus ?? this.scanVerificationStatus,
+      scannedVehicle: scannedVehicle != null
+          ? scannedVehicle()
+          : this.scannedVehicle,
+      scanFailure: scanFailure != null ? scanFailure() : this.scanFailure,
     );
   }
 }

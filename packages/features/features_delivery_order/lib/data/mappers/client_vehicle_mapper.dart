@@ -20,6 +20,8 @@ extension ClientVehicleDtoX on ClientVehicleDto {
       qcDefectDescription: qcDefectDescription,
       factoryName: factory?.name,
       factoryAddress: factory?.address,
+      parkingLotName: parkingLot?.name,
+      parkingZoneName: parkingLot?.parkingZone?.name,
     );
   }
 }

@@ -24,6 +24,8 @@ dependencies:
     path: ../../local_storage
   features_auth:
     path: ../features_auth
+  features_qr_scanner:
+    path: ../features_qr_scanner
 
   gap: ^3.0.1
   retrofit: ^4.7.3

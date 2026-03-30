@@ -484,4 +484,54 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get vehicleAddFailed => 'Thêm xe thất bại';
+
+  @override
+  String get scanConfirmTitle => 'XÁC NHẬN CHỌN XE';
+
+  @override
+  String scanConfirmMessage(String vin, String zone) {
+    return 'Xác nhận lấy xe $vin tại $zone?';
+  }
+
+  @override
+  String get scanConfirmAction => 'XÁC NHẬN & QUÉT MÃ';
+
+  @override
+  String get scanMatchTitle => 'XÁC NHẬN ĐƯA XE VÀO DO';
+
+  @override
+  String scanMatchMessage(String vin, String doCode) {
+    return 'Xe $vin trùng khớp với xe đã chọn. Bạn có muốn đưa xe này vào DO $doCode không?';
+  }
+
+  @override
+  String get scanMatchAction => 'XÁC NHẬN';
+
+  @override
+  String get scanCompatibleTitle => 'PHÁT HIỆN XE KHÁC';
+
+  @override
+  String scanCompatibleMessage(String vin, String doCode) {
+    return 'Bạn vừa scan xe $vin, không trùng với xe đã chọn. Tuy nhiên xe này phù hợp với DO $doCode.';
+  }
+
+  @override
+  String get scanCompatibleAction => 'ĐỒNG Ý - ĐƯA XE VÀO DO';
+
+  @override
+  String get scanIncompatibleTitle => 'XE KHÔNG PHÙ HỢP DO';
+
+  @override
+  String scanIncompatibleMessage(String vin, String doCode) {
+    return 'Bạn vừa scan xe $vin. Xe này không phù hợp (sai model/màu) với DO $doCode.';
+  }
+
+  @override
+  String get scanBackToList => 'OK - QUAY LẠI DANH SÁCH';
+
+  @override
+  String get cancelBackToList => 'HỦY - QUAY LẠI DANH SÁCH';
+
+  @override
+  String get cancelAction => 'HỦY BỎ';
 }

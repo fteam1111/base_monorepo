@@ -967,6 +967,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to add vehicle'**
   String get vehicleAddFailed;
+
+  /// No description provided for @scanConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM VEHICLE'**
+  String get scanConfirmTitle;
+
+  /// No description provided for @scanConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm pickup vehicle {vin} at {zone}?'**
+  String scanConfirmMessage(String vin, String zone);
+
+  /// No description provided for @scanConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM & SCAN'**
+  String get scanConfirmAction;
+
+  /// No description provided for @scanMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM ADD TO DO'**
+  String get scanMatchTitle;
+
+  /// No description provided for @scanMatchMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?'**
+  String scanMatchMessage(String vin, String doCode);
+
+  /// No description provided for @scanMatchAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM'**
+  String get scanMatchAction;
+
+  /// No description provided for @scanCompatibleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DIFFERENT VEHICLE'**
+  String get scanCompatibleTitle;
+
+  /// No description provided for @scanCompatibleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.'**
+  String scanCompatibleMessage(String vin, String doCode);
+
+  /// No description provided for @scanCompatibleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'AGREE - ADD TO DO'**
+  String get scanCompatibleAction;
+
+  /// No description provided for @scanIncompatibleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'NOT COMPATIBLE'**
+  String get scanIncompatibleTitle;
+
+  /// No description provided for @scanIncompatibleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.'**
+  String scanIncompatibleMessage(String vin, String doCode);
+
+  /// No description provided for @scanBackToList.
+  ///
+  /// In en, this message translates to:
+  /// **'OK - BACK TO LIST'**
+  String get scanBackToList;
+
+  /// No description provided for @cancelBackToList.
+  ///
+  /// In en, this message translates to:
+  /// **'CANCEL - BACK TO LIST'**
+  String get cancelBackToList;
+
+  /// No description provided for @cancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CANCEL'**
+  String get cancelAction;
 }
 
 class _AppLocalizationsDelegate

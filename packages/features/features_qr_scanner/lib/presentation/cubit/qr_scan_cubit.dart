@@ -14,13 +14,13 @@ class QrScanCubit extends Cubit<QrScanState> {
   /// 1. Validates [rawValue] via [VinID] value object.
   /// 2. Calls the use case to fetch vehicle details.
   Future<void> onBarcodeDetected(String rawValue) async {
-    final vinId = VinID(rawValue);
-
-    if (!vinId.isValid()) {
-      logger.w('Invalid VIN scanned: $rawValue');
-      emit(const QrScanInvalidVin('Mã VIN không hợp lệ'));
-      return;
-    }
+    // final vinId = VinID(rawValue);
+    //
+    // if (!vinId.isValid()) {
+    //   logger.w('Invalid VIN scanned: $rawValue');
+    //   emit(const QrScanInvalidVin('Mã VIN không hợp lệ'));
+    //   return;
+    // }
 
     emit(const QrScanLoading());
 

@@ -5,11 +5,15 @@ import 'package:features_delivery_order/features_delivery_detail/presentation/bl
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_filter_section.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_vin_item_card.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/vehicle_scan_confirmation_dialog.dart';
+import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:get_it/get_it.dart';
 import 'package:share/share.dart';
 
+/// Section showing suggested vehicles for pick-up with filter.
 class DeliverySuggestedVehicleSection extends StatefulWidget {
   const DeliverySuggestedVehicleSection({super.key});
 
@@ -32,6 +36,60 @@ class _DeliverySuggestedVehicleSectionState
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  Future<void> _onVehicleTap(ClientVehicleEntity vehicle) async {
+    final confirmed = await VehicleScanConfirmationDialog.show(
+      context,
+      vinCode: vehicle.serialNumber,
+      zoneName: vehicle.zone ?? '',
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    // Navigate to QR scanner and get result
+    final scannedVehicle = await Navigator.push<VehicleEntity>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => BlocProvider(
+          create: (_) => GetIt.I<QrScanCubit>(),
+          child: QrScannerPage(
+            onVehicleFound: (vehicle) {
+              Navigator.of(context).pop(vehicle);
+            },
+          ),
+        ),
+      ),
+    );
+
+    if (scannedVehicle == null || !mounted) return;
+
+    final clientVehicle = ClientVehicleEntity(
+      id: scannedVehicle.id.toString(),
+      serialNumber: scannedVehicle.serialNumber,
+      model: scannedVehicle.model,
+      color: scannedVehicle.color,
+      materialCode: scannedVehicle.materialCode,
+      manufacturingDate: scannedVehicle.manufacturingDate,
+      status: scannedVehicle.status,
+      statusLabel: scannedVehicle.statusLabel,
+      warehouseImportedAt: scannedVehicle.warehouseImportedAt,
+      exportedAt: scannedVehicle.exportedAt,
+      storageDays: scannedVehicle.storageDays,
+      qcDefectDescription: scannedVehicle.qcDefectDescription,
+      factoryName: scannedVehicle.factory?.name,
+      factoryAddress: scannedVehicle.factory?.address,
+      parkingLotName: scannedVehicle.parkingLot?.name,
+      parkingZoneName: scannedVehicle.parkingLot?.parkingZone.name,
+    );
+
+    // Send mapped vehicle to BLoC for verification
+    context.read<DeliveryDetailBloc>().add(
+      DeliveryDetailScannedVinReceived(
+        scannedVehicle: clientVehicle,
+        selectedVehicleSerialNumber: vehicle.serialNumber,
+      ),
+    );
   }
 
   @override
@@ -127,12 +185,7 @@ class _DeliverySuggestedVehicleSectionState
                 horizontal: context.appSpacing.pageHorizontal,
               ),
               child: GestureDetector(
-                onTap: () {
-                  // Request to add vehicle to DO
-                  context.read<DeliveryDetailBloc>().add(
-                    DeliveryDetailAddVehicleRequested(vehicleId: vehicle.id),
-                  );
-                },
+                onTap: () => _onVehicleTap(vehicle),
                 child: DeliveryVinItemCard(
                   vinCode: vehicle.serialNumber,
                   modelName: vehicle.model,

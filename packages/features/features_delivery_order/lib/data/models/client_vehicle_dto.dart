@@ -16,6 +16,36 @@ abstract class ClientVehicleFactoryDto with _$ClientVehicleFactoryDto {
 }
 
 @freezed
+abstract class ClientVehicleParkingZoneDto with _$ClientVehicleParkingZoneDto {
+  const factory ClientVehicleParkingZoneDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'isActive') bool? isActive,
+    @JsonKey(name: 'factoryId') int? factoryId,
+  }) = _ClientVehicleParkingZoneDto;
+
+  factory ClientVehicleParkingZoneDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientVehicleParkingZoneDtoFromJson(json);
+}
+
+@freezed
+abstract class ClientVehicleParkingLotDto with _$ClientVehicleParkingLotDto {
+  const factory ClientVehicleParkingLotDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'parkingZoneId') int? parkingZoneId,
+    @JsonKey(name: 'parkingZone') ClientVehicleParkingZoneDto? parkingZone,
+    @JsonKey(name: 'maxCapacity') int? maxCapacity,
+    @JsonKey(name: 'currentOccupied') int? currentOccupied,
+  }) = _ClientVehicleParkingLotDto;
+
+  factory ClientVehicleParkingLotDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientVehicleParkingLotDtoFromJson(json);
+}
+
+@freezed
 abstract class ClientVehicleDto with _$ClientVehicleDto {
   const factory ClientVehicleDto({
     @JsonKey(name: 'id') int? id,
@@ -31,6 +61,7 @@ abstract class ClientVehicleDto with _$ClientVehicleDto {
     @JsonKey(name: 'storageDays') int? storageDays,
     @JsonKey(name: 'qcDefectDescription') String? qcDefectDescription,
     @JsonKey(name: 'factory') ClientVehicleFactoryDto? factory,
+    @JsonKey(name: 'parkingLot') ClientVehicleParkingLotDto? parkingLot,
   }) = _ClientVehicleDto;
 
   factory ClientVehicleDto.fromJson(Map<String, dynamic> json) =>

@@ -32,6 +32,7 @@ export 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 export 'package:design_system/widgets/responsive.dart';
 export 'package:design_system/widgets/upgrade/upgrade_alert_wrapper.dart';
 export 'package:design_system/widgets/upgrade/upgrader_localization_message.dart';
+export 'package:design_system/widgets/global_loading.dart';
 
 // assets
 export 'app_assets/app_assets.dart';

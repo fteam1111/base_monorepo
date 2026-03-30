@@ -486,4 +486,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vehicleAddFailed => 'Failed to add vehicle';
+
+  @override
+  String get scanConfirmTitle => 'CONFIRM VEHICLE';
+
+  @override
+  String scanConfirmMessage(String vin, String zone) {
+    return 'Confirm pickup vehicle $vin at $zone?';
+  }
+
+  @override
+  String get scanConfirmAction => 'CONFIRM & SCAN';
+
+  @override
+  String get scanMatchTitle => 'CONFIRM ADD TO DO';
+
+  @override
+  String scanMatchMessage(String vin, String doCode) {
+    return 'Vehicle $vin matches the selected vehicle. Add to DO $doCode?';
+  }
+
+  @override
+  String get scanMatchAction => 'CONFIRM';
+
+  @override
+  String get scanCompatibleTitle => 'DIFFERENT VEHICLE';
+
+  @override
+  String scanCompatibleMessage(String vin, String doCode) {
+    return 'Scanned vehicle $vin differs from selected but is compatible with DO $doCode.';
+  }
+
+  @override
+  String get scanCompatibleAction => 'AGREE - ADD TO DO';
+
+  @override
+  String get scanIncompatibleTitle => 'NOT COMPATIBLE';
+
+  @override
+  String scanIncompatibleMessage(String vin, String doCode) {
+    return 'Scanned vehicle $vin is not compatible (wrong model/color) with DO $doCode.';
+  }
+
+  @override
+  String get scanBackToList => 'OK - BACK TO LIST';
+
+  @override
+  String get cancelBackToList => 'CANCEL - BACK TO LIST';
+
+  @override
+  String get cancelAction => 'CANCEL';
 }

@@ -172,5 +172,44 @@
   "deliveryOrderAssignedVehiclesTab": "VEHICLES IN DO",
   "noData": "No data available",
   "vehicleAddedSuccess": "Vehicle added successfully",
-  "vehicleAddFailed": "Failed to add vehicle"
+  "vehicleAddFailed": "Failed to add vehicle",
+
+  "scanConfirmTitle": "CONFIRM VEHICLE",
+  "scanConfirmMessage": "Confirm pickup vehicle {vin} at {zone}?",
+  "@scanConfirmMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "zone": {"type": "String"}
+    }
+  },
+  "scanConfirmAction": "CONFIRM & SCAN",
+  "scanMatchTitle": "CONFIRM ADD TO DO",
+  "scanMatchMessage": "Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?",
+  "@scanMatchMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanMatchAction": "CONFIRM",
+  "scanCompatibleTitle": "DIFFERENT VEHICLE",
+  "scanCompatibleMessage": "Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.",
+  "@scanCompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanCompatibleAction": "AGREE - ADD TO DO",
+  "scanIncompatibleTitle": "NOT COMPATIBLE",
+  "scanIncompatibleMessage": "Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.",
+  "@scanIncompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanBackToList": "OK - BACK TO LIST",
+  "cancelBackToList": "CANCEL - BACK TO LIST",
+  "cancelAction": "CANCEL"
 }

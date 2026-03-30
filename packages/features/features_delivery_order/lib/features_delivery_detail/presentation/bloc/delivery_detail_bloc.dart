@@ -1,6 +1,7 @@
 import 'package:features_delivery_order/domain/usecases/add_vehicle_to_delivery_order_usecase.dart';
 import 'package:features_delivery_order/domain/usecases/get_client_vehicles_usecase.dart';
 import 'package:features_delivery_order/domain/usecases/get_delivery_order_vehicles_usecase.dart';
+
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,8 @@ class DeliveryDetailBloc
     on<DeliveryDetailModelFilterChanged>(_onModelFilterChanged);
     on<DeliveryDetailColorFilterChanged>(_onColorFilterChanged);
     on<DeliveryDetailSuggestedVehiclesRequested>(_onSuggestedVehiclesRequested);
+    on<DeliveryDetailScannedVinReceived>(_onScannedVinReceived);
+    on<DeliveryDetailScanReset>(_onScanReset);
   }
 
   final GetDeliveryOrderVehiclesUseCase _getDeliveryOrderVehiclesUseCase;
@@ -44,7 +47,6 @@ class DeliveryDetailBloc
       ),
     );
 
-    // Initial load: fetch both the assigned DO vehicles and the suggested ones.
     await Future.wait([
       _fetchVehicles(emit: emit, deliveryOrderId: event.deliveryOrder.id),
       _fetchSuggestedVehicles(emit: emit),
@@ -130,10 +132,70 @@ class DeliveryDetailBloc
             addVehicleFailure: null,
           ),
         );
-        // Refresh both lists after a successful addition
         add(const DeliveryDetailRefreshVehiclesRequested());
         add(const DeliveryDetailSuggestedVehiclesRequested());
       },
+    );
+  }
+
+  /// Handler for scanned VIN: uses pre-fetched vehicle → compares with DO items.
+  Future<void> _onScannedVinReceived(
+    DeliveryDetailScannedVinReceived event,
+    Emitter<DeliveryDetailState> emit,
+  ) async {
+    final scannedVehicle = event.scannedVehicle;
+    final doItems = state.deliveryOrder?.items ?? [];
+    final scannedSerial = scannedVehicle.serialNumber;
+    final selectedSerial = event.selectedVehicleSerialNumber;
+
+    // Case 1: exact match — same serial number
+    if (scannedSerial == selectedSerial) {
+      emit(
+        state.copyWith(
+          scanVerificationStatus: ScanVerificationStatus.exactMatch,
+          scannedVehicle: () => scannedVehicle,
+        ),
+      );
+      return;
+    }
+
+    // Check if scanned vehicle's model+color matches any DO item
+    final isCompatible = doItems.any(
+      (item) =>
+          item.vehicleModel == scannedVehicle.model &&
+          item.color == scannedVehicle.color,
+    );
+
+    if (isCompatible) {
+      // Case 2: different vehicle but compatible model/color
+      emit(
+        state.copyWith(
+          scanVerificationStatus: ScanVerificationStatus.compatibleMatch,
+          scannedVehicle: () => scannedVehicle,
+        ),
+      );
+    } else {
+      // Case 3: incompatible model/color
+      emit(
+        state.copyWith(
+          scanVerificationStatus: ScanVerificationStatus.incompatible,
+          scannedVehicle: () => scannedVehicle,
+        ),
+      );
+    }
+  }
+
+  /// Resets scan verification state to initial.
+  Future<void> _onScanReset(
+    DeliveryDetailScanReset event,
+    Emitter<DeliveryDetailState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        scanVerificationStatus: ScanVerificationStatus.initial,
+        scannedVehicle: () => null,
+        scanFailure: () => null,
+      ),
     );
   }
 
@@ -178,7 +240,7 @@ class DeliveryDetailBloc
           : null,
       model: state.modelFilter,
       color: state.colorFilter,
-      isUnassigned: true, // Only show unassigned vehicles for pickup guide
+      isUnassigned: true,
     );
 
     result.fold(

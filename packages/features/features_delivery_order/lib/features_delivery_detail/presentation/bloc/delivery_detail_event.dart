@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:features_delivery_order/domain/entities/client_vehicle_entity.dart';
 
 import 'package:features_delivery_order/domain/entities/delivery_order_entity.dart';
 
@@ -78,4 +79,26 @@ class DeliveryDetailColorFilterChanged extends DeliveryDetailEvent {
 /// Request fetching suggested vehicles from the client API.
 class DeliveryDetailSuggestedVehiclesRequested extends DeliveryDetailEvent {
   const DeliveryDetailSuggestedVehiclesRequested();
+}
+
+/// Scanned VIN received from QR scanner — triggers lookup + match.
+class DeliveryDetailScannedVinReceived extends DeliveryDetailEvent {
+  const DeliveryDetailScannedVinReceived({
+    required this.scannedVehicle,
+    required this.selectedVehicleSerialNumber,
+  });
+
+  /// The vehicle entity mapped from the QR scan.
+  final ClientVehicleEntity scannedVehicle;
+
+  /// Serial number of the vehicle user tapped in the list.
+  final String selectedVehicleSerialNumber;
+
+  @override
+  List<Object?> get props => [scannedVehicle, selectedVehicleSerialNumber];
+}
+
+/// Reset scan verification state back to initial.
+class DeliveryDetailScanReset extends DeliveryDetailEvent {
+  const DeliveryDetailScanReset();
 }

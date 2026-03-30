@@ -17,6 +17,8 @@ class ClientVehicleEntity extends Equatable {
     this.qcDefectDescription,
     this.factoryName,
     this.factoryAddress,
+    this.parkingLotName,
+    this.parkingZoneName,
   });
 
   final String id;
@@ -33,9 +35,13 @@ class ClientVehicleEntity extends Equatable {
   final String? qcDefectDescription;
   final String? factoryName;
   final String? factoryAddress;
+  final String? parkingLotName;
+  final String? parkingZoneName;
 
-  // Existing getters for compatibility with UI widgets
-  String? get zone => factoryName;
+  /// Backward-compatible getter for zone display.
+  String? get zone => parkingZoneName ?? factoryName;
+
+  /// Backward-compatible getter for date display.
   String? get date => warehouseImportedAt;
 
   @override
@@ -54,5 +60,7 @@ class ClientVehicleEntity extends Equatable {
     qcDefectDescription,
     factoryName,
     factoryAddress,
+    parkingLotName,
+    parkingZoneName,
   ];
 }

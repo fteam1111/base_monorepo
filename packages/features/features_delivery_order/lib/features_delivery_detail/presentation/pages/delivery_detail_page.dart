@@ -8,6 +8,7 @@ import 'package:features_delivery_order/features_delivery_detail/presentation/bl
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_detail_header_card.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_in_do_vehicle_section.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_suggested_vehicle_section.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/vehicle_scan_result_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -46,78 +47,144 @@ class _DeliveryDetailPageState extends State<DeliveryDetailPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DeliveryDetailBloc, DeliveryDetailState>(
-      listenWhen: (previous, current) =>
-          previous.addVehicleFailure != current.addVehicleFailure &&
-          previous.addVehicleStatus != current.addVehicleStatus,
-      listener: (context, state) {
-        if (state.addVehicleStatus == AddVehicleStatus.success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.l10n.vehicleAddedSuccess)),
-          );
-        } else if (state.addVehicleStatus == AddVehicleStatus.failure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                state.addVehicleFailure?.nonTranslatedFailureMessage ??
-                    context.l10n.vehicleAddFailed,
-              ),
-              backgroundColor: context.colorScheme.error,
-            ),
-          );
-        }
-      },
-      builder: (context, state) {
-        final doEntity = state.deliveryOrder;
-        final status = doEntity != null
-            ? DeliveryOrderStatus.fromString(doEntity.status)
-            : DeliveryOrderStatus.pending;
-        final doCode = doEntity?.doCode ?? '';
+    return MultiBlocListener(
+      listeners: [
+        // Listener for add-vehicle success/failure snackbar and global loading
+        BlocListener<DeliveryDetailBloc, DeliveryDetailState>(
+          listenWhen: (previous, current) =>
+              previous.addVehicleStatus != current.addVehicleStatus,
+          listener: (context, state) {
+            if (state.addVehicleStatus == AddVehicleStatus.loading) {
+              GlobalLoading.showLoadingDialog(status: context.l10n.loading);
+            } else if (state.addVehicleStatus == AddVehicleStatus.success) {
+              GlobalLoading.dismiss();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.l10n.vehicleAddedSuccess)),
+              );
+            } else if (state.addVehicleStatus == AddVehicleStatus.failure) {
+              GlobalLoading.dismiss();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.addVehicleFailure?.nonTranslatedFailureMessage ??
+                        context.l10n.vehicleAddFailed,
+                  ),
+                  backgroundColor: context.colorScheme.error,
+                ),
+              );
+            }
+          },
+        ),
+        // Listener for scan verification result dialogs
+        BlocListener<DeliveryDetailBloc, DeliveryDetailState>(
+          listenWhen: (previous, current) =>
+              previous.scanVerificationStatus != current.scanVerificationStatus,
+          listener: _onScanVerificationChanged,
+        ),
+      ],
+      child: BlocBuilder<DeliveryDetailBloc, DeliveryDetailState>(
+        builder: (context, state) {
+          final doEntity = state.deliveryOrder;
+          final status = doEntity != null
+              ? DeliveryOrderStatus.fromString(doEntity.status)
+              : DeliveryOrderStatus.pending;
+          final doCode = doEntity?.doCode ?? '';
 
-        return Scaffold(
-          appBar: CustomAppBar(
-            titleWidget: Text(
-              context.l10n.deliveryOrderDetailTitle(doCode),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: context.appTypography.titleMedium.copyWith(
-                fontWeight: FontWeight.bold,
-                color: context.colorScheme.onSurface,
+          return Scaffold(
+            appBar: CustomAppBar(
+              titleWidget: Text(
+                context.l10n.deliveryOrderDetailTitle(doCode),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.appTypography.titleMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: context.colorScheme.onSurface,
+                ),
               ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: AppSpacing.paddingMD),
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.paddingSM,
-                      vertical: AppSpacing.paddingXXXS,
-                    ),
-                    decoration: BoxDecoration(
-                      color: status.backgroundLabel(context),
-                      borderRadius: BorderRadius.circular(AppRadius.sm),
-                    ),
-                    child: Text(
-                      status.label(context),
-                      style: context.appTypography.labelSmall.copyWith(
-                        color: status.labelColor(context),
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: AppSpacing.paddingMD),
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.paddingSM,
+                        vertical: AppSpacing.paddingXXXS,
+                      ),
+                      decoration: BoxDecoration(
+                        color: status.backgroundLabel(context),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
+                      ),
+                      child: Text(
+                        status.label(context),
+                        style: context.appTypography.labelSmall.copyWith(
+                          color: status.labelColor(context),
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          body: _DeliveryDetailBody(
-            state: state,
-            tabController: _tabController,
+              ],
+            ),
+            body: _DeliveryDetailBody(
+              state: state,
+              tabController: _tabController,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _onScanVerificationChanged(
+    BuildContext context,
+    DeliveryDetailState state,
+  ) {
+    final status = state.scanVerificationStatus;
+    final scannedVehicle = state.scannedVehicle;
+    final doCode = state.deliveryOrder?.doCode ?? '';
+
+    switch (status) {
+      case ScanVerificationStatus.exactMatch:
+      case ScanVerificationStatus.compatibleMatch:
+      case ScanVerificationStatus.incompatible:
+        VehicleScanResultDialog.show(
+          context,
+          matchType: status,
+          scannedVin: scannedVehicle?.serialNumber ?? '',
+          doCode: doCode,
+          onConfirmAdd: () {
+            if (scannedVehicle != null) {
+              context.read<DeliveryDetailBloc>().add(
+                DeliveryDetailAddVehicleRequested(vehicleId: scannedVehicle.id),
+              );
+            }
+            context.read<DeliveryDetailBloc>().add(
+              const DeliveryDetailScanReset(),
+            );
+          },
+          onDismiss: () {
+            context.read<DeliveryDetailBloc>().add(
+              const DeliveryDetailScanReset(),
+            );
+          },
+        );
+      case ScanVerificationStatus.failure:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              state.scanFailure?.nonTranslatedFailureMessage ??
+                  context.l10n.error,
+            ),
+            backgroundColor: context.colorScheme.error,
           ),
         );
-      },
-    );
+        context.read<DeliveryDetailBloc>().add(const DeliveryDetailScanReset());
+      case ScanVerificationStatus.initial:
+      case ScanVerificationStatus.loading:
+        break;
+    }
   }
 }
 

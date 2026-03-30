@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:design_system/design_system.dart';
+import 'package:features_qr_scanner/domain/entities/vehicle_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +18,7 @@ import 'package:features_qr_scanner/presentation/cubit/qr_scan_state.dart';
 class QrScannerPage extends StatefulWidget {
   const QrScannerPage({super.key, this.onVehicleFound});
 
-  final void Function(String serialNumber)? onVehicleFound;
+  final void Function(VehicleEntity vehicle)? onVehicleFound;
 
   @override
   State<QrScannerPage> createState() => _QrScannerPageState();
@@ -66,11 +67,6 @@ class _QrScannerPageState extends State<QrScannerPage> {
           content: Text(message),
           backgroundColor: context.colorScheme.error,
           behavior: SnackBarBehavior.floating,
-          action: SnackBarAction(
-            label: 'Thử lại',
-            textColor: context.colorScheme.onError,
-            onPressed: _resumeScanner,
-          ),
         ),
       );
   }
@@ -90,7 +86,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
             _showErrorSnackBar(state.message);
             _resumeScanner();
           case QrScanSuccess():
-            widget.onVehicleFound?.call(state.vehicle.serialNumber);
+            widget.onVehicleFound?.call(state.vehicle);
           case QrScanInitial() || QrScanLoading():
             break;
         }

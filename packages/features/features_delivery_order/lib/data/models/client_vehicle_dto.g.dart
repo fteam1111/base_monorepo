@@ -22,6 +22,54 @@ Map<String, dynamic> _$ClientVehicleFactoryDtoToJson(
   'address': instance.address,
 };
 
+_ClientVehicleParkingZoneDto _$ClientVehicleParkingZoneDtoFromJson(
+  Map<String, dynamic> json,
+) => _ClientVehicleParkingZoneDto(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+  description: json['description'] as String?,
+  isActive: json['isActive'] as bool?,
+  factoryId: (json['factoryId'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$ClientVehicleParkingZoneDtoToJson(
+  _ClientVehicleParkingZoneDto instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'description': instance.description,
+  'isActive': instance.isActive,
+  'factoryId': instance.factoryId,
+};
+
+_ClientVehicleParkingLotDto _$ClientVehicleParkingLotDtoFromJson(
+  Map<String, dynamic> json,
+) => _ClientVehicleParkingLotDto(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+  description: json['description'] as String?,
+  parkingZoneId: (json['parkingZoneId'] as num?)?.toInt(),
+  parkingZone: json['parkingZone'] == null
+      ? null
+      : ClientVehicleParkingZoneDto.fromJson(
+          json['parkingZone'] as Map<String, dynamic>,
+        ),
+  maxCapacity: (json['maxCapacity'] as num?)?.toInt(),
+  currentOccupied: (json['currentOccupied'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$ClientVehicleParkingLotDtoToJson(
+  _ClientVehicleParkingLotDto instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'description': instance.description,
+  'parkingZoneId': instance.parkingZoneId,
+  'parkingZone': instance.parkingZone,
+  'maxCapacity': instance.maxCapacity,
+  'currentOccupied': instance.currentOccupied,
+};
+
 _ClientVehicleDto _$ClientVehicleDtoFromJson(Map<String, dynamic> json) =>
     _ClientVehicleDto(
       id: (json['id'] as num?)?.toInt(),
@@ -41,6 +89,11 @@ _ClientVehicleDto _$ClientVehicleDtoFromJson(Map<String, dynamic> json) =>
           : ClientVehicleFactoryDto.fromJson(
               json['factory'] as Map<String, dynamic>,
             ),
+      parkingLot: json['parkingLot'] == null
+          ? null
+          : ClientVehicleParkingLotDto.fromJson(
+              json['parkingLot'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$ClientVehicleDtoToJson(_ClientVehicleDto instance) =>
@@ -58,4 +111,5 @@ Map<String, dynamic> _$ClientVehicleDtoToJson(_ClientVehicleDto instance) =>
       'storageDays': instance.storageDays,
       'qcDefectDescription': instance.qcDefectDescription,
       'factory': instance.factory,
+      'parkingLot': instance.parkingLot,
     };
