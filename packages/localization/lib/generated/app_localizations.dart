@@ -949,6 +949,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'VEHICLES IN DO'**
   String get deliveryOrderAssignedVehiclesTab;
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get noData;
+
+  /// No description provided for @vehicleAddedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle added successfully'**
+  String get vehicleAddedSuccess;
+
+  /// No description provided for @vehicleAddFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add vehicle'**
+  String get vehicleAddFailed;
 }
 
 class _AppLocalizationsDelegate

@@ -475,4 +475,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get deliveryOrderAssignedVehiclesTab => 'DANH SÁCH XE TRONG DO';
+
+  @override
+  String get noData => 'Không có dữ liệu';
+
+  @override
+  String get vehicleAddedSuccess => 'Thêm xe thành công';
+
+  @override
+  String get vehicleAddFailed => 'Thêm xe thất bại';
 }

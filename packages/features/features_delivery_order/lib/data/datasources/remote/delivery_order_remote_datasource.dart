@@ -45,7 +45,7 @@ abstract class DeliveryOrderRemoteDataSource {
   Future<BasePaginationResponse<List<ClientVehicleDto>>> getClientVehicles({
     @Query('page') required int page,
     @Query('size') required int size,
-    @Query('serial_number') String? serialNumber,
+    @Query('serialNumber') String? serialNumber,
     @Query('color') String? color,
     @Query('model') String? model,
     @Query('isUnassigned') bool? isUnassigned,

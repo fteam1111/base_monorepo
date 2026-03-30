@@ -103,7 +103,12 @@ class DeliveryDetailBloc
     final doId = state.deliveryOrder?.id;
     if (doId == null) return;
 
-    emit(state.copyWith(addVehicleStatus: AddVehicleStatus.loading));
+    emit(
+      state.copyWith(
+        addVehicleStatus: AddVehicleStatus.loading,
+        addVehicleFailure: null,
+      ),
+    );
 
     final result = await _addVehicleToDeliveryOrderUseCase(
       deliveryOrderId: doId,
@@ -160,6 +165,7 @@ class DeliveryDetailBloc
     emit(
       state.copyWith(
         suggestedVehiclesStatus: DeliveryDetailStatus.loading,
+        suggestedVehicles: [],
         suggestedVehiclesFailure: null,
       ),
     );
@@ -167,7 +173,6 @@ class DeliveryDetailBloc
     final result = await _getClientVehiclesUseCase(
       page: 1,
       size: 50,
-      // Fetch top 50 suggested vehicles
       serialNumber: state.vinFilter?.isNotEmpty == true
           ? state.vinFilter
           : null,

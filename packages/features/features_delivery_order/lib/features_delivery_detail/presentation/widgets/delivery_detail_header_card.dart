@@ -104,7 +104,7 @@ class DeliveryDetailHeaderCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(child: _buildInfoCol(context, leftItem, isRight: false)),
-            const Gap(AppSpacing.paddingMD),
+            const Gap(AppSpacing.paddingXS),
             if (rightItem != null)
               Expanded(child: _buildInfoCol(context, rightItem, isRight: true))
             else
@@ -113,7 +113,7 @@ class DeliveryDetailHeaderCard extends StatelessWidget {
         ),
       );
       if (i + 2 < infoItems.length) {
-        rows.add(const Gap(AppSpacing.paddingMD));
+        rows.add(const Gap(AppSpacing.paddingXS));
       }
     }
 
@@ -123,7 +123,7 @@ class DeliveryDetailHeaderCard extends StatelessWidget {
         children: [
           ...rows,
           if (_hasQuantity) ...[
-            const Gap(AppSpacing.paddingMD),
+            const Gap(AppSpacing.paddingXS),
             AppLinearProgressIndicator(
               value: currentProgress / totalQuantity,
               minHeight: 8,

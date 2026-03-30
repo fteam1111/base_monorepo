@@ -45,28 +45,37 @@ class DeliveryDetailTabChanged extends DeliveryDetailEvent {
   List<Object?> get props => [tabIndex];
 }
 
+/// User changed the VIN search filter text.
 class DeliveryDetailVinFilterChanged extends DeliveryDetailEvent {
   const DeliveryDetailVinFilterChanged(this.vin);
+
   final String? vin;
+
   @override
   List<Object?> get props => [vin];
 }
 
+/// User changed the model dropdown filter.
 class DeliveryDetailModelFilterChanged extends DeliveryDetailEvent {
   const DeliveryDetailModelFilterChanged(this.model);
+
   final String? model;
+
   @override
   List<Object?> get props => [model];
 }
 
+/// User changed the color dropdown filter.
 class DeliveryDetailColorFilterChanged extends DeliveryDetailEvent {
   const DeliveryDetailColorFilterChanged(this.color);
+
   final String? color;
+
   @override
   List<Object?> get props => [color];
 }
 
-/// Request fetching suggested vehicles.
+/// Request fetching suggested vehicles from the client API.
 class DeliveryDetailSuggestedVehiclesRequested extends DeliveryDetailEvent {
   const DeliveryDetailSuggestedVehiclesRequested();
 }

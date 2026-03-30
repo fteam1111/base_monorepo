@@ -169,5 +169,8 @@
   "dischargingTimeLabel": "TIME",
   "dischargingCompleteAction": "COMPLETE UPDATE",
   "deliveryOrderSuggestedVehiclesTab": "PICKUP GUIDE",
-  "deliveryOrderAssignedVehiclesTab": "VEHICLES IN DO"
+  "deliveryOrderAssignedVehiclesTab": "VEHICLES IN DO",
+  "noData": "No data available",
+  "vehicleAddedSuccess": "Vehicle added successfully",
+  "vehicleAddFailed": "Failed to add vehicle"
 }

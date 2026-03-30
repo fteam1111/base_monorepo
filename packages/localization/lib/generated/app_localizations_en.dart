@@ -477,4 +477,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deliveryOrderAssignedVehiclesTab => 'VEHICLES IN DO';
+
+  @override
+  String get noData => 'No data available';
+
+  @override
+  String get vehicleAddedSuccess => 'Vehicle added successfully';
+
+  @override
+  String get vehicleAddFailed => 'Failed to add vehicle';
 }

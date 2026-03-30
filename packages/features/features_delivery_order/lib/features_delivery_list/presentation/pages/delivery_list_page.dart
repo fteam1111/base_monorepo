@@ -187,7 +187,6 @@ class _DeliveryOrderItem extends StatelessWidget {
         doCode: item.doCode,
         status: DeliveryOrderStatus.fromString(item.status),
         modelName: firstItem?.vehicleModel ?? '',
-        colorCode: firstItem?.color,
         colorName: firstItem?.color,
         quantity: item.totalQuantity,
         deadline: formattedDeadline,

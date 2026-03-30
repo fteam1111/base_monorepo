@@ -88,9 +88,7 @@
   "deliveryOrderDetailTitle": "DO: {code}",
   "deliveryOrderPickupGuideTitle": "HƯỚNG DẪN LẤY XE",
   "fifoBadge": "FIFO #{number}",
-  "deliveryOrderFifo": "FIFO #{number}",
   "locationFormat": "{area} - {position}",
-  "deliveryOrderTitlePrefix": "DO: {code}",
   "allWithCount": "TẤT CẢ ({count})",
   "preparingWithCount": "ĐANG CHUẨN BỊ ({count})",
   "readyWithCount": "SẴN SÀNG ({count})",
@@ -169,5 +167,8 @@
   "dischargingTimeLabel": "THỜI GIAN",
   "dischargingCompleteAction": "HOÀN THÀNH CẬP NHẬT",
   "deliveryOrderSuggestedVehiclesTab": "HƯỚNG DẪN LẤY XE",
-  "deliveryOrderAssignedVehiclesTab": "DANH SÁCH XE TRONG DO"
+  "deliveryOrderAssignedVehiclesTab": "DANH SÁCH XE TRONG DO",
+  "noData": "Không có dữ liệu",
+  "vehicleAddedSuccess": "Thêm xe thành công",
+  "vehicleAddFailed": "Thêm xe thất bại"
 }

@@ -156,7 +156,7 @@ class _DeliveryOrderRemoteDataSource implements DeliveryOrderRemoteDataSource {
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'size': size,
-      r'serial_number': serialNumber,
+      r'serialNumber': serialNumber,
       r'color': color,
       r'model': model,
       r'isUnassigned': isUnassigned,

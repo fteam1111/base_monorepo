@@ -107,37 +107,55 @@ class DeliveryVinItemCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(AppSpacing.paddingMD),
-          Row(
-            children: [
-              Flexible(
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      size: AppSpacing.iconInline,
-                      color: context.colorScheme.primary,
-                    ),
-                    Expanded(
-                      child: Text(
-                        context.l10n.locationFormat(area, position),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.appTypography.labelSmall.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.colorScheme.onSurface,
+          if (area.isNotEmpty || position.isNotEmpty) ...[
+            const Gap(AppSpacing.paddingMD),
+            Row(
+              children: [
+                Flexible(
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_outlined,
+                        size: AppSpacing.iconInline,
+                        color: context.colorScheme.primary,
+                      ),
+                      Expanded(
+                        child: Text(
+                          context.l10n.locationFormat(area, position),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.appTypography.labelSmall.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: context.colorScheme.onSurface,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(AppSpacing.paddingSM),
-              Text(
+                const Gap(AppSpacing.paddingSM),
+                Text(
+                  context.l10n.warehouse(warehouseDate),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.end,
+                  style: context.appTypography.labelSmall.copyWith(
+                    color: context.colorScheme.onSurfaceVariant.withValues(
+                      alpha: 0.5,
+                    ),
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
+          ] else if (warehouseDate.isNotEmpty) ...[
+            const Gap(AppSpacing.paddingMD),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
                 context.l10n.warehouse(warehouseDate),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.end,
                 style: context.appTypography.labelSmall.copyWith(
                   color: context.colorScheme.onSurfaceVariant.withValues(
                     alpha: 0.5,
@@ -145,8 +163,8 @@ class DeliveryVinItemCard extends StatelessWidget {
                   fontStyle: FontStyle.italic,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ],
       ),
     );
