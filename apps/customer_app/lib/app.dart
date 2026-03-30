@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_storage/local_storage.dart';
 import 'package:localization/localization.dart';
@@ -162,6 +163,7 @@ class _MyAppState extends State<MyApp> {
                 supportedLocales: AppLocale.supportedFlutterLocales,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 routerConfig: _router,
+                builder: EasyLoading.init(),
               );
             },
           );

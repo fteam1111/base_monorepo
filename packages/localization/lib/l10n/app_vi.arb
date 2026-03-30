@@ -18,8 +18,8 @@
   "skip": "Bỏ qua",
   "getStarted": "Bắt đầu",
   "parkingHistoryTitle": "Lịch sử",
-  "vehicleChargingAreaTitle": "KHU SẠC XẢ",
-  "vehicleChargingAreaSubtitle": "QUẢN LÝ BẢO DƯỠNG PIN",
+  "vehicleChargingAreaTitle": "Xe cần bảo dưỡng sạc",
+  "vehicleChargingAreaSubtitle": "Danh sách xe Aging > 30 ngày",
   "vehicleChargingSearchHint": "Tìm theo mã VIN...",
   "vehicleChargingInfoTitle": "THÔNG TIN SẠC XẢ",
   "vehicleChargingInfoSubtitle": "CHI TIẾT PHƯƠNG TIỆN",
@@ -48,7 +48,7 @@
   "vehicleModel": "Dòng xe",
   "vehicleColor": "Màu sắc",
   "batteryCapacity": "Dung lượng pin",
-  "aging": "Aging",
+  "aging": "Ngày",
   "currentLocation": "Vị trí hiện tại",
   "availableActions": "Thao tác khả dụng",
   "moveToExportArea": "Di chuyển sang khu chờ xuất",
@@ -75,6 +75,7 @@
   "factoryMapTitle": "Sơ đồ nhà máy",
   "exportWaitingAreaSubtitle": "Khu chờ xuất",
   "deliveryOrderCodeLabel": "MÃ LỆNH GIAO HÀNG",
+  "deliveryOrderStatusPending": "CHỜ XỬ LÝ",
   "deliveryOrderStatusPreparing": "ĐANG CHUẨN BỊ",
   "deliveryOrderStatusReady": "SẴN SÀNG",
   "deliveryOrderFilterAll": "TẤT CẢ",
@@ -87,9 +88,7 @@
   "deliveryOrderDetailTitle": "DO: {code}",
   "deliveryOrderPickupGuideTitle": "HƯỚNG DẪN LẤY XE",
   "fifoBadge": "FIFO #{number}",
-  "deliveryOrderFifo": "FIFO #{number}",
-  "locationFormat": "Khu {area} - Vị trí {position}",
-  "deliveryOrderTitlePrefix": "DO: {code}",
+  "locationFormat": "{area} - {position}",
   "allWithCount": "TẤT CẢ ({count})",
   "preparingWithCount": "ĐANG CHUẨN BỊ ({count})",
   "readyWithCount": "SẴN SÀNG ({count})",
@@ -131,5 +130,84 @@
   "errorInvalidIntegerValue": "Giá trị số nguyên không hợp lệ",
   "errorInvalidVin": "VIN không hợp lệ",
   "qrScannerTitle": "Quét mã QR xe",
-  "qrScannerHint": "Đưa mã QR vào khung quét"
+  "qrScannerHint": "Đưa mã QR vào khung quét",
+  "vehicleChargingAgingWarning": "Cần xử lý {count} phương tiện có chỉ số aging cao",
+  "@vehicleChargingAgingWarning": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vehicleChargingFetchError": "Không thể tải danh sách xe.",
+  "vehicleChargingEmptyTitle": "TẤT CẢ XE ĐỀU ỔN ĐỊNH",
+  "vehicleChargingEmptySubtitle": "Không tìm thấy xe nào có số ngày trên 30 ngày cần sạc xả.",
+  "vehicleChargingPriority": "ƯU TIÊN #{number}",
+  "@vehicleChargingPriority": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "vehicleChargingMaintenaceActionHint": "NHẤN ĐỂ THAO TÁC BẢO DƯỠNG",
+  "vehicleChargingMaintenanceRequestTitle": "YÊU CẦU BẢO DƯỠNG PIN",
+  "vehicleChargingCurrentAgingLabel": "SỐ NGÀY HIỆN TẠI:",
+  "vehicleChargingMoveToChargeAction": "MANG XE ĐI SẠC",
+  "vehicleChargingNoNeedAction": "KHÔNG CẦN MANG XE",
+  "vehicleChargingLocationLabel": "VỊ TRÍ HIỆN TẠI",
+  "vehicleChargingTimeInAreaLabel": "VÀO KHU TP",
+  "agingDays": "{count} ngày",
+  "back": "Quay lại",
+  "dischargingStatusUpdated": "ĐÃ CẬP NHẬT TRẠNG THÁI",
+  "dischargingVehicleStatus": "TRẠNG THÁI XE:",
+  "dischargingInstruction": "VUI LÒNG MANG XE ĐẾN KHU VỰC SẠC XẢ ĐỂ TIẾP TỤC QUY TRÌNH BẢO DƯỠNG.",
+  "dischargingVinLabel": "MÃ VIN",
+  "dischargingLocationLabel": "VỊ TRÍ BAN ĐẦU",
+  "dischargingTimeLabel": "THỜI GIAN",
+  "dischargingCompleteAction": "HOÀN THÀNH CẬP NHẬT",
+  "deliveryOrderSuggestedVehiclesTab": "HƯỚNG DẪN LẤY XE",
+  "deliveryOrderAssignedVehiclesTab": "DANH SÁCH XE TRONG DO",
+  "noData": "Không có dữ liệu",
+  "vehicleAddedSuccess": "Thêm xe thành công",
+  "vehicleAddFailed": "Thêm xe thất bại",
+
+  "scanConfirmTitle": "XÁC NHẬN CHỌN XE",
+  "scanConfirmMessage": "Xác nhận lấy xe {vin} tại {zone}?",
+  "@scanConfirmMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "zone": {"type": "String"}
+    }
+  },
+  "scanConfirmAction": "XÁC NHẬN & QUÉT MÃ",
+  "scanMatchTitle": "XÁC NHẬN ĐƯA XE VÀO DO",
+  "scanMatchMessage": "Xe {vin} trùng khớp với xe đã chọn. Bạn có muốn đưa xe này vào DO {doCode} không?",
+  "@scanMatchMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanMatchAction": "XÁC NHẬN",
+  "scanCompatibleTitle": "PHÁT HIỆN XE KHÁC",
+  "scanCompatibleMessage": "Bạn vừa scan xe {vin}, không trùng với xe đã chọn. Tuy nhiên xe này phù hợp với DO {doCode}.",
+  "@scanCompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanCompatibleAction": "ĐỒNG Ý - ĐƯA XE VÀO DO",
+  "scanIncompatibleTitle": "XE KHÔNG PHÙ HỢP DO",
+  "scanIncompatibleMessage": "Bạn vừa scan xe {vin}. Xe này không phù hợp (sai model/màu) với DO {doCode}.",
+  "@scanIncompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanBackToList": "OK - QUAY LẠI DANH SÁCH",
+  "cancelBackToList": "HỦY - QUAY LẠI DANH SÁCH",
+  "cancelAction": "HỦY BỎ"
 }

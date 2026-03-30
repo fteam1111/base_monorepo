@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FactoryModelDto {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'name') String get name;@JsonKey(name: 'address') String get address;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'address') String? get address;
 /// Create a copy of FactoryModelDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FactoryModelDtoCopyWith<$Res>  {
   factory $FactoryModelDtoCopyWith(FactoryModelDto value, $Res Function(FactoryModelDto) _then) = _$FactoryModelDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name,@JsonKey(name: 'address') String address
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'address') String? address
 });
 
 
@@ -65,12 +65,12 @@ class _$FactoryModelDtoCopyWithImpl<$Res>
 
 /// Create a copy of FactoryModelDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? address = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? address = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name, @JsonKey(name: 'address')  String address)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'address')  String? address)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FactoryModelDto() when $default != null:
 return $default(_that.id,_that.name,_that.address);case _:
@@ -176,7 +176,7 @@ return $default(_that.id,_that.name,_that.address);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name, @JsonKey(name: 'address')  String address)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'address')  String? address)  $default,) {final _that = this;
 switch (_that) {
 case _FactoryModelDto():
 return $default(_that.id,_that.name,_that.address);case _:
@@ -196,7 +196,7 @@ return $default(_that.id,_that.name,_that.address);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name, @JsonKey(name: 'address')  String address)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'address')  String? address)?  $default,) {final _that = this;
 switch (_that) {
 case _FactoryModelDto() when $default != null:
 return $default(_that.id,_that.name,_that.address);case _:
@@ -211,12 +211,12 @@ return $default(_that.id,_that.name,_that.address);case _:
 @JsonSerializable()
 
 class _FactoryModelDto implements FactoryModelDto {
-  const _FactoryModelDto({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'name') required this.name, @JsonKey(name: 'address') required this.address});
+  const _FactoryModelDto({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'address') this.address});
   factory _FactoryModelDto.fromJson(Map<String, dynamic> json) => _$FactoryModelDtoFromJson(json);
 
-@override@JsonKey(name: 'id') final  int id;
-@override@JsonKey(name: 'name') final  String name;
-@override@JsonKey(name: 'address') final  String address;
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'name') final  String? name;
+@override@JsonKey(name: 'address') final  String? address;
 
 /// Create a copy of FactoryModelDto
 /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +251,7 @@ abstract mixin class _$FactoryModelDtoCopyWith<$Res> implements $FactoryModelDto
   factory _$FactoryModelDtoCopyWith(_FactoryModelDto value, $Res Function(_FactoryModelDto) _then) = __$FactoryModelDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name,@JsonKey(name: 'address') String address
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'address') String? address
 });
 
 
@@ -268,12 +268,12 @@ class __$FactoryModelDtoCopyWithImpl<$Res>
 
 /// Create a copy of FactoryModelDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? address = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? address = freezed,}) {
   return _then(_FactoryModelDto(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

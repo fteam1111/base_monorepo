@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:core/utils/debounce.dart';
 import 'package:core/utils/throttle.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:share/share.dart';
@@ -26,6 +25,7 @@ class ScrollList<T> extends StatefulWidget {
     required this.controller,
     this.itemShimmerLoading,
     this.header,
+    this.footer,
     this.onRefresh,
     this.onLoadingMore,
     this.dismissOnDrag = false,
@@ -51,6 +51,9 @@ class ScrollList<T> extends StatefulWidget {
 
   /// Header sliver tùy chọn nằm phía trên danh sách.
   final Widget? header;
+
+  /// Footer sliver tùy chọn nằm phía dưới cùng danh sách.
+  final Widget? footer;
 
   /// Widget shimmer tùy chỉnh cho từng item khi load lần đầu.
   final Widget? itemShimmerLoading;
@@ -238,6 +241,9 @@ class _ScrollListState<T> extends State<ScrollList<T>> {
             _buildEmptySliver()
           else
             ..._buildDataSlivers(context),
+
+          // Hiển thị Footer nếu có.
+          if (widget.footer != null) SliverToBoxAdapter(child: widget.footer),
         ],
       ),
     );

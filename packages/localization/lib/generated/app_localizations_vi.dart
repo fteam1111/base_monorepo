@@ -63,10 +63,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get parkingHistoryTitle => 'Lịch sử';
 
   @override
-  String get vehicleChargingAreaTitle => 'KHU SẠC XẢ';
+  String get vehicleChargingAreaTitle => 'Xe cần bảo dưỡng sạc';
 
   @override
-  String get vehicleChargingAreaSubtitle => 'QUẢN LÝ BẢO DƯỠNG PIN';
+  String get vehicleChargingAreaSubtitle => 'Danh sách xe Aging > 30 ngày';
 
   @override
   String get vehicleChargingSearchHint => 'Tìm theo mã VIN...';
@@ -159,7 +159,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get batteryCapacity => 'Dung lượng pin';
 
   @override
-  String get aging => 'Aging';
+  String get aging => 'Ngày';
 
   @override
   String get currentLocation => 'Vị trí hiện tại';
@@ -240,6 +240,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Khu chờ xuất';
 
   @override
+  String get deliveryOrderStatusPending => 'CHỜ XỬ LÝ';
+
+  @override
   String get deliveryOrderStatusPreparing => 'ĐANG CHUẨN BỊ';
 
   @override
@@ -286,7 +289,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String locationFormat(Object area, Object position) {
-    return 'Khu $area - Vị trí $position';
+    return '$area - $position';
   }
 
   @override
@@ -394,4 +397,141 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get qrScannerHint => 'Đưa mã QR vào khung quét';
+
+  @override
+  String vehicleChargingAgingWarning(int count) {
+    return 'Cần xử lý $count phương tiện có chỉ số aging cao';
+  }
+
+  @override
+  String get vehicleChargingFetchError => 'Không thể tải danh sách xe.';
+
+  @override
+  String get vehicleChargingEmptyTitle => 'TẤT CẢ XE ĐỀU ỔN ĐỊNH';
+
+  @override
+  String get vehicleChargingEmptySubtitle =>
+      'Không tìm thấy xe nào có số ngày trên 30 ngày cần sạc xả.';
+
+  @override
+  String vehicleChargingPriority(int number) {
+    return 'ƯU TIÊN #$number';
+  }
+
+  @override
+  String get vehicleChargingMaintenaceActionHint =>
+      'NHẤN ĐỂ THAO TÁC BẢO DƯỠNG';
+
+  @override
+  String get vehicleChargingMaintenanceRequestTitle => 'YÊU CẦU BẢO DƯỠNG PIN';
+
+  @override
+  String get vehicleChargingCurrentAgingLabel => 'SỐ NGÀY HIỆN TẠI:';
+
+  @override
+  String get vehicleChargingMoveToChargeAction => 'MANG XE ĐI SẠC';
+
+  @override
+  String get vehicleChargingNoNeedAction => 'KHÔNG CẦN MANG XE';
+
+  @override
+  String get vehicleChargingLocationLabel => 'VỊ TRÍ HIỆN TẠI';
+
+  @override
+  String get vehicleChargingTimeInAreaLabel => 'VÀO KHU TP';
+
+  @override
+  String agingDays(Object count) {
+    return '$count ngày';
+  }
+
+  @override
+  String get back => 'Quay lại';
+
+  @override
+  String get dischargingStatusUpdated => 'ĐÃ CẬP NHẬT TRẠNG THÁI';
+
+  @override
+  String get dischargingVehicleStatus => 'TRẠNG THÁI XE:';
+
+  @override
+  String get dischargingInstruction =>
+      'VUI LÒNG MANG XE ĐẾN KHU VỰC SẠC XẢ ĐỂ TIẾP TỤC QUY TRÌNH BẢO DƯỠNG.';
+
+  @override
+  String get dischargingVinLabel => 'MÃ VIN';
+
+  @override
+  String get dischargingLocationLabel => 'VỊ TRÍ BAN ĐẦU';
+
+  @override
+  String get dischargingTimeLabel => 'THỜI GIAN';
+
+  @override
+  String get dischargingCompleteAction => 'HOÀN THÀNH CẬP NHẬT';
+
+  @override
+  String get deliveryOrderSuggestedVehiclesTab => 'HƯỚNG DẪN LẤY XE';
+
+  @override
+  String get deliveryOrderAssignedVehiclesTab => 'DANH SÁCH XE TRONG DO';
+
+  @override
+  String get noData => 'Không có dữ liệu';
+
+  @override
+  String get vehicleAddedSuccess => 'Thêm xe thành công';
+
+  @override
+  String get vehicleAddFailed => 'Thêm xe thất bại';
+
+  @override
+  String get scanConfirmTitle => 'XÁC NHẬN CHỌN XE';
+
+  @override
+  String scanConfirmMessage(String vin, String zone) {
+    return 'Xác nhận lấy xe $vin tại $zone?';
+  }
+
+  @override
+  String get scanConfirmAction => 'XÁC NHẬN & QUÉT MÃ';
+
+  @override
+  String get scanMatchTitle => 'XÁC NHẬN ĐƯA XE VÀO DO';
+
+  @override
+  String scanMatchMessage(String vin, String doCode) {
+    return 'Xe $vin trùng khớp với xe đã chọn. Bạn có muốn đưa xe này vào DO $doCode không?';
+  }
+
+  @override
+  String get scanMatchAction => 'XÁC NHẬN';
+
+  @override
+  String get scanCompatibleTitle => 'PHÁT HIỆN XE KHÁC';
+
+  @override
+  String scanCompatibleMessage(String vin, String doCode) {
+    return 'Bạn vừa scan xe $vin, không trùng với xe đã chọn. Tuy nhiên xe này phù hợp với DO $doCode.';
+  }
+
+  @override
+  String get scanCompatibleAction => 'ĐỒNG Ý - ĐƯA XE VÀO DO';
+
+  @override
+  String get scanIncompatibleTitle => 'XE KHÔNG PHÙ HỢP DO';
+
+  @override
+  String scanIncompatibleMessage(String vin, String doCode) {
+    return 'Bạn vừa scan xe $vin. Xe này không phù hợp (sai model/màu) với DO $doCode.';
+  }
+
+  @override
+  String get scanBackToList => 'OK - QUAY LẠI DANH SÁCH';
+
+  @override
+  String get cancelBackToList => 'HỦY - QUAY LẠI DANH SÁCH';
+
+  @override
+  String get cancelAction => 'HỦY BỎ';
 }

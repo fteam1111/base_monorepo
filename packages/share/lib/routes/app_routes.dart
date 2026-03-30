@@ -24,6 +24,7 @@ class AppRoutes {
   static const String chooseParkingLocation = 'choose-parking-location';
   static const String factoryMap = 'factory-map';
   static const String vehicleCharging = 'vehicle-charging';
+  static const String dischargingResult = 'discharging-result';
   static const String qrScanner = 'qr_scanner';
 
   // Auth Routes
@@ -45,6 +46,7 @@ class AppRoutes {
   static const String factoryMapPath = '/factory-map';
   static const String loginPath = '/login';
   static const String vehicleChargingPath = '/vehicle-charging';
+  static const String dischargingResultPath = 'discharging-result';
   static const String doListPath = '/do-list';
   static const String doDetailPath = '/do-detail';
   static const String qrScannerPath = '/qr_scanner';
@@ -94,8 +96,11 @@ class AppRoutes {
     context.push(doListPath);
   }
 
-  static void navigateToDeliveryOrderDetail(BuildContext context) {
-    context.push(doDetailPath);
+  static Future<T?> navigateToDeliveryOrderDetail<T>(
+    BuildContext context, {
+    required Object deliveryOrder,
+  }) {
+    return context.push<T>(doDetailPath, extra: deliveryOrder);
   }
 
   static void navigateToFactoryMap(BuildContext context) {
@@ -104,6 +109,13 @@ class AppRoutes {
 
   static void navigateToQrScanner(BuildContext context) {
     context.push(qrScannerPath);
+  }
+
+  static void navigateToDischargingResult(
+    BuildContext context, {
+    required Object extra,
+  }) {
+    context.push('$vehicleChargingPath/$dischargingResultPath', extra: extra);
   }
 
   /// Navigate back

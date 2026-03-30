@@ -1,12 +1,20 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
+import 'package:features_delivery_order/domain/entities/delivery_order_entity.dart';
+import 'package:features_delivery_order/domain/entities/delivery_order_status.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_bloc.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_event.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/bloc/delivery_detail_state.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_detail_header_card.dart';
-import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_filter_section.dart';
-import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_vin_item_card.dart';
-import 'package:features_delivery_order/features_delivery_list/presentation/widgets/delivery_order_card.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_in_do_vehicle_section.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_suggested_vehicle_section.dart';
+import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/vehicle_scan_result_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:share/share.dart';
 
+/// Page displaying delivery order detail and its vehicles.
 class DeliveryDetailPage extends StatefulWidget {
   const DeliveryDetailPage({super.key});
 
@@ -14,191 +22,349 @@ class DeliveryDetailPage extends StatefulWidget {
   State<DeliveryDetailPage> createState() => _DeliveryDetailPageState();
 }
 
-class _DeliveryDetailPageState extends State<DeliveryDetailPage> {
-  final double _spacingBottomList = 20;
+class _DeliveryDetailPageState extends State<DeliveryDetailPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        context.read<DeliveryDetailBloc>().add(
+          DeliveryDetailTabChanged(_tabController.index),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final vinItems = <Map<String, dynamic>>[
-      {
-        'vinCode': 'VIN001234567890AA01',
-        'modelName': 'Klara S2',
-        'colorName': 'Blue',
-        'area': 'A1',
-        'position': '10',
-        'fifoNumber': 1,
-        'warehouseDate': '02/01/2026',
-        'colorValue': Colors.blue,
-      },
-      {
-        'vinCode': 'VIN001234567890AA02',
-        'modelName': 'Klara S2',
-        'colorName': 'Blue',
-        'area': 'A1',
-        'position': '11',
-        'fifoNumber': 2,
-        'warehouseDate': '02/01/2026',
-        'colorValue': Colors.blue,
-      },
-      {
-        'vinCode': 'VIN001234567890AA03',
-        'modelName': 'Klara S2',
-        'colorName': 'Red',
-        'area': 'A1',
-        'position': '05',
-        'fifoNumber': 3,
-        'warehouseDate': '03/01/2026',
-        'colorValue': Colors.red,
-      },
-      {
-        'vinCode': 'VIN001234567890AA04',
-        'modelName': 'Vento S',
-        'colorName': 'Blue',
-        'area': 'B1',
-        'position': '06',
-        'fifoNumber': 4,
-        'warehouseDate': '03/01/2026',
-        'colorValue': Colors.blue,
-      },
-      {
-        'vinCode': 'VIN009876543210BB01',
-        'modelName': 'Vento S',
-        'colorName': 'White',
-        'area': 'B1',
-        'position': '01',
-        'fifoNumber': 5,
-        'warehouseDate': '04/01/2026',
-        'colorValue': Colors.white,
-      },
-      {
-        'vinCode': 'VIN009876543210BB02',
-        'modelName': 'Feliz S',
-        'colorName': 'Red',
-        'area': 'C1',
-        'position': '02',
-        'fifoNumber': 6,
-        'warehouseDate': '04/01/2026',
-        'colorValue': Colors.red,
-      },
-    ];
-
-    final vinWidgets = vinItems.map((item) {
-      return DeliveryVinItemCard(
-        vinCode: item['vinCode'] as String,
-        modelName: item['modelName'] as String,
-        colorName: item['colorName'] as String,
-        area: item['area'] as String,
-        position: item['position'] as String,
-        fifoNumber: item['fifoNumber'] as int,
-        warehouseDate: item['warehouseDate'] as String,
-        colorValue: item['colorValue'] as Color,
-      );
-    }).toList();
-
-    return Scaffold(
-      appBar: CustomAppBar(
-        titleWidget: Text(
-          context.l10n.deliveryOrderDetailTitle('DO-2024-001'),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: context.appTypography.titleMedium.copyWith(
-            fontWeight: FontWeight.bold,
-            color: context.colorScheme.onSurface,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: AppSpacing.paddingMD),
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.paddingSM,
-                  vertical: AppSpacing.paddingXXXS,
-                ),
-                decoration: BoxDecoration(
-                  color: context.colorScheme.primary.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(AppRadius.sm),
-                ),
-                child: Text(
-                  DeliveryOrderStatus.preparing.label(context),
-                  style: context.appTypography.labelSmall.copyWith(
-                    color: context.colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
+    return MultiBlocListener(
+      listeners: [
+        // Listener for add-vehicle success/failure snackbar and global loading
+        BlocListener<DeliveryDetailBloc, DeliveryDetailState>(
+          listenWhen: (previous, current) =>
+              previous.addVehicleStatus != current.addVehicleStatus,
+          listener: (context, state) {
+            if (state.addVehicleStatus == AddVehicleStatus.loading) {
+              GlobalLoading.showLoadingDialog(status: context.l10n.loading);
+            } else if (state.addVehicleStatus == AddVehicleStatus.success) {
+              GlobalLoading.dismiss();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.l10n.vehicleAddedSuccess)),
+              );
+            } else if (state.addVehicleStatus == AddVehicleStatus.failure) {
+              GlobalLoading.dismiss();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.addVehicleFailure?.nonTranslatedFailureMessage ??
+                        context.l10n.vehicleAddFailed,
                   ),
+                  backgroundColor: context.colorScheme.error,
+                ),
+              );
+            }
+          },
+        ),
+        // Listener for scan verification result dialogs
+        BlocListener<DeliveryDetailBloc, DeliveryDetailState>(
+          listenWhen: (previous, current) =>
+              previous.scanVerificationStatus != current.scanVerificationStatus,
+          listener: _onScanVerificationChanged,
+        ),
+      ],
+      child: BlocBuilder<DeliveryDetailBloc, DeliveryDetailState>(
+        builder: (context, state) {
+          final doEntity = state.deliveryOrder;
+          final status = doEntity != null
+              ? DeliveryOrderStatus.fromString(doEntity.status)
+              : DeliveryOrderStatus.pending;
+          final doCode = doEntity?.doCode ?? '';
+
+          return Scaffold(
+            appBar: CustomAppBar(
+              titleWidget: Text(
+                context.l10n.deliveryOrderDetailTitle(doCode),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.appTypography.titleMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: context.colorScheme.onSurface,
                 ),
               ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: AppSpacing.paddingMD),
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.paddingSM,
+                        vertical: AppSpacing.paddingXXXS,
+                      ),
+                      decoration: BoxDecoration(
+                        color: status.backgroundLabel(context),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
+                      ),
+                      child: Text(
+                        status.label(context),
+                        style: context.appTypography.labelSmall.copyWith(
+                          color: status.labelColor(context),
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
+            body: _DeliveryDetailBody(
+              state: state,
+              tabController: _tabController,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _onScanVerificationChanged(
+    BuildContext context,
+    DeliveryDetailState state,
+  ) {
+    final status = state.scanVerificationStatus;
+    final scannedVehicle = state.scannedVehicle;
+    final doCode = state.deliveryOrder?.doCode ?? '';
+
+    switch (status) {
+      case ScanVerificationStatus.exactMatch:
+      case ScanVerificationStatus.compatibleMatch:
+      case ScanVerificationStatus.incompatible:
+        VehicleScanResultDialog.show(
+          context,
+          matchType: status,
+          scannedVin: scannedVehicle?.serialNumber ?? '',
+          doCode: doCode,
+          onConfirmAdd: () {
+            if (scannedVehicle != null) {
+              context.read<DeliveryDetailBloc>().add(
+                DeliveryDetailAddVehicleRequested(vehicleId: scannedVehicle.id),
+              );
+            }
+            context.read<DeliveryDetailBloc>().add(
+              const DeliveryDetailScanReset(),
+            );
+          },
+          onDismiss: () {
+            context.read<DeliveryDetailBloc>().add(
+              const DeliveryDetailScanReset(),
+            );
+          },
+        );
+      case ScanVerificationStatus.failure:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              state.scanFailure?.nonTranslatedFailureMessage ??
+                  context.l10n.error,
+            ),
+            backgroundColor: context.colorScheme.error,
+          ),
+        );
+        context.read<DeliveryDetailBloc>().add(const DeliveryDetailScanReset());
+      case ScanVerificationStatus.initial:
+      case ScanVerificationStatus.loading:
+        break;
+    }
+  }
+}
+
+/// Main body content for the delivery detail page.
+class _DeliveryDetailBody extends StatelessWidget {
+  const _DeliveryDetailBody({required this.state, required this.tabController});
+
+  final DeliveryDetailState state;
+  final TabController tabController;
+
+  @override
+  Widget build(BuildContext context) {
+    if (state.status == DeliveryDetailStatus.loading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (state.status == DeliveryDetailStatus.failure) {
+      return _DeliveryDetailErrorView(state: state);
+    }
+
+    final doEntity = state.deliveryOrder;
+
+    return Column(
+      children: [
+        if (doEntity != null) _DeliveryDetailHeaderSection(doEntity: doEntity),
+        _DeliveryDetailTabBar(tabController: tabController),
+        Expanded(
+          child: TabBarView(
+            controller: tabController,
+            children: const [
+              DeliverySuggestedVehicleSection(),
+              DeliveryInDoVehicleSection(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Error view with retry button.
+class _DeliveryDetailErrorView extends StatelessWidget {
+  const _DeliveryDetailErrorView({required this.state});
+
+  final DeliveryDetailState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            state.failure?.nonTranslatedFailureMessage ?? context.l10n.error,
+          ),
+          const Gap(AppSpacing.paddingSM),
+          ElevatedButton(
+            onPressed: () {
+              final doEntity = state.deliveryOrder;
+              if (doEntity != null) {
+                context.read<DeliveryDetailBloc>().add(
+                  DeliveryDetailStarted(deliveryOrder: doEntity),
+                );
+              }
+            },
+            child: Text(context.l10n.retry),
           ),
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
-            sliver: SliverToBoxAdapter(
-              child: Column(
+    );
+  }
+}
+
+/// Header card showing DO summary info.
+class _DeliveryDetailHeaderSection extends StatelessWidget {
+  const _DeliveryDetailHeaderSection({required this.doEntity});
+
+  final DeliveryOrderEntity doEntity;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
+      child: DeliveryDetailHeaderCard(
+        customerName: doEntity.storeName,
+        modelName: doEntity.items.isNotEmpty
+            ? doEntity.items.first.vehicleModel
+            : null,
+        // colorCode: doEntity.items.isNotEmpty
+        //     ? doEntity.items.first.color
+        //     : null,
+        colorName: doEntity.items.isNotEmpty
+            ? doEntity.items.first.color
+            : null,
+        currentProgress: doEntity.fulfilledQuantity,
+        totalQuantity: doEntity.totalQuantity,
+      ),
+    );
+  }
+}
+
+/// Pill-shaped tab bar for switching between vehicle lists.
+class _DeliveryDetailTabBar extends StatelessWidget {
+  const _DeliveryDetailTabBar({required this.tabController});
+
+  final TabController tabController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: context.appSpacing.pageHorizontal,
+      ),
+      child: Container(
+        height: 48,
+        decoration: BoxDecoration(
+          color: context.colorScheme.onSurfaceVariant.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(AppRadius.button),
+        ),
+        child: TabBar(
+          controller: tabController,
+          dividerColor: Colors.transparent,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicatorPadding: const EdgeInsets.all(4),
+          indicator: BoxDecoration(
+            color: context.colorScheme.surface,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 4,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          labelColor: context.colorScheme.primary,
+          unselectedLabelColor: context.colorScheme.onSurfaceVariant,
+          labelStyle: context.appTypography.labelLarge.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          unselectedLabelStyle: context.appTypography.labelLarge.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          tabs: [
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const DeliveryDetailHeaderCard(
-                    customerName: 'Công ty TNHH ABC',
-                    modelName: 'Klara S2',
-                    colorCode: 'B02',
-                    colorName: 'Blue',
-                    currentProgress: 0,
-                    totalQuantity: 50,
-                  ),
-                  Gap(context.appSpacing.cardPadding),
-                  const DeliveryFilterSection(),
-                  Gap(context.appSpacing.cardPadding),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.layers_outlined,
-                            color: context.colorScheme.onSurface,
-                          ),
-                          const Gap(AppSpacing.paddingXXXS),
-                          Text(
-                            context.l10n.deliveryOrderPickupGuideTitle,
-                            style: context.appTypography.titleMedium.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                              color: context.colorScheme.onSurface,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        context.l10n.resultsCount(vinItems.length),
-                        style: context.appTypography.labelSmall.copyWith(
-                          color: context.colorScheme.onSurfaceVariant
-                              .withValues(alpha: 0.5),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  const Icon(Icons.dashboard_customize_outlined, size: 20),
+                  const Gap(4),
+                  Expanded(
+                    child: Text(
+                      context.l10n.deliveryOrderSuggestedVehiclesTab,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.fromLTRB(
-              AppSpacing.medium,
-              AppSpacing.none,
-              AppSpacing.medium,
-              _spacingBottomList,
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.checklist, size: 20),
+                  const Gap(4),
+                  Expanded(
+                    child: Text(
+                      context.l10n.deliveryOrderAssignedVehiclesTab,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            sliver: SliverList.separated(
-              itemCount: vinWidgets.length,
-              separatorBuilder: (context, index) =>
-                  const Gap(AppSpacing.paddingSM),
-              itemBuilder: (context, index) => vinWidgets[index],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

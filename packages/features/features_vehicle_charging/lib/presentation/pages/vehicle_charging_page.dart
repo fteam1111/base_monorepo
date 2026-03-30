@@ -1,8 +1,14 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_vehicle_charging/domain/entities/vehicle_charging_entity.dart';
+import 'package:features_vehicle_charging/presentation/bloc/vehicle_charging_bloc.dart';
+import 'package:features_vehicle_charging/presentation/bloc/vehicle_charging_event.dart';
+import 'package:features_vehicle_charging/presentation/bloc/vehicle_charging_state.dart';
 import 'package:features_vehicle_charging/presentation/widgets/charging_info_dialog.dart';
 import 'package:features_vehicle_charging/presentation/widgets/vehicle_charging_list.dart';
 import 'package:features_vehicle_charging/presentation/widgets/vehicle_charging_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:share/extensions/context_ext.dart';
 
 class VehicleChargingPage extends StatefulWidget {
@@ -16,66 +22,102 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
   final _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
   void dispose() {
-    _searchController.dispose();
+    _searchController
+      ..removeListener(_onSearchChanged)
+      ..dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final items = <VehicleChargingItemModel>[
-      const VehicleChargingItemModel(
-        vin: 'VIN-FLZ-1102',
-        model: 'FELIZ S',
-        station: 'Trạm 01',
-        timeIn: '08:30 - 15/05/2024',
-        statusText: 'ĐANG SẠC',
-        isCharging: true,
-        checkAgingDate: '2025-12-01',
-      ),
-      const VehicleChargingItemModel(
-        vin: 'VIN-VNT-9901',
-        model: 'VENTO S',
-        station: 'Trạm 02',
-        timeIn: '10:15 - 15/05/2024',
-        statusText: 'ĐANG SẠC',
-        isCharging: true,
-        checkAgingDate: '2025-12-01',
-      ),
-      const VehicleChargingItemModel(
-        vin: 'VIN-KLR-8821',
-        model: 'KLARA S2',
-        station: 'Trạm 03',
-        timeIn: '13:45 - 15/05/2024',
-        statusText: 'ĐANG SẠC',
-        isCharging: true,
-        checkAgingDate: '2025-12-01',
-      ),
-    ];
-
     return Scaffold(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: context.colorScheme.surface,
       appBar: CustomAppBar(
         title: context.l10n.vehicleChargingAreaTitle,
         subtitle: context.l10n.vehicleChargingAreaSubtitle,
       ),
-      body: Column(
-        children: [
-          VehicleChargingSearchBar(controller: _searchController),
-          Expanded(
-            child: VehicleChargingList(
-              items: items,
+      body: BlocBuilder<VehicleChargingBloc, VehicleChargingState>(
+        builder: (context, state) {
+          final query = _searchController.text.trim().toLowerCase();
+
+          final filteredVehicles = query.isEmpty
+              ? state.vehicles
+              : state.vehicles
+                    .where((v) => v.vin.toLowerCase().contains(query))
+                    .toList();
+          final filteredCount = filteredVehicles.length;
+
+          final isInitialLoading =
+              state.status == VehicleChargingStatus.loading &&
+              state.vehicles.isEmpty;
+          final isLoadingMore =
+              state.status == VehicleChargingStatus.loading &&
+              state.vehicles.isNotEmpty;
+
+          Widget content;
+          if (state.status == VehicleChargingStatus.initial ||
+              isInitialLoading) {
+            content = Padding(
+              padding: EdgeInsets.all(context.appSpacing.pageHorizontal),
+              child: LoadingShimmer.circular(),
+            );
+          } else if (state.status == VehicleChargingStatus.failure &&
+              state.vehicles.isEmpty) {
+            content = Center(
+              child: Text(
+                context.l10n.vehicleChargingFetchError,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: context.colorScheme.error,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            );
+          } else if (filteredVehicles.isEmpty) {
+            content = const _VehicleChargingEmptyView();
+          } else {
+            content = VehicleChargingList(
+              items: filteredVehicles,
+              isLoading: isLoadingMore,
               onTapInfo: (item) => _showChargingInfoDialog(context, item),
-            ),
-          ),
-        ],
+              onRefresh: () async {
+                final bloc = context.read<VehicleChargingBloc>();
+                bloc.add(const VehicleChargingRefreshRequested());
+
+                // Wait until status is no longer loading
+                await bloc.stream.firstWhere(
+                  (s) => s.status != VehicleChargingStatus.loading,
+                );
+              },
+              onLoadMore: () {
+                context.read<VehicleChargingBloc>().add(
+                  const VehicleChargingLoadMoreRequested(),
+                );
+              },
+            );
+          }
+
+          return Column(
+            children: [
+              _VehicleChargingWarningBanner(totalNeedHandle: filteredCount),
+              VehicleChargingSearchBar(controller: _searchController),
+              Expanded(child: content),
+            ],
+          );
+        },
       ),
     );
   }
 
   Future<void> _showChargingInfoDialog(
     BuildContext context,
-    VehicleChargingItemModel item,
+    VehicleChargingEntity item,
   ) async {
     return showDialog<void>(
       context: context,
@@ -84,24 +126,84 @@ class _VehicleChargingPageState extends State<VehicleChargingPage> {
       },
     );
   }
+
+  void _onSearchChanged() {
+    setState(() {});
+  }
 }
 
-class VehicleChargingItemModel {
-  const VehicleChargingItemModel({
-    required this.vin,
-    required this.model,
-    required this.station,
-    required this.timeIn,
-    required this.statusText,
-    required this.isCharging,
-    required this.checkAgingDate,
-  });
+class _VehicleChargingWarningBanner extends StatelessWidget {
+  const _VehicleChargingWarningBanner({required this.totalNeedHandle});
 
-  final String vin;
-  final String model;
-  final String station;
-  final String timeIn;
-  final String statusText;
-  final bool isCharging;
-  final String checkAgingDate;
+  final int totalNeedHandle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.medium,
+        vertical: AppSpacing.small,
+      ),
+      color: context.appColors.warningContainer,
+      child: Row(
+        children: [
+          Icon(Icons.warning_amber_rounded, color: context.appColors.warning),
+          const Gap(AppSpacing.small),
+          Expanded(
+            child: Text(
+              context.l10n.vehicleChargingAgingWarning(totalNeedHandle),
+              style: context.textTheme.bodySmall?.copyWith(
+                color: context.appColors.warning,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VehicleChargingEmptyView extends StatelessWidget {
+  const _VehicleChargingEmptyView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 96,
+          height: 96,
+          decoration: BoxDecoration(
+            color: context.colorScheme.surfaceContainerHighest,
+            borderRadius: BorderRadius.circular(AppRadius.xxl),
+          ),
+          child: const Icon(Icons.bolt_outlined, size: 40),
+        ),
+        const Gap(AppSpacing.sectionSpacing),
+        Text(
+          context.l10n.vehicleChargingEmptyTitle,
+          style: context.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const Gap(AppSpacing.small),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.appSpacing.pageHorizontal * 2,
+          ),
+          child: Text(
+            context.l10n.vehicleChargingEmptySubtitle,
+            style: context.textTheme.bodySmall?.copyWith(
+              color: context.colorScheme.tertiary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
 }

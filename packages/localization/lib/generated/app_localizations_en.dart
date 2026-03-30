@@ -63,10 +63,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get parkingHistoryTitle => 'History';
 
   @override
-  String get vehicleChargingAreaTitle => 'CHARGING AREA';
+  String get vehicleChargingAreaTitle => 'Pending Charging Maintenance';
 
   @override
-  String get vehicleChargingAreaSubtitle => 'BATTERY MAINTENANCE MANAGEMENT';
+  String get vehicleChargingAreaSubtitle =>
+      'Vehicles pending for more than 30 days';
 
   @override
   String get vehicleChargingSearchHint => 'Search by VIN...';
@@ -240,6 +241,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportWaitingAreaSubtitle => 'Export waiting area';
 
   @override
+  String get deliveryOrderStatusPending => 'PENDING';
+
+  @override
   String get deliveryOrderStatusPreparing => 'PREPARING';
 
   @override
@@ -286,7 +290,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String locationFormat(Object area, Object position) {
-    return 'Area $area - Position $position';
+    return '$area - $position';
   }
 
   @override
@@ -394,4 +398,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qrScannerHint => 'Place the QR code inside the frame';
+
+  @override
+  String vehicleChargingAgingWarning(int count) {
+    return 'There are $count vehicles with a high aging index that need to be processed';
+  }
+
+  @override
+  String get vehicleChargingFetchError => 'Unable to load vehicle list.';
+
+  @override
+  String get vehicleChargingEmptyTitle => 'ALL VEHICLES ARE STABLE';
+
+  @override
+  String get vehicleChargingEmptySubtitle =>
+      'No vehicles found with Aging index over 30 days requiring charging.';
+
+  @override
+  String vehicleChargingPriority(int number) {
+    return 'PRIORITY #$number';
+  }
+
+  @override
+  String get vehicleChargingMaintenaceActionHint =>
+      'TAP TO PERFORM MAINTENANCE';
+
+  @override
+  String get vehicleChargingMaintenanceRequestTitle =>
+      'BATTERY MAINTENANCE REQUEST';
+
+  @override
+  String get vehicleChargingCurrentAgingLabel => 'CURRENT AGING:';
+
+  @override
+  String get vehicleChargingMoveToChargeAction => 'TAKE VEHICLE TO CHARGE';
+
+  @override
+  String get vehicleChargingNoNeedAction => 'NO CHARGE NEEDED';
+
+  @override
+  String get vehicleChargingLocationLabel => 'CURRENT LOCATION';
+
+  @override
+  String get vehicleChargingTimeInAreaLabel => 'ENTER AREA';
+
+  @override
+  String agingDays(Object count) {
+    return '$count days';
+  }
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get dischargingStatusUpdated => 'STATUS UPDATED';
+
+  @override
+  String get dischargingVehicleStatus => 'VEHICLE STATUS:';
+
+  @override
+  String get dischargingInstruction =>
+      'PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.';
+
+  @override
+  String get dischargingVinLabel => 'VIN CODE';
+
+  @override
+  String get dischargingLocationLabel => 'ORIGINAL LOCATION';
+
+  @override
+  String get dischargingTimeLabel => 'TIME';
+
+  @override
+  String get dischargingCompleteAction => 'COMPLETE UPDATE';
+
+  @override
+  String get deliveryOrderSuggestedVehiclesTab => 'PICKUP GUIDE';
+
+  @override
+  String get deliveryOrderAssignedVehiclesTab => 'VEHICLES IN DO';
+
+  @override
+  String get noData => 'No data available';
+
+  @override
+  String get vehicleAddedSuccess => 'Vehicle added successfully';
+
+  @override
+  String get vehicleAddFailed => 'Failed to add vehicle';
+
+  @override
+  String get scanConfirmTitle => 'CONFIRM VEHICLE';
+
+  @override
+  String scanConfirmMessage(String vin, String zone) {
+    return 'Confirm pickup vehicle $vin at $zone?';
+  }
+
+  @override
+  String get scanConfirmAction => 'CONFIRM & SCAN';
+
+  @override
+  String get scanMatchTitle => 'CONFIRM ADD TO DO';
+
+  @override
+  String scanMatchMessage(String vin, String doCode) {
+    return 'Vehicle $vin matches the selected vehicle. Add to DO $doCode?';
+  }
+
+  @override
+  String get scanMatchAction => 'CONFIRM';
+
+  @override
+  String get scanCompatibleTitle => 'DIFFERENT VEHICLE';
+
+  @override
+  String scanCompatibleMessage(String vin, String doCode) {
+    return 'Scanned vehicle $vin differs from selected but is compatible with DO $doCode.';
+  }
+
+  @override
+  String get scanCompatibleAction => 'AGREE - ADD TO DO';
+
+  @override
+  String get scanIncompatibleTitle => 'NOT COMPATIBLE';
+
+  @override
+  String scanIncompatibleMessage(String vin, String doCode) {
+    return 'Scanned vehicle $vin is not compatible (wrong model/color) with DO $doCode.';
+  }
+
+  @override
+  String get scanBackToList => 'OK - BACK TO LIST';
+
+  @override
+  String get cancelBackToList => 'CANCEL - BACK TO LIST';
+
+  @override
+  String get cancelAction => 'CANCEL';
 }

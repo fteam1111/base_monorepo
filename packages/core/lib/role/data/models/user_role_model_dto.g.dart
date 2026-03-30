@@ -8,8 +8,8 @@ part of 'user_role_model_dto.dart';
 
 _UserRoleModelDto _$UserRoleModelDtoFromJson(Map<String, dynamic> json) =>
     _UserRoleModelDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$UserRoleModelDtoToJson(_UserRoleModelDto instance) =>

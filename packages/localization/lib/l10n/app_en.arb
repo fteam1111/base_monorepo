@@ -18,8 +18,8 @@
   "skip": "Skip",
   "getStarted": "Get started",
   "parkingHistoryTitle": "History",
-  "vehicleChargingAreaTitle": "CHARGING AREA",
-  "vehicleChargingAreaSubtitle": "BATTERY MAINTENANCE MANAGEMENT",
+  "vehicleChargingAreaTitle": "Pending Charging Maintenance",
+  "vehicleChargingAreaSubtitle": "Vehicles pending for more than 30 days",
   "vehicleChargingSearchHint": "Search by VIN...",
   "vehicleChargingInfoTitle": "CHARGING INFO",
   "vehicleChargingInfoSubtitle": "VEHICLE DETAILS",
@@ -74,6 +74,7 @@
   "confirmParkingSelection": "Confirm parking slot reservation",
   "factoryMapTitle": "Factory map",
   "exportWaitingAreaSubtitle": "Export waiting area",
+  "deliveryOrderStatusPending": "PENDING",
   "deliveryOrderStatusPreparing": "PREPARING",
   "deliveryOrderStatusReady": "READY",
   "all": "ALL",
@@ -87,7 +88,7 @@
   "deliveryOrderColorLabel": "COLOR",
   "deliveryOrderQuantityLabel": "QUANTITY",
   "deliveryOrderQuantityUnit": "UNITS",
-  "locationFormat": "Area {area} - Position {position}",
+  "locationFormat": "{area} - {position}",
   "deliveryOrderDeadlineLabel": "DEADLINE",
   "deliveryOrderCompletionProgressLabel": "COMPLETION PROGRESS",
   "deliveryOrderDetailTitle": "DO: {code}",
@@ -131,5 +132,84 @@
   "errorInvalidIntegerValue": "Giá trị số nguyên không hợp lệ",
   "errorInvalidVin": "VIN không hợp lệ",
   "qrScannerTitle": "Scan vehicle QR code",
-  "qrScannerHint": "Place the QR code inside the frame"
+  "qrScannerHint": "Place the QR code inside the frame",
+  "vehicleChargingAgingWarning": "There are {count} vehicles with a high aging index that need to be processed",
+  "@vehicleChargingAgingWarning": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vehicleChargingFetchError": "Unable to load vehicle list.",
+  "vehicleChargingEmptyTitle": "ALL VEHICLES ARE STABLE",
+  "vehicleChargingEmptySubtitle": "No vehicles found with Aging index over 30 days requiring charging.",
+  "vehicleChargingPriority": "PRIORITY #{number}",
+  "@vehicleChargingPriority": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "vehicleChargingMaintenaceActionHint": "TAP TO PERFORM MAINTENANCE",
+  "vehicleChargingMaintenanceRequestTitle": "BATTERY MAINTENANCE REQUEST",
+  "vehicleChargingCurrentAgingLabel": "CURRENT AGING:",
+  "vehicleChargingMoveToChargeAction": "TAKE VEHICLE TO CHARGE",
+  "vehicleChargingNoNeedAction": "NO CHARGE NEEDED",
+  "vehicleChargingLocationLabel": "CURRENT LOCATION",
+  "vehicleChargingTimeInAreaLabel": "ENTER AREA",
+  "agingDays": "{count} days",
+  "back": "Back",
+  "dischargingStatusUpdated": "STATUS UPDATED",
+  "dischargingVehicleStatus": "VEHICLE STATUS:",
+  "dischargingInstruction": "PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.",
+  "dischargingVinLabel": "VIN CODE",
+  "dischargingLocationLabel": "ORIGINAL LOCATION",
+  "dischargingTimeLabel": "TIME",
+  "dischargingCompleteAction": "COMPLETE UPDATE",
+  "deliveryOrderSuggestedVehiclesTab": "PICKUP GUIDE",
+  "deliveryOrderAssignedVehiclesTab": "VEHICLES IN DO",
+  "noData": "No data available",
+  "vehicleAddedSuccess": "Vehicle added successfully",
+  "vehicleAddFailed": "Failed to add vehicle",
+
+  "scanConfirmTitle": "CONFIRM VEHICLE",
+  "scanConfirmMessage": "Confirm pickup vehicle {vin} at {zone}?",
+  "@scanConfirmMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "zone": {"type": "String"}
+    }
+  },
+  "scanConfirmAction": "CONFIRM & SCAN",
+  "scanMatchTitle": "CONFIRM ADD TO DO",
+  "scanMatchMessage": "Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?",
+  "@scanMatchMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanMatchAction": "CONFIRM",
+  "scanCompatibleTitle": "DIFFERENT VEHICLE",
+  "scanCompatibleMessage": "Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.",
+  "@scanCompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanCompatibleAction": "AGREE - ADD TO DO",
+  "scanIncompatibleTitle": "NOT COMPATIBLE",
+  "scanIncompatibleMessage": "Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.",
+  "@scanIncompatibleMessage": {
+    "placeholders": {
+      "vin": {"type": "String"},
+      "doCode": {"type": "String"}
+    }
+  },
+  "scanBackToList": "OK - BACK TO LIST",
+  "cancelBackToList": "CANCEL - BACK TO LIST",
+  "cancelAction": "CANCEL"
 }

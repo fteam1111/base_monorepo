@@ -209,13 +209,13 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleChargingAreaTitle.
   ///
   /// In en, this message translates to:
-  /// **'CHARGING AREA'**
+  /// **'Pending Charging Maintenance'**
   String get vehicleChargingAreaTitle;
 
   /// No description provided for @vehicleChargingAreaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'BATTERY MAINTENANCE MANAGEMENT'**
+  /// **'Vehicles pending for more than 30 days'**
   String get vehicleChargingAreaSubtitle;
 
   /// No description provided for @vehicleChargingSearchHint.
@@ -542,6 +542,12 @@ abstract class AppLocalizations {
   /// **'Export waiting area'**
   String get exportWaitingAreaSubtitle;
 
+  /// No description provided for @deliveryOrderStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'PENDING'**
+  String get deliveryOrderStatusPending;
+
   /// No description provided for @deliveryOrderStatusPreparing.
   ///
   /// In en, this message translates to:
@@ -623,7 +629,7 @@ abstract class AppLocalizations {
   /// No description provided for @locationFormat.
   ///
   /// In en, this message translates to:
-  /// **'Area {area} - Position {position}'**
+  /// **'{area} - {position}'**
   String locationFormat(Object area, Object position);
 
   /// No description provided for @deliveryOrderDeadlineLabel.
@@ -805,6 +811,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Place the QR code inside the frame'**
   String get qrScannerHint;
+
+  /// No description provided for @vehicleChargingAgingWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'There are {count} vehicles with a high aging index that need to be processed'**
+  String vehicleChargingAgingWarning(int count);
+
+  /// No description provided for @vehicleChargingFetchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load vehicle list.'**
+  String get vehicleChargingFetchError;
+
+  /// No description provided for @vehicleChargingEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL VEHICLES ARE STABLE'**
+  String get vehicleChargingEmptyTitle;
+
+  /// No description provided for @vehicleChargingEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No vehicles found with Aging index over 30 days requiring charging.'**
+  String get vehicleChargingEmptySubtitle;
+
+  /// No description provided for @vehicleChargingPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'PRIORITY #{number}'**
+  String vehicleChargingPriority(int number);
+
+  /// No description provided for @vehicleChargingMaintenaceActionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'TAP TO PERFORM MAINTENANCE'**
+  String get vehicleChargingMaintenaceActionHint;
+
+  /// No description provided for @vehicleChargingMaintenanceRequestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BATTERY MAINTENANCE REQUEST'**
+  String get vehicleChargingMaintenanceRequestTitle;
+
+  /// No description provided for @vehicleChargingCurrentAgingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT AGING:'**
+  String get vehicleChargingCurrentAgingLabel;
+
+  /// No description provided for @vehicleChargingMoveToChargeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'TAKE VEHICLE TO CHARGE'**
+  String get vehicleChargingMoveToChargeAction;
+
+  /// No description provided for @vehicleChargingNoNeedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'NO CHARGE NEEDED'**
+  String get vehicleChargingNoNeedAction;
+
+  /// No description provided for @vehicleChargingLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT LOCATION'**
+  String get vehicleChargingLocationLabel;
+
+  /// No description provided for @vehicleChargingTimeInAreaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'ENTER AREA'**
+  String get vehicleChargingTimeInAreaLabel;
+
+  /// No description provided for @agingDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String agingDays(Object count);
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @dischargingStatusUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'STATUS UPDATED'**
+  String get dischargingStatusUpdated;
+
+  /// No description provided for @dischargingVehicleStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLE STATUS:'**
+  String get dischargingVehicleStatus;
+
+  /// No description provided for @dischargingInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'PLEASE BRING THE VEHICLE TO THE CHARGE/DISCHARGE AREA TO CONTINUE THE MAINTENANCE PROCESS.'**
+  String get dischargingInstruction;
+
+  /// No description provided for @dischargingVinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'VIN CODE'**
+  String get dischargingVinLabel;
+
+  /// No description provided for @dischargingLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'ORIGINAL LOCATION'**
+  String get dischargingLocationLabel;
+
+  /// No description provided for @dischargingTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TIME'**
+  String get dischargingTimeLabel;
+
+  /// No description provided for @dischargingCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'COMPLETE UPDATE'**
+  String get dischargingCompleteAction;
+
+  /// No description provided for @deliveryOrderSuggestedVehiclesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'PICKUP GUIDE'**
+  String get deliveryOrderSuggestedVehiclesTab;
+
+  /// No description provided for @deliveryOrderAssignedVehiclesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'VEHICLES IN DO'**
+  String get deliveryOrderAssignedVehiclesTab;
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get noData;
+
+  /// No description provided for @vehicleAddedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle added successfully'**
+  String get vehicleAddedSuccess;
+
+  /// No description provided for @vehicleAddFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add vehicle'**
+  String get vehicleAddFailed;
+
+  /// No description provided for @scanConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM VEHICLE'**
+  String get scanConfirmTitle;
+
+  /// No description provided for @scanConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm pickup vehicle {vin} at {zone}?'**
+  String scanConfirmMessage(String vin, String zone);
+
+  /// No description provided for @scanConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM & SCAN'**
+  String get scanConfirmAction;
+
+  /// No description provided for @scanMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM ADD TO DO'**
+  String get scanMatchTitle;
+
+  /// No description provided for @scanMatchMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?'**
+  String scanMatchMessage(String vin, String doCode);
+
+  /// No description provided for @scanMatchAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM'**
+  String get scanMatchAction;
+
+  /// No description provided for @scanCompatibleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DIFFERENT VEHICLE'**
+  String get scanCompatibleTitle;
+
+  /// No description provided for @scanCompatibleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.'**
+  String scanCompatibleMessage(String vin, String doCode);
+
+  /// No description provided for @scanCompatibleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'AGREE - ADD TO DO'**
+  String get scanCompatibleAction;
+
+  /// No description provided for @scanIncompatibleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'NOT COMPATIBLE'**
+  String get scanIncompatibleTitle;
+
+  /// No description provided for @scanIncompatibleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.'**
+  String scanIncompatibleMessage(String vin, String doCode);
+
+  /// No description provided for @scanBackToList.
+  ///
+  /// In en, this message translates to:
+  /// **'OK - BACK TO LIST'**
+  String get scanBackToList;
+
+  /// No description provided for @cancelBackToList.
+  ///
+  /// In en, this message translates to:
+  /// **'CANCEL - BACK TO LIST'**
+  String get cancelBackToList;
+
+  /// No description provided for @cancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CANCEL'**
+  String get cancelAction;
 }
 
 class _AppLocalizationsDelegate

@@ -13,7 +13,7 @@ class DeliveryVinItemCard extends StatelessWidget {
     required this.position,
     required this.fifoNumber,
     required this.warehouseDate,
-    required this.colorValue,
+    this.isDisabled = false,
   });
 
   final String vinCode;
@@ -23,11 +23,11 @@ class DeliveryVinItemCard extends StatelessWidget {
   final String position;
   final int fifoNumber;
   final String warehouseDate;
-  final Color colorValue;
+  final bool isDisabled;
 
   @override
   Widget build(BuildContext context) {
-    return CustomCard(
+    final card = CustomCard(
       child: Column(
         children: [
           Row(
@@ -89,17 +89,11 @@ class DeliveryVinItemCard extends StatelessWidget {
                           ),
                         ),
                         const Gap(AppSpacing.paddingXS),
-                        Container(
-                          width: 4,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: context.colorScheme.onSurfaceVariant
-                                .withValues(alpha: 0.3),
-                            shape: BoxShape.circle,
-                          ),
+                        Icon(
+                          Icons.circle,
+                          size: 8,
+                          color: context.appColors.border,
                         ),
-                        const Gap(AppSpacing.paddingXS),
-                        Icon(Icons.circle, size: 8, color: colorValue),
                         const Gap(AppSpacing.paddingXXXS),
                         Text(
                           colorName.toUpperCase(),
@@ -115,34 +109,34 @@ class DeliveryVinItemCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(AppSpacing.paddingMD),
-          Row(
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      size: AppSpacing.iconInline,
-                      color: context.colorScheme.primary,
-                    ),
-                    Expanded(
-                      child: Text(
-                        context.l10n.locationFormat(area, position),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.appTypography.labelSmall.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.colorScheme.onSurface,
+          if (area.isNotEmpty || position.isNotEmpty) ...[
+            const Gap(AppSpacing.paddingMD),
+            Row(
+              children: [
+                Flexible(
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_outlined,
+                        size: AppSpacing.iconInline,
+                        color: context.colorScheme.primary,
+                      ),
+                      Expanded(
+                        child: Text(
+                          context.l10n.locationFormat(area, position),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.appTypography.labelSmall.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: context.colorScheme.onSurface,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(AppSpacing.paddingSM),
-              Flexible(
-                child: Text(
+                const Gap(AppSpacing.paddingSM),
+                Text(
                   context.l10n.warehouse(warehouseDate),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -154,11 +148,29 @@ class DeliveryVinItemCard extends StatelessWidget {
                     fontStyle: FontStyle.italic,
                   ),
                 ),
+              ],
+            ),
+          ] else if (warehouseDate.isNotEmpty) ...[
+            const Gap(AppSpacing.paddingMD),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                context.l10n.warehouse(warehouseDate),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.appTypography.labelSmall.copyWith(
+                  color: context.colorScheme.onSurfaceVariant.withValues(
+                    alpha: 0.5,
+                  ),
+                  fontStyle: FontStyle.italic,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ],
       ),
     );
+
+    return isDisabled ? Opacity(opacity: 0.5, child: card) : card;
   }
 }

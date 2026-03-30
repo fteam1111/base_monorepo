@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:core/utils/debounce.dart';
 import 'package:core/utils/throttle.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/widgets/loading_shimmer/loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 

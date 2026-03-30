@@ -21,9 +21,15 @@ class ApiRoutes {
   static const String getFactories = '$v1$clientType/factories';
 
   // Vehicle endpoints
-  static const String _vehicles = '$v1$clientType/vehicles';
-  static const String getVehicles = _vehicles;
-  static const String vehicleBySerial = '$_vehicles/by-serial/{serialNumber}';
+  static const String vehicles = '$v1$clientType/vehicles';
+  static const String vehicleBySerial = '$vehicles/by-serial/{serialNumber}';
+  static const String sendForDischarging =
+      '$vehicles/{id}/send-for-discharging';
+
+  // Delivery Order endpoints
+  static const String deliveryOrders = '$v1$clientType/delivery-orders';
+  static const String deliveryOrderVehicles =
+      '$deliveryOrders/{deliveryOrderId}/vehicles';
 
   static String userById(String id) => '$v1/user/$id';
 }

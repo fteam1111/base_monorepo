@@ -8,11 +8,13 @@ part of 'user_model_dto.dart';
 
 _UserModelDto _$UserModelDtoFromJson(Map<String, dynamic> json) =>
     _UserModelDto(
-      id: (json['id'] as num).toInt(),
-      email: json['email'] as String,
-      fullName: json['fullName'] as String,
-      isActive: json['isActive'] as bool,
-      role: UserRoleModelDto.fromJson(json['role'] as Map<String, dynamic>),
+      id: (json['id'] as num?)?.toInt(),
+      email: json['email'] as String?,
+      fullName: json['fullName'] as String?,
+      isActive: json['isActive'] as bool?,
+      role: json['role'] == null
+          ? null
+          : UserRoleModelDto.fromJson(json['role'] as Map<String, dynamic>),
       factory: json['factory'] == null
           ? null
           : FactoryModelDto.fromJson(json['factory'] as Map<String, dynamic>),

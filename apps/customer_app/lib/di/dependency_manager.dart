@@ -2,9 +2,11 @@ import 'package:core/core.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
+import 'package:features_delivery_order/features_delivery_order.dart';
 import 'package:features_map/features_map.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
+import 'package:features_vehicle_charging/features_vehicle_charging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:local_storage/local_storage.dart';
@@ -86,6 +88,14 @@ class DependencyManager {
     locator.registerLazySingleton<FactoryRemoteDataSource>(
       () => FactoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
+    locator.registerLazySingleton<VehicleChargingRemoteDataSource>(
+      () =>
+          VehicleChargingRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
+    locator.registerLazySingleton<DeliveryOrderRemoteDataSource>(
+      () => DeliveryOrderRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
 
     locator.registerLazySingleton<VehicleRemoteDataSource>(
       () => VehicleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
@@ -111,6 +121,16 @@ class DependencyManager {
 
     locator.registerLazySingleton<FactoryRepository>(
       () => FactoryRepositoryImpl(locator<FactoryRemoteDataSource>()),
+    );
+    locator.registerLazySingleton<VehicleChargingRepository>(
+      () => VehicleChargingRepositoryImpl(
+        locator<VehicleChargingRemoteDataSource>(),
+      ),
+    );
+
+    locator.registerLazySingleton<DeliveryOrderRepository>(
+      () =>
+          DeliveryOrderRepositoryImpl(locator<DeliveryOrderRemoteDataSource>()),
     );
 
     locator.registerLazySingleton<VehicleRepository>(
@@ -139,9 +159,30 @@ class DependencyManager {
     locator.registerLazySingleton<GetClientFactoriesUseCase>(
       () => GetClientFactoriesUseCase(locator<FactoryRepository>()),
     );
+    locator.registerLazySingleton<GetVehicleChargingListUseCase>(
+      () => GetVehicleChargingListUseCase(locator<VehicleChargingRepository>()),
+    );
+    locator.registerLazySingleton<SendForDischargingUseCase>(
+      () => SendForDischargingUseCase(locator<VehicleChargingRepository>()),
+    );
 
     locator.registerLazySingleton<GetVehicleBySerialUseCase>(
       () => GetVehicleBySerialUseCase(locator<VehicleRepository>()),
+    );
+
+    // Delivery Order Use Cases
+    locator.registerLazySingleton<GetDeliveryOrderListUseCase>(
+      () => GetDeliveryOrderListUseCase(locator<DeliveryOrderRepository>()),
+    );
+    locator.registerLazySingleton<GetDeliveryOrderVehiclesUseCase>(
+      () => GetDeliveryOrderVehiclesUseCase(locator<DeliveryOrderRepository>()),
+    );
+    locator.registerLazySingleton<AddVehicleToDeliveryOrderUseCase>(
+      () =>
+          AddVehicleToDeliveryOrderUseCase(locator<DeliveryOrderRepository>()),
+    );
+    locator.registerLazySingleton<GetClientVehiclesUseCase>(
+      () => GetClientVehiclesUseCase(locator<DeliveryOrderRepository>()),
     );
 
     // Localization Use Cases
@@ -217,6 +258,33 @@ class DependencyManager {
     // Factory Cubit - Singleton
     locator.registerLazySingleton<FactoryCubit>(
       () => FactoryCubit(locator<GetClientFactoriesUseCase>()),
+    );
+
+    // Vehicle charging BLoC - Factory (new instance per page)
+    locator.registerFactory<VehicleChargingBloc>(
+      () => VehicleChargingBloc(
+        getVehicleChargingListUseCase: locator<GetVehicleChargingListUseCase>(),
+        authBloc: locator<AuthBloc>(),
+        sendForDischargingUseCase: locator<SendForDischargingUseCase>(),
+      ),
+    );
+
+    // Delivery List BLoC - Factory (new instance per page)
+    locator.registerFactory<DeliveryListBloc>(
+      () => DeliveryListBloc(
+        getDeliveryOrderListUseCase: locator<GetDeliveryOrderListUseCase>(),
+      ),
+    );
+
+    // Delivery Detail BLoC - Factory (new instance per page)
+    locator.registerFactory<DeliveryDetailBloc>(
+      () => DeliveryDetailBloc(
+        getDeliveryOrderVehiclesUseCase:
+            locator<GetDeliveryOrderVehiclesUseCase>(),
+        addVehicleToDeliveryOrderUseCase:
+            locator<AddVehicleToDeliveryOrderUseCase>(),
+        getClientVehiclesUseCase: locator<GetClientVehiclesUseCase>(),
+      ),
     );
 
     // Map BLoC - Factory (new instance per page)
