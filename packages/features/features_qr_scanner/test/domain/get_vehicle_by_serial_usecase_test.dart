@@ -25,7 +25,7 @@ VehicleEntity _fakeVehicle({String serialNumber = 'RPXS2LHHVSE258693'}) =>
       model: 'Model A',
       manufacturingDate: '2025-10-30',
       color: 'XANH',
-      status: 1,
+      status: VehicleStatus.inStock,
       statusLabel: 'TRONG KHO',
       warehouseImportedAt: '2025-01-15',
       storageDays: 30,

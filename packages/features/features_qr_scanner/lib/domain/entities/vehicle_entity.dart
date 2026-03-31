@@ -1,4 +1,37 @@
-/// Entity for parking zone information.
+/// Vehicle status values stored as integers in the database.
+enum VehicleStatus {
+  inStock(1),
+  discharging(2),
+  defective(3),
+  exported(4),
+  pendingImport(5);
+
+  const VehicleStatus(this.value);
+
+  /// The integer value stored in the database.
+  final int value;
+
+  /// Returns a [VehicleStatus] from its integer [value], or `null`
+  /// if no matching status is found.
+  static VehicleStatus? fromValue(int value) {
+    for (final status in VehicleStatus.values) {
+      if (status.value == value) return status;
+    }
+    return null;
+  }
+}
+
+/// Extension providing a display label for each [VehicleStatus].
+extension VehicleStatusLabel on VehicleStatus {
+  String get label => switch (this) {
+    VehicleStatus.inStock => 'Trong kho',
+    VehicleStatus.discharging => 'Sạc xả',
+    VehicleStatus.defective => 'Xe lỗi',
+    VehicleStatus.exported => 'Đã xuất',
+    VehicleStatus.pendingImport => 'Chờ nhập',
+  };
+}
+
 class ParkingZoneEntity {
   const ParkingZoneEntity({
     required this.id,
@@ -74,7 +107,7 @@ class VehicleEntity {
   final String model;
   final String manufacturingDate;
   final String color;
-  final int status;
+  final VehicleStatus status;
   final String statusLabel;
   final String warehouseImportedAt;
   final String? exportedAt;

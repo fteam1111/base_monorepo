@@ -180,6 +180,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get recheckQuality => 'Kiểm tra chất lượng lại';
 
   @override
+  String get confirmParking => 'Xác nhận đỗ xe';
+
+  @override
+  String get selectPositionToFinish => 'Chọn vị trí và hoàn tất đỗ xe này';
+
+  @override
+  String get moveToChargingArea => 'Chuyển sang khu sạc xả';
+
+  @override
+  String get confirmChargingTransfer => 'Chuyển xe sang khu vực sạc xả';
+
+  @override
   String get chooseParkingLocation => 'Chọn vị trí đỗ';
 
   @override

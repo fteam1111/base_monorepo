@@ -428,6 +428,30 @@ abstract class AppLocalizations {
   /// **'Recheck quality'**
   String get recheckQuality;
 
+  /// No description provided for @confirmParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm parking'**
+  String get confirmParking;
+
+  /// No description provided for @selectPositionToFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Select position and complete parking'**
+  String get selectPositionToFinish;
+
+  /// No description provided for @moveToChargingArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to charging area'**
+  String get moveToChargingArea;
+
+  /// No description provided for @confirmChargingTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer vehicle to charging area'**
+  String get confirmChargingTransfer;
+
   /// No description provided for @chooseParkingLocation.
   ///
   /// In en, this message translates to:

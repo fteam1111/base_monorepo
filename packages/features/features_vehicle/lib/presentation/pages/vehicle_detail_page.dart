@@ -43,14 +43,7 @@ class VehicleDetailPage extends StatelessWidget {
                 factoryName: vehicle?.factory?.name ?? '-',
               ),
               const Gap(AppSpacing.sectionSpacing),
-              VehicleActionsSection(
-                onMoveToAction: () {
-                  AppRoutes.navigateToChooseParkingLocation(context);
-                },
-                onMoveFromAction: () {
-                  AppRoutes.navigateToChooseParkingLocation(context);
-                },
-              ),
+              VehicleActionsSection(vehicle: vehicle),
               const Gap(AppSpacing.sectionSpacing),
             ],
           ),

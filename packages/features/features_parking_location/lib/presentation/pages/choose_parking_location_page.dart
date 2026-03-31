@@ -11,7 +11,12 @@ import 'package:share/share.dart';
 enum ParkingTab { finished, charging, export, qc }
 
 class ChooseParkingLocationPage extends StatefulWidget {
-  const ChooseParkingLocationPage({super.key});
+  const ChooseParkingLocationPage({
+    super.key,
+    this.initialTab = ParkingTab.finished,
+  });
+
+  final ParkingTab initialTab;
 
   @override
   State<ChooseParkingLocationPage> createState() =>
@@ -19,7 +24,7 @@ class ChooseParkingLocationPage extends StatefulWidget {
 }
 
 class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
-  ParkingTab _selectedTab = ParkingTab.finished;
+  late ParkingTab _selectedTab;
 
   late final ScrollController _finishedController;
   late final ScrollController _chargingController;
@@ -29,6 +34,7 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
   @override
   void initState() {
     super.initState();
+    _selectedTab = widget.initialTab;
     _finishedController = ScrollController();
     _chargingController = ScrollController();
     _exportController = ScrollController();

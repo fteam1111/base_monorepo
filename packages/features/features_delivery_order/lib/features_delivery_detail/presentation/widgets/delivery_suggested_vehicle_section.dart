@@ -73,7 +73,7 @@ class _DeliverySuggestedVehicleSectionState
       color: scannedVehicle.color,
       materialCode: scannedVehicle.materialCode,
       manufacturingDate: scannedVehicle.manufacturingDate,
-      status: scannedVehicle.status,
+      status: scannedVehicle.status.value,
       statusLabel: scannedVehicle.statusLabel,
       warehouseImportedAt: scannedVehicle.warehouseImportedAt,
       exportedAt: scannedVehicle.exportedAt,

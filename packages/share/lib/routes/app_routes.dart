@@ -85,8 +85,11 @@ class AppRoutes {
     context.push(vehicleDetailPath);
   }
 
-  static void navigateToChooseParkingLocation(BuildContext context) {
-    context.push(chooseParkingLocationPath);
+  static void navigateToChooseParkingLocation(
+    BuildContext context, {
+    int initialTabIndex = 0,
+  }) {
+    context.push(chooseParkingLocationPath, extra: initialTabIndex);
   }
 
   static void navigateToVehicleCharging(BuildContext context) {

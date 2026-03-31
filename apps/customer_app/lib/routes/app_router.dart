@@ -148,11 +148,16 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.chooseParkingLocationPath,
           name: AppRoutes.chooseParkingLocation,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            name: AppRoutes.chooseParkingLocation,
-            child: const ChooseParkingLocationPage(),
-          ),
+          pageBuilder: (context, state) {
+            final tabIndex = (state.extra as int?) ?? 0;
+            final initialTab = ParkingTab
+                .values[tabIndex.clamp(0, ParkingTab.values.length - 1)];
+            return _buildPageWithTransition(
+              key: state.pageKey,
+              name: AppRoutes.chooseParkingLocation,
+              child: ChooseParkingLocationPage(initialTab: initialTab),
+            );
+          },
         ),
 
         GoRoute(

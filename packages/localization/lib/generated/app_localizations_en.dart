@@ -181,6 +181,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recheckQuality => 'Recheck quality';
 
   @override
+  String get confirmParking => 'Confirm parking';
+
+  @override
+  String get selectPositionToFinish => 'Select position and complete parking';
+
+  @override
+  String get moveToChargingArea => 'Move to charging area';
+
+  @override
+  String get confirmChargingTransfer => 'Transfer vehicle to charging area';
+
+  @override
   String get chooseParkingLocation => 'Choose parking location';
 
   @override

@@ -10,7 +10,7 @@ extension VehicleDtoMapper on VehicleDto {
     model: model,
     manufacturingDate: manufacturingDate,
     color: color,
-    status: status,
+    status: VehicleStatus.fromValue(status) ?? VehicleStatus.inStock,
     statusLabel: statusLabel,
     warehouseImportedAt: warehouseImportedAt,
     exportedAt: exportedAt,
