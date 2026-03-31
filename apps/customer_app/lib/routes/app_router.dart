@@ -135,11 +135,14 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.vehicleDetailPath,
           name: AppRoutes.vehicleDetail,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            name: AppRoutes.vehicleDetail,
-            child: const VehicleDetailPage(),
-          ),
+          pageBuilder: (context, state) {
+            final vehicle = state.extra as VehicleEntity?;
+            return _buildPageWithTransition(
+              key: state.pageKey,
+              name: AppRoutes.vehicleDetail,
+              child: VehicleDetailPage(vehicle: vehicle),
+            );
+          },
         ),
 
         GoRoute(
@@ -272,14 +275,17 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.qrScannerPath,
           name: AppRoutes.qrScanner,
-          pageBuilder: (context, state) => _buildPageWithTransition(
-            key: state.pageKey,
-            name: AppRoutes.qrScanner,
-            child: BlocProvider(
-              create: (_) => locator<QrScanCubit>(),
-              child: const QrScannerPage(),
-            ),
-          ),
+          pageBuilder: (context, state) {
+            final onVehicleFound = state.extra as void Function(VehicleEntity)?;
+            return _buildPageWithTransition(
+              key: state.pageKey,
+              name: AppRoutes.qrScanner,
+              child: BlocProvider(
+                create: (_) => locator<QrScanCubit>(),
+                child: QrScannerPage(onVehicleFound: onVehicleFound),
+              ),
+            );
+          },
         ),
       ],
     );

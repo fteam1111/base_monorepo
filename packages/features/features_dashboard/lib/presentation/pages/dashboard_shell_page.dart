@@ -24,7 +24,13 @@ class DashboardShellPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       floatingActionButton: CustomFloatingActionButton(
         onPressed: () {
-          AppRoutes.navigateToQrScanner(context);
+          AppRoutes.navigateToQrScanner(
+            context,
+            onVehicleFound: (vehicle) {
+              context.pop();
+              context.push(AppRoutes.vehicleDetailPath, extra: vehicle);
+            },
+          );
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

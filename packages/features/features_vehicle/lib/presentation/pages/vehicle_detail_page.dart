@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:features_qr_scanner/domain/entities/vehicle_entity.dart';
 import 'package:features_vehicle/presentation/widgets/vehicle_actions_section.dart';
 import 'package:features_vehicle/presentation/widgets/vehicle_detail_info_card.dart';
 import 'package:features_vehicle/presentation/widgets/vehicle_location_card.dart';
@@ -7,10 +8,16 @@ import 'package:gap/gap.dart';
 import 'package:share/share.dart';
 
 class VehicleDetailPage extends StatelessWidget {
-  const VehicleDetailPage({super.key});
+  const VehicleDetailPage({super.key, this.vehicle});
+
+  final VehicleEntity? vehicle;
 
   @override
   Widget build(BuildContext context) {
+    final zone = vehicle?.parkingLot?.parkingZone.name ?? '';
+    final lot = vehicle?.parkingLot?.name ?? '';
+    final location = [zone, lot].where((s) => s.isNotEmpty).join(' - ');
+
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       appBar: CustomAppBar(title: context.l10n.vehicleDetailTitle),
@@ -22,18 +29,18 @@ class VehicleDetailPage extends StatelessWidget {
           child: Column(
             children: [
               const Gap(AppSpacing.sectionSpacing),
-              const VehicleDetailInfoCard(
-                vin: 'VIN-520544',
-                model: 'Klara S2 (2024)',
-                colorName: 'Xanh Blue (B02)',
-                batteryLevel: 72,
-                aging: 32,
-                statuses: ['ĐÃ ĐỖ XE', 'QC PASS'],
+              VehicleDetailInfoCard(
+                vin: vehicle?.serialNumber ?? '-',
+                model: vehicle?.model ?? '-',
+                colorName: vehicle?.color ?? '-',
+                batteryLevel: 0,
+                aging: vehicle?.storageDays ?? 0,
+                statuses: vehicle != null ? [vehicle!.statusLabel] : [],
               ),
               const Gap(AppSpacing.sectionSpacing),
-              const VehicleLocationCard(
-                locationName: 'ZONE A - BLOCK A02',
-                factoryName: 'FACTORY HT',
+              VehicleLocationCard(
+                locationName: location.isNotEmpty ? location : '-',
+                factoryName: vehicle?.factory?.name ?? '-',
               ),
               const Gap(AppSpacing.sectionSpacing),
               VehicleActionsSection(

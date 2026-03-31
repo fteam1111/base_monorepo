@@ -1,3 +1,4 @@
+import 'package:features_qr_scanner/domain/entities/vehicle_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -107,8 +108,11 @@ class AppRoutes {
     context.push(factoryMapPath);
   }
 
-  static void navigateToQrScanner(BuildContext context) {
-    context.push(qrScannerPath);
+  static Future<void> navigateToQrScanner(
+    BuildContext context, {
+    void Function(VehicleEntity vehicle)? onVehicleFound,
+  }) {
+    return context.push(qrScannerPath, extra: onVehicleFound);
   }
 
   static Future<T?> navigateToDischargingResult<T>(

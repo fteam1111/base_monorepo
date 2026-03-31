@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:design_system/design_system.dart';
 import 'package:features_delivery_order/domain/entities/client_vehicle_entity.dart';
 import 'package:features_delivery_order/domain/entities/delivery_order_status.dart';
@@ -7,11 +9,11 @@ import 'package:features_delivery_order/features_delivery_detail/presentation/bl
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_filter_section.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/delivery_vin_item_card.dart';
 import 'package:features_delivery_order/features_delivery_detail/presentation/widgets/vehicle_scan_confirmation_dialog.dart';
-import 'package:features_qr_scanner/features_qr_scanner.dart';
+import 'package:features_qr_scanner/domain/entities/vehicle_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share/share.dart';
 
 /// Section showing suggested vehicles for pick-up with filter.
@@ -48,23 +50,22 @@ class _DeliverySuggestedVehicleSectionState
 
     if (confirmed != true || !mounted) return;
 
-    // Navigate to QR scanner and get result
-    final scannedVehicle = await Navigator.push<VehicleEntity>(
-      context,
-      MaterialPageRoute(
-        builder: (_) => BlocProvider(
-          create: (_) => GetIt.I<QrScanCubit>(),
-          child: QrScannerPage(
-            onVehicleFound: (vehicle) {
-              Navigator.of(context).pop(vehicle);
-            },
-          ),
-        ),
+    unawaited(
+      AppRoutes.navigateToQrScanner(
+        context,
+        onVehicleFound: (scannedVehicle) {
+          context.pop();
+          if (!mounted) return;
+          _handleScannedVehicle(scannedVehicle, vehicle.serialNumber);
+        },
       ),
     );
+  }
 
-    if (scannedVehicle == null || !mounted) return;
-
+  void _handleScannedVehicle(
+    VehicleEntity scannedVehicle,
+    String selectedSerialNumber,
+  ) {
     final clientVehicle = ClientVehicleEntity(
       id: scannedVehicle.id.toString(),
       serialNumber: scannedVehicle.serialNumber,
@@ -84,11 +85,10 @@ class _DeliverySuggestedVehicleSectionState
       parkingZoneName: scannedVehicle.parkingLot?.parkingZone.name,
     );
 
-    // Send mapped vehicle to BLoC for verification
     context.read<DeliveryDetailBloc>().add(
       DeliveryDetailScannedVinReceived(
         scannedVehicle: clientVehicle,
-        selectedVehicleSerialNumber: vehicle.serialNumber,
+        selectedVehicleSerialNumber: selectedSerialNumber,
       ),
     );
   }

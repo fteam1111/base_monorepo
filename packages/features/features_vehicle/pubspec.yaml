@@ -18,6 +18,8 @@ dependencies:
     path: ../../share
   core:
     path: ../../core
+  features_qr_scanner:
+    path: ../features_qr_scanner
   network:
     path: ../../network
   local_storage:
