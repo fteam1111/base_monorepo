@@ -8,11 +8,11 @@ part of 'vehicle_model_dto.dart';
 
 _ParkingZoneDto _$ParkingZoneDtoFromJson(Map<String, dynamic> json) =>
     _ParkingZoneDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      description: json['description'] as String,
-      isActive: json['isActive'] as bool,
-      factoryId: (json['factoryId'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      isActive: json['isActive'] as bool?,
+      factoryId: (json['factoryId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ParkingZoneDtoToJson(_ParkingZoneDto instance) =>
@@ -26,15 +26,17 @@ Map<String, dynamic> _$ParkingZoneDtoToJson(_ParkingZoneDto instance) =>
 
 _ParkingLotDto _$ParkingLotDtoFromJson(Map<String, dynamic> json) =>
     _ParkingLotDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      description: json['description'] as String,
-      parkingZoneId: (json['parkingZoneId'] as num).toInt(),
-      parkingZone: ParkingZoneDto.fromJson(
-        json['parkingZone'] as Map<String, dynamic>,
-      ),
-      maxCapacity: (json['maxCapacity'] as num).toInt(),
-      currentOccupied: (json['currentOccupied'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      parkingZoneId: (json['parkingZoneId'] as num?)?.toInt(),
+      parkingZone: json['parkingZone'] == null
+          ? null
+          : ParkingZoneDto.fromJson(
+              json['parkingZone'] as Map<String, dynamic>,
+            ),
+      maxCapacity: (json['maxCapacity'] as num?)?.toInt(),
+      currentOccupied: (json['currentOccupied'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ParkingLotDtoToJson(_ParkingLotDto instance) =>
@@ -50,9 +52,9 @@ Map<String, dynamic> _$ParkingLotDtoToJson(_ParkingLotDto instance) =>
 
 _VehicleFactoryDto _$VehicleFactoryDtoFromJson(Map<String, dynamic> json) =>
     _VehicleFactoryDto(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      address: json['address'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      address: json['address'] as String?,
     );
 
 Map<String, dynamic> _$VehicleFactoryDtoToJson(_VehicleFactoryDto instance) =>
@@ -63,16 +65,16 @@ Map<String, dynamic> _$VehicleFactoryDtoToJson(_VehicleFactoryDto instance) =>
     };
 
 _VehicleDto _$VehicleDtoFromJson(Map<String, dynamic> json) => _VehicleDto(
-  id: (json['id'] as num).toInt(),
-  serialNumber: json['serialNumber'] as String,
-  materialCode: json['materialCode'] as String,
-  model: json['model'] as String,
-  manufacturingDate: json['manufacturingDate'] as String,
-  color: json['color'] as String,
-  status: (json['status'] as num).toInt(),
-  statusLabel: json['statusLabel'] as String,
-  warehouseImportedAt: json['warehouseImportedAt'] as String,
-  storageDays: (json['storageDays'] as num?)?.toInt() ?? 0,
+  id: (json['id'] as num?)?.toInt(),
+  serialNumber: json['serialNumber'] as String?,
+  materialCode: json['materialCode'] as String?,
+  model: json['model'] as String?,
+  manufacturingDate: json['manufacturingDate'] as String?,
+  color: json['color'] as String?,
+  status: (json['status'] as num?)?.toInt(),
+  statusLabel: json['statusLabel'] as String?,
+  warehouseImportedAt: json['warehouseImportedAt'] as String?,
+  storageDays: (json['storageDays'] as num?)?.toInt(),
   exportedAt: json['exportedAt'] as String?,
   qcDefectDescription: json['qcDefectDescription'] as String?,
   factory: json['factory'] == null

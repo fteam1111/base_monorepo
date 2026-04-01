@@ -192,6 +192,25 @@ class AppLocalizationsVi extends AppLocalizations {
   String get confirmChargingTransfer => 'Chuyển xe sang khu vực sạc xả';
 
   @override
+  String get enterReasonToMoveQc => 'Nhập lý do chuyển xe sang khu QC';
+
+  @override
+  String get reasonToMoveRequired => 'Lý do di chuyển (bắt buộc)';
+
+  @override
+  String get enterMoveReason => 'Nhập lý do chuyển xe...';
+
+  @override
+  String get confirm => 'Xác nhận';
+
+  @override
+  String get confirmTransferToCharging =>
+      'Bạn có chắc chắn muốn chuyển xe này sang khu sạc xả không?';
+
+  @override
+  String get transferToChargingTitle => 'Chuyển sang khu sạc xả';
+
+  @override
   String get chooseParkingLocation => 'Chọn vị trí đỗ';
 
   @override

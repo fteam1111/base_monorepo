@@ -58,6 +58,7 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
         centerTitle: false,
         title: context.l10n.chooseParkingLocation,
         subtitle: context.l10n.businessAreaClassification,
+        onBack: () => AppRoutes.navigateToHome(context),
       ),
       body: Column(
         children: [

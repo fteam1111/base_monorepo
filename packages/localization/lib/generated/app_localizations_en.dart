@@ -193,6 +193,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmChargingTransfer => 'Transfer vehicle to charging area';
 
   @override
+  String get enterReasonToMoveQc => 'Enter reason to move vehicle to QC';
+
+  @override
+  String get reasonToMoveRequired => 'Reason to move (required)';
+
+  @override
+  String get enterMoveReason => 'Enter reason to move...';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get confirmTransferToCharging =>
+      'Are you sure you want to transfer this vehicle to the charging area?';
+
+  @override
+  String get transferToChargingTitle => 'Transfer to charging area';
+
+  @override
   String get chooseParkingLocation => 'Choose parking location';
 
   @override

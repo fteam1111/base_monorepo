@@ -6,6 +6,12 @@ import 'package:features_delivery_order/features_delivery_order.dart';
 import 'package:features_map/features_map.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
+import 'package:features_vehicle/data/datasources/remote/vehicle_action_remote_datasource.dart';
+import 'package:features_vehicle/data/repositories/vehicle_action_repository_impl.dart';
+import 'package:features_vehicle/domain/repositories/vehicle_action_repository.dart';
+import 'package:features_vehicle/domain/usecases/send_for_discharging_usecase.dart';
+import 'package:features_vehicle/domain/usecases/send_vehicle_to_qc_usecase.dart';
+import 'package:features_vehicle/presentation/cubit/vehicle_action_cubit.dart';
 import 'package:features_vehicle_charging/features_vehicle_charging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -101,6 +107,10 @@ class DependencyManager {
       () => VehicleRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
+    locator.registerLazySingleton<VehicleActionRemoteDataSource>(
+      () => VehicleActionRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
     // Repositories
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -137,6 +147,11 @@ class DependencyManager {
       () => VehicleRepositoryImpl(locator<VehicleRemoteDataSource>()),
     );
 
+    locator.registerLazySingleton<VehicleActionRepository>(
+      () =>
+          VehicleActionRepositoryImpl(locator<VehicleActionRemoteDataSource>()),
+    );
+
     // ==================== Domain Layer ====================
 
     // Use Cases
@@ -168,6 +183,16 @@ class DependencyManager {
 
     locator.registerLazySingleton<GetVehicleBySerialUseCase>(
       () => GetVehicleBySerialUseCase(locator<VehicleRepository>()),
+    );
+
+    // Vehicle Action Use Cases
+    locator.registerLazySingleton<SendVehicleToQcUseCase>(
+      () => SendVehicleToQcUseCase(locator<VehicleActionRepository>()),
+    );
+    locator.registerLazySingleton<VehicleActionSendForDischargingUseCase>(
+      () => VehicleActionSendForDischargingUseCase(
+        locator<VehicleActionRepository>(),
+      ),
     );
 
     // Delivery Order Use Cases
@@ -258,6 +283,14 @@ class DependencyManager {
     // Factory Cubit - Singleton
     locator.registerLazySingleton<FactoryCubit>(
       () => FactoryCubit(locator<GetClientFactoriesUseCase>()),
+    );
+
+    // Vehicle Action Cubit - Factory
+    locator.registerFactory<VehicleActionCubit>(
+      () => VehicleActionCubit(
+        locator<SendVehicleToQcUseCase>(),
+        locator<VehicleActionSendForDischargingUseCase>(),
+      ),
     );
 
     // Vehicle charging BLoC - Factory (new instance per page)

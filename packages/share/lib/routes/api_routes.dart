@@ -26,6 +26,7 @@ class ApiRoutes {
   static const String vehicleBySerial = '$vehicles/by-serial/{serialNumber}';
   static const String sendForDischarging =
       '$vehicles/{id}/send-for-discharging';
+  static const String sendVehicleToQc = '$vehicles/{id}/send-to-qc';
 
   // Delivery Order endpoints
   static const String deliveryOrders = '$v1$clientType/delivery-orders';

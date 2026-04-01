@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:core/core.dart';
 import 'package:core/config/base_config.dart';
 import 'package:customer_app/di/injector.dart';
 import 'package:features_auth/features_auth.dart';
@@ -11,6 +12,8 @@ import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
+import 'package:features_vehicle/presentation/cubit/vehicle_action_cubit.dart';
+import 'package:features_vehicle/presentation/pages/vehicle_detail_page.dart';
 import 'package:features_vehicle/features_vehicle.dart';
 import 'package:features_vehicle_charging/features_vehicle_charging.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +143,10 @@ class AppRouter {
             return _buildPageWithTransition(
               key: state.pageKey,
               name: AppRoutes.vehicleDetail,
-              child: VehicleDetailPage(vehicle: vehicle),
+              child: BlocProvider(
+                create: (context) => locator<VehicleActionCubit>(),
+                child: VehicleDetailPage(vehicle: vehicle),
+              ),
             );
           },
         ),

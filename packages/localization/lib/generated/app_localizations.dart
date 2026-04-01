@@ -452,6 +452,42 @@ abstract class AppLocalizations {
   /// **'Transfer vehicle to charging area'**
   String get confirmChargingTransfer;
 
+  /// No description provided for @enterReasonToMoveQc.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter reason to move vehicle to QC'**
+  String get enterReasonToMoveQc;
+
+  /// No description provided for @reasonToMoveRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason to move (required)'**
+  String get reasonToMoveRequired;
+
+  /// No description provided for @enterMoveReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter reason to move...'**
+  String get enterMoveReason;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @confirmTransferToCharging.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to transfer this vehicle to the charging area?'**
+  String get confirmTransferToCharging;
+
+  /// No description provided for @transferToChargingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer to charging area'**
+  String get transferToChargingTitle;
+
   /// No description provided for @chooseParkingLocation.
   ///
   /// In en, this message translates to:
