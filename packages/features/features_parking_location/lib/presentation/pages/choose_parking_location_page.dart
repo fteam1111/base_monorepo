@@ -1,11 +1,17 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
+import 'package:features_parking_location/domain/entities/parking_lot_entity.dart';
+import 'package:features_parking_location/domain/entities/parking_vehicle_entity.dart';
+import 'package:features_parking_location/presentation/bloc/parking_location_bloc.dart';
+import 'package:features_parking_location/presentation/bloc/parking_location_event.dart';
+import 'package:features_parking_location/presentation/bloc/parking_location_state.dart';
 import 'package:features_parking_location/presentation/widgets/parking_export_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_grid_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_list_item.dart';
-import 'package:features_parking_location/presentation/widgets/parking_qc_item.dart';
 import 'package:features_parking_location/presentation/widgets/parking_selection_bottom_sheet.dart';
 import 'package:features_parking_location/presentation/widgets/parking_tab_bar_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share/share.dart';
 
 enum ParkingTab { finished, charging, export, qc }
@@ -14,9 +20,11 @@ class ChooseParkingLocationPage extends StatefulWidget {
   const ChooseParkingLocationPage({
     super.key,
     this.initialTab = ParkingTab.finished,
+    this.vehicleId,
   });
 
   final ParkingTab initialTab;
+  final int? vehicleId;
 
   @override
   State<ChooseParkingLocationPage> createState() =>
@@ -39,6 +47,17 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
     _chargingController = ScrollController();
     _exportController = ScrollController();
     _qcController = ScrollController();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<ParkingLocationBloc>().add(
+          const ParkingLocationLoadDischargingVehicles(),
+        );
+        context.read<ParkingLocationBloc>().add(
+          const ParkingLocationLoadQcVehicles(),
+        );
+      }
+    });
   }
 
   @override
@@ -82,26 +101,73 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
   Widget _buildTabContent() {
     switch (_selectedTab) {
       case ParkingTab.finished:
-        return ScrollableGridView<int>(
-          controller: _finishedController,
-          isLoading: false,
-          items: List<int>.generate(100, (i) => i),
-          noRecordFoundWidget: const SizedBox.shrink(),
-          crossAxisCount: 2,
-          mainAxisSpacing: AppSpacing.gridSpacing,
-          crossAxisSpacing: AppSpacing.gridSpacing,
-          childAspectRatio: 0.87,
-          itemBuilder: (context, index, item) {
-            return ParkingGridItem(
-              label: 'A${index + 1}',
-              current: (index + 1) * 20,
-              total: 400,
-              onPressed: () {
-                ParkingSelectionBottomSheet.show(
-                  context,
-                  factory: 'GA',
-                  area: '12B-12C',
-                  position: '${index + 1}',
+        return BlocConsumer<ParkingLocationBloc, ParkingLocationState>(
+          listenWhen: (previous, current) =>
+              previous.addVehicleStatus != current.addVehicleStatus,
+          listener: (context, state) {
+            if (state.addVehicleStatus == AddVehicleStatus.loading) {
+              GlobalLoading.showLoadingDialog();
+            } else {
+              GlobalLoading.dismiss();
+              if (state.addVehicleStatus == AddVehicleStatus.failure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.addVehicleFailure?.nonTranslatedFailureMessage ??
+                          context.l10n.error,
+                    ),
+                  ),
+                );
+              }
+            }
+          },
+          builder: (context, state) {
+            return ScrollableGridView<ParkingLotEntity>(
+              controller: _finishedController,
+              footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
+              isLoading: state.status == ParkingLocationStatus.loading,
+              items: state.parkingLots,
+              noRecordFoundWidget: const SizedBox.shrink(),
+              crossAxisCount: 2,
+              mainAxisSpacing: AppSpacing.gridSpacing,
+              crossAxisSpacing: AppSpacing.gridSpacing,
+              childAspectRatio: 0.87,
+              onRefresh: () async {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoad(),
+                );
+              },
+              onLoadingMore: () {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoadMore(),
+                );
+              },
+              itemBuilder: (context, index, item) {
+                return ParkingGridItem(
+                  label: item.name,
+                  current: item.currentOccupied,
+                  total: item.maxCapacity,
+                  onPressed: () {
+                    ParkingSelectionBottomSheet.show(
+                      context,
+                      factory: '-', // Not available in API DTO directly
+                      area: item.description,
+                      position: item.name,
+                      onConfirm: () {
+                        // Dismiss the bottom sheet
+                        Navigator.of(context).pop();
+
+                        if (widget.vehicleId != null) {
+                          context.read<ParkingLocationBloc>().add(
+                            ParkingLocationAddVehicle(
+                              lotId: item.id,
+                              vehicleId: widget.vehicleId!,
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  },
                 );
               },
             );
@@ -109,19 +175,33 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
         );
 
       case ParkingTab.charging:
-        return ScrollList<int>(
-          controller: _chargingController,
-          isLoading: false,
-          items: List<int>.generate(2, (i) => i),
-          noRecordFoundWidget: const SizedBox.shrink(),
-          itemBuilder: (context, index, item) {
-            return ParkingListItem(
-              vin: index == 0 ? 'VIN-FLZ-1102' : 'VIN-VNT-9901',
-              model: index == 0 ? 'FELIZ S' : 'VENTO S',
-              station: 'Trạm 0${index + 1}',
-              entryTime: index == 0
-                  ? '08:30 - 15/05/2024'
-                  : '10:15 - 15/05/2024',
+        return BlocBuilder<ParkingLocationBloc, ParkingLocationState>(
+          builder: (context, state) {
+            return ScrollList<ParkingVehicleEntity>(
+              controller: _chargingController,
+              footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
+              isLoading:
+                  state.dischargingStatus == ParkingLocationStatus.loading,
+              items: state.dischargingVehicles,
+              noRecordFoundWidget: const SizedBox.shrink(),
+              onRefresh: () async {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoadDischargingVehicles(),
+                );
+              },
+              onLoadingMore: () {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoadMoreDischargingVehicles(),
+                );
+              },
+              itemBuilder: (context, index, item) {
+                return ParkingListItem(
+                  vin: item.vin,
+                  model: item.model,
+                  station: item.color,
+                  entryTime: item.warehouseImportedAt ?? '-',
+                );
+              },
             );
           },
         );
@@ -129,6 +209,7 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
       case ParkingTab.export:
         return ScrollList<int>(
           controller: _exportController,
+          footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
           isLoading: false,
           items: List<int>.generate(3, (i) => i),
           noRecordFoundWidget: const SizedBox.shrink(),
@@ -141,18 +222,31 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
         );
 
       case ParkingTab.qc:
-        return ScrollList<int>(
-          controller: _qcController,
-          isLoading: false,
-          items: List<int>.generate(1, (i) => i),
-          noRecordFoundWidget: const SizedBox.shrink(),
-          itemBuilder: (context, index, item) {
-            return ParkingQCItem(
-              name: 'Khu QC 01',
-              remaining: 1,
-              total: 10,
-              onPressed: () {
-                AppRoutes.navigateToFactoryMap(context);
+        return BlocBuilder<ParkingLocationBloc, ParkingLocationState>(
+          builder: (context, state) {
+            return ScrollList<ParkingVehicleEntity>(
+              controller: _qcController,
+              footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
+              isLoading: state.qcStatus == ParkingLocationStatus.loading,
+              items: state.qcVehicles,
+              noRecordFoundWidget: const SizedBox.shrink(),
+              onRefresh: () async {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoadQcVehicles(),
+                );
+              },
+              onLoadingMore: () {
+                context.read<ParkingLocationBloc>().add(
+                  const ParkingLocationLoadMoreQcVehicles(),
+                );
+              },
+              itemBuilder: (context, index, item) {
+                return ParkingListItem(
+                  vin: item.vin,
+                  model: item.model,
+                  station: item.color,
+                  entryTime: item.warehouseImportedAt ?? '-',
+                );
               },
             );
           },

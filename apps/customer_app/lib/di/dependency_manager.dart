@@ -4,6 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_delivery_order/features_delivery_order.dart';
 import 'package:features_map/features_map.dart';
+import 'package:features_parking_location/features_parking_location.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_vehicle/data/datasources/remote/vehicle_action_remote_datasource.dart';
@@ -151,6 +152,15 @@ class DependencyManager {
       () =>
           VehicleActionRepositoryImpl(locator<VehicleActionRemoteDataSource>()),
     );
+    locator.registerLazySingleton<ParkingLocationRemoteDataSource>(
+      () =>
+          ParkingLocationRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+    locator.registerLazySingleton<ParkingLocationRepository>(
+      () => ParkingLocationRepositoryImpl(
+        locator<ParkingLocationRemoteDataSource>(),
+      ),
+    );
 
     // ==================== Domain Layer ====================
 
@@ -210,6 +220,17 @@ class DependencyManager {
       () => GetClientVehiclesUseCase(locator<DeliveryOrderRepository>()),
     );
 
+    // Parking Location Use Cases
+    locator.registerLazySingleton<GetParkingLotsUseCase>(
+      () => GetParkingLotsUseCase(locator<ParkingLocationRepository>()),
+    );
+    locator.registerLazySingleton<AddVehicleToParkingLotUseCase>(
+      () => AddVehicleToParkingLotUseCase(locator<ParkingLocationRepository>()),
+    );
+    locator.registerLazySingleton<GetParkingVehiclesUseCase>(
+      () => GetParkingVehiclesUseCase(locator<ParkingLocationRepository>()),
+    );
+
     // Localization Use Cases
     locator.registerLazySingleton<GetSavedLocaleUseCase>(
       () => GetSavedLocaleUseCase(locator<LocaleRepository>()),
@@ -251,6 +272,14 @@ class DependencyManager {
         loginUseCase: locator<LoginUseCase>(),
         logoutUseCase: locator<LogoutUseCase>(),
         getCurrentUserUseCase: locator<GetCurrentUserUseCase>(),
+      ),
+    );
+
+    locator.registerFactory<ParkingLocationBloc>(
+      () => ParkingLocationBloc(
+        locator<GetParkingLotsUseCase>(),
+        locator<AddVehicleToParkingLotUseCase>(),
+        locator<GetParkingVehiclesUseCase>(),
       ),
     );
 

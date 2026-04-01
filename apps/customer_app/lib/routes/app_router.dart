@@ -10,6 +10,7 @@ import 'package:features_home/features_home.dart';
 import 'package:features_map/features_map.dart';
 import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
+import 'package:features_parking_location/presentation/bloc/parking_location_event.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_vehicle/presentation/cubit/vehicle_action_cubit.dart';
@@ -155,13 +156,30 @@ class AppRouter {
           path: AppRoutes.chooseParkingLocationPath,
           name: AppRoutes.chooseParkingLocation,
           pageBuilder: (context, state) {
-            final tabIndex = (state.extra as int?) ?? 0;
+            var tabIndex = 0;
+            int? vehicleId;
+            if (state.extra is Map<String, dynamic>) {
+              final extra = state.extra as Map<String, dynamic>;
+              tabIndex = (extra['initialTabIndex'] as int?) ?? 0;
+              vehicleId = extra['vehicleId'] as int?;
+            } else if (state.extra is int) {
+              tabIndex = state.extra as int;
+            }
+
             final initialTab = ParkingTab
                 .values[tabIndex.clamp(0, ParkingTab.values.length - 1)];
             return _buildPageWithTransition(
               key: state.pageKey,
               name: AppRoutes.chooseParkingLocation,
-              child: ChooseParkingLocationPage(initialTab: initialTab),
+              child: BlocProvider(
+                create: (context) =>
+                    locator<ParkingLocationBloc>()
+                      ..add(const ParkingLocationLoad()),
+                child: ChooseParkingLocationPage(
+                  initialTab: initialTab,
+                  vehicleId: vehicleId,
+                ),
+              ),
             );
           },
         ),

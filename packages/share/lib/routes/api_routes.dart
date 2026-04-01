@@ -33,5 +33,8 @@ class ApiRoutes {
   static const String deliveryOrderVehicles =
       '$deliveryOrders/{deliveryOrderId}/vehicles';
 
+  // Parking Lots endpoint
+  static const String parkingLots = '$v1$clientType/parking-lots';
+
   static String userById(String id) => '$v1/user/$id';
 }

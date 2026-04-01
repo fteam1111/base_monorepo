@@ -123,6 +123,7 @@ class VehicleActionsSection extends StatelessWidget {
           onPressed: () => AppRoutes.navigateToChooseParkingLocation(
             context,
             initialTabIndex: _tabFinished,
+            vehicleId: vehicle?.id,
           ),
         ),
       );
@@ -139,6 +140,7 @@ class VehicleActionsSection extends StatelessWidget {
             onPressed: () => AppRoutes.navigateToChooseParkingLocation(
               context,
               initialTabIndex: _tabExport,
+              vehicleId: vehicle?.id,
             ),
           ),
         )

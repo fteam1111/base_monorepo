@@ -23,6 +23,7 @@ class ScrollableGridView<T> extends StatefulWidget {
     required this.noRecordFoundWidget,
     required this.controller,
     this.header,
+    this.footer,
     this.onRefresh,
     this.onLoadingMore,
     this.dismissOnDrag = false,
@@ -52,6 +53,9 @@ class ScrollableGridView<T> extends StatefulWidget {
 
   /// Header sliver (tùy chọn).
   final Widget? header;
+
+  /// Footer sliver (tuỳ chọn).
+  final Widget? footer;
 
   /// Scroll controller (bắt buộc).
   final ScrollController controller;
@@ -250,6 +254,8 @@ class _ScrollableGridViewState<T> extends State<ScrollableGridView<T>> {
               key: WidgetKeys.loadMoreGridLoader,
               child: LoadingMoreIndicator(controller: widget.controller),
             ),
+
+          if (widget.footer != null) SliverToBoxAdapter(child: widget.footer),
         ],
       ),
     );
