@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
+import 'package:features_parking_location/domain/entities/export_area_entity.dart';
 import 'package:features_parking_location/domain/entities/parking_lot_entity.dart';
 import 'package:features_parking_location/domain/entities/parking_vehicle_entity.dart';
 
@@ -26,6 +27,9 @@ class ParkingLocationState extends Equatable {
     this.qcHasReachedMax = false,
     this.addVehicleStatus = AddVehicleStatus.initial,
     this.addVehicleFailure,
+    this.exportAreasStatus = ParkingLocationStatus.initial,
+    this.exportAreas = const [],
+    this.exportAreasFailure,
   });
 
   final ParkingLocationStatus status;
@@ -49,6 +53,10 @@ class ParkingLocationState extends Equatable {
   final AddVehicleStatus addVehicleStatus;
   final ApiFailure? addVehicleFailure;
 
+  final ParkingLocationStatus exportAreasStatus;
+  final List<ExportAreaEntity> exportAreas;
+  final ApiFailure? exportAreasFailure;
+
   @override
   List<Object?> get props => [
     status,
@@ -68,6 +76,9 @@ class ParkingLocationState extends Equatable {
     qcHasReachedMax,
     addVehicleStatus,
     addVehicleFailure,
+    exportAreasStatus,
+    exportAreas,
+    exportAreasFailure,
   ];
 
   ParkingLocationState copyWith({
@@ -88,6 +99,9 @@ class ParkingLocationState extends Equatable {
     bool? qcHasReachedMax,
     AddVehicleStatus? addVehicleStatus,
     ApiFailure? addVehicleFailure,
+    ParkingLocationStatus? exportAreasStatus,
+    List<ExportAreaEntity>? exportAreas,
+    ApiFailure? exportAreasFailure,
   }) {
     return ParkingLocationState(
       status: status ?? this.status,
@@ -108,6 +122,9 @@ class ParkingLocationState extends Equatable {
       qcHasReachedMax: qcHasReachedMax ?? this.qcHasReachedMax,
       addVehicleStatus: addVehicleStatus ?? this.addVehicleStatus,
       addVehicleFailure: addVehicleFailure ?? this.addVehicleFailure,
+      exportAreasStatus: exportAreasStatus ?? this.exportAreasStatus,
+      exportAreas: exportAreas ?? this.exportAreas,
+      exportAreasFailure: exportAreasFailure ?? this.exportAreasFailure,
     );
   }
 }

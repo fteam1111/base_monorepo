@@ -30,5 +30,3 @@ final class UserRoleState extends Equatable {
   @override
   List<Object?> get props => [status, roles, failure];
 }
-
-

@@ -9,4 +9,3 @@ abstract class FactoryRepository {
   /// Trả về danh sách nhà máy (factory) từ API.
   Future<Either<ApiFailure, List<FactoryEntity>>> getClientFactories();
 }
-

@@ -234,5 +234,37 @@
   },
   "scanBackToList": "Ok - quay lại danh sách",
   "cancelBackToList": "Hủy - quay lại danh sách",
-  "cancelAction": "Hủy bỏ"
+  "cancelAction": "Hủy bỏ",
+  "exportAreaDoTitle": "DO trong {areaName}",
+  "@exportAreaDoTitle": {
+    "placeholders": {
+      "areaName": {
+        "type": "String"
+      }
+    }
+  },
+  "exportAreaDoSubtitle": "Danh sách lệnh giao hàng",
+  "exportAreaDoEmpty": "Không có đơn xuất hàng nào",
+  "exportAreaConfirmTitle": "Xác nhận đỗ xe vào DO",
+  "exportAreaConfirmMessage": "Bạn có chắc chắn muốn đỗ xe vào DO {doCode} hay không?",
+  "@exportAreaConfirmMessage": {
+    "placeholders": {
+      "doCode": {
+        "type": "String"
+      }
+    }
+  },
+  "exportAreaDeliveryOrderLabel": "Lệnh giao hàng",
+  "exportAreaConfirmAction": "Xác nhận đỗ xe",
+  "exportAreaStatusFull": "Đã đủ xe",
+  "exportAreaStatusWaiting": "Chờ xuất",
+  "exportAreaVehicleCount": "Số lượng xe: {count} xe",
+  "@exportAreaVehicleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportAreaSelectAction": "Chọn đỗ"
 }

@@ -236,5 +236,37 @@
   },
   "scanBackToList": "Ok - back to list",
   "cancelBackToList": "Cancel - back to list",
-  "cancelAction": "Cancel"
+  "cancelAction": "Cancel",
+  "exportAreaDoTitle": "DO in {areaName}",
+  "@exportAreaDoTitle": {
+    "placeholders": {
+      "areaName": {
+        "type": "String"
+      }
+    }
+  },
+  "exportAreaDoSubtitle": "Delivery order list",
+  "exportAreaDoEmpty": "No export orders found",
+  "exportAreaConfirmTitle": "Confirm parking vehicle to DO",
+  "exportAreaConfirmMessage": "Are you sure you want to park vehicle into DO {doCode}?",
+  "@exportAreaConfirmMessage": {
+    "placeholders": {
+      "doCode": {
+        "type": "String"
+      }
+    }
+  },
+  "exportAreaDeliveryOrderLabel": "Delivery order",
+  "exportAreaConfirmAction": "Confirm parking",
+  "exportAreaStatusFull": "Full",
+  "exportAreaStatusWaiting": "Waiting",
+  "exportAreaVehicleCount": "Vehicles: {count}",
+  "@exportAreaVehicleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportAreaSelectAction": "Select"
 }

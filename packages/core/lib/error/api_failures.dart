@@ -72,26 +72,23 @@ extension ApiFailureExt on ApiFailure {
     noInternet: (_) => const TRObject('Please check your network connection'),
     userNotFound: (_) => const TRObject('User not found.'),
     accountBlocked: (_) => const TRObject('This account is blocked'),
-    invalidEmailAndPasswordCombination:
-        (_) => const TRObject('Incorrect username and/or password.'),
+    invalidEmailAndPasswordCombination: (_) =>
+        const TRObject('Incorrect username and/or password.'),
     accountLocked: (_) => const TRObject('Account is Locked'),
     accountExpired: (_) => const TRObject('Account is Expired'),
     tokenExpired: (_) => const TRObject('Session token is Expired'),
     authenticationFailed: (_) => const TRObject('Your session has expired'),
-    deviceNotSupportBiometric:
-        (_) => const TRObject('Device not support biometric'),
-    cannotCheckBiometrics:
-        (_) => const TRObject('Unable to check your biometric'),
+    deviceNotSupportBiometric: (_) =>
+        const TRObject('Device not support biometric'),
+    cannotCheckBiometrics: (_) =>
+        const TRObject('Unable to check your biometric'),
     noSupportedBiometrics: (_) => const TRObject('No supported biometric'),
     invalidBiometric: (_) => const TRObject('Incorrect biometric'),
-    photoPermissionFailed:
-        (_) => const TRObject(
-          'Please enable Photos permission from the app settings',
-        ),
-    storagePermissionFailed:
-        (_) => const TRObject(
-          'Please enable Storage permission from the app settings',
-        ),
+    photoPermissionFailed: (_) =>
+        const TRObject('Please enable Photos permission from the app settings'),
+    storagePermissionFailed: (_) => const TRObject(
+      'Please enable Storage permission from the app settings',
+    ),
     invalidDomain: (_) => const TRObject("You don't have access"),
     passwordResetFail: (_) => const TRObject('Unable to reset password'),
     languageChangeFail: (_) => const TRObject('Unable to change language'),

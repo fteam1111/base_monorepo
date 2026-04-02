@@ -12,7 +12,8 @@ abstract class LocalStorageModule {
   /// Injectable sẽ tự động resolve singleton này
   @preResolve
   @lazySingleton
-  Future<SharedPreferences> get sharedPreferences => SharedPreferences.getInstance();
+  Future<SharedPreferences> get sharedPreferences =>
+      SharedPreferences.getInstance();
 
   // ========== Token Storage ==========
 
@@ -26,12 +27,14 @@ abstract class LocalStorageModule {
   /// Provide ThemeStorage
   /// Injectable sẽ tự động inject SharedPreferences
   @lazySingleton
-  ThemeStorage provideThemeStorage(SharedPreferences prefs) => ThemeStorage(prefs);
+  ThemeStorage provideThemeStorage(SharedPreferences prefs) =>
+      ThemeStorage(prefs);
 
   // ========== Locale Storage ==========
 
   /// Provide LocaleStorage
   /// Injectable sẽ tự động inject SharedPreferences
   @lazySingleton
-  LocaleStorage provideLocaleStorage(SharedPreferences prefs) => LocaleStorage(prefs);
+  LocaleStorage provideLocaleStorage(SharedPreferences prefs) =>
+      LocaleStorage(prefs);
 }

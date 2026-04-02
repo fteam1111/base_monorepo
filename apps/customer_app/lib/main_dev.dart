@@ -15,10 +15,10 @@ Future<void> main() async {
 
 class DevConfig extends BaseConfig {
   DevConfig()
-      : super(
-          flavor: AppFlavor.dev,
-          httpConnectTimeout: 15000,
-          httpSendTimeout: 15000,
-          httpReceiveTimeout: 15000,
-        );
+    : super(
+        flavor: AppFlavor.dev,
+        httpConnectTimeout: 15000,
+        httpSendTimeout: 15000,
+        httpReceiveTimeout: 15000,
+      );
 }

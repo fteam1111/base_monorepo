@@ -3,11 +3,6 @@ import 'package:core/factory/domain/entities/factory_entity.dart';
 
 extension FactoryMapper on FactoryModelDto {
   FactoryEntity toEntity() {
-    return FactoryEntity(
-      id: id ?? 0,
-      name: name ?? '',
-      address: address ?? '',
-    );
+    return FactoryEntity(id: id ?? 0, name: name ?? '', address: address ?? '');
   }
 }
-

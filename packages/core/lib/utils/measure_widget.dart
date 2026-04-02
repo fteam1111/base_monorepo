@@ -42,14 +42,10 @@ Size measureWidget(Widget widget) {
   final pipelineOwner = PipelineOwner();
   final rootView = pipelineOwner.rootNode = MeasurementView();
   final buildOwner = BuildOwner(focusManager: FocusManager());
-  final element =
-      RenderObjectToWidgetAdapter<RenderBox>(
+  final element = RenderObjectToWidgetAdapter<RenderBox>(
     container: rootView,
     debugShortDescription: '[root]',
-    child: Directionality(
-      textDirection: TextDirection.ltr,
-      child: widget,
-    ),
+    child: Directionality(textDirection: TextDirection.ltr, child: widget),
   ).attachToRenderTree(buildOwner);
   try {
     rootView.scheduleInitialLayout();

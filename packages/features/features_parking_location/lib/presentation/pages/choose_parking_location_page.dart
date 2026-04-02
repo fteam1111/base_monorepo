@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
+import 'package:features_parking_location/domain/entities/export_area_entity.dart';
 import 'package:features_parking_location/domain/entities/parking_lot_entity.dart';
 import 'package:features_parking_location/domain/entities/parking_vehicle_entity.dart';
 import 'package:features_parking_location/presentation/bloc/parking_location_bloc.dart';
@@ -55,6 +56,12 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
         );
         context.read<ParkingLocationBloc>().add(
           const ParkingLocationLoadQcVehicles(),
+        );
+
+        final factoryId =
+            context.read<FactoryCubit>().state.factories.firstOrNull?.id ?? 1;
+        context.read<ParkingLocationBloc>().add(
+          ParkingLocationLoadExportAreas(factoryId: factoryId),
         );
       }
     });
@@ -207,16 +214,43 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
         );
 
       case ParkingTab.export:
-        return ScrollList<int>(
-          controller: _exportController,
-          footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
-          isLoading: false,
-          items: List<int>.generate(3, (i) => i),
-          noRecordFoundWidget: const SizedBox.shrink(),
-          itemBuilder: (context, index, item) {
-            return ParkingExportItem(
-              name: 'Lồng ${index + 1}',
-              orderCount: index == 0 ? 2 : (index == 1 ? 1 : 0),
+        return BlocBuilder<ParkingLocationBloc, ParkingLocationState>(
+          builder: (context, state) {
+            return ScrollList<ExportAreaEntity>(
+              controller: _exportController,
+              footer: SizedBox(height: context.bottomPadding + AppSpacing.xxl),
+              isLoading:
+                  state.exportAreasStatus == ParkingLocationStatus.loading,
+              items: state.exportAreas,
+              noRecordFoundWidget: const SizedBox.shrink(),
+              onRefresh: () async {
+                final factoryId =
+                    context
+                        .read<FactoryCubit>()
+                        .state
+                        .factories
+                        .firstOrNull
+                        ?.id ??
+                    1;
+                context.read<ParkingLocationBloc>().add(
+                  ParkingLocationLoadExportAreas(factoryId: factoryId),
+                );
+              },
+              itemBuilder: (context, index, item) {
+                return ParkingExportItem(
+                  name: item.name,
+                  currentCapacity: item.currentCapacity,
+                  capacity: item.capacity,
+                  onPressed: () {
+                    AppRoutes.navigateToExportAreaDeliveryOrders(
+                      context,
+                      areaId: item.id,
+                      areaName: item.name,
+                      vehicleId: widget.vehicleId?.toString(),
+                    );
+                  },
+                );
+              },
             );
           },
         );

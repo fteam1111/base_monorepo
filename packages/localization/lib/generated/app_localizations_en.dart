@@ -567,4 +567,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancelAction => 'Cancel';
+
+  @override
+  String exportAreaDoTitle(String areaName) {
+    return 'DO in $areaName';
+  }
+
+  @override
+  String get exportAreaDoSubtitle => 'Delivery order list';
+
+  @override
+  String get exportAreaDoEmpty => 'No export orders found';
+
+  @override
+  String get exportAreaConfirmTitle => 'Confirm parking vehicle to DO';
+
+  @override
+  String exportAreaConfirmMessage(String doCode) {
+    return 'Are you sure you want to park vehicle into DO $doCode?';
+  }
+
+  @override
+  String get exportAreaDeliveryOrderLabel => 'Delivery order';
+
+  @override
+  String get exportAreaConfirmAction => 'Confirm parking';
+
+  @override
+  String get exportAreaStatusFull => 'Full';
+
+  @override
+  String get exportAreaStatusWaiting => 'Waiting';
+
+  @override
+  String exportAreaVehicleCount(int count) {
+    return 'Vehicles: $count';
+  }
+
+  @override
+  String get exportAreaSelectAction => 'Select';
 }

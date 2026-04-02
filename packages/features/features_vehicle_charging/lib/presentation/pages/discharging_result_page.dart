@@ -276,9 +276,7 @@ class _InfoRow extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: typography.bodySmall?.copyWith(
-              color: colorScheme.tertiary,
-            ),
+            style: typography.bodySmall?.copyWith(color: colorScheme.tertiary),
           ),
         ),
         const Gap(AppSpacing.small),

@@ -14,4 +14,3 @@ abstract class VehicleChargingRepository {
     required int vehicleId,
   });
 }
-

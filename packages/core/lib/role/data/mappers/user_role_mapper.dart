@@ -3,10 +3,6 @@ import 'package:core/role/domain/entities/user_role_entity.dart';
 
 extension UserRoleMapper on UserRoleModelDto {
   UserRoleEntity toEntity() {
-    return UserRoleEntity(
-      id: id ?? 0,
-      name: name ?? '',
-    );
+    return UserRoleEntity(id: id ?? 0, name: name ?? '');
   }
 }
-

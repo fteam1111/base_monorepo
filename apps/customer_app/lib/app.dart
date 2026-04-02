@@ -142,6 +142,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider.value(value: locator<AuthBloc>()),
         BlocProvider.value(value: locator<ThemeCubit>()),
         BlocProvider.value(value: locator<DeepLinkBloc>()),
+        BlocProvider.value(value: locator<FactoryCubit>()),
         BlocProvider.value(
           value: locator<LocalizationBloc>()..add(const LoadSavedLocaleEvent()),
         ),

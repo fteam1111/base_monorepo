@@ -17,4 +17,3 @@ class FactoryEntity extends Equatable {
   @override
   String toString() => 'FactoryEntity(id: $id, name: $name, address: $address)';
 }
-

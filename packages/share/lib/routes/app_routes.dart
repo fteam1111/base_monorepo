@@ -34,6 +34,7 @@ class AppRoutes {
   // DO Routes
   static const String doList = 'do-list';
   static const String doDetail = 'do-detail';
+  static const String exportAreaDeliveryOrders = 'export-area-dos';
 
   // ==================== Route Paths ====================
 
@@ -51,6 +52,7 @@ class AppRoutes {
   static const String doListPath = '/do-list';
   static const String doDetailPath = '/do-detail';
   static const String qrScannerPath = '/qr_scanner';
+  static const String exportAreaDeliveryOrdersPath = '/export-area-dos';
 
   // ==================== Route Parameters ====================
 
@@ -93,6 +95,18 @@ class AppRoutes {
     context.push(
       chooseParkingLocationPath,
       extra: {'initialTabIndex': initialTabIndex, 'vehicleId': vehicleId},
+    );
+  }
+
+  static void navigateToExportAreaDeliveryOrders(
+    BuildContext context, {
+    required int areaId,
+    required String areaName,
+    String? vehicleId,
+  }) {
+    context.pushNamed(
+      exportAreaDeliveryOrders,
+      extra: {'areaId': areaId, 'areaName': areaName, 'vehicleId': vehicleId},
     );
   }
 

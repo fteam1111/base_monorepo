@@ -18,4 +18,3 @@ abstract class FactoryRemoteDataSource {
   @GET(ApiRoutes.getFactories)
   Future<BaseResponse<List<FactoryModelDto>>> getClientFactories();
 }
-

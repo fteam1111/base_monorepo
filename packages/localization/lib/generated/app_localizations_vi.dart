@@ -565,4 +565,43 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get cancelAction => 'Hủy bỏ';
+
+  @override
+  String exportAreaDoTitle(String areaName) {
+    return 'DO trong $areaName';
+  }
+
+  @override
+  String get exportAreaDoSubtitle => 'Danh sách lệnh giao hàng';
+
+  @override
+  String get exportAreaDoEmpty => 'Không có đơn xuất hàng nào';
+
+  @override
+  String get exportAreaConfirmTitle => 'Xác nhận đỗ xe vào DO';
+
+  @override
+  String exportAreaConfirmMessage(String doCode) {
+    return 'Bạn có chắc chắn muốn đỗ xe vào DO $doCode hay không?';
+  }
+
+  @override
+  String get exportAreaDeliveryOrderLabel => 'Lệnh giao hàng';
+
+  @override
+  String get exportAreaConfirmAction => 'Xác nhận đỗ xe';
+
+  @override
+  String get exportAreaStatusFull => 'Đã đủ xe';
+
+  @override
+  String get exportAreaStatusWaiting => 'Chờ xuất';
+
+  @override
+  String exportAreaVehicleCount(int count) {
+    return 'Số lượng xe: $count xe';
+  }
+
+  @override
+  String get exportAreaSelectAction => 'Chọn đỗ';
 }

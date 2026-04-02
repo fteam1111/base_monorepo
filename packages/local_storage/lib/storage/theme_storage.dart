@@ -29,9 +29,7 @@ class ThemeStorage {
     final themeModeString = _prefs.getString(_themeModeKey);
 
     if (themeModeString == null) {
-      debugPrint(
-        'ThemeStorage - No saved theme found, using system default',
-      );
+      debugPrint('ThemeStorage - No saved theme found, using system default');
       return null;
     }
 

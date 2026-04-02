@@ -68,7 +68,9 @@ void main() async {
 
   stdout.writeln('');
   if (failCount == 0) {
-    stdout.writeln(' All packages bootstrapped successfully! ($successCount packages)');
+    stdout.writeln(
+      ' All packages bootstrapped successfully! ($successCount packages)',
+    );
   } else {
     stderr.writeln(
       'Bootstrapped with errors: $successCount succeeded, $failCount failed',

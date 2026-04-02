@@ -1,4 +1,5 @@
 import 'package:features_parking_location/domain/usecases/add_vehicle_to_parking_lot_usecase.dart';
+import 'package:features_parking_location/domain/usecases/get_available_export_areas_usecase.dart';
 import 'package:features_parking_location/domain/usecases/get_parking_lots_usecase.dart';
 import 'package:features_parking_location/domain/usecases/get_parking_vehicles_usecase.dart';
 import 'package:features_parking_location/presentation/bloc/parking_location_event.dart';
@@ -12,6 +13,7 @@ class ParkingLocationBloc
     this._getParkingLotsUseCase,
     this._addVehicleToParkingLotUseCase,
     this._getParkingVehiclesUseCase,
+    this._getAvailableExportAreasUseCase,
   ) : super(const ParkingLocationState()) {
     on<ParkingLocationLoad>(_onLoad);
     on<ParkingLocationLoadMore>(_onLoadMore);
@@ -24,11 +26,14 @@ class ParkingLocationBloc
     // QC vehicles
     on<ParkingLocationLoadQcVehicles>(_onLoadQC);
     on<ParkingLocationLoadMoreQcVehicles>(_onLoadMoreQC);
+
+    on<ParkingLocationLoadExportAreas>(_onLoadExportAreas);
   }
 
   final GetParkingLotsUseCase _getParkingLotsUseCase;
   final AddVehicleToParkingLotUseCase _addVehicleToParkingLotUseCase;
   final GetParkingVehiclesUseCase _getParkingVehiclesUseCase;
+  final GetAvailableExportAreasUseCase _getAvailableExportAreasUseCase;
 
   Future<void> _onLoad(
     ParkingLocationLoad event,
@@ -90,6 +95,32 @@ class ParkingLocationBloc
             parkingLots: List.of(state.parkingLots)..addAll(resultList),
             page: nextPage,
             hasReachedMax: resultList.length < AppConstants.defaultPageSize,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onLoadExportAreas(
+    ParkingLocationLoadExportAreas event,
+    Emitter<ParkingLocationState> emit,
+  ) async {
+    emit(state.copyWith(exportAreasStatus: ParkingLocationStatus.loading));
+
+    final result = await _getAvailableExportAreasUseCase(event.factoryId);
+
+    result.fold(
+      (f) => emit(
+        state.copyWith(
+          exportAreasStatus: ParkingLocationStatus.failure,
+          exportAreasFailure: f,
+        ),
+      ),
+      (resultList) {
+        emit(
+          state.copyWith(
+            exportAreasStatus: ParkingLocationStatus.success,
+            exportAreas: resultList,
           ),
         );
       },

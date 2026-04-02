@@ -22,6 +22,15 @@ class ApiRoutes {
 
   // Vehicle endpoints
   static const String vehicles = '$v1$clientType/vehicles';
+  static const String vehicleChargingTransfer =
+      '/api/v1/client/vehicles-charging/transfer';
+
+  // Export Areas API
+  static const String exportAreasAvailable =
+      '/api/v1/client/export-areas/available';
+  static const String exportAreaDeliveryOrders =
+      '/api/v1/client/export-areas/{areaId}/delivery-orders';
+
   static const String vehiclesNeedingCharge = '$vehicles/needing-charge';
   static const String vehicleBySerial = '$vehicles/by-serial/{serialNumber}';
   static const String sendForDischarging =

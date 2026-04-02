@@ -9,8 +9,7 @@ class FactoryRepositoryImpl implements FactoryRepository {
   @override
   Future<Either<ApiFailure, List<FactoryEntity>>> getClientFactories() async {
     try {
-      final response =
-          await _remoteDataSource.getClientFactories();
+      final response = await _remoteDataSource.getClientFactories();
 
       final items = response.data;
 
@@ -26,4 +25,3 @@ class FactoryRepositoryImpl implements FactoryRepository {
     }
   }
 }
-

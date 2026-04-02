@@ -30,5 +30,3 @@ final class FactoryState extends Equatable {
   @override
   List<Object?> get props => [status, factories, failure];
 }
-
-

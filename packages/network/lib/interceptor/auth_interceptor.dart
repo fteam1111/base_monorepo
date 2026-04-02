@@ -16,13 +16,14 @@ class AuthInterceptor extends Interceptor {
   ) async {
     try {
       final token = await _tokenStorage.getAccessToken();
-      
+
       // Chỉ thêm Authorization header nếu token tồn tại
       if (token != null && token.isNotEmpty) {
         final accessToken = JWT(token);
 
         if (accessToken.isValid()) {
-          options.headers['Authorization'] = 'Bearer ${accessToken.getOrCrash()}';
+          options.headers['Authorization'] =
+              'Bearer ${accessToken.getOrCrash()}';
         }
       }
 

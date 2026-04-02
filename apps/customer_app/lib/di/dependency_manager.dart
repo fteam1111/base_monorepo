@@ -162,6 +162,13 @@ class DependencyManager {
       ),
     );
 
+    locator.registerLazySingleton<ExportAreaRemoteDataSource>(
+      () => ExportAreaRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+    locator.registerLazySingleton<ExportAreaRepository>(
+      () => ExportAreaRepositoryImpl(locator<ExportAreaRemoteDataSource>()),
+    );
+
     // ==================== Domain Layer ====================
 
     // Use Cases
@@ -231,6 +238,16 @@ class DependencyManager {
       () => GetParkingVehiclesUseCase(locator<ParkingLocationRepository>()),
     );
 
+    locator.registerLazySingleton<GetAvailableExportAreasUseCase>(
+      () => GetAvailableExportAreasUseCase(locator<ExportAreaRepository>()),
+    );
+    locator.registerLazySingleton<GetExportAreaDeliveryOrdersUseCase>(
+      () => GetExportAreaDeliveryOrdersUseCase(locator<ExportAreaRepository>()),
+    );
+    locator.registerLazySingleton<AddVehicleToExportAreaDoUseCase>(
+      () => AddVehicleToExportAreaDoUseCase(locator<ExportAreaRepository>()),
+    );
+
     // Localization Use Cases
     locator.registerLazySingleton<GetSavedLocaleUseCase>(
       () => GetSavedLocaleUseCase(locator<LocaleRepository>()),
@@ -280,6 +297,14 @@ class DependencyManager {
         locator<GetParkingLotsUseCase>(),
         locator<AddVehicleToParkingLotUseCase>(),
         locator<GetParkingVehiclesUseCase>(),
+        locator<GetAvailableExportAreasUseCase>(),
+      ),
+    );
+
+    locator.registerFactory<ExportAreaDoBloc>(
+      () => ExportAreaDoBloc(
+        locator<GetExportAreaDeliveryOrdersUseCase>(),
+        locator<AddVehicleToExportAreaDoUseCase>(),
       ),
     );
 

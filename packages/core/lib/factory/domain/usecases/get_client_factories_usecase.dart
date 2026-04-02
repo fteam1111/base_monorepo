@@ -10,4 +10,3 @@ class GetClientFactoriesUseCase {
     return _repository.getClientFactories();
   }
 }
-

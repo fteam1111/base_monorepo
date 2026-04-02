@@ -21,4 +21,3 @@ abstract class RoleRemoteDataSource {
     @Query('size') int? size = 999,
   });
 }
-

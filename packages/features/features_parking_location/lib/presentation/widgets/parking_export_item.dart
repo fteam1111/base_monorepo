@@ -7,12 +7,14 @@ class ParkingExportItem extends StatelessWidget {
   const ParkingExportItem({
     super.key,
     required this.name,
-    required this.orderCount,
+    required this.currentCapacity,
+    required this.capacity,
     this.onPressed,
   });
 
   final String name;
-  final int orderCount;
+  final int currentCapacity;
+  final int capacity;
   final VoidCallback? onPressed;
 
   @override
@@ -42,7 +44,7 @@ class ParkingExportItem extends StatelessWidget {
                 ),
                 const Gap(AppSpacing.xxxs),
                 Text(
-                  context.l10n.deliveryOrders('$orderCount'),
+                  '$currentCapacity / $capacity',
                   style: context.appTypography.bodySmall.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.bold,

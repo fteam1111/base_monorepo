@@ -115,7 +115,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: surfaceTintColor,
       toolbarHeight: toolbarHeight,
       leadingWidth: leadingWidth,
-      titleSpacing: titleSpacing ??
+      titleSpacing:
+          titleSpacing ??
           (leadingType == CustomAppBarLeadingType.back && !isDarkBackground
               ? 0
               : null),

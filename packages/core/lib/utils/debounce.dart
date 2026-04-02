@@ -37,9 +37,7 @@ class Debounce {
   /// ```dart
   /// final debounce = Debounce(delay: Duration(milliseconds: 500));
   /// ```
-  Debounce({
-    this.delay = const Duration(milliseconds: 300),
-  });
+  Debounce({this.delay = const Duration(milliseconds: 300)});
 
   /// Gọi hàm với debounce
   ///

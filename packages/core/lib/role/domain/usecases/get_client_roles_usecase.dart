@@ -13,4 +13,3 @@ class GetClientRolesUseCase {
     return _repository.getClientRoles(page: page, size: size);
   }
 }
-

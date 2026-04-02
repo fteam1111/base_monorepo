@@ -1111,6 +1111,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancelAction;
+
+  /// No description provided for @exportAreaDoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'DO in {areaName}'**
+  String exportAreaDoTitle(String areaName);
+
+  /// No description provided for @exportAreaDoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery order list'**
+  String get exportAreaDoSubtitle;
+
+  /// No description provided for @exportAreaDoEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No export orders found'**
+  String get exportAreaDoEmpty;
+
+  /// No description provided for @exportAreaConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm parking vehicle to DO'**
+  String get exportAreaConfirmTitle;
+
+  /// No description provided for @exportAreaConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to park vehicle into DO {doCode}?'**
+  String exportAreaConfirmMessage(String doCode);
+
+  /// No description provided for @exportAreaDeliveryOrderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery order'**
+  String get exportAreaDeliveryOrderLabel;
+
+  /// No description provided for @exportAreaConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm parking'**
+  String get exportAreaConfirmAction;
+
+  /// No description provided for @exportAreaStatusFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full'**
+  String get exportAreaStatusFull;
+
+  /// No description provided for @exportAreaStatusWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get exportAreaStatusWaiting;
+
+  /// No description provided for @exportAreaVehicleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles: {count}'**
+  String exportAreaVehicleCount(int count);
+
+  /// No description provided for @exportAreaSelectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get exportAreaSelectAction;
 }
 
 class _AppLocalizationsDelegate

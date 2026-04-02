@@ -45,3 +45,11 @@ final class ParkingLocationLoadQcVehicles extends ParkingLocationEvent {
 final class ParkingLocationLoadMoreQcVehicles extends ParkingLocationEvent {
   const ParkingLocationLoadMoreQcVehicles();
 }
+
+final class ParkingLocationLoadExportAreas extends ParkingLocationEvent {
+  const ParkingLocationLoadExportAreas({required this.factoryId});
+  final int factoryId;
+
+  @override
+  List<Object?> get props => [factoryId];
+}

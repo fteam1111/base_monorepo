@@ -10,7 +10,6 @@ import 'package:features_home/features_home.dart';
 import 'package:features_map/features_map.dart';
 import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
-import 'package:features_parking_location/presentation/bloc/parking_location_event.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
 import 'package:features_vehicle/presentation/cubit/vehicle_action_cubit.dart';
@@ -177,6 +176,31 @@ class AppRouter {
                       ..add(const ParkingLocationLoad()),
                 child: ChooseParkingLocationPage(
                   initialTab: initialTab,
+                  vehicleId: vehicleId,
+                ),
+              ),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: AppRoutes.exportAreaDeliveryOrdersPath,
+          name: AppRoutes.exportAreaDeliveryOrders,
+          pageBuilder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
+            final areaId = extra['areaId'] as int;
+            final areaName = extra['areaName'] as String;
+            final vehicleId = extra['vehicleId'] as String?;
+
+            return _buildPageWithTransition(
+              key: state.pageKey,
+              name: AppRoutes.exportAreaDeliveryOrders,
+              child: BlocProvider(
+                create: (context) =>
+                    locator<ExportAreaDoBloc>()..add(ExportAreaDoLoad(areaId)),
+                child: ExportAreaDeliveryOrderListPage(
+                  areaId: areaId,
+                  areaName: areaName,
                   vehicleId: vehicleId,
                 ),
               ),

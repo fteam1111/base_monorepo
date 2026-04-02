@@ -42,9 +42,7 @@ class Throttle {
   /// ```dart
   /// final throttle = Throttle(duration: Duration(milliseconds: 1000));
   /// ```
-  Throttle({
-    this.duration = const Duration(milliseconds: 500),
-  });
+  Throttle({this.duration = const Duration(milliseconds: 500)});
 
   /// Chạy hàm với throttle
   ///
