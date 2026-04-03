@@ -251,7 +251,7 @@ class AppDarkTheme {
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppRadius.lg),
+          borderRadius: BorderRadius.circular(AppRadius.full),
         ),
         backgroundColor: colorScheme.primaryContainer,
         foregroundColor: colorScheme.onPrimaryContainer,

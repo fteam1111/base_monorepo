@@ -1,182 +1,272 @@
 {
   "@@locale": "en",
-  "appTitle": "Clean Architecture App",
-  "@appTitle": {
-    "description": "The application title"
-  },
-  
   "welcome": "Welcome",
-  "@welcome": {
-    "description": "Welcome message"
-  },
-  
   "login": "Login",
-  "@login": {
-    "description": "Login button text"
-  },
-  
   "logout": "Logout",
-  "@logout": {
-    "description": "Logout button text"
-  },
-  
   "email": "Email",
-  "@email": {
-    "description": "Email field label"
-  },
-  
   "password": "Password",
-  "@password": {
-    "description": "Password field label"
-  },
-  
   "enterEmail": "Enter your email",
-  "@enterEmail": {
-    "description": "Email field hint"
-  },
-  
-  "enterPassword": "Enter your password",
-  "@enterPassword": {
-    "description": "Password field hint"
-  },
-  
-  "forgotPassword": "Forgot Password?",
-  "@forgotPassword": {
-    "description": "Forgot password link"
-  },
-  
-  "dontHaveAccount": "Don't have an account?",
-  "@dontHaveAccount": {
-    "description": "Sign up prompt"
-  },
-  
-  "signUp": "Sign Up",
-  "@signUp": {
-    "description": "Sign up button text"
-  },
-  
   "home": "Home",
-  "@home": {
-    "description": "Home page title"
-  },
-  
   "settings": "Settings",
-  "@settings": {
-    "description": "Settings page title"
-  },
-  
   "language": "Language",
-  "@language": {
-    "description": "Language settings"
-  },
-  
-  "theme": "Theme",
-  "@theme": {
-    "description": "Theme settings"
-  },
-  
-  "lightMode": "Light Mode",
-  "@lightMode": {
-    "description": "Light theme option"
-  },
-  
-  "darkMode": "Dark Mode",
-  "@darkMode": {
-    "description": "Dark theme option"
-  },
-  
-  "systemDefault": "System Default",
-  "@systemDefault": {
-    "description": "System default option"
-  },
-  
-  "authenticated": "Authenticated",
-  "@authenticated": {
-    "description": "Authentication status - authenticated"
-  },
-  
-  "notAuthenticated": "Not Authenticated",
-  "@notAuthenticated": {
-    "description": "Authentication status - not authenticated"
-  },
-  
   "loading": "Loading...",
-  "@loading": {
-    "description": "Loading indicator text"
-  },
-  
   "error": "Error",
-  "@error": {
-    "description": "Generic error text"
-  },
-  
   "retry": "Retry",
-  "@retry": {
-    "description": "Retry button text"
-  },
-  
   "cancel": "Cancel",
-  "@cancel": {
-    "description": "Cancel button text"
-  },
-  
   "save": "Save",
-  "@save": {
-    "description": "Save button text"
-  },
-  
   "next": "Next",
-  "@next": {
-    "description": "Next button text"
-  },
-  
   "skip": "Skip",
-  "@skip": {
-    "description": "Skip button text"
+  "getStarted": "Get started",
+  "parkingHistoryTitle": "History",
+  "vehicleChargingAreaTitle": "Pending Charging Maintenance",
+  "vehicleChargingAreaSubtitle": "Vehicles pending for more than 30 days",
+  "vehicleChargingSearchHint": "Search by VIN...",
+  "vehicleChargingInfoTitle": "Charging info",
+  "vehicleChargingInfoSubtitle": "Vehicle details",
+  "vehicleChargingInfoStatusLabel": "Status",
+  "vehicleChargingInfoSubAreaLabel": "Sub area",
+  "vehicleChargingInfoCheckAgingDateLabel": "Check aging date",
+  "vehicleChargingCloseInfo": "Close info",
+  "enterVinToViewHistory": "Enter VIN to view history",
+  "map": "Map",
+  "doList": "DO list",
+  "deliveryOrderListTitle": "DO List",
+  "deliveryOrderBatchTitle": "Batch delivery orders",
+  "customer": "Customer",
+  "progress": "Progress",
+  "filterList": "List filter",
+  "findVinCode": "Search VIN...",
+  "allModels": "All models",
+  "allColors": "All colors",
+  "pickUpGuide": "Pickup guide",
+  "results": "{count} Results",
+  "resultsCount": "{count} Results",
+  "warehouse": "Warehouse entry: {date}",
+  "charging": "Charging",
+  "vehicleDetailTitle": "Vehicle details",
+  "vinIdentifier": "Vin identifier",
+  "vehicleModel": "Vehicle model",
+  "vehicleColor": "Color",
+  "batteryCapacity": "Battery capacity",
+  "aging": "Aging",
+  "currentLocation": "Current location",
+  "availableActions": "Available actions",
+  "moveToExportArea": "Move to export waiting area",
+  "prepareForDelivery": "Prepare for delivery transport",
+  "moveToQCArea": "Move to QC area",
+  "recheckQuality": "Recheck quality",
+  "confirmParking": "Confirm parking",
+  "selectPositionToFinish": "Select position and complete parking",
+  "moveToChargingArea": "Move to charging area",
+  "confirmChargingTransfer": "Transfer vehicle to charging area",
+  "enterReasonToMoveQc": "Enter reason to move vehicle to QC",
+  "reasonToMoveRequired": "Reason to move (required)",
+  "enterMoveReason": "Enter reason to move...",
+  "confirm": "Confirm",
+  "confirmTransferToCharging": "Are you sure you want to transfer this vehicle to the charging area?",
+  "transferToChargingTitle": "Transfer to charging area",
+  "chooseParkingLocation": "Choose parking location",
+  "businessAreaClassification": "Business area classification",
+  "finishedProduct": "Finished product",
+  "chargingDischarging": "Charging/discharging",
+  "exportWaiting": "Export waiting",
+  "qcArea": "QC area",
+  "chargingStatus": "Charging",
+  "entryTime": "Entry time",
+  "remainingSlots": "Remaining slots",
+  "capacity": "Capacity",
+  "deliveryOrders": "{count} delivery orders (DO)",
+  "youSelectedParkingSlot": "You have selected a parking slot",
+  "factory": "Factory",
+  "area": "Area",
+  "position": "Position",
+  "parkingSelectionNote": "By selecting \"Confirm parking slot reservation\", the system will hold this empty slot for you for 15 minutes to perform vehicle operations.",
+  "confirmParkingSelection": "Confirm parking slot reservation",
+  "factoryMapTitle": "Factory map",
+  "exportWaitingAreaSubtitle": "Export waiting area",
+  "deliveryOrderStatusPending": "Pending",
+  "deliveryOrderStatusPreparing": "Preparing",
+  "deliveryOrderStatusReady": "Ready",
+  "all": "All",
+  "allWithCount": "All ({count})",
+  "preparingWithCount": "Preparing ({count})",
+  "readyWithCount": "Ready ({count})",
+  "unitVehicle": "Vehicles",
+  "unitUnit": "Units",
+  "deliveryOrderCodeLabel": "Delivery order code",
+  "deliveryOrderVehicleModelLabel": "Vehicle model",
+  "deliveryOrderColorLabel": "Color",
+  "deliveryOrderQuantityLabel": "Quantity",
+  "deliveryOrderQuantityUnit": "Units",
+  "locationFormat": "{area} - {position}",
+  "deliveryOrderDeadlineLabel": "Deadline",
+  "deliveryOrderCompletionProgressLabel": "Completion progress",
+  "deliveryOrderDetailTitle": "DO: {code}",
+  "deliveryOrderPickupGuideTitle": "Pickup guide",
+  "fifoBadge": "Fifo #{number}",
+  "errorExceedingLength": "Giá trị vượt quá độ dài tối đa cho phép ({max} ký tự)",
+  "@errorExceedingLength": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
   },
-  
-  "getStarted": "Get Started",
-  "@getStarted": {
-    "description": "Get started button text"
+  "errorSubceedLength": "Giá trị ngắn hơn độ dài tối thiểu yêu cầu ({min} ký tự)",
+  "@errorSubceedLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
   },
-  
-  "onboardingTitle1": "Welcome to Clean Architecture",
-  "@onboardingTitle1": {
-    "description": "First onboarding page title"
+  "errorEmpty": "Giá trị không được để trống",
+  "errorMultiline": "Giá trị chỉ được phép một dòng",
+  "errorInvalidEmail": "Email không đúng định dạng",
+  "errorNotVinGroupEmail": "Email phải thuộc domain @vingroup.net",
+  "errorPasswordNotMatchRequirements": "Mật khẩu không đạt đủ yêu cầu",
+  "errorInvalidJWT": "JWT không hợp lệ",
+  "errorInvalidJWTPayload": "JWT payload không hợp lệ",
+  "errorMustOneUpperCaseCharacter": "Mật khẩu phải có ít nhất một ký tự viết hoa",
+  "errorMustOneLowerCaseCharacter": "Mật khẩu phải có ít nhất một ký tự viết thường",
+  "errorMustOneNumericCharacter": "Mật khẩu phải có ít nhất một ký tự số",
+  "errorMustOneSpecialCharacter": "Mật khẩu phải có ít nhất một ký tự đặc biệt",
+  "errorContainsForbiddenSubstring": "Mật khẩu không được chứa tên người dùng",
+  "errorMustNotMatchOldPassword": "Mật khẩu mới không được trùng với mật khẩu cũ",
+  "errorMustMatchNewPassword": "Mật khẩu nhập lại không khớp",
+  "errorIsEmpty": "Giá trị không được để trống",
+  "errorNumberMustBiggerThanZero": "Giá trị phải lớn hơn 0",
+  "errorExceedingMaxValue": "Giá trị vượt quá giới hạn tối đa cho phép",
+  "errorInvalidDateValue": "Ngày tháng không hợp lệ",
+  "errorInvalidDoubleValue": "Giá trị số thực không hợp lệ",
+  "errorInvalidIntegerValue": "Giá trị số nguyên không hợp lệ",
+  "errorInvalidVin": "VIN không hợp lệ",
+  "qrScannerTitle": "Scan vehicle QR code",
+  "qrScannerHint": "Place the QR code inside the frame",
+  "vehicleChargingAgingWarning": "There are {count} vehicles with a high aging index that need to be processed",
+  "@vehicleChargingAgingWarning": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-  
-  "onboardingDesc1": "Build scalable and maintainable Flutter apps with proper architecture patterns and separation of concerns.",
-  "@onboardingDesc1": {
-    "description": "First onboarding page description"
+  "vehicleChargingFetchError": "Unable to load vehicle list.",
+  "vehicleChargingEmptyTitle": "All vehicles are stable",
+  "vehicleChargingEmptySubtitle": "No vehicles found with Aging index over 30 days requiring charging.",
+  "vehicleChargingPriority": "Priority #{number}",
+  "@vehicleChargingPriority": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
   },
-  
-  "onboardingTitle2": "Modular Package Structure",
-  "@onboardingTitle2": {
-    "description": "Second onboarding page title"
+  "vehicleChargingMaintenaceActionHint": "Tap to perform maintenance",
+  "vehicleChargingMaintenanceRequestTitle": "Battery maintenance request",
+  "vehicleChargingCurrentAgingLabel": "Current aging:",
+  "vehicleChargingMoveToChargeAction": "Take vehicle to charge",
+  "vehicleChargingNoNeedAction": "No charge needed",
+  "vehicleChargingLocationLabel": "Current location",
+  "vehicleChargingTimeInAreaLabel": "Enter area",
+  "agingDays": "{count} days",
+  "back": "Back",
+  "dischargingStatusUpdated": "Status updated",
+  "dischargingVehicleStatus": "Vehicle status:",
+  "dischargingInstruction": "Please bring the vehicle to the charge/discharge area to continue the maintenance process.",
+  "dischargingVinLabel": "Vin code",
+  "dischargingLocationLabel": "Original location",
+  "dischargingTimeLabel": "Time",
+  "dischargingCompleteAction": "Complete update",
+  "deliveryOrderSuggestedVehiclesTab": "Pickup guide",
+  "deliveryOrderAssignedVehiclesTab": "Vehicles in DO",
+  "noData": "No data available",
+  "vehicleAddedSuccess": "Vehicle added successfully",
+  "vehicleAddFailed": "Failed to add vehicle",
+  "scanConfirmTitle": "Confirm vehicle",
+  "scanConfirmMessage": "Confirm pickup vehicle {vin} at {zone}?",
+  "@scanConfirmMessage": {
+    "placeholders": {
+      "vin": {
+        "type": "String"
+      },
+      "zone": {
+        "type": "String"
+      }
+    }
   },
-  
-  "onboardingDesc2": "Each feature is isolated in its own package with domain, data, and presentation layers using Melos.",
-  "@onboardingDesc2": {
-    "description": "Second onboarding page description"
+  "scanConfirmAction": "Confirm & scan",
+  "scanMatchTitle": "Confirm add to DO",
+  "scanMatchMessage": "Vehicle {vin} matches the selected vehicle. Add to DO {doCode}?",
+  "@scanMatchMessage": {
+    "placeholders": {
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
+    }
   },
-  
-  "onboardingTitle3": "BLoC State Management",
-  "@onboardingTitle3": {
-    "description": "Third onboarding page title"
+  "scanMatchAction": "Confirm",
+  "scanCompatibleTitle": "Different vehicle",
+  "scanCompatibleMessage": "Scanned vehicle {vin} differs from selected but is compatible with DO {doCode}.",
+  "@scanCompatibleMessage": {
+    "placeholders": {
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
+    }
   },
-  
-  "onboardingDesc3": "Manage your app state reactively with BLoC pattern, ensuring predictable and testable code.",
-  "@onboardingDesc3": {
-    "description": "Third onboarding page description"
+  "scanCompatibleAction": "Agree - add to DO",
+  "scanIncompatibleTitle": "Not compatible",
+  "scanIncompatibleMessage": "Scanned vehicle {vin} is not compatible (wrong model/color) with DO {doCode}.",
+  "@scanIncompatibleMessage": {
+    "placeholders": {
+      "vin": {
+        "type": "String"
+      },
+      "doCode": {
+        "type": "String"
+      }
+    }
   },
-  
-  "onboardingTitle4": "Robust Network Layer",
-  "@onboardingTitle4": {
-    "description": "Fourth onboarding page title"
+  "scanBackToList": "Ok - back to list",
+  "cancelBackToList": "Cancel - back to list",
+  "cancelAction": "Cancel",
+  "exportAreaDoTitle": "DO in {areaName}",
+  "@exportAreaDoTitle": {
+    "placeholders": {
+      "areaName": {
+        "type": "String"
+      }
+    }
   },
-  
-  "onboardingDesc4": "Built-in error handling, retry logic, token refresh, and interceptors for seamless API communication.",
-  "@onboardingDesc4": {
-    "description": "Fourth onboarding page description"
-  }
+  "exportAreaDoSubtitle": "Delivery order list",
+  "exportAreaDoEmpty": "No export orders found",
+  "exportAreaConfirmTitle": "Confirm parking vehicle to DO",
+  "exportAreaConfirmMessage": "Are you sure you want to park vehicle into DO {doCode}?",
+  "@exportAreaConfirmMessage": {
+    "placeholders": {
+      "doCode": {
+        "type": "String"
+      }
+    }
+  },
+  "exportAreaDeliveryOrderLabel": "Delivery order",
+  "exportAreaConfirmAction": "Confirm parking",
+  "exportAreaStatusFull": "Full",
+  "exportAreaStatusWaiting": "Waiting",
+  "exportAreaVehicleCount": "Vehicles: {count}",
+  "@exportAreaVehicleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportAreaSelectAction": "Select"
 }

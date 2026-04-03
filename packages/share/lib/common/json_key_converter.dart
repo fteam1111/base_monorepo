@@ -91,4 +91,3 @@ class StringToIntConverter extends JsonConverter<int, String> {
   @override
   String toJson(int object) => object.toString();
 }
-

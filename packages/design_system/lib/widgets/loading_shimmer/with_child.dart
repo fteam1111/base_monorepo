@@ -18,8 +18,7 @@ class _WithChild extends StatelessWidget {
         : Shimmer(
             duration: const Duration(seconds: 1),
             interval: const Duration(seconds: 1),
-            color: Colors.black,
-            colorOpacity: 0,
+            color: context.appColors.neutralVariant,
             enabled: true,
             direction: const ShimmerDirection.fromLTRB(),
             child: child,

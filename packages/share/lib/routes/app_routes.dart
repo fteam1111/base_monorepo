@@ -13,7 +13,9 @@ class AppRoutes {
 
   // Splash & Onboarding Routes
   static const String splash = 'splash';
-  static const String onboarding = 'onboarding';
+
+  // Dashboard Routes
+  static const String dashboard = 'dashboard';
 
   // Home Routes
   static const String home = 'home';

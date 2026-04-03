@@ -1,48 +1,114 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
+/// Card widget dùng chung trong Design System.
+///
+/// Sử dụng design tokens từ [AppRadius], [AppSpacing], [AppColorsExtension]
+/// thay vì hardcode giá trị. Hỗ trợ:
+/// - Tap callback thông qua [InkWell]
+/// - Bo góc dựa trên [borderRadius] (mặc định [AppRadius.card])
+/// - Nền & viền lấy từ theme (có thể override)
+/// - Shadow / elevation tuỳ chỉnh
 class CustomCard extends StatelessWidget {
-  final Widget child;
-  final EdgeInsets margin;
-  final EdgeInsets padding;
-  final bool showShadow;
-  final bool showBorder;
-  final double? width;
-  final double? height;
-  final Clip clipBehavior;
-  final Color backgroundColor;
-  final Color borderColor;
-
   const CustomCard({
     super.key,
     required this.child,
-    this.margin = const EdgeInsets.only(bottom: 12.0),
-    this.padding = const EdgeInsets.only(bottom: 0.0),
-    this.showShadow = true,
-    this.showBorder = false,
+    this.onTap,
+    this.margin,
+    this.padding,
     this.width,
     this.height,
-    this.clipBehavior = Clip.none,
-    this.backgroundColor = Colors.grey,
-    this.borderColor = Colors.grey,
+    this.borderRadius,
+    this.backgroundColor,
+    this.borderColor,
+    this.shadowColor,
+    this.showBorder = false,
+    this.elevation = 4,
+    this.clipBehavior = Clip.antiAlias,
   });
+
+  /// Nội dung bên trong card.
+  final Widget child;
+
+  /// Callback khi nhấn vào card.
+  final VoidCallback? onTap;
+
+  /// Khoảng cách bên ngoài card.
+  final EdgeInsets? margin;
+
+  /// Khoảng cách bên trong card. Mặc định [AppSpacing.cardPadding].
+  final EdgeInsets? padding;
+
+  /// Chiều rộng cố định (nếu cần).
+  final double? width;
+
+  /// Chiều cao cố định (nếu cần).
+  final double? height;
+
+  /// Bo góc. Mặc định [AppRadius.card].
+  final double? borderRadius;
+
+  /// Màu nền card. Mặc định lấy từ `context.appColors.cardBackground`.
+  final Color? backgroundColor;
+
+  /// Màu viền khi [showBorder] = true.
+  final Color? borderColor;
+
+  /// Màu shadow. Mặc định `Colors.black` với alpha 0.05.
+  final Color? shadowColor;
+
+  /// Hiển thị viền xung quanh card.
+  final bool showBorder;
+
+  /// Elevation / shadow. Mặc định 0 (không shadow).
+  final double elevation;
+
+  /// Clip behavior cho nội dung bên trong.
+  final Clip clipBehavior;
 
   @override
   Widget build(BuildContext context) {
+    final resolvedRadius = borderRadius ?? AppRadius.card;
+    final resolvedBorderRadius = BorderRadius.circular(resolvedRadius);
+    final resolvedBackground =
+        backgroundColor ?? context.appColors.cardBackground;
+
     return Container(
       margin: margin,
-      padding: padding,
       width: width,
       height: height,
-      clipBehavior: clipBehavior,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: showBorder ? Border.all(color: borderColor, width: 1.5) : null,
-        boxShadow: showShadow
-            ? [BoxShadow(blurRadius: 5, spreadRadius: 2, color: borderColor)]
-            : null,
-        color: backgroundColor,
+        borderRadius: resolvedBorderRadius,
+        boxShadow: [
+          BoxShadow(
+            color: shadowColor ?? Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: child,
+      child: Material(
+        color: resolvedBackground,
+        elevation: elevation,
+        clipBehavior: clipBehavior,
+        shape: RoundedRectangleBorder(
+          borderRadius: resolvedBorderRadius,
+          side: showBorder
+              ? BorderSide(
+                  color: borderColor ?? context.colorScheme.outlineVariant,
+                )
+              : BorderSide.none,
+        ),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: resolvedBorderRadius,
+          child: Padding(
+            padding: padding ?? const EdgeInsets.all(AppSpacing.cardPadding),
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 }
