@@ -37,7 +37,9 @@ melos bootstrap
 # build runner
 ```bash
 # Using Melos
-melos gen
+melos gen_all
+or
+melos gen_watch
 ```
 
 # run analyze
