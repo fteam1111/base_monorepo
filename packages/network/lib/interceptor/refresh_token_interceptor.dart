@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:local_storage/storage/token_storage.dart';
+import 'package:share/share.dart';
 
 /// Interceptor xử lý refresh token khi nhận được 401
 /// Queue các request trong khi đang refresh để tránh gọi refresh nhiều lần
@@ -38,7 +39,7 @@ class RefreshTokenInterceptor extends Interceptor {
     }
 
     // Bỏ qua refresh cho chính endpoint refresh token
-    if (requestOptions.path.contains('ApiRoutes.refreshToken')) {
+    if (requestOptions.path.contains(ApiRoutes.refreshToken)) {
       return handler.next(err);
     }
 
