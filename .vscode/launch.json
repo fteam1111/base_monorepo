@@ -1,0 +1,122 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // ========================================
+        // DEV Environment
+        // ========================================
+        {
+            "name": "🟢 Dev (Debug)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "🟢 Dev (Profile)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "🟢 Dev (Release)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        // ========================================
+        // UAT Environment
+        // ========================================
+        {
+            "name": "🟡 UAT (Debug)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main_uat.dart",
+            "args": [
+                "--flavor",
+                "uat"
+            ]
+        },
+        {
+            "name": "🟡 UAT (Profile)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main_uat.dart",
+            "args": [
+                "--flavor",
+                "uat"
+            ]
+        },
+        {
+            "name": "🟡 UAT (Release)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main_uat.dart",
+            "args": [
+                "--flavor",
+                "uat"
+            ]
+        },
+        // ========================================
+        // PRODUCTION Environment
+        // ========================================
+        {
+            "name": "🔴 Prod (Debug)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--flavor",
+                "prd"
+            ]
+        },
+        {
+            "name": "🔴 Prod (Profile)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--flavor",
+                "prd"
+            ]
+        },
+        {
+            "name": "🔴 Prod (Release)",
+            "cwd": "apps/customer_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--flavor",
+                "prd"
+            ]
+        }
+    ]
+}

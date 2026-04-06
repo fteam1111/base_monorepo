@@ -24,7 +24,7 @@ class _ExportAreaRemoteDataSource implements ExportAreaRemoteDataSource {
     int factoryId,
   ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'factory': factoryId};
+    final queryParameters = <String, dynamic>{r'factoryId': factoryId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponse<List<AvailableExportAreaDto>>>(

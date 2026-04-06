@@ -14,12 +14,12 @@ abstract class ExportAreaRemoteDataSource {
 
   @GET(ApiRoutes.exportAreasAvailable)
   Future<BaseResponse<List<AvailableExportAreaDto>>> getAvailableExportAreas(
-    @Query('factory') int factoryId,
+    @Query('factoryId') int factoryId,
   );
 
   @GET(ApiRoutes.exportAreaDeliveryOrders)
   Future<BaseResponse<List<ExportAreaDeliveryOrderDto>>>
-  getExportAreaDeliveryOrders(@Path('areaId') int areaId);
+  getExportAreaDeliveryOrders(@Path('exportAreaId') int areaId);
 
   @POST(ApiRoutes.deliveryOrderVehicles)
   Future<BaseResponse<dynamic>> addVehicleToDeliveryOrder(
