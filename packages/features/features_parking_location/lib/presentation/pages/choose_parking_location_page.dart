@@ -22,10 +22,12 @@ class ChooseParkingLocationPage extends StatefulWidget {
     super.key,
     this.initialTab = ParkingTab.finished,
     this.vehicleId,
+    this.canAddVehicleToDo = true,
   });
 
   final ParkingTab initialTab;
   final int? vehicleId;
+  final bool canAddVehicleToDo;
 
   @override
   State<ChooseParkingLocationPage> createState() =>
@@ -247,6 +249,7 @@ class _ChooseParkingLocationPageState extends State<ChooseParkingLocationPage> {
                       areaId: item.id,
                       areaName: item.name,
                       vehicleId: widget.vehicleId?.toString(),
+                      canAddVehicleToDo: widget.canAddVehicleToDo,
                     );
                   },
                 );

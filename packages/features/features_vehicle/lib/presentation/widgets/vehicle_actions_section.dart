@@ -124,6 +124,7 @@ class VehicleActionsSection extends StatelessWidget {
             context,
             initialTabIndex: _tabFinished,
             vehicleId: vehicle?.id,
+            canAddVehicleToDo: false,
           ),
         ),
       );

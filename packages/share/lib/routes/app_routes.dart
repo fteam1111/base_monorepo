@@ -100,10 +100,15 @@ class AppRoutes {
     BuildContext context, {
     int initialTabIndex = 0,
     int? vehicleId,
+    bool canAddVehicleToDo = true,
   }) {
     context.push(
       chooseParkingLocationPath,
-      extra: {'initialTabIndex': initialTabIndex, 'vehicleId': vehicleId},
+      extra: {
+        'initialTabIndex': initialTabIndex,
+        'vehicleId': vehicleId,
+        'canAddVehicleToDo': canAddVehicleToDo,
+      },
     );
   }
 
@@ -112,10 +117,16 @@ class AppRoutes {
     required int areaId,
     required String areaName,
     String? vehicleId,
+    bool canAddVehicleToDo = true,
   }) {
     context.pushNamed(
       exportAreaDeliveryOrders,
-      extra: {'areaId': areaId, 'areaName': areaName, 'vehicleId': vehicleId},
+      extra: {
+        'areaId': areaId,
+        'areaName': areaName,
+        'vehicleId': vehicleId,
+        'canAddVehicleToDo': canAddVehicleToDo,
+      },
     );
   }
 

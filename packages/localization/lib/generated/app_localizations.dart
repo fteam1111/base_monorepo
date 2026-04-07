@@ -1166,10 +1166,16 @@ abstract class AppLocalizations {
   /// **'Waiting'**
   String get exportAreaStatusWaiting;
 
-  /// No description provided for @exportAreaVehicleCount.
+  /// No description provided for @exportAreaVehicleCountLabel.
   ///
   /// In en, this message translates to:
-  /// **'Vehicles: {count}'**
+  /// **'Total vehicles: '**
+  String get exportAreaVehicleCountLabel;
+
+  /// Text showing the total quantity of vehicles for the delivery order
+  ///
+  /// In en, this message translates to:
+  /// **'{count} vehicles'**
   String exportAreaVehicleCount(int count);
 
   /// No description provided for @exportAreaSelectAction.

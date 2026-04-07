@@ -17,15 +17,18 @@ class ExportAreaDeliveryOrderListPage extends StatelessWidget {
     required this.areaId,
     required this.areaName,
     this.vehicleId,
+    this.canAddVehicleToDo = true,
   });
 
   final int areaId;
   final String areaName;
   final String? vehicleId;
+  final bool canAddVehicleToDo;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final double spacingBottomList = 100;
 
     return Scaffold(
       backgroundColor: context.appColors.background,
@@ -42,14 +45,18 @@ class ExportAreaDeliveryOrderListPage extends StatelessWidget {
           } else if (state.addVehicleStatus ==
               ExportAreaDoAddVehicleStatus.success) {
             GlobalLoading.dismiss();
+
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(l10n.vehicleAddedSuccess)));
+
             context.read<ExportAreaDoBloc>().add(ExportAreaDoLoad(areaId));
+
             AppRoutes.navigateToDashboard(context);
           } else if (state.addVehicleStatus ==
               ExportAreaDoAddVehicleStatus.failure) {
             GlobalLoading.dismiss();
+
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
@@ -89,17 +96,27 @@ class ExportAreaDeliveryOrderListPage extends StatelessWidget {
             onLoadingMore: () {},
             noRecordFoundWidget: const SizedBox.shrink(),
             itemBuilder: (context, index, item) {
-              return _ExportAreaDoItem(
-                entity: item,
-                onAddVehicleTapped: vehicleId != null
-                    ? () {
-                        _showConfirmationBottomSheet(
-                          context,
-                          item: item,
-                          vehicleId: vehicleId!,
-                        );
-                      }
-                    : null,
+              return Padding(
+                padding: EdgeInsets.only(
+                  top: index == 0 ? context.appSpacing.pageVertical : 0,
+                  left: context.appSpacing.pageHorizontal,
+                  right: context.appSpacing.pageHorizontal,
+                  bottom: index == state.deliveryOrders.length - 1
+                      ? spacingBottomList
+                      : 0,
+                ),
+                child: _ExportAreaDoItem(
+                  entity: item,
+                  onAddVehicleTapped: (vehicleId != null && canAddVehicleToDo)
+                      ? () {
+                          _showConfirmationBottomSheet(
+                            context,
+                            item: item,
+                            vehicleId: vehicleId!,
+                          );
+                        }
+                      : null,
+                ),
               );
             },
           );
@@ -258,114 +275,111 @@ class _ExportAreaDoItem extends StatelessWidget {
     final l10n = context.l10n;
     final isFull = entity.fulfilledQuantity >= entity.totalQuantity;
 
-    final badgeColor = isFull
+    final badgeBgColor = isFull
         ? context.appColors.successContainer
-        : context.colorScheme.primary.withValues(alpha: 0.1);
+        : context.appColors.infoContainer;
     final badgeTextColor = isFull
         ? context.appColors.onSuccessContainer
-        : context.colorScheme.primary;
-    final badgeText = isFull
-        ? l10n.exportAreaStatusFull.toUpperCase()
-        : l10n.exportAreaStatusWaiting.toUpperCase();
+        : context.appColors.onInfoContainer;
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-      child: CustomCard(
-        elevation: 0,
-        showBorder: true,
-        padding: const EdgeInsets.all(AppSpacing.sm),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(AppSpacing.sm),
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.primary.withValues(alpha: 0.05),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.inventory_2_outlined,
-                    color: context.colorScheme.primary,
-                  ),
-                ),
-                const Gap(AppSpacing.md),
-                Expanded(
-                  child: Text(
-                    entity.doCode,
-                    style: context.appTypography.titleLarge.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+    final badgeText = isFull
+        ? l10n.exportAreaStatusFull
+        : l10n.exportAreaStatusWaiting;
+
+    return CustomCard(
+      elevation: 0,
+      showBorder: true,
+      padding: EdgeInsets.all(context.appSpacing.cardPadding),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const AppIconContainer(icon: Icon(Icons.inventory_2_outlined)),
+              const Gap(AppSpacing.md),
+              Expanded(
+                child: Text(
+                  entity.doCode,
+                  style: context.appTypography.bodyLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.sm,
-                    vertical: 4,
+              ),
+              CustomCard(
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppSpacing.paddingXXXS,
+                  horizontal: AppSpacing.paddingXS,
+                ),
+                backgroundColor: badgeBgColor,
+                shadowColor: Colors.transparent,
+                child: Text(
+                  badgeText,
+                  style: context.appTypography.labelMedium.copyWith(
+                    color: badgeTextColor,
+                    fontWeight: FontWeight.bold,
                   ),
-                  decoration: BoxDecoration(
-                    color: badgeColor,
-                    borderRadius: BorderRadius.circular(context.appRadius.chip),
-                  ),
-                  child: Text(
-                    badgeText,
+                ),
+              ),
+            ],
+          ),
+          const Gap(AppSpacing.md),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    text: l10n.exportAreaVehicleCountLabel,
                     style: context.appTypography.labelSmall.copyWith(
-                      color: badgeTextColor,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Gap(AppSpacing.md),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    l10n.exportAreaVehicleCount(entity.totalQuantity),
-                    style: context.appTypography.labelMedium.copyWith(
-                      color: context.appColors.neutral,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                if (onAddVehicleTapped != null)
-                  InkWell(
-                    onTap: onAddVehicleTapped,
-                    borderRadius: BorderRadius.circular(
-                      context.appRadius.button,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.xs,
-                        vertical: 4,
+                      color: context.colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.6,
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            l10n.exportAreaSelectAction.toUpperCase(),
-                            style: context.appTypography.labelMedium.copyWith(
-                              color: context.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Gap(4),
-                          Icon(
-                            Icons.chevron_right,
-                            size: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: l10n.exportAreaVehicleCount(entity.totalQuantity),
+                        style: context.appTypography.bodyMedium.copyWith(
+                          color: context.colorScheme.onSurface,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              if (onAddVehicleTapped != null)
+                InkWell(
+                  onTap: onAddVehicleTapped,
+                  borderRadius: BorderRadius.circular(context.appRadius.button),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.xs,
+                      vertical: 4,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          l10n.exportAreaSelectAction,
+                          style: context.appTypography.labelMedium.copyWith(
                             color: context.colorScheme.primary,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
+                        ),
+                        const Gap(4),
+                        Icon(
+                          Icons.chevron_right,
+                          size: 20,
+                          color: context.colorScheme.primary,
+                        ),
+                      ],
                     ),
                   ),
-              ],
-            ),
-          ],
-        ),
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }

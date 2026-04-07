@@ -258,11 +258,14 @@
   "exportAreaConfirmAction": "Xác nhận đỗ xe",
   "exportAreaStatusFull": "Đã đủ xe",
   "exportAreaStatusWaiting": "Chờ xuất",
-  "exportAreaVehicleCount": "Số lượng xe: {count} xe",
+  "exportAreaVehicleCountLabel": "Số lượng xe: ",
+  "exportAreaVehicleCount": "{count} xe",
   "@exportAreaVehicleCount": {
+    "description": "Nhãn hiển thị tổng số xe của DO",
     "placeholders": {
       "count": {
-        "type": "int"
+        "type": "int",
+        "example": "100"
       }
     }
   },

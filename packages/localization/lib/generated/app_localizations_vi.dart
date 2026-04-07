@@ -598,8 +598,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exportAreaStatusWaiting => 'Chờ xuất';
 
   @override
+  String get exportAreaVehicleCountLabel => 'Số lượng xe: ';
+
+  @override
   String exportAreaVehicleCount(int count) {
-    return 'Số lượng xe: $count xe';
+    return '$count xe';
   }
 
   @override

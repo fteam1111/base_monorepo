@@ -260,11 +260,14 @@
   "exportAreaConfirmAction": "Confirm parking",
   "exportAreaStatusFull": "Full",
   "exportAreaStatusWaiting": "Waiting",
-  "exportAreaVehicleCount": "Vehicles: {count}",
+  "exportAreaVehicleCountLabel": "Total vehicles: ",
+  "exportAreaVehicleCount": "{count} vehicles",
   "@exportAreaVehicleCount": {
+    "description": "Text showing the total quantity of vehicles for the delivery order",
     "placeholders": {
       "count": {
-        "type": "int"
+        "type": "int",
+        "example": "100"
       }
     }
   },

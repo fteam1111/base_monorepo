@@ -600,8 +600,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportAreaStatusWaiting => 'Waiting';
 
   @override
+  String get exportAreaVehicleCountLabel => 'Total vehicles: ';
+
+  @override
   String exportAreaVehicleCount(int count) {
-    return 'Vehicles: $count';
+    return '$count vehicles';
   }
 
   @override

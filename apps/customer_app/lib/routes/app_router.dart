@@ -158,15 +158,11 @@ class AppRouter {
           path: AppRoutes.chooseParkingLocationPath,
           name: AppRoutes.chooseParkingLocation,
           pageBuilder: (context, state) {
-            var tabIndex = 0;
-            int? vehicleId;
-            if (state.extra is Map<String, dynamic>) {
-              final extra = state.extra as Map<String, dynamic>;
-              tabIndex = (extra['initialTabIndex'] as int?) ?? 0;
-              vehicleId = extra['vehicleId'] as int?;
-            } else if (state.extra is int) {
-              tabIndex = state.extra as int;
-            }
+            final extra = state.extra as Map<String, dynamic>? ?? {};
+            final tabIndex = extra['initialTabIndex'] as int? ?? 0;
+            final vehicleId = extra['vehicleId'] as int?;
+            final canAddVehicleToDo =
+                extra['canAddVehicleToDo'] as bool? ?? true;
 
             final initialTab = ParkingTab
                 .values[tabIndex.clamp(0, ParkingTab.values.length - 1)];
@@ -180,6 +176,7 @@ class AppRouter {
                 child: ChooseParkingLocationPage(
                   initialTab: initialTab,
                   vehicleId: vehicleId,
+                  canAddVehicleToDo: canAddVehicleToDo,
                 ),
               ),
             );
@@ -194,6 +191,8 @@ class AppRouter {
             final areaId = extra['areaId'] as int;
             final areaName = extra['areaName'] as String;
             final vehicleId = extra['vehicleId'] as String?;
+            final canAddVehicleToDo =
+                extra['canAddVehicleToDo'] as bool? ?? true;
 
             return _buildPageWithTransition(
               key: state.pageKey,
@@ -205,6 +204,7 @@ class AppRouter {
                   areaId: areaId,
                   areaName: areaName,
                   vehicleId: vehicleId,
+                  canAddVehicleToDo: canAddVehicleToDo,
                 ),
               ),
             );
