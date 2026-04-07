@@ -1291,6 +1291,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Days Parked'**
   String get parkingHistoryStorageDays;
+
+  /// No description provided for @defaultUserInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown User'**
+  String get defaultUserInfo;
+
+  /// No description provided for @defaultUserLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Location'**
+  String get defaultUserLocation;
 }
 
 class _AppLocalizationsDelegate

@@ -133,6 +133,7 @@ class _MyAppState extends State<MyApp> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       locator<AuthBloc>().add(const AuthCheckRequested());
     });
+    locator<LocalizationBloc>().add(const LoadSavedLocaleEvent());
   }
 
   @override
@@ -143,9 +144,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider.value(value: locator<ThemeCubit>()),
         BlocProvider.value(value: locator<DeepLinkBloc>()),
         BlocProvider.value(value: locator<FactoryCubit>()),
-        BlocProvider.value(
-          value: locator<LocalizationBloc>()..add(const LoadSavedLocaleEvent()),
-        ),
+        BlocProvider.value(value: locator<LocalizationBloc>()),
       ],
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
         builder: (context, localeState) {

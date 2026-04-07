@@ -663,4 +663,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get parkingHistoryStorageDays => 'Số ngày đã đỗ';
+
+  @override
+  String get defaultUserInfo => 'Người dùng';
+
+  @override
+  String get defaultUserLocation => 'Không rõ';
 }

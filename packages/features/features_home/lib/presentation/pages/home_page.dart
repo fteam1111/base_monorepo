@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:features_auth/presentation/bloc/auth_bloc.dart';
 import 'package:features_auth/presentation/bloc/auth_event.dart';
+import 'package:features_auth/presentation/bloc/auth_state.dart';
 import 'package:features_home/presentation/widgets/app_bar_home_section.dart';
 import 'package:features_home/presentation/widgets/home_menu_grid_section.dart';
 import 'package:features_home/presentation/widgets/home_user_section.dart';
@@ -32,14 +33,28 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                const HomeUserSection(
-                  userName: 'Nguyen Van B',
-                  location: 'Nhà máy Hà Tĩnh',
-                ).toSliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.appSpacing.pageHorizontal,
-                    vertical: AppSpacing.sectionSpacing,
-                  ),
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    final userName = state is AuthAuthenticated
+                        ? state.user.fullName.getOrDefaultValue(
+                            context.l10n.defaultUserInfo,
+                          )
+                        : context.l10n.defaultUserInfo;
+                    final location = state is AuthAuthenticated
+                        ? state.user.factory?.name ??
+                              context.l10n.defaultUserLocation
+                        : context.l10n.defaultUserLocation;
+
+                    return HomeUserSection(
+                      userName: userName,
+                      location: location,
+                    ).toSliverPadding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.appSpacing.pageHorizontal,
+                        vertical: AppSpacing.sectionSpacing,
+                      ),
+                    );
+                  },
                 ),
 
                 HomeMenuGridSliverSection(
@@ -48,6 +63,9 @@ class HomePage extends StatelessWidget {
                   },
                   onDoListPressed: () {
                     AppRoutes.navigateToDeliveryOrderList(context);
+                  },
+                  onMapPressed: () {
+                    AppRoutes.navigateToFactoryMap(context);
                   },
                 ),
                 const Gap(AppSpacing.sectionSpacing).toSliverNoPadding(),

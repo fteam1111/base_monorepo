@@ -294,5 +294,7 @@
   "parkingHistoryPosition": "Vị trí",
   "parkingHistoryEmployee": "Nhân viên",
   "parkingHistoryAccount": "Tài khoản",
-  "parkingHistoryStorageDays": "Số ngày đã đỗ"
+  "parkingHistoryStorageDays": "Số ngày đã đỗ",
+  "defaultUserInfo": "Người dùng",
+  "defaultUserLocation": "Không rõ"
 }

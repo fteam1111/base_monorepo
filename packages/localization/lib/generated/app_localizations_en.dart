@@ -665,4 +665,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get parkingHistoryStorageDays => 'Days Parked';
+
+  @override
+  String get defaultUserInfo => 'Unknown User';
+
+  @override
+  String get defaultUserLocation => 'Unknown Location';
 }

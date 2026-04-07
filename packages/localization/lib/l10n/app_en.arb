@@ -296,5 +296,7 @@
   "parkingHistoryPosition": "Position",
   "parkingHistoryEmployee": "Employee",
   "parkingHistoryAccount": "Account",
-  "parkingHistoryStorageDays": "Days Parked"
+  "parkingHistoryStorageDays": "Days Parked",
+  "defaultUserInfo": "Unknown User",
+  "defaultUserLocation": "Unknown Location"
 }
