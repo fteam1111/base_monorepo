@@ -125,8 +125,11 @@ class AppRouter {
                 GoRoute(
                   path: AppRoutes.parkingHistoryPath,
                   name: AppRoutes.parkingHistory,
-                  pageBuilder: (context, state) => const NoTransitionPage(
-                    child: ParkingHistoryPage(),
+                  pageBuilder: (context, state) => NoTransitionPage(
+                    child: BlocProvider(
+                      create: (_) => locator<VehicleHistoryBloc>(),
+                      child: const ParkingHistoryPage(),
+                    ),
                     name: AppRoutes.parkingHistory,
                   ),
                 ),

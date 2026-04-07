@@ -268,5 +268,30 @@
       }
     }
   },
-  "exportAreaSelectAction": "Select"
+  "exportAreaSelectAction": "Select",
+  "parkingHistoryScanPrompt": "Please scan QR to view history",
+  "parkingHistoryErrorLoading": "Error loading history data",
+  "parkingHistoryEmpty": "No history data found.",
+  "parkingHistoryPerformedBy": "Performed by",
+  "parkingHistoryTime": "Time",
+  "parkingHistoryDoCode": "DO Code",
+  "parkingHistoryNotes": "Notes",
+  "parkingHistoryStatus": "Status: {status}",
+  "@parkingHistoryStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingHistoryImport": "Import",
+  "parkingHistoryMoveToCharge": "Move to charge",
+  "parkingHistoryMoveToQc": "Move to QC",
+  "parkingHistoryAssignToDo": "Assign DO",
+  "parkingHistoryFactory": "Factory",
+  "parkingHistoryArea": "Area",
+  "parkingHistoryPosition": "Position",
+  "parkingHistoryEmployee": "Employee",
+  "parkingHistoryAccount": "Account",
+  "parkingHistoryStorageDays": "Days Parked"
 }

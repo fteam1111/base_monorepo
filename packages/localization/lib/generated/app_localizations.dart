@@ -1177,6 +1177,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select'**
   String get exportAreaSelectAction;
+
+  /// No description provided for @parkingHistoryScanPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please scan QR to view history'**
+  String get parkingHistoryScanPrompt;
+
+  /// No description provided for @parkingHistoryErrorLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading history data'**
+  String get parkingHistoryErrorLoading;
+
+  /// No description provided for @parkingHistoryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No history data found.'**
+  String get parkingHistoryEmpty;
+
+  /// No description provided for @parkingHistoryPerformedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Performed by'**
+  String get parkingHistoryPerformedBy;
+
+  /// No description provided for @parkingHistoryTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get parkingHistoryTime;
+
+  /// No description provided for @parkingHistoryDoCode.
+  ///
+  /// In en, this message translates to:
+  /// **'DO Code'**
+  String get parkingHistoryDoCode;
+
+  /// No description provided for @parkingHistoryNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get parkingHistoryNotes;
+
+  /// No description provided for @parkingHistoryStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: {status}'**
+  String parkingHistoryStatus(String status);
+
+  /// No description provided for @parkingHistoryImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get parkingHistoryImport;
+
+  /// No description provided for @parkingHistoryMoveToCharge.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to charge'**
+  String get parkingHistoryMoveToCharge;
+
+  /// No description provided for @parkingHistoryMoveToQc.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to QC'**
+  String get parkingHistoryMoveToQc;
+
+  /// No description provided for @parkingHistoryAssignToDo.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign DO'**
+  String get parkingHistoryAssignToDo;
+
+  /// No description provided for @parkingHistoryFactory.
+  ///
+  /// In en, this message translates to:
+  /// **'Factory'**
+  String get parkingHistoryFactory;
+
+  /// No description provided for @parkingHistoryArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get parkingHistoryArea;
+
+  /// No description provided for @parkingHistoryPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Position'**
+  String get parkingHistoryPosition;
+
+  /// No description provided for @parkingHistoryEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee'**
+  String get parkingHistoryEmployee;
+
+  /// No description provided for @parkingHistoryAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get parkingHistoryAccount;
+
+  /// No description provided for @parkingHistoryStorageDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Days Parked'**
+  String get parkingHistoryStorageDays;
 }
 
 class _AppLocalizationsDelegate

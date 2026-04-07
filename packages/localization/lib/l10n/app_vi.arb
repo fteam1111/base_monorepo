@@ -266,5 +266,30 @@
       }
     }
   },
-  "exportAreaSelectAction": "Chọn đỗ"
+  "exportAreaSelectAction": "Chọn đỗ",
+  "parkingHistoryScanPrompt": "Vui lòng quét QR để tra cứu xe",
+  "parkingHistoryErrorLoading": "Lỗi lấy dữ liệu lịch sử",
+  "parkingHistoryEmpty": "Không có dữ liệu lịch sử.",
+  "parkingHistoryPerformedBy": "Người thực hiện",
+  "parkingHistoryTime": "Thời gian",
+  "parkingHistoryDoCode": "Mã DO",
+  "parkingHistoryNotes": "Ghi chú",
+  "parkingHistoryStatus": "Trạng thái: {status}",
+  "@parkingHistoryStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingHistoryImport": "Nhập kho",
+  "parkingHistoryMoveToCharge": "Chuyển sang khu sạc xả",
+  "parkingHistoryMoveToQc": "Chuyển sang khu QC",
+  "parkingHistoryAssignToDo": "Gắn vào DO",
+  "parkingHistoryFactory": "Xưởng",
+  "parkingHistoryArea": "Khu vực",
+  "parkingHistoryPosition": "Vị trí",
+  "parkingHistoryEmployee": "Nhân viên",
+  "parkingHistoryAccount": "Tài khoản",
+  "parkingHistoryStorageDays": "Số ngày đã đỗ"
 }

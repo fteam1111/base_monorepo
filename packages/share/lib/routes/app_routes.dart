@@ -21,6 +21,7 @@ class AppRoutes {
   // Home Routes
   static const String home = 'home';
   static const String parkingHistory = 'parking-history';
+  static const String vehicleHistory = 'vehicle-history';
   static const String vehicleDetail = 'vehicle-detail';
   static const String chooseParkingLocation = 'choose-parking-location';
   static const String factoryMap = 'factory-map';
@@ -44,6 +45,7 @@ class AppRoutes {
   static const String homePath = '/home';
   static const String parkingHistoryPath = '/parking-history';
   static const String vehicleDetailPath = '/vehicle-detail';
+  static const String vehicleHistoryPath = '/vehicle-history';
   static const String chooseParkingLocationPath = '/choose-parking-location';
   static const String factoryMapPath = '/factory-map';
   static const String loginPath = '/login';
@@ -85,6 +87,13 @@ class AppRoutes {
 
   static void navigateToVehicleDetail(BuildContext context) {
     context.push(vehicleDetailPath);
+  }
+
+  static void navigateToVehicleHistory(
+    BuildContext context, {
+    required int vehicleId,
+  }) {
+    context.pushNamed(vehicleHistory, extra: vehicleId);
   }
 
   static void navigateToChooseParkingLocation(

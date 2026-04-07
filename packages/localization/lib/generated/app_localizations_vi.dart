@@ -604,4 +604,60 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get exportAreaSelectAction => 'Chọn đỗ';
+
+  @override
+  String get parkingHistoryScanPrompt => 'Vui lòng quét QR để tra cứu xe';
+
+  @override
+  String get parkingHistoryErrorLoading => 'Lỗi lấy dữ liệu lịch sử';
+
+  @override
+  String get parkingHistoryEmpty => 'Không có dữ liệu lịch sử.';
+
+  @override
+  String get parkingHistoryPerformedBy => 'Người thực hiện';
+
+  @override
+  String get parkingHistoryTime => 'Thời gian';
+
+  @override
+  String get parkingHistoryDoCode => 'Mã DO';
+
+  @override
+  String get parkingHistoryNotes => 'Ghi chú';
+
+  @override
+  String parkingHistoryStatus(String status) {
+    return 'Trạng thái: $status';
+  }
+
+  @override
+  String get parkingHistoryImport => 'Nhập kho';
+
+  @override
+  String get parkingHistoryMoveToCharge => 'Chuyển sang khu sạc xả';
+
+  @override
+  String get parkingHistoryMoveToQc => 'Chuyển sang khu QC';
+
+  @override
+  String get parkingHistoryAssignToDo => 'Gắn vào DO';
+
+  @override
+  String get parkingHistoryFactory => 'Xưởng';
+
+  @override
+  String get parkingHistoryArea => 'Khu vực';
+
+  @override
+  String get parkingHistoryPosition => 'Vị trí';
+
+  @override
+  String get parkingHistoryEmployee => 'Nhân viên';
+
+  @override
+  String get parkingHistoryAccount => 'Tài khoản';
+
+  @override
+  String get parkingHistoryStorageDays => 'Số ngày đã đỗ';
 }

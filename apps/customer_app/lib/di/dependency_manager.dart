@@ -4,6 +4,9 @@ import 'package:design_system/design_system.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:features_delivery_order/features_delivery_order.dart';
 import 'package:features_map/features_map.dart';
+import 'package:features_parking_history/data/datasources/remote/parking_history_remote_datasource.dart';
+import 'package:features_parking_history/data/repositories/parking_history_repository_impl.dart';
+import 'package:features_parking_history/features_parking_history.dart';
 import 'package:features_parking_location/features_parking_location.dart';
 import 'package:features_qr_scanner/features_qr_scanner.dart';
 import 'package:features_splash/features_splash.dart';
@@ -112,6 +115,10 @@ class DependencyManager {
       () => VehicleActionRemoteDataSource(locator<DioHttpClientBuilder>().dio),
     );
 
+    locator.registerLazySingleton<ParkingHistoryRemoteDataSource>(
+      () => ParkingHistoryRemoteDataSource(locator<DioHttpClientBuilder>().dio),
+    );
+
     // Repositories
     locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -151,6 +158,11 @@ class DependencyManager {
     locator.registerLazySingleton<VehicleActionRepository>(
       () =>
           VehicleActionRepositoryImpl(locator<VehicleActionRemoteDataSource>()),
+    );
+    locator.registerLazySingleton<IParkingHistoryRepository>(
+      () => ParkingHistoryRepositoryImpl(
+        locator<ParkingHistoryRemoteDataSource>(),
+      ),
     );
     locator.registerLazySingleton<ParkingLocationRemoteDataSource>(
       () =>
@@ -236,6 +248,10 @@ class DependencyManager {
     );
     locator.registerLazySingleton<GetParkingVehiclesUseCase>(
       () => GetParkingVehiclesUseCase(locator<ParkingLocationRepository>()),
+    );
+
+    locator.registerLazySingleton<GetVehicleHistoriesUseCase>(
+      () => GetVehicleHistoriesUseCase(locator<IParkingHistoryRepository>()),
     );
 
     locator.registerLazySingleton<GetAvailableExportAreasUseCase>(
@@ -380,6 +396,11 @@ class DependencyManager {
     // QR Scanner Cubit - Factory (new instance per page)
     locator.registerFactory<QrScanCubit>(
       () => QrScanCubit(locator<GetVehicleBySerialUseCase>()),
+    );
+
+    // Vehicle History Bloc - Factory
+    locator.registerFactory<VehicleHistoryBloc>(
+      () => VehicleHistoryBloc(locator<GetVehicleHistoriesUseCase>()),
     );
 
     // Deep Linking

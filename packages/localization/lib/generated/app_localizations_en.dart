@@ -606,4 +606,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exportAreaSelectAction => 'Select';
+
+  @override
+  String get parkingHistoryScanPrompt => 'Please scan QR to view history';
+
+  @override
+  String get parkingHistoryErrorLoading => 'Error loading history data';
+
+  @override
+  String get parkingHistoryEmpty => 'No history data found.';
+
+  @override
+  String get parkingHistoryPerformedBy => 'Performed by';
+
+  @override
+  String get parkingHistoryTime => 'Time';
+
+  @override
+  String get parkingHistoryDoCode => 'DO Code';
+
+  @override
+  String get parkingHistoryNotes => 'Notes';
+
+  @override
+  String parkingHistoryStatus(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get parkingHistoryImport => 'Import';
+
+  @override
+  String get parkingHistoryMoveToCharge => 'Move to charge';
+
+  @override
+  String get parkingHistoryMoveToQc => 'Move to QC';
+
+  @override
+  String get parkingHistoryAssignToDo => 'Assign DO';
+
+  @override
+  String get parkingHistoryFactory => 'Factory';
+
+  @override
+  String get parkingHistoryArea => 'Area';
+
+  @override
+  String get parkingHistoryPosition => 'Position';
+
+  @override
+  String get parkingHistoryEmployee => 'Employee';
+
+  @override
+  String get parkingHistoryAccount => 'Account';
+
+  @override
+  String get parkingHistoryStorageDays => 'Days Parked';
 }
