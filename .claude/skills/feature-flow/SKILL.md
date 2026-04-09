@@ -1,11 +1,18 @@
 ---
 name: feature-flow
 description: Full development workflow for this Flutter monorepo — research → plan → code (Domain → Data → Presentation → Wiring) → verify → tests → SPEC.md. Use whenever implementing a new feature, fixing a non-trivial bug, or making significant changes in any `packages/features/features_*` package.
+argument-hint: "[feature-name or description]"
 ---
 
 # Feature Flow
 
-Execute the 6 phases below in order. The conventions referenced (architecture, data-layer, BLoC, UI, routing) all live in nested `CLAUDE.md` files (`packages/features/CLAUDE.md`, `packages/core/CLAUDE.md`, `packages/share/CLAUDE.md`, `packages/design_system/CLAUDE.md`, `apps/customer_app/CLAUDE.md`) — Claude Code auto-loads them when you work in those folders.
+Execute the 6 phases below in order. The conventions referenced (architecture, data-layer, BLoC, UI, routing) live in `.claude/rules/` — Claude Code auto-loads them when you work on files matching their `paths` patterns:
+- `architecture.md` — Clean Architecture & DDD (applied on `lib/**`, `packages/**`)
+- `data-layer.md` — DTOs, datasources, repositories (applied on `**/data/**`)
+- `bloc.md` — BLoC/Cubit rules (applied on `**/bloc/**`, `**/presentation/**`)
+- `ui-design.md` — UI & Design System (applied on `**/presentation/pages/**`, `**/presentation/widgets/**`)
+- `routing.md` — GoRouter & AppRoutes (applied on `**/*.dart`)
+- `packages-core.md`, `packages-share.md`, `packages-design-system.md` — package API references
 
 ## Phase 1 — Research & Understand
 1. Clarify scope (new feature / bug fix / refactor).
