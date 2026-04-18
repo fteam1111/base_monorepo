@@ -20,11 +20,11 @@ class AppRadius {
   static const double buttonSmall = sm; // 8px
   static const double buttonLarge = lg; // 16px
 
-  static const double card = md; // 12px
+  static const double card = xl; // 20px
   static const double cardSmall = sm; // 8px
   static const double cardLarge = lg; // 16px
 
-  static const double input = sm; // 8px
+  static const double input = xl; // 20px
   static const double inputLarge = md; // 12px
 
   static const double dialog = xl; // 20px

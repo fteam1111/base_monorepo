@@ -104,7 +104,7 @@ class AppRouter {
         // ==================== Onboarding Route ====================
         GoRoute(
           path: AppRoutes.onboardingPath,
-          name: AppRoutes.onboarding,
+          name: AppRoutes.onboardingPath,
           pageBuilder: (context, state) => _buildPageWithTransition(
             key: state.pageKey,
             child: BlocProvider(

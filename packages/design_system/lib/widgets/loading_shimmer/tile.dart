@@ -9,7 +9,7 @@ class _Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Shimmer(
-        color: Colors.grey,
+        color: context.appColors.neutralVariant,
         enabled: enabled,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,8 +18,8 @@ class _Tile extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 2.0),
               width: double.infinity,
-              height: 8.0,
-              color: Colors.grey,
+              height: 16,
+              color: context.appColors.neutralVariant,
             ),
           ),
         ),

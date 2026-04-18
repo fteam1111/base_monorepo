@@ -15,6 +15,8 @@ dependencies:
     path: ../core
   local_storage:
     path: ../local_storage
+  share:
+    path: ../share
 
   dio: ^5.4.0
   pretty_dio_logger: ^1.4.0

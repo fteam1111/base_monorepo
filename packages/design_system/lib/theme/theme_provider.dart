@@ -5,7 +5,7 @@ import 'package:local_storage/storage/theme_storage.dart';
 class ThemeCubit extends Cubit<ThemeMode> {
   final ThemeStorage _themeStorage;
 
-  ThemeCubit(this._themeStorage) : super(ThemeMode.system) {
+  ThemeCubit(this._themeStorage) : super(ThemeMode.light) {
     _loadSavedTheme();
   }
 
@@ -47,7 +47,6 @@ class ThemeCubit extends Cubit<ThemeMode> {
     } else if (state == ThemeMode.dark) {
       newMode = ThemeMode.light;
     } else {
-      // Nếu đang theo hệ thống thì chuyển sang light
       newMode = ThemeMode.light;
     }
     await setThemeMode(newMode);

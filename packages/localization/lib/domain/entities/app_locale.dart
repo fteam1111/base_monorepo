@@ -34,20 +34,14 @@ class AppLocale extends Equatable {
     displayName: 'English',
   );
 
-  static const AppLocale bengali = AppLocale(
-    languageCode: 'bn',
-    countryCode: 'BD',
-    displayName: 'বাংলা',
-  );
-
-  static const AppLocale spanish = AppLocale(
-    languageCode: 'es',
-    countryCode: 'ES',
-    displayName: 'Español',
+  static const AppLocale vietnamese = AppLocale(
+    languageCode: 'vi',
+    countryCode: 'VI_VN',
+    displayName: 'Vietnamese',
   );
 
   /// Get all supported locales
-  static List<AppLocale> get supportedLocales => [english, bengali, spanish];
+  static List<AppLocale> get supportedLocales => [english, vietnamese];
 
   /// Get all supported Flutter locales
   static List<Locale> get supportedFlutterLocales =>

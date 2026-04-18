@@ -2,17 +2,61 @@ import 'package:flutter/material.dart';
 
 /// Design token: Color palette for the application
 /// Following Material 3 color system
+/// =======================
+/// COLOR SEMANTIC CHEAT SHEET
+/// =======================
+///
+/// CORE (Action)
+/// primary               -> Action chính (CTA, button chính)
+/// onPrimary             -> Text/Icon trên primary
+/// primaryContainer      -> Background action phụ (FAB, selected state)
+/// onPrimaryContainer    -> Text trên primaryContainer
+///
+/// secondary             -> Action phụ
+/// tertiary              -> Trang trí / highlight nhẹ (badge, tag, accent)
+///
+/// SURFACE (Layer)
+/// background            -> Nền toàn app
+/// surface               -> Card, dialog, bottom sheet
+/// surfaceVariant        -> AppBar, input, container phụ
+/// onSurface             -> Text chính (title, body)
+/// onSurfaceVariant      -> Text phụ (subtitle, hint, disabled)
+///
+/// STATE
+/// error                 -> Lỗi, validation fail
+/// success               -> Thành công
+/// warning               -> Cảnh báo
+/// info                  -> Thông tin
+///
+/// OUTLINE
+/// outline               -> Border input, focus ring
+/// outlineVariant        -> Divider, separator
+///
+/// INVERSE
+/// inverseSurface        -> Snackbar, overlay
+/// onInverseSurface      -> Text trên overlay
+///
+/// NEUTRAL
+/// neutral50-60          -> Text phụ
+/// neutral80-90         -> Border nhẹ
+/// neutral99-100        -> White surface
+///
+/// RULE:
+/// Background = surface/background
+/// Text       = onX
+/// Action     = primary/secondary
+
 class AppColors {
   AppColors._();
 
   // Primary colors - Minimalistic Black/Gray
-  static const Color primaryLight = Color(0xFF000000); // Pure Black
-  static const Color primaryDark = Color(0xFFFFFFFF); // Pure White
-  static const Color primaryContainerLight = Color(0xFFF5F5F5); // Light Gray
-  static const Color primaryContainerDark = Color(0xFF2A2A2A); // Dark Gray
+  static const Color primaryLight = Color(0xFF2C72C6);
+  static const Color primaryDark = Color(0xFFFFFFFF);
+  static const Color primaryContainerLight = Color(0xFFF5F5F5);
+  static const Color primaryContainerDark = Color(0xFF2A2A2A);
 
-  // Secondary colors - Subtle Gray
-  static const Color secondaryLight = Color(0xFF424242); // Medium Gray
+  // Secondary colors
+  static const Color secondaryLight = Color(0xFF424242);
   static const Color secondaryDark = Color(0xFFE0E0E0); // Light Gray
   static const Color secondaryContainerLight = Color(
     0xFFFAFAFA,
@@ -66,7 +110,7 @@ class AppColors {
   ); // Very Dark Gray Blue
 
   // Surface colors - Pure Minimalistic
-  static const Color surfaceLight = Color(0xFFFFFFFF); // Pure White
+  static const Color surfaceLight = Color(0xFFF2F4F7); // grey light
   static const Color surfaceDark = Color(0xFF0F0F0F); // Almost Black
   static const Color surfaceVariantLight = Color(0xFFFAFAFA); // Very Light Gray
   static const Color surfaceVariantDark = Color(0xFF1A1A1A); // Very Dark Gray
@@ -135,4 +179,7 @@ class AppColors {
   // Card colors
   static const Color cardLight = Color(0xFFFFFFFF);
   static const Color cardDark = Color(0xFF1E1E1E);
+
+  // brand
+  static const Color brandPrimary = Color(0xFF2C72C6);
 }

@@ -5,7 +5,7 @@ import 'package:design_system/theme/theme_provider.dart';
 import 'package:features_auth/features_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:localization/generated/app_localizations.dart';
+import 'package:share/extensions/context_ext.dart';
 import 'package:share/routes/app_routes.dart';
 
 import '../bloc/home_bloc.dart';
@@ -200,7 +200,7 @@ class _HomePageViewState extends State<_HomePageView> {
                   if (state is AuthUnauthenticated) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(AppLocalizations.of(context).logout),
+                        content: Text(context.l10n.logout),
                         backgroundColor: Colors.orange,
                         behavior: SnackBarBehavior.floating,
                       ),
@@ -264,7 +264,7 @@ class _HomePageViewState extends State<_HomePageView> {
                           ],
                           flexibleSpace: FlexibleSpaceBar(
                             title: Text(
-                              AppLocalizations.of(context).appTitle,
+                              context.l10n.error,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 shadows: [
@@ -574,7 +574,7 @@ class _HomePageViewState extends State<_HomePageView> {
           OutlinedButton.icon(
             onPressed: () => AppRoutes.navigateToLogin(context),
             icon: const Icon(Icons.login, size: 18),
-            label: Text(AppLocalizations.of(context).login),
+            label: Text(context.l10n.login),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.all(14),
               side: BorderSide(color: theme.colorScheme.primary, width: 1),
@@ -897,12 +897,12 @@ class _HomePageViewState extends State<_HomePageView> {
                     ButtonSegment(
                       value: ThemeMode.dark,
                       icon: const Icon(Icons.dark_mode),
-                      label: Text(AppLocalizations.of(context).darkMode),
+                      label: Text("dark mode"),
                     ),
                     ButtonSegment(
                       value: ThemeMode.system,
                       icon: const Icon(Icons.settings_brightness),
-                      label: Text(AppLocalizations.of(context).systemDefault),
+                      label: Text("system"),
                     ),
                   ],
                   selected: {themeMode},
